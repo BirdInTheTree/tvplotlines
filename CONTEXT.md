@@ -2,7 +2,7 @@
 
 ## Что это
 
-Plotter — инструмент для извлечения и анализа сюжетных линий из синопсисов сериалов. Переписывается с нуля на основе идей из статьи Balestri & Pescatore (ICAART 2025), но с собственной теоретической базой и классификацией.
+Plotter — Python-библиотека для извлечения сюжетных линий из синопсисов сериалов. Не фреймворк, не приложение — библиотека. Одна функция: `get_plotlines(episodes) → list[Plotline]`. Переписывается с нуля на основе идей из статьи Balestri & Pescatore (ICAART 2025), но с собственной теоретической базой и классификацией.
 
 ## Предыстория
 
@@ -16,6 +16,7 @@ Plotter: **знания из книг → формальная модель → 
 
 ## Что своё
 
+- **Нулевой этап: автоопределение контекста** — ИИ сначала читает все синопсисы и определяет story engine, тип франшизы (procedural/serialized/hybrid), жанр, формат. Этот контекст передаётся во все последующие шаги. У оригинала этого нет — поэтому у них 25 арок в одном сериале.
 - A/B/C классификация сюжетных линий (вместо anthology/soap/genre)
 - Procedural / serialized / hybrid типология
 - Синопсис-пайплайн (синопсисы как основной вход, без тяжёлой NLP-обработки)
@@ -33,19 +34,35 @@ Plotter: **знания из книг → формальная модель → 
 ## Целевой интерфейс
 
 ```python
-from plotter import extract_storylines
+from plotter import get_plotlines
 
-storylines = extract_storylines(
+# Вариант 1: Plotter сам определяет контекст
+result = get_plotlines(
     episodes=["синопсис серии 1", "синопсис серии 2", ...],
     language="ru",
-    genre="drama",
 )
 
-for s in storylines:
+# Нулевой этап отработал автоматически:
+print(result.context.story_engine)     # "arms dealing"
+print(result.context.franchise_type)   # "hybrid"
+print(result.context.genre)            # "thriller"
+
+for s in result.storylines:
     print(s.label)       # "A" / "B" / "C"
     print(s.title)       # "Марат и Паша — путь в банду"
     print(s.characters)  # ["Марат", "Паша", "Вова"]
     print(s.episodes)    # {1: "завязка", 3: "конфликт", 5: "кульминация"}
+
+# Вариант 2: пользователь задаёт контекст вручную (экономит один LLM-вызов)
+result = get_plotlines(
+    episodes=[...],
+    language="ru",
+    context=SeriesContext(
+        story_engine="arms dealing",
+        franchise_type="hybrid",
+        genre="thriller",
+    ),
+)
 ```
 
 ## Связанные проекты
