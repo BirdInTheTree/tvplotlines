@@ -1,0 +1,2297 @@
+[
+  {
+    "source": "douglas",
+    "quote": "Among the traits that distinguish primetime series (both dramas and comedies) from other kinds of screenwriting, three are especially significant for writers: endless character arcs, the \"long narrative\" for serials, and the collaborative process.",
+    "page": "p.34, Chapter 1: Three Qualities of Episodic TV Series",
+    "topic": "series qualities",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In feature writing you were probably told to create an arc for your protagonist that takes him from one state to its opposite; the character struggles toward a goal, and once that is attained, your story ends. [...] All fine for movies that end. But series don't.",
+    "page": "p.34, Chapter 1: Episodic Characterization",
+    "topic": "episodic vs feature arc",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "So how do you progress a narrative without an arc? Well, you create a different kind of arc. Remember what I said about series characters being more like people you know than figures in a plot. If your friend has an extreme experience, you continue knowing him after the event. You're invested in the process, not just the outcome.",
+    "page": "p.35, Chapter 1: Episodic Characterization",
+    "topic": "series character arc",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "But watch out — this does not mean the characters are flat. Your continuing cast should never be mere witnesses to the challenge of the week. On the contrary, characters who are not transformed by the plot need something instead: dimension. Think of it like this: instead of developing horizontally toward a goal, the character develops vertically, exploring internal conflicts that create tension.",
+    "page": "p.35, Chapter 1: Episodic Characterization",
+    "topic": "vertical character development",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Episodic drama comes in three forms: anthologies, series with \"closure,\" and \"serials.\"",
+    "page": "p.35, Chapter 1: The \"Long Narrative\"",
+    "topic": "episodic drama forms",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Anthologies are free-standing stories, like short movies, unconnected to other installments except by a frame.",
+    "page": "p.35, Chapter 1: The \"Long Narrative\"",
+    "topic": "definition: anthology",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Series with closure have continuing main casts but new situations that conclude at the end of each episode; they close. This is especially true of \"procedurals\" like CSI, NCIS, any version of Law & Order, and in fact the majority of fare on the traditional broadcast networks.",
+    "page": "p.35, Chapter 1: The \"Long Narrative\"",
+    "topic": "definition: series with closure",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Syndicators and cable channels that run repeats prefer this kind of show because they buy large packages (the first four seasons, or 88 episodes, is typical) and sell them to local and overseas stations who may rerun them in any order. If the episodes have no \"memory,\" that is, no significant development of ongoing relationships, the order of the episodes isn't supposed to matter.",
+    "page": "p.35-36, Chapter 1: The \"Long Narrative\"",
+    "topic": "closure and syndication",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Today, the best shows that close each episode also have ongoing dramatic stories. House and The Good Wife, for example, have built followings on their continuing characters. But from a writing point of view, they are constructed as procedurals.",
+    "page": "p.36, Chapter 1: The \"Long Narrative\"",
+    "topic": "example: House, The Good Wife",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A serial is any drama whose stories continue across many episodes in which the main cast develops over time. It's called the \"long narrative,\" the epitome of what episodic television can offer: not one tale that ties up in an hour or two, but lives that play out over hundreds of hours.",
+    "page": "p.37, Chapter 1: The \"Long Narrative\"",
+    "topic": "definition: serial / long narrative",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you go on to write for television, you'll never work alone. Series are like families, and even though each episode is written by one writer, the process is collaborative at every step. Writers sit around a table to \"break\" each story, then review the outline and all the drafts together.",
+    "page": "p.38-39, Chapter 1: Collaboration",
+    "topic": "collaboration",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The image of the isolated artist creating his precious screenplay secretly in the night isn't the reality of life on a series.",
+    "page": "p.39, Chapter 1: Collaboration",
+    "topic": "anti-pattern: isolated writer",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "People go to movies to escape into a fantasy larger than life with spectacular stunts, effects, and locations. [...] Television didn't intend that kind of experience. In fact, the parent of TV is more likely radio.",
+    "page": "p.41, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "TV vs movies",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Television became fused with what people need to know and what they believe is fact. So it's not an escape, not fantasy, but the fabric of daily life.",
+    "page": "p.41, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "TV as daily life",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Screenwriting students are taught to write visually and minimize talk — \"Play it, don't say it.\" Generally, that's good advice, so I was writing that way when I started in television. Then a producer pointed to a chunk of description (which I'd thought was a clever way of replacing exposition) and said, \"give me a line for this — they may not be watching.\"",
+    "page": "p.42, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "dialogue vs visual in TV",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "But come back to the reality of the medium. It's at home, not a darkened theatre. No one is captured, and the viewers might be eating, painting toenails, doing homework [...] if the \"viewers\" have to get a point, put it in dialogue. People may be listening to the TV more than watching it. That's not such a bad thing.",
+    "page": "p.42, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "TV viewing context",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Whereas viewers are distanced from the screen in theatrical films, voyeurs to other people's stories, television drama has the effect of people talking to you, or at least talking to each other in your home. It's compelling in a different way.",
+    "page": "p.42, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "TV intimacy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "When students ask whether I advise them to write for features or television, after I tell them to try both, I ask about their talent. Do they have an ear for the way people speak naturally? Are they able to convey the illusion of today's speech while actually writing tight, withheld lines? Can they write distinct voices for dissimilar characters? If they don't have the talent for effective dialogue, I nudge them away from TV because action would be easier for them.",
+    "page": "p.42, Chapter 1: Myth 1: TV Is Small Movies",
+    "topic": "dialogue talent for TV",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "As a writer, your investment needs to be in the quality of the story and depth of feelings you can elicit rather than production dazzle, so avoid: distant or difficult locations, special effects, extreme stunts, large guest casts, crowd scenes, and CGI (computer-generated images) unless those are part of your series. If you write them, they'll probably be cut, and by tightening you gain focus on the main characters, which are the strength of television drama.",
+    "page": "p.44, Chapter 1: Myth 2: TV Is Cheap",
+    "topic": "budget constraints",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Don't censor yourself as you write your first draft. Have your characters talk and behave the way people actually do today. Stay real. If a word or image has to be edited, fix it later, but keep the pipeline open to how people truly are, because that's the source of powerful writing.",
+    "page": "p.46, Chapter 1: Myth 3: You Can't Do That on TV",
+    "topic": "anti-pattern: self-censorship",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Now, with competition for fresh programming, a show that rests on formulas and conventional prototypes risks going unnoticed, cancelled after four episodes.",
+    "page": "p.46, Chapter 1: Myth 4: All TV Series Are the Same",
+    "topic": "anti-pattern: formulaic writing",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "But television series do follow rules, and you'll find a list of them at the end of this chapter.",
+    "page": "p.46, Chapter 1: Myth 4: All TV Series Are the Same",
+    "topic": "series rules",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Traditionally, the primetime evening, from 8 PM to 11 PM, was divided into components: 8:00 PM — family sitcoms featuring children, \"Unscripted\" game shows and contests, teen melodramas. [...] 9:00 PM — sophisticated comedies, hour dramas that are thoughtful, romantic, inspirational, or teen. 10:00 PM — the most sophisticated hour dramas for adults; on cable, serious half-hour \"dramedies;\" historic miniseries.",
+    "page": "p.48, Chapter 1: Myth 5: Television Is a Wasteland",
+    "topic": "primetime schedule structure",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Actually, a network or basic cable hour is more like 45 minutes, plus commercial breaks, although pay cable may take the entire time. Usually, scripts for drama series are between 50 and 60 pages, though a fast-talking show like The West Wing sometimes went to 70 pages.",
+    "page": "p.49, Chapter 1: Rules — An Hour Show Has to Fit in an Hour",
+    "topic": "script length",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "On networks that break shows into five acts plus a teaser, writers are stuck with reduced screen time, and find themselves with 8-page acts and scripts coming in around 48 pages.",
+    "page": "p.49, Chapter 1: Rules — An Hour Show Has to Fit in an Hour",
+    "topic": "five-act structure length",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Your show is on every week, and that means there's no waiting for your muse, no honing the fine art of writing-avoidance, no allowing angst to delay handing in your draft. If you can't make the deadline, the showrunner has to turn over your work to another writer.",
+    "page": "p.50, Chapter 1: Rules — Series Deadlines Are for Real",
+    "topic": "deadlines",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "From the time your episode is assigned, you'll probably have one week to come in with an outline, a few days to revise it, two weeks to deliver the first-draft teleplay, a gap of a couple of days for notes, then one week to write your second draft — a total of around six weeks from pitch to second draft.",
+    "page": "p.50, Chapter 1: Rules — Series Deadlines Are for Real",
+    "topic": "episode timeline",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Put away your books on three-act structure. Television dramas on networks have for decades been written in four acts, though many broadcast shows now use five acts, and a few are broken into six.",
+    "page": "p.51, Chapter 1: Rules — Drama Series Have an Act Structure",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "These breaks aren't random; they provide a grid for constructing the episode in which action rises to a cliffhanger or twist (\"plot point\" may be a familiar term if you've studied feature structure). Each of the four segments are \"acts\" in the same sense as plays have real acts rather than the theoretical acts described in analyzing features.",
+    "page": "p.51, Chapter 1: Rules — Drama Series Have an Act Structure",
+    "topic": "act breaks as real structure",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Once you get the hang of it, you'll discover that act breaks don't hamper your creativity; they free you to be inventive within a rhythmic grid.",
+    "page": "p.51, Chapter 1: Rules — Drama Series Have an Act Structure",
+    "topic": "act breaks as creative tool",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you look at the writer's first drafts of many hour dramas, ranging from House (which airs in five acts plus a teaser) to Breaking Bad to The Wire, you'll see the four-act structure back again. From a construction viewpoint, it just plain works, even if it is adjusted in the final drafts later.",
+    "page": "p.52, Chapter 1: Rules — Drama Series Have an Act Structure",
+    "topic": "four-act as default",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Some typical television franchises include police/detective, legal, medical, sci-fi, action-adventure, and family. Each brings expectations from the audience that you should know, even if you challenge them. For series creators, franchises are both boundaries and opportunities.",
+    "page": "p.52, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "definition: franchise",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The solution is to find \"springboards\" that propel dramatic conflicts or adventures each episode. Those catalysts occur naturally in most of the franchises: a crime sets the cop on a quest for the perp; someone in trouble beseeches lawyers who must mount a case; a patient is brought for a doctor to save.",
+    "page": "p.52-53, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "definition: springboard",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The hook for each episode is rooted in a specific world in which sympathetic main characters must take immediate action. In other franchises — family, workplace, high school and romantic dramas, for example — springboards are less obvious, relying on conflicts between characters rather than outside provocations. In these, a personal inciting incident (even if it's internal) sets each episode in motion.",
+    "page": "p.53, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "springboard types",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Series that rely on stories that are solved by investigative procedures are called \"procedurals\" and include forensics (CSI), detective work (Law & Order), and medical diagnoses (House) that follow clues to wrap up a new case each week.",
+    "page": "p.55, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "definition: procedural",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "ER developed \"vignette\" techniques in which multiple short stories flit by, some on top of each other, and Grey's continued that layering.",
+    "page": "p.54, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: ER, Grey's Anatomy",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "From the moment ABC slotted Grey's Anatomy to follow Desperate Housewives, the network mandated the tone: \"Sex and the Surgery.\" Executive Producer Shonda Rhimes responded in Los Angeles Magazine, \"I don't think of it as a medical drama. It's a relationship show with some surgery thrown in. That's how I've always seen it.\"",
+    "page": "p.54, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: Grey's Anatomy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Meanwhile, the family drama franchise is flourishing — like Big Love, The Sopranos, and Breaking Bad. Some families. I suppose you could call True Blood a family drama too, because episodes emanate from relationships among the continuing cast (some of whom are related or \"living\" together) as much as external events.",
+    "page": "p.54, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: family franchise",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In the detective franchise, a light show like Monk on USA played out the traditional form: one detective gets one new crime mystery each week and, after investigating red herrings that fall mostly at the act breaks, cleverly solves it by the end of the hour. [...] structurally this was a basic \"A\" story series.",
+    "page": "p.55, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: Monk",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you find yourself in one of those formulaic shows, here's my advice: use the formula, but inhabit it with people and their true feelings set amidst honest social concerns. If you fulfill the minimum expectations, executives may never notice how much further you've gone, and you'll have a better writing sample for yourself.",
+    "page": "p.55, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "working within formula",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Like Deadwood, The Sopranos, Rome, and Boardwalk Empire, Game of Thrones uses history and screen tradition only as a starting point to develop unsentimental relationships observed with such honesty they transcend the prototype. Bluntly realistic, Thrones can be seen as a reaction against fantasy cliches such as the struggle between absolute good and evil. Villains wrestle with scruples, heroes compromise, and moral rigidity will get you killed.",
+    "page": "p.58, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: Game of Thrones",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "When you're ready to plan a script as your showpiece for a series, ask yourself what the underlying franchise is. Even if the show is innovative and evolved beyond the tradition, the franchise may give you tips for constructing your outline.",
+    "page": "p.58, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "franchise as construction tool",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The best thing I can say about the term \"dramedy,\" which conflates the words drama and comedy, is that it's better than the alternate: \"coma,\" although that might actually be a closer fit considering how unconsciously the label is applied to nearly everything on television.",
+    "page": "p.59, Spotlight on Writing \"Dramedy\"",
+    "topic": "definition: dramedy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "By the 1960s, the system was codified by the networks: half-hours were situation comedies (\"sitcoms\"), and hours were dramas. The sitcoms usually had a live audience or laugh track so no one could miss the point that it was funny. Hours were unfunny genres dealing with police or doctors or western gunfighters, and later serialized soap operas.",
+    "page": "p.60, Spotlight on Writing \"Dramedy\"",
+    "topic": "drama/comedy split history",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The best half-hour comedies have emotional storylines and sometimes comment sharply on contemporary issues. Very few are filmed before live audiences, and no one would be caught with a 1970s type of laugh track. Meanwhile, both the Emmy Awards and the Writers Guild place various dramas in the comedy category even though they are an hour long because they are so light or because their intentions are comedic.",
+    "page": "p.60, Spotlight on Writing \"Dramedy\"",
+    "topic": "blurred drama/comedy boundary",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Generally the attributes of \"dramedies\" are these: continuity of character and storylines, including serialized episodes, depth of backstories, and development of dramatic arcs, as opposed to the setup/joke paradigm where laughs are expected at specified intervals. \"Dramedies\" may be light, but if they have laughs at all, they would be of a wry or ironic sort.",
+    "page": "p.62, Spotlight on Writing \"Dramedy\"",
+    "topic": "dramedy attributes",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "As to why they are not pure dramas, on the other hand, the characters might be less deep — closer to caricatures — and might tend to zaniness, as in Weeds or The Big C, or focus on clever or jokey dialogue quips, as in Gilmore Girls.",
+    "page": "p.62, Spotlight on Writing \"Dramedy\"",
+    "topic": "dramedy vs pure drama",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A term like \"dramedy\" makes a show harder to write because it causes you to think of all shows flowing into an amorphous funny/serious heap. It helps to have something to hold onto — benchmarks in history and in previous shows and in expectations.",
+    "page": "p.63, Spotlight on Writing \"Dramedy\"",
+    "topic": "anti-pattern: amorphous dramedy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you are writing the hour drama series, you will find yourself bringing some comedy to the table some of the time, especially in episodes where you're building to tragedy. If you are writing something that intends to be funny, you must have a strong hold on the underlying dramatic elements. No one can get away with joke-to-joke writing in any form longer than three-minute webisodes.",
+    "page": "p.63, Spotlight on Writing \"Dramedy\"",
+    "topic": "comedy in drama, drama in comedy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "And outside of children's adventures, no one can get away with unrelieved \"dramatic\" action that lacks a perspective of humor at times. In writing today's TV drama series, you have to do it all.",
+    "page": "p.63, Spotlight on Writing \"Dramedy\"",
+    "topic": "humor requirement",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Not to be glib, but the easy definition would be comedy is more situational. We're watching the moment-to-moment foibles of regular folks as they stumble through their lives. Comedies tend to be structured around an identifiable premise [...] Drama, to me anyway, deals with human conflict on a much deeper level. Life, death, illness, malice, personal and family dysfunction. The stakes are profound.",
+    "page": "p.64, Guest Speaker: David Isaacs",
+    "topic": "comedy vs drama definition",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Writing for Mad Men was suddenly about the subtext. It was about insular action, almost novelistic. That was a big adjustment. [...] However in traditional TV comedy, where I grew up, we were writing argument to argument until we hit the real conflict and hopefully the funny. With Mad Men there was very little reaching a flashpoint.",
+    "page": "p.67, Guest Speaker: David Isaacs",
+    "topic": "example: Mad Men subtext",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The key in all of this is character. It really is about character. Drama or comedy, or both, that's what drives you through a story. Even in a procedural like CSI, you're still invested in writing three-dimensional characters, characters with desires and personal flaws getting in the way of their work. You really have to approach a script through the characters, no matter how far flung the idea, no matter how high concept it is.",
+    "page": "p.68, Guest Speaker: David Isaacs",
+    "topic": "character primacy",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Real drama and real comedy are about some condition that people are afflicted by, or an obstacle in their lives, and you eventually find some way for them to deal with that dilemma.",
+    "page": "p.68, Guest Speaker: David Isaacs",
+    "topic": "drama/comedy common ground",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Television series aren't bought or sold on ideas, but the ability to deliver on those ideas.",
+    "page": "p.71, Chapter 2: How Shows Get on TV",
+    "topic": "selling a series",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": "pitch"
+  },
+  {
+    "source": "douglas",
+    "quote": "Having \"legs\" means a show has the potential to generate enough stories to last a long time.",
+    "page": "p.71, Chapter 2: How Shows Get on TV",
+    "topic": "definition: legs",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "On the top of Page One, write a \"Log Line.\" [...] A log line for a series may be less specific than the story summaries you'll use for individual episodes. The goal is to orient a listener (yes, listener, not reader) to your project, to catch an executive's attention.",
+    "page": "p.74, Chapter 2: Create Your Proposal",
+    "topic": "definition: log line",
+    "level": "docs",
+    "tag": "logline",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "Once your log line sizzles, take the first couple of pages of your format for an Overview. This is not a summary of the pilot (a common mistake), but an introduction to the world and the quest of the whole series, including location, style, tone, context, and, most of all, characters.",
+    "page": "p.75, Chapter 2: Create Your Proposal",
+    "topic": "definition: overview",
+    "level": "docs",
+    "tag": "proposal",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "Within this Overview, suggest springboards for future episodes so decision-makers believe the series has legs. That is, state the source of future episodes, for example: Each week the character must balance the tension of her marriage with the intrigue and politics of a legal case.",
+    "page": "p.75, Chapter 2: Create Your Proposal",
+    "topic": "springboards in proposal",
+    "level": "docs",
+    "tag": "proposal",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "Follow the Overview with the centerpiece of any series: characters. If viewers don't root for your main cast, if they're not compelled to find out how the people are coping or loving or fighting back each week, you don't have anything. Remember, TV drama isn't really about the concept; it runs on the emotional fuel of endless character arcs.",
+    "page": "p.75, Chapter 2: Create Your Proposal",
+    "topic": "characters over concept",
+    "level": "docs",
+    "tag": "proposal",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "Take one page each for the few leading roles. I said few. Yes, you've seen excellent ensemble shows with casts in double-digits, but in a proposal, the listener's eyes will glaze over after you get past your third or fourth character. So focus on one fascinating, eminently castable character and engage us in her spirit and goals.",
+    "page": "p.76, Chapter 2: Create Your Proposal",
+    "topic": "proposal character limit",
+    "level": "docs",
+    "tag": "proposal",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "But networks really need the sense of a mid-season episode because that's a window to how the show functions every week. Some proposals focus on episode seven. Some list log lines for five to ten potential episodes. Some describe the long arc and the end of the quest after five years on the air.",
+    "page": "p.76, Chapter 2: Create Your Proposal",
+    "topic": "proposal episode examples",
+    "level": "docs",
+    "tag": "proposal",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "A backdoor pilot is a two-hour movie, and might be a clever way to propel a series. The game involves writing a pilot that masquerades as a movie, and, in fact, works as a closed story. But the seeds of subsequent tales and promising character developments are embedded in a situation that could easily spring many episodes.",
+    "page": "p.77, Chapter 2: Write a \"Backdoor Pilot\"",
+    "topic": "definition: backdoor pilot",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The Mike Hammer formula went something like this: At the top of the show, a sympathetic character approaches Mike for help. At the end of Act One the sympathetic character is found dead. In Act Two Mike is on the trail of the killer, only to find him dead at the Act break, and yet someone else has been killed (proving there's a different killer). In Act Three the real bad guy goes after Mike, and at the Act Three break, Mike is in mortal jeopardy. Act Four is entirely resolution, one-to-one, Mike against the killer.",
+    "page": "p.57, Chapter 1: Rules — Each Series Fits a Franchise",
+    "topic": "example: Mike Hammer formulaic structure",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Each network may hear around 500 pitches during their open season. Out of those, each chooses 50 to 100 to become pilot scripts. Of those, 10 to 20 might be made into pilot films. Out of those, a few become series.",
+    "page": "p.84",
+    "topic": "development funnel",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "500 pitches yield 100 pilot scripts yield 20 pilots which yield five series [...] That's a ten percent overall chance of making a sale, if all else was equal, which, of course, it isn't.",
+    "page": "p.84",
+    "topic": "development odds",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Pitching to a network executive is a craft unto itself. Some execs nod, smile, and act interested. With others, it's like talking to Mount Rush-more.",
+    "page": "p.85",
+    "topic": "pitching craft",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "douglas",
+    "quote": "Whoever writes the pilot will have at least a \"developed by\" credit, and may even receive \"created by\" credit on the series. That will generate a royalty on every episode, and his name will appear on screen forever, even if the pilot-writer is long gone.",
+    "page": "p.86",
+    "topic": "pilot credit",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Don't assume that's you unless your writing proves that only you can capture the style and world you've proposed.",
+    "page": "p.86",
+    "topic": "pilot ownership",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Some professional writers have built careers doing pilots for other people's shows. They're savvy about the ingredients any pilot needs, they bring a pedigree of successful series, and they know how to win over network readers.",
+    "page": "p.86",
+    "topic": "pilot specialists",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "It's kind of a bait-and-switch, where they're buying one writer's voice, but another will write the series.",
+    "page": "p.86",
+    "topic": "pilot paradox",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Pilots come in two flavors: premise and ongoing. A premise pilot begins with a \"before\" and propels the quest or situation the central character will tackle throughout the series.",
+    "page": "p.87",
+    "topic": "pilot types",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In an ongoing pilot, the world of the show is in place and many of the characters are entrenched in their dramatic missions. The challenge is to reveal these characters and relationships without the aid of an outsider's introduction.",
+    "page": "p.87",
+    "topic": "ongoing pilot",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Without the audience feeling they're being informed, you need to establish the rules of your world, the engine for future stories (springboards), and enough \"backstory\" (history) on the characters so their current situation is understandable.",
+    "page": "p.88",
+    "topic": "pilot exposition",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Simply, your pilot has to make people tune in to episode two.",
+    "page": "p.88",
+    "topic": "pilot goal",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Features are easier because once people have bought tickets and are sitting in the dark, they'll give a movie time to unveil itself. Television has to grab people in the first minutes or they're clicking the remote.",
+    "page": "p.88",
+    "topic": "TV vs. film pacing",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Use everything you've learned about avoiding clunky exposition (bury it in an argument, play it in a scene instead of explaining, use visual evidence, parse it out in bits, reveal it as part of the plot instead of for its own sake, and so forth).",
+    "page": "p.88",
+    "topic": "exposition technique",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The first three episodes will function as pilots. Episodes Two and Three have to reach a balance between orienting first-time viewers by reprising the overall \"mission\" and identifying the cast, while progressing the stories to hold people who watched before.",
+    "page": "p.95",
+    "topic": "early episodes",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If the pilot was a premise that deposited a character in a new environment or quest, then Episode Two is expected to deliver what happens there. It may be the most difficult and least rewarding episode on a show.",
+    "page": "p.95",
+    "topic": "episode two",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Think about it — the audience doesn't know the characters, so viewers are not yet emotionally invested. But neither do you have the benefit of the inciting situation or curiosity that sets the series in motion, since that happened the first week. Nevertheless, this \"development\" episode must sizzle with the tension and anticipation of the pilot.",
+    "page": "p.95",
+    "topic": "development episode",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Go to the screenings, no matter how hard you're writing. After you hear how the dialogue plays, you might want to rework the cadence of a scene you're writing. Dailies also reveal the strengths of the actors. If chemistry between actors burns through the screen, you'll want to use it.",
+    "page": "p.96",
+    "topic": "writing from dailies",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Smart actors know it. They'll want to have lunch with you to pitch stories for their character.",
+    "page": "p.96",
+    "topic": "actor-writer dynamic",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "As the series evolves, the head writer must decide whether to let characters develop in a way he didn't foresee, or stick to the original plan.",
+    "page": "p.96",
+    "topic": "character evolution",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Some showrunners begin with a chart of story arcs for the whole season. In fact, many established series invite their large staff to a retreat [...] On a whiteboard, they might assign each character a color-coded marker and track the five-or-so main roles from Episode 1 to 22 in a stack of horizontal lines. After all arcs are complete, they slice vertically, showing how the stories intersect.",
+    "page": "p.96-97",
+    "topic": "season arc planning",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The team that headed Northern Exposure used to build their series \"bible\" as each script came along. In one episode, a writer would invent a brother for a character, or a secret past, or a private fear. These were listed as \"facts to wax\" and distributed to the staff.",
+    "page": "p.97",
+    "topic": "emergent bible",
+    "level": "docs",
+    "tag": "series-bible",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "A TV bible is a document intended to help new writers and directors understand the rules of a series. Complete bibles contain elements similar to a \"format\" — a log line, franchise, an overview of springboards, tone, style, and the quest of the series, followed by character sketches and story guidelines.",
+    "page": "p.97-98",
+    "topic": "TV bible",
+    "level": "docs",
+    "tag": "series-bible",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "Frankly, most shows don't bother with bibles at all. They take too much time when everyone is busy making the airdate.",
+    "page": "p.98",
+    "topic": "bible reality",
+    "level": "docs",
+    "tag": "series-bible",
+    "stage": "bible"
+  },
+  {
+    "source": "douglas",
+    "quote": "You want to create a season-ender that entices viewers to watch in the fall, and yet if you're not being picked up for a second season, the impulse is to go out bravely and close the story arc.",
+    "page": "p.99",
+    "topic": "season finale tension",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "He configured the episodes leading to the end of Don Draper's core question of whether he could be a family man, loving and loved, not unknown and alone. In the original script, Don goes home to Thanksgiving and finds his family waiting, and the through-line of the series is resolved.",
+    "page": "p.100",
+    "topic": "Mad Men arc",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "One of the interns on the staff [...] wrote a new scene. Don goes home and there's the family waiting, just as in the early draft. But it's in his imagination. The house is empty. Don sits alone on the stairs of his empty house. And tune in for next season because his troubles are only just beginning.",
+    "page": "p.100",
+    "topic": "Mad Men rewrite",
+    "level": "season",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Fear-based decisions send some of the most creative producers and writers to cable where longer orders are customary, or where seasons are conceived as 12 episodes long (or even as few as 8 episodes in certain \"full\" seasons) but you are fairly secure you'll be back for season two.",
+    "page": "p.92",
+    "topic": "cable advantage",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A traditional network season is 22 episodes, though some shows do 24 or even 26. In reality, even an order for a full season is hedged: The pick-up (commitment to air) is \"13 plus the back 9.\" That means 13 episodes will be broadcast, with the decision on the final 9 contingent on their performance.",
+    "page": "p.91",
+    "topic": "season structure",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Deadwood on HBO did 12 episodes per year, not 22. The entire season was written in winter and spring, so all scripts were finished before any production began.",
+    "page": "p.102",
+    "topic": "cable model",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The handcuffs had been removed; we'd been released from the prison of network television. And the question posed to any newly freed man was posed to us: 'Now that you have your freedom, what do you plan to do with it?'",
+    "page": "p.103",
+    "topic": "creative freedom",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Using a basic pattern can actually release your artistry because you don't have to worry whether the underlying skeleton will hold up.",
+    "page": "p.105",
+    "topic": "structure frees",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Writing television drama isn't easier than theatrical movies, even though it's shorter; actually it's more difficult, because it requires all the same elements compressed in a tighter form.",
+    "page": "p.106",
+    "topic": "TV difficulty",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The largest (or most resonant) story is called \"A.\" The second most important story is \"B.\" And the third \"C\" story is sometimes comic relief in an otherwise serious show, or may be a \"runner,\" such as a recurring incident or character issue.",
+    "page": "p.107",
+    "topic": "A-B-C stories",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Some series usually have more than three stories — The Wire, for example. And some primarily \"A\" story only, for example Dexter. Before you speculate a show, carefully study how it's crafted.",
+    "page": "p.107",
+    "topic": "story count varies",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "For five acts look for which two acts are the shortest. Usually five acts are simply Act Four divided in half.",
+    "page": "p.107",
+    "topic": "five-act trick",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "An hour drama doesn't really run an hour — it's actually less than 50 minutes after commercials. And each act isn't really 15 minutes — more like 12.",
+    "page": "p.109",
+    "topic": "actual runtime",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The cliffhanger that occurs at the end of an act might not always be a suspenseful moment in the \"A\" story; it might be a turning point in the \"B\" story, for example.",
+    "page": "p.111",
+    "topic": "act break flexibility",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "It's helpful to reverse-engineer, stepping backward from the cliffhangers to the beats right before to fill in the actions that led to the jeopardy or collision.",
+    "page": "p.111",
+    "topic": "reverse engineering",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A teaser, also called \"a cold opening,\" refers to dramatic material before the titles [...] In any style, it exists to grab viewers faster than the enemy, which is the remote.",
+    "page": "p.112",
+    "topic": "teaser function",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I recommend sticking with story rather than message. A swiftly propelled dramatic tension will lure a reader to turn the page and a viewer to see what happens next. Real storytelling is difficult, and I've seen too many students fool themselves into thinking they can impress by opening with a weighty theme or abstruse philosophy, when they're actually avoiding the challenge of impelling an arc.",
+    "page": "p.113",
+    "topic": "story over message",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The best teasers tend to be the best drama.",
+    "page": "p.113",
+    "topic": "teaser quality",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We break the beats by character and then do a weave. We put everything up on whiteboards where each character has a beginning, middle, and end [...] Although in truth we don't break anything by acts at all. We break it by character.",
+    "page": "p.110",
+    "topic": "breaking by character",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "On television today, a one-minute beat is more welcome than a three-minute scene, and if you're starting page four of a single encounter, that's a red flag.",
+    "page": "p.115",
+    "topic": "scene length",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Procedurals: shows that crack their cases each episode, where the emphasis is on the puzzle more than arcs for the continuing cast.",
+    "page": "p.162",
+    "topic": "procedural definition",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "People want stories resolved, to see the solutions that aren't really available in life, to be assured at the end of each episode that the bad guy gets caught.",
+    "page": "p.161",
+    "topic": "procedural appeal",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The minutiae are the real essence of CSI. The interesting stuff is the real facts.",
+    "page": "p.162",
+    "topic": "research authenticity",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The challenge in writing procedurals is how to get beyond the technical to the heart.",
+    "page": "p.163",
+    "topic": "procedural emotion",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The mistake we all make, including me and all of our writers on the first draft, is we do load it up with clues and we go to plot. Here's the thing: no one cares about plot. No one ever has. But story — story is not the same thing.",
+    "page": "p.163",
+    "topic": "story vs plot",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You look around and it's the story of the guy who doesn't want to lose or who wants to go the distance. That's something people care about.",
+    "page": "p.163",
+    "topic": "emotional stakes",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "With our shows, the 'A' story is investigation, but the 'B' story is the emotional line. How does one of our characters on CSI feel about the case and what is it doing to them personally.",
+    "page": "p.163",
+    "topic": "A/B story balance",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you have Act One and it's nothing but a clue takes you to this character, and that clue takes you to the next character, and our characters are only confronting them with evidence, you're failing.",
+    "page": "p.163",
+    "topic": "clue-only trap",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The point is you're not just interviewing the neighbor who says, yeah I robbed; I was a bad person. It's what we call upping the stakes.",
+    "page": "p.164",
+    "topic": "upping stakes",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Every person your characters investigate — and it has to be based on forensic evidence — doesn't have to be guilty, but they have to give you something else so the story builds, builds, builds.",
+    "page": "p.164",
+    "topic": "escalation",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The other rule is you have to have a warm body by the end of Act One, within the first 17 pages. You have to have a real suspect that informs the audience about the story they're watching.",
+    "page": "p.164",
+    "topic": "act one rules",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A show's job is to entertain. It's plot-driven, and the writer should commit, tell the story, and let nothing get in the way — not educating the audience or political correctness or 'arias.'",
+    "page": "p.164",
+    "topic": "entertainment first",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The hero must have desire. He must be thwarted. There must be complications.",
+    "page": "p.164",
+    "topic": "hero desire",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "What I find heartening is what's always going to matter is the story and the execution of the story. When you get to the end, a good ending is surprising and yet inevitable. That's what people are waiting for.",
+    "page": "p.165",
+    "topic": "surprising inevitable",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "So every story, whether it's a medical show or a cop show or a soap opera, is a mystery. A secret is going to be revealed.",
+    "page": "p.165",
+    "topic": "story as mystery",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We want it the way we always wanted it to be. We want the ending we couldn't get in our formative years.",
+    "page": "p.165",
+    "topic": "audience desire",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You always want to find the most difficult situations to write yourself into so you can write yourself out.",
+    "page": "p.166",
+    "topic": "difficult situations",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You lay out the bones of the procedural. Then you flesh it out. There's a question, a dilemma for the characters.",
+    "page": "p.166",
+    "topic": "procedural bones",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In House we look for conflict between the doctors, between the doctors and the patients, and between the patients and their families — often all of them.",
+    "page": "p.167",
+    "topic": "conflict layers",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The best procedural is something that has repercussions for the characters and there's only so many ways you can do that.",
+    "page": "p.168",
+    "topic": "procedural repercussions",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We wanted to find a way that the caring, the personal aspect, was really about people's lives. We wanted to personalize their home life and their work life. So that meant creating a real structure that was about character and only character.",
+    "page": "p.169",
+    "topic": "character structure",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We are not people who run away from the more procedural aspects of the show. We enjoy procedural when it's really in top form. We enjoy it in movies. Hitchcock is nothing more than very well executed procedural.",
+    "page": "p.168",
+    "topic": "Hitchcock procedural",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We became fascinated by the person whose story was not being told: the woman standing next to the man who was just getting slimed with his scandal.",
+    "page": "p.169",
+    "topic": "untold perspective",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I think the show began when we asked, 'What are they thinking?'",
+    "page": "p.170",
+    "topic": "character origin",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "It's always a negotiation between creating good fiction and keeping it from being inaccurate.",
+    "page": "p.170",
+    "topic": "fiction vs accuracy",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "There's a long, proud history of tweaking the law for dramatic purposes.",
+    "page": "p.170",
+    "topic": "dramatic license",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The scandal press conference was happening and the camera starts on the man, but our camera starts looking at the corner of the TV image and finds the wife next to him. That's who we're following.",
+    "page": "p.172",
+    "topic": "visual pitch",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In all our episodes we have to know what our opening image is. It's a kind of DNA the story flows from.",
+    "page": "p.172",
+    "topic": "opening image",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In the first year, we mapped out where we were in Alicia's life … We're not like cable that has only 12 episodes. We do 23, so we had to find a dramatic engine that would take us through the season.",
+    "page": "p.172",
+    "topic": "season engine",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "So much of television has melodramatic cliché. Anything we could do to avoid cliché, either using something on a current events level or a paradigm shift level, we did.",
+    "page": "p.173",
+    "topic": "avoiding cliché",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "When we started out, we would have that half-page of dialogue explaining what was going on. Then we realized we didn't need it. The cast is so skilled that the audience gets everything.",
+    "page": "p.173",
+    "topic": "trust audience",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In the writers room the staff begins with where they are in the character's arc and then matches that to the case. That's different from CSI, which begin with the case, and different from House, which plans A, B, and C stories involving the medical mystery, Dr. House's struggle, and a relationship issue among the doctors.",
+    "page": "p.174",
+    "topic": "room methodology",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The spine of the show — the series question — might be phrased something like 'Can a woman maintain her identity and integrity while standing by the husband who betrayed her?' or even 'How does a good person survive in a world of sharks?' So each episode answers the core question in some way.",
+    "page": "p.174",
+    "topic": "series question",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Most important, bring some personal connection to the struggles of these characters, some life knowledge that fits these characters. And that bit of advice is good for any show, procedural or not.",
+    "page": "p.175",
+    "topic": "personal connection",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "For writers — now we come to it — characters exist beyond what is written, with larger lives than fit on film. They'll talk to you. You merely have to listen.",
+    "page": "p.179",
+    "topic": "hearing voices",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You catch a character the way a surfer catches a wave, waiting in still water until it wells up from a source as invisible as it is powerful.",
+    "page": "p.179",
+    "topic": "catching character",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I've learned something: craft can be a tugboat that pulls you out to where you can hear the voices.",
+    "page": "p.181",
+    "topic": "craft enables voice",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Don't write a story that can be told without your continuing cast. If your story could work as a movie without your show, then you haven't made it work for your show.",
+    "page": "p.183",
+    "topic": "continuing cast",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Make your subject live and breathe through the experiences of your continuing cast. That's key. The most common error is to tell the story through guest cast.",
+    "page": "p.183",
+    "topic": "cast perspective",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Breaking a story means identifying the main turning points. On network TV it involves structuring the episode so strong cliffhangers occur at the act breaks and the story engine runs all the way from the inciting incident in the Teaser to the resolution in Act Four or Five.",
+    "page": "p.185",
+    "topic": "breaking story",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Credibility: What would real, normal people do in the situation? Are you forcing the plot twists by contriving actions that stretch believability, or do the actions and responses of the characters follow naturally from the jeopardy or conflict?",
+    "page": "p.185",
+    "topic": "credibility test",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Rooting interest: Do you care whether the characters succeed? Are the stakes clear enough and high enough to make an audience root for your protagonist?",
+    "page": "p.186",
+    "topic": "rooting interest",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The second easiest tent-pole is probably the ending. When you chose this subject the final outcome might have been inherent. Your challenge is how to arrive at that ending through the main character's process of discovery or growth.",
+    "page": "p.186",
+    "topic": "ending tent-pole",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The third tent-pole occurs at the end of Act Three. It's the 'worst case.' Remember, in drama, the worst event is whatever opposes the protagonist's goal, not necessarily bad stuff that happens.",
+    "page": "p.187",
+    "topic": "worst case",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "When you know the Act Three 'worst case' you've nearly solved your basic structure because you can begin figuring backward to how your characters arrived at this crisis.",
+    "page": "p.187",
+    "topic": "backward structure",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you're bored, the audience will be too. But they're only index cards — change anything you want at this stage.",
+    "page": "p.189",
+    "topic": "boredom test",
+    "level": "script",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Every beat is an action. A character 'realizing' something is not a scene. Each scene involves a character who wants something but faces resistance.",
+    "page": "p.193",
+    "topic": "scene definition",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The antagonist must be as strong and motivated as the protagonist. The more equal the sides, the more suspense. See the world from your antagonist's viewpoint also.",
+    "page": "p.193",
+    "topic": "antagonist strength",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Aim at the turning point where the protagonist must make a difficult choice, a moral equation which is nearly balanced.",
+    "page": "p.193",
+    "topic": "moral equation",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Anchor your story with the Worst Case Scenario three-fourths through. This is where the protagonist seems to fail and must overcome his internal problem to deal with the opposition.",
+    "page": "p.193",
+    "topic": "worst case anchor",
+    "level": "episode",
+    "tag": "beat-sheet",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I have an idea for the first page and a half for The West Wing — which, by the way, no joke, if I know what the first page and a half is of something, I don't want to say I'm half way home, but I can see the house.",
+    "page": "p.186",
+    "topic": "opening importance",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The selling script is the most important right now. I'm not writing a script right now for a line producer to sit and budget, for a DP to work at. I'm writing a script for you to read, to sit there at night — you can't stop turning the pages, this is so much fun.",
+    "page": "p.197",
+    "topic": "selling script",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Mostly I write for dialogue, and dialogue is what you read fastest when you're reading a screenplay. Description just slows it down.",
+    "page": "p.197",
+    "topic": "dialogue speed",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A rewrite means rethinking the structure and sometimes characters as well. You're still dealing with the same general story, but you want a fresh way to tell it. You can't do that by crossing out lines or replacing words. Go back to the drawing board.",
+    "page": "p.200",
+    "topic": "rewrite definition",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "As long as you cling to the precious moments you've written you'll be tied to your first draft. Take a breath and let go.",
+    "page": "p.200",
+    "topic": "letting go",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If it's easy, you're not stretching. So don't expect easy, but once you're comfortable with the basics, next time will be more fun.",
+    "page": "p.203",
+    "topic": "creative stretch",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Constructing your episode may seem daunting at first, but hour dramas — especially primetime network shows — follow a general template.",
+    "page": "p.109",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I've found that using a basic pattern can actually release your artistry because you don't have to worry whether the underlying skeleton will hold up.",
+    "page": "p.109",
+    "topic": "structural rules",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A dramatic scene is the essential building block of storytelling on screen and should have a complete dramatic structure. That means each scene has a motivated protagonist who wants something and drives the action to get it through conflict with an opposition, usually an equally motivated antagonist.",
+    "page": "p.110",
+    "topic": "dramatic beat",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "For our purposes, a dramatic beat may encompass one or more slug lines; the key is identifying a step of the story, not a shot.",
+    "page": "p.110",
+    "topic": "dramatic beat",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "We're going to look at a show that uses parallel storytelling. In this sample, the three storylines are not subplots, but independent tales each involving distinct guest cast.",
+    "page": "p.111",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Like any description of writing methods, those distinctions are flexible. Among variations, you may find \"A\" and \"B\" stories that are equal in weight, shows where a \"C\" story in one episode is a seed beginning a major arc in subsequent episodes, and shows that normally have three stories but might turn up with two or four.",
+    "page": "p.111",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Some series usually have more than three stories — The Wire, for example. And some primarily \"A\" story only, for example Dexter.",
+    "page": "p.111",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Each series has its own ways, but I've come up with a generic grid that fits many shows on both broadcast networks and basic cable. I use it to analyze sample episodes in my classes.",
+    "page": "p.111",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The titles on the top are the four acts of an hour episode. Remember from Chapter One that on network television (but not on premium cable like HBO) commercial breaks occur roughly every 10 to 15 minutes. Dividing 15 minutes into 60 minutes gives you the four acts.",
+    "page": "p.112",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "An hour drama doesn't really run an hour — it's actually less than 50 minutes after commercials. And each act isn't really 15 minutes — more like 12. Dividing 12 minutes into 48 minutes gives you four acts also.",
+    "page": "p.112",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "For planning a first-draft script, figure that Act One ends around page 17 or 18 if the show has a teaser (more about teasers in a minute); Act Two ends around page 30; Act Three at 45; and Act Four around 60 (or anywhere from 50 to 60).",
+    "page": "p.112",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "On the left of the grid you see numbers one through seven. Those are the scenes in each act. Why seven? Well, you won't always have seven, in fact. Five solid scenes could fill out an Act in some cases, and in \"vignette\" shows where scenes are quick, you might find yourself counting up to nine or ten.",
+    "page": "p.112",
+    "topic": "scene count",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The basis for the list of seven is the two-minute scene. Back to arithmetic, if an act is 14 minutes, and each scene is around two minutes, 14 ÷ 2 = 7.",
+    "page": "p.112",
+    "topic": "two-page scene",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Notice also that I'm using the words \"minute\" and \"page\" interchangeably. That's just shorthand. A minute per page may be an average, but it's not always accurate. Pages of dialogue move faster, while action eats up lots of time.",
+    "page": "p.113",
+    "topic": "structural rules",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you're using the grid to help you to understand the form of an episode on TV, I suggest that you begin by recording the show. Watch it all the way through and name the \"A,\" \"B,\" and \"C\" stories (or whatever number of stories your show has). Attach each story to one of the main cast, and then summarize that particular arc in a sentence. Keep going, creating a \"log line\" for each story.",
+    "page": "p.113",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "As the grid fills out, it will probably look sort of like a checkerboard with \"A,\" \"B,\" \"C\" (or other) stories following each other in a somewhat random pattern.",
+    "page": "p.113",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You'll notice that the cliffhanger that occurs at the end of an act might not always be a suspenseful moment in the \"A\" story; it might be a turning point in the \"B\" story, for example.",
+    "page": "p.113",
+    "topic": "act breaks",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You'll also see that sometimes one of the stories continues for several beats in a row, especially if it's following a \"line of interest\" the writer didn't want to interrupt. On other occasions, you'll see one story interposed between beats of another; this might be used to convey a sense that time has passed between the beats in the first story (this skipping is also called an \"ellipse\").",
+    "page": "p.113",
+    "topic": "story weaving",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "No rules exist for how this \"checkerboard\" should look, so don't get hung up trying to match the order of scenes. You're serving the dramatic tension of the stories, not some outside system. The point is to recognize the way parallel stories complement each other.",
+    "page": "p.113",
+    "topic": "story weaving",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The grid may also help you track the arcs, and especially if your show is part of a serial, you might be surprised that one of the storylines ends in Act Three, or the \"C\" story doesn't begin until Act Two, or Act Four is entirely about resolving the \"A\" story.",
+    "page": "p.114",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you're using the grid to create an original script, your first foray into the grid might be to jot notes about key points in the boxes: how the show opens, the \"worst case\" cliffhanger at the end of Act Three, and how the show will end.",
+    "page": "p.114",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Particularly with the act breaks, it's helpful to reverse-engineer, stepping backward from the cliffhangers to the beats right before to fill in the actions that led to the jeopardy or collision.",
+    "page": "p.114",
+    "topic": "act breaks",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A teaser, also called \"a cold opening,\" refers to dramatic material before the titles (before the name of the series and credits). It may be a one-minute \"hook,\" or as long as ten minutes that includes several small scenes, making it nearly as full as a traditional whole act.",
+    "page": "p.114",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In any style, it exists to grab viewers faster than the enemy, which is the remote. The notion is to open the hour with an action, image, situation or character that provokes enough anticipation to keep viewers through the title sequence and into the first act.",
+    "page": "p.114",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "However, increasingly, title sequences along with theme music have been dumped by networks preferring to grab viewers with uninterrupted drama. The \"tease\" is the story itself, and titles scroll over Act One.",
+    "page": "p.114",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Often, a teaser sets out the problem of an episode. For example, on a detective show, the crime to be solved may be enacted or discovered in the teaser.",
+    "page": "p.114",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In many law and medical shows, a case arrives and incites the events of the episode. But in The Good Wife and Grey's Anatomy, where emphasis is on the ensemble cast, teasers have sometimes shown the continuing characters waking, getting ready for work, or traveling to work, launching their personal stories that will spin out in the episode.",
+    "page": "p.115",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you're a new writer, though, I recommend sticking with story rather than message. A swiftly propelled dramatic tension will lure a reader to turn the page and a viewer to see what happens next. Real storytelling is difficult, and I've seen too many students fool themselves into thinking they can impress by opening with a weighty theme or abstruse philosophy, when they're actually avoiding the challenge of impelling an arc. The best teasers tend to be the best drama.",
+    "page": "p.115",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In 2006 some networks and basic cable shows, including the popular Grey's Anatomy and Lost, went to five acts, and ABC network mandated six acts for all its new shows. You can guess why: more commercial breaks.",
+    "page": "p.112",
+    "topic": "six-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I suggest you begin with the four-act idea. Then take what used to be the teaser and lengthen it to around ten pages to create a new Act One. Be sure you open directly into the story with jeopardy or action or a provocative issue because this is where you need to hook the audience (and the reader).",
+    "page": "p.112",
+    "topic": "five-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Each of the succeeding acts will be shorter than in a four-act plan — roughly ten pages each. In a six-act structure, with acts only around eight pages long, think in terms of Act Six being a tag or the final shoe dropping, or a twist. You might see an Act Six that runs as short as five minutes.",
+    "page": "p.113",
+    "topic": "six-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I told you a scene is a dramatic beat, not a production location. This kind of shot merely tells viewers where we are.",
+    "page": "p.131",
+    "topic": "dramatic beat",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "You want to aim for dialogue that is both natural and withheld. In other words, let viewers sense the meaning under the surface without hitting it on the head, as much as you can.",
+    "page": "p.132",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Though you could argue that two distinct scenes start this story, I'll group the first two and a half pages (slug lines 1 through 4) into a single beat to help you visualize the storytelling. Let's name this story \"A,\" because it has the most resonance for the series as a whole (even though it actually doesn't occupy the largest proportion of pages in the full script).",
+    "page": "p.132",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If you're filling in the grid, you would write \"A\" in the space next to the \"T\" for teaser. The log line for story \"A\" might be something like: \"Sipowicz feels threatened when his new partner Simone arrives.\"",
+    "page": "p.132",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The point isn't what you call a story but how well you attach it to the drive of a continuing character.",
+    "page": "p.132",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Thematically it leverages a story with a guest cast which will begin in Act Two. That \"C\" story will require Lesniak to deal with women who have been abused by a man. As those female characters struggle to find courage to defend themselves against their abuser, Lesniak's personal search gives the case a deeper meaning for the audience.",
+    "page": "p.133",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The only way you know this scene ends the teaser is the transition \"SMASH CUT TO\" (at the bottom of Page 5 in the script) and \"MAIN TITLES\" (at the top of Page 6). ACT ONE begins right after the main titles, though this series doesn't state that on the page.",
+    "page": "p.133",
+    "topic": "teasers",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "#6 is a whole scene even though it's less than a page long. Read it again and find the dramatic elements: Who is the protagonist? Who is the antagonist? What does the protagonist want which is opposed by the antagonist? Where is the climax of their conflict? How does it resolve? No, I'm not going to tell you the answers. This is good practice for tight scene writing and to grasp how character arcs are progressed.",
+    "page": "p.134",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Notice also that no scene exists merely to explore character. Simone and Sipowicz are on the trail of a murder while this beat happens.",
+    "page": "p.134",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The scene has three main components: first, the rising tension as they discover Martarano is \"a mobbed-up stiff;\" second, a guest character who leads the detectives to the next beat in their search. That construction might be flat, but the end of the scene is the third \"beat,\" which spins the action in a new direction with the surprising shouts for help from Miss Savino.",
+    "page": "p.134",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "It's not necessary to checkerboard the order of these; more important to follow the line of audience interest.",
+    "page": "p.134",
+    "topic": "story weaving",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Why bother with an establishing shot of the Precinct in #9? Think of a reason before I tell you. Okay, here are a few: It helps re-orient viewers to \"home base\" after several beats in the field; it signals the beginning of a new sequence; and it creates an ellipsis — that is, an impression time has passed.",
+    "page": "p.134",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "No scene should be written for exposition only. If you need to communicate facts, set them within an emotional context, as happens here.",
+    "page": "p.135",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "This takes us to the end of Act One, which ought to be a cliffhanger. The anticipation of more unexpected turns in the Martarano case might generate the kind of dramatic tension to keep an audience through the commercial break.",
+    "page": "p.136",
+    "topic": "act breaks",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "After you write \"B\" in the box for Scene 6, you'll notice that the number of scenes in Act One doesn't go to 7. That doesn't matter. And if you add the two scenes in the teaser to these 6, that's actually 8 scenes within the first 14 minutes or so. In the original script, Act One was 16 pages, including the teaser, and set three stories in motion, so it certainly accomplished a lot of storytelling.",
+    "page": "p.136",
+    "topic": "scene count",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Let's start by naming the stories. \"A\" is about Simone dying; \"B\" is Sipowicz and his ex-wife Katie; \"C\" is Medavoy and Wolff. I've used simple tags, and that's fine for identification, but when you plan your own script, I suggest that you create real dramatic log lines. That way, you'll be sure your stories have conflict — that they're actually stories, not just situations.",
+    "page": "p.148",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Notice in each case I've stated the stories as issues for main cast, not the guest cast, though the guests (Katie and Wolff) are bringing the inciting incidents.",
+    "page": "p.148",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "This teaser is entirely \"A\" story (slug lines #1 through #7), though it's comprised of several beats. In planning an important opening like this, I would begin by making a mini-outline, planning each beat to build suspense.",
+    "page": "p.148",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Those six beats ramp quickly into the drama using a basic storytelling progression: Anticipation — Expectation — Surprise. That is, viewers are led to anticipate an event, which holds people through the set-up. As the action advances, we come to expect certain outcomes. Instead, the story turns (twists), generating a sense of surprise which then begins a new sequence of suspense.",
+    "page": "p.149",
+    "topic": "dramatic beat",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Also, consider the use of humor in this heavy episode. Here's another age-old practice: increase the impact of tragedy by setting it against a comic foil.",
+    "page": "p.149",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Throughout this act, take note of the fluid blend of scenes within the Squad Room. In the first sample script, the scenes tended to be easily separated. Here, you'll find multiple scenes in the same time and place, choreographed directorially.",
+    "page": "p.150",
+    "topic": "scene construction",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The point is that we don't lose the persistence of the other characters and dilemmas. The action directs the camera to \"Follow\" them, moving our attention with this scene, but we're also aware of material which is concurrent in the room we've left.",
+    "page": "p.150",
+    "topic": "story weaving",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "This layering style — scene on scene in the same time and place — is found in many other sophisticated series too, so watch for it. In writing your own script, though, I suggest that you separate the stories when you plan them initially, and weave them together only when you're ready to go from outline to teleplay.",
+    "page": "p.150",
+    "topic": "story weaving",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Many (though not all) drama series use parallel non-sequential stories denoted by letters A, B, C, and so forth. Three stories per episode are typical, though some shows have more. Each story is usually \"driven by\" one character in the main cast.",
+    "page": "p.151",
+    "topic": "ABC storylines",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Scenes tend to run two minutes or less. Five to seven scenes comprise an act in a classic network drama. With four acts, that adds to around 28 scenes total in an hour episode. However, certain shows that have quick dialogue-intensive scenes have more beats per act; shows with action sequences might have fewer. Shows with five or six acts may have as few as 20 scenes total.",
+    "page": "p.151",
+    "topic": "scene count",
+    "level": "episode",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A \"teaser\" is a prologue to an episode and may incite one or more of the stories.",
+    "page": "p.151",
+    "topic": "teasers",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "By analyzing a quality show using the \"grid,\" you can see its structure at a glance.",
+    "page": "p.151",
+    "topic": "grid method",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I use the two-page scene as a target for students partly because inexperienced writers have difficulty accomplishing a complete dramatic beat in fewer pages, and when they write longer than two pages, their scenes tend to lose focus or become redundant.",
+    "page": "p.116",
+    "topic": "two-page scene",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Some series do write TEASER in the beginning, then they FADE OUT at the end of the teaser and start a new page headed ACT ONE. Other shows start with ACT ONE at the top of Page One, whether or not there's a teaser. The only way to know what a particular show does is check out one of their sample scripts.",
+    "page": "p.131",
+    "topic": "teasers",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "In any case, Acts Two, Three and Four will begin on new pages and be headed ACT TWO and so forth, centered at the top.",
+    "page": "p.131",
+    "topic": "act structure",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The show reverts to a three-act structure. We break the beats by character and then do a weave. We put everything up on whiteboards where each character has a beginning, middle, and end, which is why I say it has kind of a three-act structure. Although in truth we don't break anything by acts at all. We break it by character.",
+    "page": "p.113",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "What I do and I recommend to all the other writers on House is write in a four-act structure and then add two act breaks. The doctors will go down a path — what is this disease? Then you have a diagnosis. They have a theory and at some time a treatment for that theory. And at the end of the act, it doesn't work. That's a really simple way to break the act.",
+    "page": "p.116",
+    "topic": "act breaks",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The audience has to be involved enough that they're not going to turn off at the act breaks. Generally, I would beat out a very simple medicine story. Then I'd beat out the personal story. I use index cards and shuffle them around. I'd see which of the later acts is the longest and I'd divide that in half.",
+    "page": "p.116",
+    "topic": "act breaks",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Smallville used to be in four acts and we had a very long Act One. So we split Act One in half — three scenes and four scenes. It used to be six to seven scenes. Now it's a teaser and two small acts. We can do that because at the end of Act One we have an action beat.",
+    "page": "p.113",
+    "topic": "five-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "On Nip/Tuck, to use an example of a six-act (or teaser plus five) show, the writers experimented with completing all dramatic arcs at the end of Act Five (which is the same as a show with teaser plus four), and used the short sixth act to add a surprising twist that, in a way, was a teaser for the next episode because it incited a new issue or challenge rather than concluding the current storyline.",
+    "page": "p.113",
+    "topic": "six-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Writers are planning their stories in the traditional four acts and making the adjustment to five or six in a later draft.",
+    "page": "p.113",
+    "topic": "act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The proximity of staff writing resembles a trench during a battle. You make close buddies, or have to watch your back, or both.",
+    "page": "p.221",
+    "topic": "writers room dynamics",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A degree of intimacy is unavoidable at the writing table when the staff is delving into the feelings and motives of characters, pulling from their own experiences.",
+    "page": "p.222",
+    "topic": "writers room process",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Remember, this is collaboration on shared character arcs that involves 'catching the voice' of existing characters. One day, if you're the series creator it may also be a more personal expression; now, you're on a team.",
+    "page": "p.222",
+    "topic": "collaborative storytelling",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Each staff develops a kind of culture, just as families do. This comes from shared interests, experiences, memories, and (in the best cases) shared goals. If you think you and your dog begin to seem alike after awhile, consider a room full of writers melding their minds to tell stories about the same characters.",
+    "page": "p.226",
+    "topic": "writers room culture",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Often the showrunner sets the tone — formal, laid back, brooding, artistic, intellectual, homespun, sex-tinged, political, romantic, drugged-out, pious… and so forth. Sometimes the culture fits the nature of the series.",
+    "page": "p.226",
+    "topic": "showrunner role",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The key is having collaborative, smart writers who keep the room running. Whether it's the official showrunner or someone else saying, 'We have to get past this and keep going.' It's crucial to get to the act breaks and the end quickly, so you can reverse and make it better. You need people who share the same vision and are collaborative and mutually respectful.",
+    "page": "p.228",
+    "topic": "collaborative story breaking",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The best thing about working on a staff is being in the trenches with people you admire, respect and who bring to the group ideas that make you smile. That's fantastic. When things are working, you celebrate with them, and you despair with them when things don't work. Whether you're celebrating or commiserating, you're doing it together.",
+    "page": "p.229",
+    "topic": "writers room dynamics",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Picture a long dark wood conference table dominating a conference room. Ten chairs surround the table for four senior writers, four staff writers, one full-time researcher, and Mr. Wells. At the back of the room, more chairs and a few couches for full-time physicians on the staff, and production personnel as needed.",
+    "page": "p.229",
+    "topic": "writers room setup",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The walls are hung with large whiteboards covered with plot points and story breakdowns for the twelve episodes to be completed for the season. On a sideboard, colored markers list ideas for possible scenes under the headings of Big, Serious, Humorous, and Other.",
+    "page": "p.229",
+    "topic": "story breaking tools",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The staff begins laying out the season the first week in June. Working as a group for six weeks, they come up with the entire season's episodes — ideas for them and specific storylines, and the group 'pounds them out.' That means the team figures out all the major turning points of the stories, where the act breaks fall, and how many episodes an arc may cover, structuring the episodes.",
+    "page": "p.229",
+    "topic": "collaborative story breaking",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Then an individual writer is assigned to go off and do a story treatment. When that writer returns, he gets notes from the staff. The writer does a revision. Another notes session. Then he's sent off to write the script. When the script comes in, there's a notes session. He does a second draft. If that works, the episode is ready to film. In all, the process for one script takes about eight weeks.",
+    "page": "p.230",
+    "topic": "writers room process",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "The writers file out of their offices and head for the conference room, each holding a copy of the script. Wells is in position at the head of the table, and the room is full. Coffees are brought, but this staff gets right to business going page by page through every beat of the script.",
+    "page": "p.230",
+    "topic": "notes session process",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "This kind of meeting happens again every Monday, Wednesday and Friday afternoon. But don't misunderstand; it's not all about logistics and group-think. Writing on a staff still emanates from each writer's art.",
+    "page": "p.231",
+    "topic": "writers room process",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Writers have a responsibility, and it's sort of a particular responsibility that all artists share. You have to find a way to return yourself to that place from which you work, and not allow it to… float off of it into this pop-referential world in which we're only writing about or talking about things that we've seen or know from television and movies.",
+    "page": "p.231",
+    "topic": "storytelling craft",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "I look at writing as a craft and as a gift. As a craft you have to work on it all of the time, and as a gift you have to protect it. And one of the things you do to protect it is to make certain that your world doesn't become too insular.",
+    "page": "p.231",
+    "topic": "storytelling craft",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Each showrunner was a writer first, and though the top rung involves as much skill in management as writing, the entire television ladder is built on writing titles. This differs from theatrical movies where creative power resides in the director.",
+    "page": "p.232",
+    "topic": "staff hierarchy",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A freelancer is responsible only for writing a script and is not on the staff. As an outside writer, you won't participate in story meetings or screenings or have an office at the show, or share in any of the inner workings of the series.",
+    "page": "p.232",
+    "topic": "staff roles — freelancer",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "A staff writer is sometimes called a 'baby writer,' someone who's never been on a staff before. Think of it as a year of post-graduate education, with big differences: unlike film school, you are paid instead of paying, the work you do is measured by professional standards, it's seen in the real world, and you get no social promotions — you're up or out by the end of the season.",
+    "page": "p.235",
+    "topic": "staff roles — staff writer",
+    "level": "industry",
+    "tag": "breaking-in",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Story Editor doesn't mean someone who sits and edits stories all day. Like all the other rungs on the ladder, it indicates a writer who does all the stages of an episode from breaking stories, through outlines, through first drafts, and rewrites.",
+    "page": "p.236",
+    "topic": "staff roles — story editor",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "The distance from Story Editor to Producer to Supervising Producer is in increments of responsibility, but all are writers. Some supervising producers actually run the writing staff, or even virtually run the show, while others spend the entire season writing and rewriting episodes like everyone else.",
+    "page": "p.238",
+    "topic": "staff roles — supervising producer",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Among all the executive producers, only one is the showrunner. Often, that's the person who created the series from its original conception, and may have written the pilot.",
+    "page": "p.240",
+    "topic": "staff roles — showrunner",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "If I could bless your early career I'd say: Be part of a staff where the showrunner is a great writer, because you'll want to honor that experience in your craft anywhere you work ever after.",
+    "page": "p.240",
+    "topic": "storytelling craft",
+    "level": "industry",
+    "tag": "breaking-in",
+    "stage": null
+  },
+  {
+    "source": "douglas",
+    "quote": "Try to think what's good for the show, not what bolsters your ego. It really doesn't matter how hard you worked, or how you arrived at the reasoning under a speech or action, or how much you don't want to lose a certain moment.",
+    "page": "p.225",
+    "topic": "writers room process",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Stay connected, even if you get virtually nothing written all day and have to work all night at home.",
+    "page": "p.224",
+    "topic": "writers room dynamics",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "douglas",
+    "quote": "Producers on a set are also expected to rewrite on the spot if a scene isn't working or the director or actors have a problem with a speech or action. Sometimes this involves staying out with the crew past midnight in the freezing rain.",
+    "page": "p.238",
+    "topic": "staff roles — producer",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": null
+  }
+]

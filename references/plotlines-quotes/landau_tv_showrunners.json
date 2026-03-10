@@ -1,0 +1,3755 @@
+[
+  {
+    "source": "landau",
+    "quote": "Before devoting the many months or even years of developing a scripted series, I urge you to first ask yourself three basic questions: Why this idea? Why you as its author/creator/producer? Why now?",
+    "page": "p.1",
+    "topic": "three pitch questions",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Why you as its author/creator/producer? Why are you uniquely qualified and compelled to write this pilot and/or to steer this series? What about the idea appeals to you? How is it personal to you – even if it's not autobiographical?",
+    "page": "p.1",
+    "topic": "personal connection",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "What you don't know can hurt you in a pilot script and/or pitch and/or pitch document. Of course, no one is expecting 100% historical or procedural accuracy. Verisimilitude, or the 'ring of truth,' in the service of drama is perfectly fine, too.",
+    "page": "p.2",
+    "topic": "verisimilitude",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Bottom line: make a case as to why you're the ideal writer for this project. Get personal. A pitch has a performative aspect, a paradox for writers who often prefer solitude.",
+    "page": "p.2",
+    "topic": "pitch performance",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Why now? Timing is everything. Look at the world around you, near and far. What outrages you? What stories are not being told or told well? How can your project fill a void of stories set in a particular world or about a unique group of people?",
+    "page": "p.2",
+    "topic": "timing and relevance",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Don't attempt to chase current programming mandates at each studio or network. By the time you've finished and polished your pilot script and/or pitch document, those mandates will have already changed. Instead, dig deep and get personal.",
+    "page": "p.2",
+    "topic": "don't chase mandates",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Specificity and personalization are how to help ensure that your idea is not common, generic, or derivative. Each of us is unique. Each pilot and series pitch ought to be unique and relatable, too.",
+    "page": "p.2",
+    "topic": "specificity",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "The more specific you make something, the more universal it becomes.",
+    "page": "p.2",
+    "topic": "Murphy: specificity",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "To me, proof-of-concept is best achieved with an exceptionally well-written, polished pilot script, accompanied by a pitch document that forecasts what's going to happen in episode 2 and beyond.",
+    "page": "p.2",
+    "topic": "proof of concept",
+    "level": "docs",
+    "tag": "spec-script",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Every script you write has the potential to be a potent calling card. A verbal pitch, even with a knockout pitch deck and/or look book, won't convey your writing talent when it comes to the nuances of character, dialogue, tone, subtext, world building, etc.",
+    "page": "p.2",
+    "topic": "script as calling card",
+    "level": "docs",
+    "tag": "spec-script",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "A pilot episode used to be intended as the prototype for future episodes in terms of format, tone, style, POV, pacing, etc. Today's TV landscape defies formula, and subsequent episodes can be innovative and/or anomalous to avoid a formulaic, predictable pattern.",
+    "page": "p.3",
+    "topic": "pilot flexibility",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There is no longer an absolute industry standard regarding the requisite number of episodes per season.",
+    "page": "p.3",
+    "topic": "episode count",
+    "level": "season",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If you're conjuring up a new episodic series, I advise creators to use a benchmark of ten episodes per season that may expand or contract, depending on the buyer.",
+    "page": "p.3",
+    "topic": "ten-episode benchmark",
+    "level": "season",
+    "tag": "franchise-type",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "The end of your pilot is the beginning of your series.",
+    "page": "p.3",
+    "topic": "pilot ending",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A strong pilot script will often end with the writer leaving the reader with myriad questions and personal challenges that each main character will face, conveying that we absolutely must keep reading more episodes to get answers over the course of the season(s).",
+    "page": "p.3",
+    "topic": "pilot open questions",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "When we write about or talk about where a series is going, we're talking about character development and evolution (aka 'character arcs'), not plot points. I prefer the term 'character journeys.' Plot must always be married to character; otherwise, we're just witnessing random strangers moving arbitrarily through time and space.",
+    "page": "p.4",
+    "topic": "character journeys",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Plot is all about who, what, when, where, and how. Story is character-driven and encompasses 'the why?'",
+    "page": "p.4",
+    "topic": "plot vs story",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "To be captivated by a pilot script, we need to feel empathy for at least one of the principal characters. We need to worry about them. We need to root for them – even if their goals are illicit. We need to care.",
+    "page": "p.4",
+    "topic": "empathy in pilot",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If you can achieve empathy in your pilot script, you're evoking an emotional response in your audience and potential buyer. Empathy is what makes a script resonate. I'd like to posit that empathy is more important than contrived plotting and flashy visual effects.",
+    "page": "p.4",
+    "topic": "empathy over plot",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If we don't connect to characters with actual strengths and weaknesses (aka vulnerabilities), then no buyer or audience will be interested.",
+    "page": "p.4",
+    "topic": "character vulnerability",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hook: Articulated as 'What if...?' For example, Ted Lasso: What if an American football coach was hired to coach a 'football' (aka soccer) team in England?",
+    "page": "p.5",
+    "topic": "hook as what-if",
+    "level": "docs",
+    "tag": "logline",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Logline: Must contain the word 'but.' Examples: Ted Lasso: A folksy American football coach from Wichita, Kansas, is recruited to coach a football (aka soccer) team in England, but he has zero experience as a soccer coach.",
+    "page": "p.5",
+    "topic": "logline formula",
+    "level": "docs",
+    "tag": "logline",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Note that it's harder to sell a limited series, as networks and studios still prefer a sustainable franchise. If the show is a hit, naturally they're going to want more seasons.",
+    "page": "p.5",
+    "topic": "limited vs ongoing",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Story Engines: What will drive the series from episode to episode? Characters' trials and tribulations fuel the story engines. How a problem is proactively solved usually involves a 'micro mission' – which 'fuels' each story engine.",
+    "page": "p.5",
+    "topic": "story engines",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Teaser/Cold Open: Everyone loves to hear a great story told by a master storyteller, so start strong. If you're writing a comedy series, start off 'cold' with a funny, clever, and/or ironic cold opening. If writing a drama series, start off 'hot' with a provocative teaser.",
+    "page": "p.5",
+    "topic": "cold open advice",
+    "level": "episode",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Theme(s) to Explore: There's the story, and then there's what the story is really about on a universally relatable and human level: that's theme. House of Cards isn't just a show about politics – it's about power. Schitt's Creek isn't solely about a fish-out-of-water family – it's about loss. The Queen's Gambit is about abandonment, loneliness, and the price of genius.",
+    "page": "p.6",
+    "topic": "theme under story",
+    "level": "serial",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Central Question: Concerns the future. Where is the show going? What'll happen to these characters that will challenge them and pull them out of their comfort zones? What big problem must they solve/overcome over the course of the season and series?",
+    "page": "p.6",
+    "topic": "central question",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Central Mystery: Concerns the past. What happened before? How and why are the characters behaving in unique, specific ways? The answers are in their backstory. Is it an open or closed mystery?",
+    "page": "p.6",
+    "topic": "central mystery",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Dramatic tension emerges from the three things in life none of us can control: (1) the environment (weather, acts of God, time, mortality, and – increasingly – technology); (2) our own emotions; and (3) other people. Throw them all at your characters.",
+    "page": "p.6",
+    "topic": "sources of tension",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Great TV is about cool people doing cool shit.",
+    "page": "p.6",
+    "topic": "Mazzara: cool people",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The series bible is a valuable tool to prove that your series 'has legs' and can walk the distance versus a more finite movie experience. A common critique of many good ideas can be: 'Great idea, but it feels more like a movie than a TV series.'",
+    "page": "p.6",
+    "topic": "series bible purpose",
+    "level": "docs",
+    "tag": "series-bible",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Structure, Pacing and Relationship to Time: Time is the container of your series. How much time does season 1 encompass in the characters' lives? Does it happen during one 24-hour day? Over several weeks or months? Over the course of several years?",
+    "page": "p.7",
+    "topic": "time as container",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Narrative Devices: With V.O., less is more. Use sparingly, artfully, ironically, and/or humorously – or else it's a narrative crutch.",
+    "page": "p.7",
+    "topic": "voiceover restraint",
+    "level": "script",
+    "tag": "script-format",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Audiences are more compelled by what they don't know than by what they do. That's why we keep watching.",
+    "page": "p.7",
+    "topic": "mystery as driver",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Metaphors and Visual Motifs: Mrs. Maisel's standup comedy career is a metaphor for feminism in the late 1950s and 1960s. Motifs can take many forms and can add a potent extra layer to the world when used subtly and effectively.",
+    "page": "p.7",
+    "topic": "metaphor and motif",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: The number one question I get all the time. I have salespeople or distributors or whoever call me and say, 'What are you looking for?' And I always disappoint them because I can't say how 'We're looking for this kind of thing, or exactly this or that.' I don't run my business that way. I'm more spiritual about it, a little more personal about it in the sense that I fall in love with stories.",
+    "page": "p.9",
+    "topic": "Aranya: story instinct",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: Most poorly done pitch documents come my way from the international market. I will tell you they often don't really even contain a story. There's a lot of pictures and the deck and stuff. There's this world and that world... And I'm like, 'Yeah, but what's the show?'",
+    "page": "p.9",
+    "topic": "Aranya: pitch needs story",
+    "level": "docs",
+    "tag": "pitch-deck",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: I should make a distinction that I share in my classes that I think is really important. What I often see in pitches outside of the US is that they're still selling worlds. They're not selling a pitch. This is a mistake. They've collapsed the distinctions. They think simply describing the world of the show is enough. It's not.",
+    "page": "p.9",
+    "topic": "Aranya: world vs pitch",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: The American writer, when they come in to a pitch, they've done a lot of homework. They're ready to go. They've built the story. They've thought about the season. They've thoroughly thought about the pilot.",
+    "page": "p.9",
+    "topic": "Aranya: pitch prep",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: I'm not a studio executive. I am not a buyer. I'm not working for Netflix. I'm a producer who understands storytelling. As a producer, the only thing I need to see is whether I can help make something out of it. Don't worry about the condition of it right now. If it's interesting, I will help find a way to move it from that condition into a place where it's viable for the marketplace.",
+    "page": "p.9",
+    "topic": "Aranya: producer role",
+    "level": "industry",
+    "tag": "development-cycle",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: I share that view, but I have a broader view on it in a sense. And this is why I'm so gung-ho about pitch documents. Not to say I'm not gung-ho about scripts. Of course, I am. But in the world of people offering me shows and me pitching shows as a producer on American shows, I only need a pitch document.",
+    "page": "p.10",
+    "topic": "Aranya: pitch docs priority",
+    "level": "docs",
+    "tag": "pitch-deck",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: The marketplace is actually saturated with spec scripts. There's a traffic jam. So, when people say, 'Oh, it's better to have a completed script,' and I quote my mentor from NYU who had a great saying, 'Remember, a script is also 60 pages of reasons to say no.'",
+    "page": "p.10",
+    "topic": "Aranya: script as risk",
+    "level": "docs",
+    "tag": "spec-script",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: Maybe the dreamy pitch that I gave them was much more powerful than reading anything else, and my hunch was that the pitch was enticement enough, and then let their imaginations do the rest. And it paid off.",
+    "page": "p.10",
+    "topic": "Aranya: pitch over script",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: More times than not, we do not need a script. A script can only get in the way. I went out with two packages in my life that were developed in-house and both of them did not sell. And those were good scripts. So, there's no one way to do it.",
+    "page": "p.10",
+    "topic": "Aranya: no script needed",
+    "level": "docs",
+    "tag": "spec-script",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: I think it's discovering where your story is most powerful, homing in on that power, and knowing how to own it and deliver it to people. For me, that's how a great pitch works.",
+    "page": "p.12",
+    "topic": "Aranya: great pitch",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: With serialized drama, the story of the characters is story, and it keeps going. So, for me, it's hard to pitch a teaser for a serialized drama, then stop and just talk about the characters and then start again. To me, it ruins the flow of the pitch because I pitch my characters while I'm pitching the story. I'm not separating the two. There they are woven together.",
+    "page": "p.11",
+    "topic": "Aranya: weave char+story",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: In pitches, I'm trying to define the power in each story. With Your Honor, it was clear to me that when the father, the respectable judge decides he has to cover up for his son Adam's crime, you can stop there. The pitch is done.",
+    "page": "p.11",
+    "topic": "Aranya: power of premise",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Aranya: Personally, I don't. I grew up in a time that people told us that when you submit a feature script, don't put it in a fancy cover because that's covering up for something. And so that informed the way I pitch. And my reaction to reading all these decks with all the imagery and no story is that I'm going to do mine with 98 percent text.",
+    "page": "p.11",
+    "topic": "Aranya: text over visuals",
+    "level": "docs",
+    "tag": "pitch-deck",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Creators should be very cognizant of making their shows internationally appealing. Whether you're making it for a streamer that wants to get viewership in a variety of territories or you're in a traditional business where your studio needs to go out and sell territory by territory, you're very much relying on the dynamics of the international marketplace.",
+    "page": "p.12",
+    "topic": "Aranya: international appeal",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Intellectual property (I.P.) is source material that is often (typically) not created by the screenwriter. In today's TV landscape, the majority of shows are based on I.P.",
+    "page": "p.14",
+    "topic": "IP definition",
+    "level": "industry",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I would definitely not waste your time adapting a work you do not own or control. To avoid getting tangled up in legalities and securing rights, I instead encourage emerging writers to (1) create their own original series unencumbered by proprietary rights; (2) create their own I.P. first and then adapt it; (3) adapt works in 'the public domain.'",
+    "page": "p.14",
+    "topic": "IP strategy for new writers",
+    "level": "industry",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In general, ideas cannot be copyrighted; only the hyper-specific expression or execution of said idea can be copyright protected.",
+    "page": "p.15",
+    "topic": "ideas not copyrightable",
+    "level": "industry",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Structure cannot be protected by copyright law. That's right – the screenwriters of Rashomon, Memento, Showtime's The Affair, Groundhog Day, Netflix's Russian Doll, and Hulu's Palm Springs are all free and clear as far as violation of copyright laws are concerned for the use of their 'borrowed' structural elements.",
+    "page": "p.15",
+    "topic": "structure not copyrightable",
+    "level": "industry",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Streaming, on-demand television is the ideal medium to tell lengthy sagas that may span decades and include a cast of thousands. Look no further than these book-to-TV-screen juggernauts: Game of Thrones, My Brilliant Friend, and Bridgerton. Russian literature is ideal for the ongoing TV series format.",
+    "page": "p.16",
+    "topic": "novels to TV",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There is no formula for adaptation. The era of linear, chronologically unspooled narratives is mostly over. Episodes no longer need to offer a predictive pattern, and they may flash back or flash forward as the story unfolds, adding layers of empathy and understanding. The best approach to any adaptation is bespoke.",
+    "page": "p.18",
+    "topic": "adaptation is bespoke",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Theme: You might want to choose an overarching theme to examine over the course of a season, with a new theme emerging in the season-to-season pivot. What new territory will be explored in each season to avoid repetition?",
+    "page": "p.18",
+    "topic": "seasonal theme pivot",
+    "level": "season",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "End-of-season cliffhangers: In an ongoing series, each season will ideally end with a big revelation, preceding an even greater challenge in the season to come.",
+    "page": "p.18",
+    "topic": "season cliffhangers",
+    "level": "season",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Character journeys (aka arcs): This will encompass structure, as characters tend to evolve over time. In each subsequent season, viewers anticipate new emotional territory to mine, new challenges, and new ways for us to see how beloved characters will perform under pressure.",
+    "page": "p.19",
+    "topic": "character arcs over seasons",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Honoring the spirit and tone of the book (or other source material): You can't please everybody, but honoring the spirit and tone of the source material is a good place to start.",
+    "page": "p.19",
+    "topic": "honor source tone",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Once you shift from page to screen, the moving image supersedes the written word. At some point in the adaptation process, dramatic license takes precedence over remaining completely loyal to the original text as if it were sacred.",
+    "page": "p.19",
+    "topic": "dramatic license",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Finding the (emotional) core: Even with multiple seasons to tell a sprawling, novelistic story, you'll probably want to avoid a kaleidoscopic or scattershot approach. Today's audiences are quite sophisticated and adept at connecting with and tracking many characters. But don't test your viewers' goodwill with too many characters and too much plot. Without emotion, a series will invariably feel empty.",
+    "page": "p.20",
+    "topic": "emotional core",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's not solely who does what when, but who knows what when and the corresponding emotional fallout and ripple effects of the plot. Even characters who are cut off from their emotions can evoke our empathy. Repressed feelings are still feelings and tend to lead to catharsis (from Aristotle), the lifeblood of any story worth telling.",
+    "page": "p.20",
+    "topic": "emotional fallout",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Externalizing inner psychology: Novels have the great benefit of omniscience and/or POV – and are capable of interior monologue to clue in the audience to a character's thoughts, hopes, dreams, worries, and fears. In a TV series adaptation, a singular POV might shift to multiple points of view, or a single, mysterious narrator.",
+    "page": "p.20",
+    "topic": "externalizing psychology",
+    "level": "script",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "As the great mystery author turned TV writer/producer Walter Mosley once said: 'Plot Is Revelation.' Gradually unraveling plot is akin to peeling an onion, and episodic TV allows that better than any other visual medium.",
+    "page": "p.21",
+    "topic": "Mosley: plot is revelation",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Cinematic Television is not an oxymoron: When approaching an adaptation, ask yourself if telling the story visually will enhance or overshadow the tone and intent of the source material.",
+    "page": "p.21",
+    "topic": "cinematic television",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: I write to the subject of each episode. I go from the book and I write a kind of subject summary: four pages on what the episode is talking about. I just make a kind of map for each episode. And then I give it to the writer and the writer works from those pages. So it's not a real writing room. It's more like me giving them the structure of each episode and then they write it.",
+    "page": "p.22",
+    "topic": "Costanzo: episode maps",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: I'm not a showrunner. I see myself as a writer-director. I couldn't manage a group of writers giving the scripts to different directors. So what I did from the beginning was to act like I was writing a film, with the same kind of freedom.",
+    "page": "p.23",
+    "topic": "Costanzo: film approach",
+    "level": "serial",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: Every episode is comprised of three acts, plus prologue and epilogue. And every scene is three acts, plus prologue and epilogue.",
+    "page": "p.23",
+    "topic": "Costanzo: three-act structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: It was something I needed to go from one big scene to another big scene. If you look at it, you'll see that each episode of My Brilliant Friend is basically 10–15 scenes, at most, when usually a TV show script is a scene every page, every page and a half. But I like to make a big scene.",
+    "page": "p.23",
+    "topic": "Costanzo: big scenes",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: For me, the best compliment you can give to a work is that it is alive. That it is real. The heart is beating. This is happening for real. You are looking for an accident all the time. You look for something that makes whatever you had planned or written feel almost obsolete because whatever is happening in front of you is much deeper. This is brilliant because it was unexpected. That is the way I work on a film.",
+    "page": "p.24",
+    "topic": "Costanzo: aliveness",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Costanzo: I found that I followed the book because the linearity of the book is really working, in my opinion; it's like she's writing a diary. It's like an interior monologue. And how will we translate that same kind of urgency that Elena Ferrante had in the book? That was the main question I was asking myself.",
+    "page": "p.24",
+    "topic": "Costanzo: adapting urgency",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: I think so. The challenge always in telling the long-form story is that each episode has to have a beginning, middle, and end that has to fit into a larger beginning, middle, and end of the season, so there are structural challenges all the way through.",
+    "page": "p.31",
+    "topic": "Hawley: nested structure",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: I realized early on that if I did the tone of the show as the actual tone of the movie, people would think I got it wrong.",
+    "page": "p.31",
+    "topic": "Hawley: tone adaptation",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: Also, the difference between a ten-hour story and a two-hour story is we need to keep the tension going for ten hours. You need to feel there's a crime in hour one, and then the rest of it is all just solving that crime. You need a sense of danger to hang over the show. We started calling it 'No Country for Old Fargo.' It needs to have that kind of feeling to it, so that it continues to pull you forward.",
+    "page": "p.31",
+    "topic": "Hawley: sustained tension",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: There's something very romantic about decency to me, and this idea of basically decent people who are probably in over their heads, and that's what heroism is. We've fallen into the Marvel universe where all of our heroes are 'super' now, or say between 1995 and 2005, our heroes became these tortured demon hunters.",
+    "page": "p.32",
+    "topic": "Hawley: decency as heroism",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: I'm an ensemble storyteller, and sometimes I feel like in my relationships with the network or other studios that I work with, you have to constantly teach them that it's OK to be an ensemble storyteller – that if you get this piece of the puzzle here and this piece of the puzzle there, it's all going to end up with the puzzle being solved at the end.",
+    "page": "p.33",
+    "topic": "Hawley: ensemble puzzle",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: Some of it is that we know violence is coming in Fargo. And I never want violence to be entertainment. You talked about the comedy of Steve Buscemi... It's like the shock of it, that moment where Steve Buscemi is like, 'Whoa, Daddy.' We see him go into shock.",
+    "page": "p.33",
+    "topic": "Hawley: violence impact",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: You want the audience to have that feeling. I don't want them to cheer for it. But in order for that to happen, you have to invest in the characters. You can't ever have a moment where there's going to be violence where you don't care about the person who's about to be killed.",
+    "page": "p.33",
+    "topic": "Hawley: invest before violence",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: You also set up that anything can happen at any time, which is so different from what television used to be, where things just followed a predictable pattern. Anyone can die in any way in season 1.",
+    "page": "p.34",
+    "topic": "Hawley: unpredictability",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: Closing the loop of the original crime allowed us to jump ahead almost a year, and now Molly's pregnant, then you go, 'Oh, wait, it is the movie.' It creates that echo, that rhyme, with the movie in a way, where now you're setting something up so that the audience, in the last hour, can presume that they know what's going to happen next... And then when that doesn't happen; you're watching something new and remembering something old at the same time. I think there's a tension to that that's really interesting.",
+    "page": "p.34",
+    "topic": "Hawley: rhyming with source",
+    "level": "season",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: Each season has started with a moment. Season 1 was two men who meet in an emergency room, and one of them is a very civilized man and the other is the opposite... Season 2 was a woman drives home with a guy sticking out of the windshield of her car... Season 3 was twin brothers whose dad dies and leaves one of them a car and the other a stamp collection.",
+    "page": "p.35",
+    "topic": "Hawley: season-opening moments",
+    "level": "season",
+    "tag": "cold-open",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: What struck me first in the genesis of the story, which was not me sitting in a room for weeks at a time thinking about the story – it was an idea here, and then a couple of weeks later, a different idea that seemed like it might be tied to that first idea.",
+    "page": "p.35",
+    "topic": "Hawley: organic genesis",
+    "level": "season",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: I like that process of: you solve the problem, create a problem, solve the problem, and then one day, you'll be out of problems and the show will be over.",
+    "page": "p.36",
+    "topic": "Hawley: problem chain",
+    "level": "season",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: When you have an ensemble, there's usually gravitational pull toward what happened to, say, Peggy Blumquist, and you can layer it into the overall story so that you never leave the main action. There's also tension when leaving the main action. There's tension to the way that episode ends and then having to wait a week to see what's happening with Loy and Josto and those characters.",
+    "page": "p.37",
+    "topic": "Hawley: ensemble tension",
+    "level": "episode",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: I like those episodes. They're usually my favorite, and I tend to have them, whether it's Ed and Peggy in the cabin as a stand-alone, or Gloria Burgle going to Los Angeles as a stand-alone. When you have an ensemble, there's usually gravitational pull... There's also tension when leaving the main action.",
+    "page": "p.37",
+    "topic": "Hawley: anomalous episodes",
+    "level": "episode",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: You never want the audience to be so far ahead of you that they feel like it's a letdown when it finally happens. In the black-and-white episode where they think, 'Oh, wait, they're not going to end this with a tornado, are they, and go to color?' You never want to make it easy on the audience.",
+    "page": "p.38",
+    "topic": "Hawley: stay ahead of audience",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hawley: When you're trying to tell a story that feels like a true story, you go, 'Well, that's just what happened.' I know it doesn't make dramatic sense because it's not white hat versus black hat in the town square, but it started that way and then the tornado came.",
+    "page": "p.38",
+    "topic": "Hawley: anti-formula",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Generally, everything grows out of problem-solving. And most of the time the problem we're struggling to solve is, 'what's going on with this person?' What are they thinking? What are they feeling? What do they want to do next? What's going on under the surface? The better we understand the people, the better we understand the answer to the key question: what's next?",
+    "page": "p.38",
+    "topic": "Gould: problem-solving",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: We frequently have ideas and images that stay with us but don't yet fit into our story. They're like these beautiful little puzzle pieces that don't yet have a place to land. Some of the best 'aha' moments in the writers' room come when we see the opportunity to use these puzzle pieces – when suddenly there's the perfect moment in our story for that scene, situation, or image we've been waiting for.",
+    "page": "p.39",
+    "topic": "Gould: puzzle pieces",
+    "level": "episode",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: I'm always looking for physical situations that express what's going on with our characters. Bob is a brilliantly physical actor. The truth is that, as a performer, Bob thrives when his characters are suffering.",
+    "page": "p.39",
+    "topic": "Gould: physical storytelling",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: One of the fun things about working on both Breaking Bad and Better Call Saul is that we have very few structural obligations. Beyond act breaks and running time, we can experiment with the format as much as we like. For one thing, that means that our lead actors don't have to appear in every single episode.",
+    "page": "p.39",
+    "topic": "Gould: structural freedom",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: On both Breaking Bad and Better Call Saul, we like to think of the whole show as one story. And if we're cutting between different characters who are up to different things, it's because those things mean something when juxtaposed together, and sooner or later their actions will all collide.",
+    "page": "p.40",
+    "topic": "Gould: one story",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Sometimes when people are deprived of information, they fill the void with their own fears and doubts. That kind of communication is part of running a show that you don't hear about as much, but it's crucial.",
+    "page": "p.40",
+    "topic": "Gould: showrunner communication",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: The trick, if there is a trick, is to constantly look back at what we've already seen, to examine what's already been established and search for the little details that might have more meaning than we knew. Like the Stevia, sometimes these small details can turn out to be crucial. You know what they say, 'from tiny acorns do great oaks grow.'",
+    "page": "p.41",
+    "topic": "Gould: mining past details",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: We never toy with the audience. Sometimes it's fun when a cigar is just a cigar, when the clues lead exactly where you'd expect them to. For example, Saul Goodman saying, 'If I'm lucky, a month from now, best case scenario, I'm managing a Cinnabon in Omaha.' And then we see it happen.",
+    "page": "p.41",
+    "topic": "Gould: payoff foreshadowing",
+    "level": "serial",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: I think that often what people are looking for in their entertainment is surprise – but that's not the most important thing. Sometimes in reaching for surprise, I think you can leave a lot of emotion and drama behind. I always think about Truffaut's interviews with Hitchcock. And Hitchcock argues for, as much as possible, choosing suspense over surprise.",
+    "page": "p.41",
+    "topic": "Gould: suspense over surprise",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: I'd rather a viewer ask, 'How did this happen?' instead of 'Oh God, this character turns out not to be who I thought he was because the filmmakers fooled me.' The jolt that you get from realizing you've been fooled is over in a moment; the worry about your character's fate can be sustained much, much longer.",
+    "page": "p.41",
+    "topic": "Gould: sustained worry",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Continuous time helps build story momentum. It changes the rhythm of the storytelling and often makes for longer, more intricate scenes.",
+    "page": "p.42",
+    "topic": "Gould: continuous time",
+    "level": "episode",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Something I learned from Vince on Breaking Bad is to be wary of time cuts. When we were breaking stories, it felt as if each time cut cost him 500 bucks out of his wallet. In other words, he's very careful with them. It's a stylistic choice.",
+    "page": "p.42",
+    "topic": "Gould: Gilligan on time cuts",
+    "level": "script",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: It's always a struggle. I never assume that just because something worked in the past, it will work again. Every day I work on the show, I'm neurotic and worried and wracked with doubt. Like it or not, that seems to be my process.",
+    "page": "p.42",
+    "topic": "Gould: creative doubt",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Act breaks can be a useful organizing principle. I think it depends on the show. But, in terms of construction, I like to think Breaking Bad and Better Call Saul are fundamentally old-fashioned Drama 101 storytelling. What happens next? How did that happen? How did this come about?",
+    "page": "p.44",
+    "topic": "Gould: old-fashioned storytelling",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Part of the art of telling an episodic story is not to resolve everything at the end of an episode. You want to have open business. It's actually really helpful in the writers' room to say, 'Okay, well, we know this scene doesn't fit into this episode or it feels anticlimactic, so that's going to kick us off on the next episode.'",
+    "page": "p.44",
+    "topic": "Gould: open business",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: I'm allergic to the kind of flashback which tells you, as the saying goes, 'the child is the father of the man.' I don't want to just see a miniature version of our characters. It can be fun; it can be cute, but in my book it's a mistake. If we go to the trouble of going back in time only to find this person was exactly the same in the past, you've taken away their agency.",
+    "page": "p.46",
+    "topic": "Gould: meaningful flashbacks",
+    "level": "episode",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: If the characters don't want to do what we think they should do, we've got to change directions. That's rule number one. But I think – I think – we have answers for the big questions.",
+    "page": "p.45",
+    "topic": "Gould: characters lead",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: One of my favorite things about working in series television is that we get to watch the show as it progresses and make decisions based on what's actually been shot, instead of what we thought would be shot. A major part of that comes down to observing the performers and seeing what works.",
+    "page": "p.48",
+    "topic": "Gould: adapt to performers",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: Something I keep saying is 'you have to earn your pleasures.' These crossovers have to be earned. If we're going to bring back a beloved character who we've spent so much time with, they better be there for a reason; their appearance should somehow illuminate the story we're telling.",
+    "page": "p.47",
+    "topic": "Gould: earn crossovers",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Gould: It's very much a matter of feeling our way through it rather than having a master plan.",
+    "page": "p.40",
+    "topic": "Gould: no master plan",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Great television series provide us with a glimpse into an unknown world, or to a world we think we know – until we see it from an insider's perspective.",
+    "page": "p.49",
+    "topic": "insider perspective",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The 'arena' of your series is its setting, but it also encompasses time period, geography, weather, local customs, vernacular, style, traffic, values, social mores, and cultural, political and religious influences. In other words, all TV series are microcosms of the world at large.",
+    "page": "p.49",
+    "topic": "arena definition",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Keep it real. I cannot encourage you enough to research, dig deeper, and mine the specifics of your intended arena. Not only will it provide you with context for character quirks and possible story ideas, but it will also make you an authority when it's time to pitch.",
+    "page": "p.51",
+    "topic": "research your arena",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Find a baseline of 'grounded' reality, even in a fantasy world, by asking yourself: What if this really happened?",
+    "page": "p.51",
+    "topic": "grounded fantasy",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "In conjuring up supernatural and magical realms, keep the rules of each world simple, clearly defined, and consistent.",
+    "page": "p.52",
+    "topic": "world rules",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Our goal is nothing less than the reinvention of the science fiction television series... [and to jettison] the stock characters, techno-double-talk, bumpy-headed aliens, thespian histrionics, and empty heroics. We want the audience to connect with the characters of Galactica as people. Our characters are not super-heroes. They are not an elite. They are everyday people caught up in an enormous cataclysm and trying to survive it as best they can. They are you and me.",
+    "page": "p.52",
+    "topic": "Moore: BSG manifesto",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Rather than a strict adherence to the tropes of the sci-fi genre or even the laws of time and space, Moore and his writing staff were cognizant that the audience actually connects to the people – not the mythology and technology.",
+    "page": "p.52",
+    "topic": "people over mythology",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Establish your series' mythology. All series contain some inherent mythology. At a minimum, this will include the backstories for each main character – which may or may not be completely true.",
+    "page": "p.52",
+    "topic": "series mythology",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Whereas central mysteries concern something lost or obscured in the past, and central questions concern the future outcome of problems, a series' mythology concerns the rules of the game.",
+    "page": "p.53",
+    "topic": "mythology = rules",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Create a credible alternative reality.",
+    "page": "p.53",
+    "topic": "alt reality credibility",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "On a supernatural series, the mythology deals with the rules of magic.",
+    "page": "p.53",
+    "topic": "magic rules",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Take dramatic license. Do your research, avoid anachronisms, and aim for verisimilitude. As long as the time period and setting feel right, the audience will allow themselves to get swept away in the dramatic action.",
+    "page": "p.54",
+    "topic": "dramatic license",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "When Setting Up the Rules to an Unfamiliar World, Supernatural or Otherwise, Bring an Outsider Into the World to Help the Audience Get Up to Speed.",
+    "page": "p.54",
+    "topic": "outsider entry point",
+    "level": "character",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If world building is about imagining a different world and constructing its mythology, the converse can also be true: deconstruction.",
+    "page": "p.55",
+    "topic": "deconstruction",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If families serve as microcosms on virtually all successful episodic TV series, then setting and time period can serve as metaphor for global and universal concerns. 'History doesn't repeat itself, but it often rhymes' (a quote attributed to Mark Twain). On TV, history is more like an echo.",
+    "page": "p.58",
+    "topic": "history as echo",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "History is a form of storytelling.",
+    "page": "p.58",
+    "topic": "history as storytelling",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: The anxiety and the intention going into Watchmen were the same, which was, 'How are we going to live up to this masterwork?' That's certainly what I consider it. There are no words that can describe the impact that Alan Moore and Dave Gibbons's 12 issues had on me.",
+    "page": "p.64",
+    "topic": "Lindelof: adaptation anxiety",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: An immense amount of time and energy went into asking the question, 'What entitles me to get to do this? Why me and why now? Just because it's being offered to me doesn't mean that I'm allowed to do it.' I had to ask myself, 'How do I create a permission structure by which I get to call something Watchmen?'",
+    "page": "p.64",
+    "topic": "Lindelof: permission structure",
+    "level": "serial",
+    "tag": "ip-adaptation",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: Watchmen is political and timely. It's not real in the sense of there's a glowing blue guy who has a quantum perception of time, but when you compare it alongside the Marvel characters or, in particular, the DC characters who don't even live in cities that exist in the real world, like Metropolis or Gotham City... Watchmen always took place in our world.",
+    "page": "p.64",
+    "topic": "Lindelof: grounded IP",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: Small details writ large.",
+    "page": "p.64",
+    "topic": "Lindelof: details matter",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: So much world building comes from a creator's desire to tell a provocative story with the distance of allegory or science fiction. But Watchmen is allegory that becomes all too real.",
+    "page": "p.65",
+    "topic": "Lindelof: allegory to real",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: The entire process was equal parts audacity and terror every day. There was never a day where I felt like I had control of it.",
+    "page": "p.66",
+    "topic": "Lindelof: audacity and terror",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: I was always drawn to comic book storytelling, which is really about the people who are not content to just sit and let the world pass them by. You have to either get out there and change it or escape being eradicated. Those are just the stories that I was drawn to. I don't like stories about people who have given up.",
+    "page": "p.66",
+    "topic": "Lindelof: active characters",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: We knew that Dr. Manhattan was hiding in plain sight and that he was probably Calvin 'Cal' Abar. And I say 'probably' because that's the creative space that I am much more comfortable living in. Because the show starts to either accept these ideas or reject them. That's what world building is all about.",
+    "page": "p.70",
+    "topic": "Lindelof: world building = testing ideas",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: It's an exercise in the subconscious and trust. So, when people say, 'Were you making it up as you went along, or was there a very concrete plan?' The answer, at least in terms of my process, is that it gives you space for improvisation that you can't imprint if there's no script. So, you kind of have to have both. It's a process or trial and error, and did I mention trust?",
+    "page": "p.71",
+    "topic": "Lindelof: plan vs improvisation",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Lindelof: The show starts to inspire the writing process, and that's a feedback loop of which I speak, and you leave space for discovery.",
+    "page": "p.70",
+    "topic": "Lindelof: feedback loop",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: In the first season, we focused on the effects one act of violence can have throughout a community. At the center of that story were four men, each representing different stages of manhood. It is really important to Lena that we humanize what so many were just looking at as statistics; each one of these murders or deaths is someone's father, brother, or son; how an act of violence ripples through a community.",
+    "page": "p.72",
+    "topic": "Hillian: violence ripples",
+    "level": "season",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: I know what I don't know. I've done what I can to learn as much as I can about the city, but there's no substitute for hiring writers from Chicago and valuing their expertise.",
+    "page": "p.72",
+    "topic": "Hillian: local writers",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: You almost don't even need to balance the tone if you just tell the authentic story of the Black experience in America.",
+    "page": "p.74",
+    "topic": "Hillian: authentic tone",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: I don't think that you have to try to please everyone, but you have to make responsible choices, know exactly why you're making them, and be able to defend them.",
+    "page": "p.75",
+    "topic": "Hillian: defend choices",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: If I only have one shot, I'm going to make sure I say something. If I go out, I'll go out my way, not trying to make people happy or comfortable, and Lena feels the same way. That's one of the reasons we make a good team.",
+    "page": "p.75",
+    "topic": "Hillian: bold choices",
+    "level": "industry",
+    "tag": "showrunning",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: It starts with figuring out what's important to us, what we want to say, and how to say it organically with our characters. Then we look at the season as a whole, map out the beginning, middle, and end almost like three acts: with your first episode serving almost like a pilot, episodes 2, 3, 4 as the first act, episodes 5, 6, 7 is the second act, and 8, 9, 10 is our third act.",
+    "page": "p.77",
+    "topic": "Hillian: season as three acts",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: Yes, it's really important to me – and you taught me thematic unity! I don't necessarily begin every episode with a theme in mind, but once the stories are decided, we do go back and look for ways to meld them with the overarching theme for the season.",
+    "page": "p.78",
+    "topic": "Hillian: thematic unity",
+    "level": "season",
+    "tag": "theme",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Hillian: I just don't think you can do comedy or drama well without the other. For either to be effective, to feel real, you need them both.",
+    "page": "p.74",
+    "topic": "Hillian: comedy and drama",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: One of the problems I perceive with historic drama is, as we all know, history is written by the winners. So, there's no 'true story' about it. The other thing is, if you get bogged down in the details and the 'facts,' then you're forced into a structure and you're being forced into making dramatic choices you don't as a dramatist want to make. I don't care about that. What I care about is the essence of this woman.",
+    "page": "p.79",
+    "topic": "McNamara: essence over facts",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: Our writers' room is very steeped in the facts, and yet they know that I'm completely comfortable and even encourage a departure from the facts in favor of character, drama, humor, and irony. But we have the facts at hand so that we're making conscious choices, not mistakes.",
+    "page": "p.80",
+    "topic": "McNamara: conscious departure",
+    "level": "industry",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: It really boiled down to her character. It was almost like pitching a contemporary show. I sometimes would pitch the contemporary version of it within the pitch. I'd be like, 'It's like a woman in Chicago wakes up and she realizes she's married the wrong man. He's a fuckwit and she doesn't know whether to kill him or get out of it.' I wanted someone who got it as much as it could be understood if you weren't in my head.",
+    "page": "p.82",
+    "topic": "McNamara: pitch as contemporary",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: I didn't have massive detail, but the pitch was just breaking down how each third of the season would work. I pitched where we thought we'd end up, but I didn't know for sure we'd end up there. I also pitched what the second season would look like. The biggest question they had was about tone.",
+    "page": "p.81",
+    "topic": "McNamara: pitch by thirds",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: I wrote The Great pilot on spec. I'd written it as a film a few years earlier, but when I met Nick (Nicholas Hoult) on The Favourite, it rekindled my interest in The Great. I wrote the pilot on spec and sent it out unattached to a studio or anyone. We just sent it out to networks and maybe five or six liked it.",
+    "page": "p.81",
+    "topic": "McNamara: spec pilot",
+    "level": "docs",
+    "tag": "spec-script",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: I think that's why we did a pilot rather than going straight to series. Hulu were, 'Just show us what it is.' I could tell them about the tone, but they needed to see it.",
+    "page": "p.81",
+    "topic": "McNamara: pilot proves tone",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: That's not really how I write. I'm all about the characters. A little about theme, but not that much. I don't think about metaphor. I really just think about what the character is doing. Theme stuff, all those conversations happen for a few weeks at the start of the writers' room.",
+    "page": "p.85",
+    "topic": "McNamara: character-first writing",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: I have some writers who are contemporary activists on a number of levels, and one of them calls The Great 'post history.' For us, we don't want to see a show that talks about whether being gay is right or wrong. I just want a world in which people are free to have consensual sex with who they want, a world in which people are different races – and no one fucking cares.",
+    "page": "p.83",
+    "topic": "McNamara: post-history",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: I'm always interested in what motivates characters to do bad things. It's like watching Walt in Breaking Bad. Is he doing this for his family, or is he just a soulless monster?",
+    "page": "p.83",
+    "topic": "McNamara: character motivation",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: Two things, I suppose. I only write what I think is true to the characters, and I cast actors who always come from a place of truth, comic truth or dramatic truth. Sometimes, in script, I think I've gone too far joke-wise. That happens less and less as we got the feel of the show. I think it's like M*A*S*H... That is a seminal series because that showed just how farcical and funny you could be if you built the world well enough. And be tragic as well.",
+    "page": "p.86",
+    "topic": "McNamara: grounded world enables comedy",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "McNamara: The world has to be incredibly grounded to get away with parachuting dogs and lemon douches.",
+    "page": "p.86",
+    "topic": "McNamara: grounding absurdity",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A pilot is analogous to a promise you make with the viewer – call it a contract – that tacitly lets them know what to expect if they commit to watching your show every week (or to \"binge view\"). You're not promising them abject predictability and repetition. You are promising them that you are going to honor what you established in your pilot episode. In TV writing parlance, this is what's known as servicing your franchise.",
+    "page": "p.87",
+    "topic": "franchise promise",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "When a TV executive or producer asks you, \"What's the franchise?\" of your intended TV series, what they're really asking you is: What are your main characters going to be doing each week? What are the story engines that keep your plotlines moving forward? These engines need fuel, and that fuel is conflict in the form of problems to be solved and internal and external obstacles to be overcome.",
+    "page": "p.87",
+    "topic": "story engine defined",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "In conceiving a TV pilot, your initial creative process might be very similar to writing a screenplay for a feature-length movie: premise, setting, character development – but the tricky part is recognizing that you're not writing toward the ultimate payoff at the climax. Instead, you're getting your audience up to speed on the \"arena\" (setting, logistics, characters, layers of backstory) of your series – and then setting the stage for a story that unfolds from episode to episode and/or week to week. In this way, the end of your pilot is the beginning of your series.",
+    "page": "p.88",
+    "topic": "pilot vs feature",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A central question concerns the future. What's going to happen next? Every episodic TV series needs narrative drive to keep the audience invested. A good central question stokes the audience's curiosity and their need to know more.",
+    "page": "p.88",
+    "topic": "central question",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "We need a clear-cut, central question that demands an answer by the climax of season 1 – and great television series are all about sticking the landing. We continue watching, waiting for answers to the central question and/or central mystery. The central question encompasses the present and future of the characters: what's going to happen to them over the course of the season or series. What's missing is what creates intrigue.",
+    "page": "p.88",
+    "topic": "central question scope",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "If the storytelling is exceptionally fresh and strong, the audience's expectations will be transcended and their presumptions will always be wrong.",
+    "page": "p.88",
+    "topic": "transcending expectations",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Sustaining our interest in an episodic series is entirely dependent on our investment in the characters. We need to worry about them. We need to make discoveries as they earn them. We need to care.",
+    "page": "p.88",
+    "topic": "character investment",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A central mystery concerns the past. What happened to our characters in the past to make them who they are? How, when, where, and why – and what will be its impact on the present and future of our series regulars?",
+    "page": "p.89",
+    "topic": "central mystery",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "In trying to determine the specific franchise of your new TV series, focus on the verbs. What are your characters doing each week? They could be investigating, discovering, uncovering, diagnosing, healing, litigating, battling, competing, debating, saving, prosecuting, confronting, framing, stealing, arresting, indicting, avenging, killing, etc. Verbs express characters' episodic goals in the form of micro missions, as the means to an end.",
+    "page": "p.90",
+    "topic": "franchise verbs",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "The primary goal for showrunners is to meet – or exceed – their audience's expectations for the types of storylines and basic tone of their given series. New storylines need to be fresh and even break new ground – but within the wheelhouse of that particular show. In other words, a series can break new ground with a new storyline without breaking the entire mold for the show itself.",
+    "page": "p.90",
+    "topic": "franchise boundaries",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The most basic type of series franchise is case of the week, which is why there are so many shows about doctors, lawyers, and cops. In a medical drama, these are the medical cases for each new patient. In a law show, these are the legal cases of the plaintiffs and defendants. In a crime show, these are the police and other law enforcement cases.",
+    "page": "p.91",
+    "topic": "case of the week",
+    "level": "episode",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "All procedurals feature mysteries that need to be solved, and the urgency of medical mysteries tends to speed up the pace to relieve the patient's suffering and the audience's despair. Healing, truth, and justice are the lifeblood of all broadcast network procedurals.",
+    "page": "p.91",
+    "topic": "procedural engine",
+    "level": "episode",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In the streaming, on-demand era, slow-burn storytelling is embraced by viewers because it digs deeper into characters, with a greater emphasis on realism or verisimilitude. Instead of case of the week, we now have the season-long procedural in which one case is examined and, ultimately, solved over the course of a full season.",
+    "page": "p.91",
+    "topic": "slow-burn procedural",
+    "level": "season",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "What is justice? – is the central question all procedurals must grapple with, as it depends on race, sexual orientation, gender, socioeconomics, and empathy for the \"victims\" of a biased and often corrupt system.",
+    "page": "p.92",
+    "topic": "justice as question",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Effectively servicing the franchise of a given series puts a new, unpredictable, timely, and provocative spin on a case. Ideally, this new spin will emerge from the characters' relationship to each new case. What psychological and emotional \"buttons\" might a new case push in a character? What are the main challenges to solving the case? If the case is too easy, it's not viable. It must challenge the series regulars in some way and serve up an inconvenient truth.",
+    "page": "p.92",
+    "topic": "servicing franchise",
+    "level": "episode",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Some series, such as HBO's True Detective (especially season 1), are hybrid series – equal parts legal procedural and serialized drama. In True Detective's first season, the mysteries embedded inside its two leads, Rustin Cohle and Martin Hart, and their backstories are equally, if not even more, engrossing than solving the case of the serial killer. This approach enabled True Detective's creator, Nic Pizzolatto, to create his own subgenre: the existential detective story.",
+    "page": "p.93",
+    "topic": "hybrid procedural",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In the slower-burn, on-demand era, audiences have a tendency to want to understand not just the legal case, but also its impact on the characters' personal lives, trials, and tribulations.",
+    "page": "p.93",
+    "topic": "character-driven legal",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "On streaming platforms, medical procedurals tend to be more hybrid dramas involving physical and/or mental trauma, and the resolution can often be more elusive and morally complex and at times defy simple resolution. These hybrid genre shows tend to be dramas involving hospitalization, diagnosis, therapists, and medical experts; Sharp Objects, Euphoria, The Act, Unbelievable, Ratched, In Treatment, and Legion, to name a few.",
+    "page": "p.94",
+    "topic": "medical hybrid",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The advantage to a franchise that offers closed-ended cases is that viewers can watch each individual episode in any order and still feel satisfied. Serialized shows, on the other hand, require much greater viewer commitment.",
+    "page": "p.94",
+    "topic": "closed vs serialized",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In contrast, serialized single-camera comedies and dramedies (either half-hour or one-hour) contain incremental character evolution from episode to episode and from season to season.",
+    "page": "p.95",
+    "topic": "serialized comedy",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In the limited anthology series, each season is encompassed under the umbrella of a theme or within a frame of one long-form story per season, usually featuring a whole new cast or a repertory company of actors playing completely different roles each season.",
+    "page": "p.96",
+    "topic": "limited anthology",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's an easy question to answer, but much harder to pull off when the story engines are all about the relationships and family dynamics.",
+    "page": "p.96",
+    "topic": "relationship engine",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In a softer concept series, the basic franchise is the exploration of the main characters' quest for the ecstasy of success versus the agony of defeat – and coping with the interstices. A useful way to articulate the franchise of a \"soft\" concept show is, \"In each episode, the characters will struggle to achieve ______.\" The specific struggles of the characters are the source of both drama and comedy.",
+    "page": "p.97",
+    "topic": "soft concept franchise",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "In determining the franchise for your series, you might conceive both the overarching, central question for the long haul, as well as the more finite season arcs – also in the form of questions – from season to season. Where and when do you hope to land the plane?",
+    "page": "p.97",
+    "topic": "season question arcs",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "When \"breaking story,\" think of the plotting of A, B, C stories as micro missions. In procedural dramas, the micro missions are the proactive steps taken to solve the case of the week. In non-procedurals, the micro missions are more specific and organically emerge from character to character.",
+    "page": "p.97",
+    "topic": "micro missions",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Servicing the franchise of a series is not only about choosing which cases and/or plotlines to explore, but also about the pace of delivering new information, clues, discoveries, and resolutions. A big part of servicing a franchise is hitting the \"sweet spot\" of your series: the intersection of character development and franchise, rooted in the overall tone and overarching theme(s) of the show.",
+    "page": "p.100",
+    "topic": "pacing and franchise",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The best endings are unpredictable, but inevitable.",
+    "page": "p.100",
+    "topic": "unpredictable endings",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In some series, these questions are thematic. In Ozark, Barry, Euphoria, and Unorthodox, the overarching theme is: Can you ever escape your past [transgressions]? In Pose: Will trans people ever find mainstream acceptance? In Schitt's Creek: Does money buy happiness? In Westworld: What does it mean to be human?",
+    "page": "p.100",
+    "topic": "thematic questions",
+    "level": "serial",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "To sustain an episodic series, each crisis will ideally impact most or all of the show's other characters with ripple effects; I refer to these choices as story tentacles. When \"breaking story,\" choose the plotline that leads to more story. Ask yourself: How many other characters' lives can be organically and credibly impacted by one story choice? Seek fertile ground versus more finite one-offs (aka dead ends).",
+    "page": "p.100",
+    "topic": "story tentacles",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Characters need proactive, positive goals while avoiding potential negative consequences. Without this positive/negative charge, there is little dramatic tension, and without tension, there is no drama or comedy.",
+    "page": "p.100",
+    "topic": "dramatic tension",
+    "level": "character",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The difference between a mediocre series and a great one is that the latter's showrunners are always digging for a new vein of gold. Depending upon the genre of the series, the gold within each episode will be the moral dilemmas and gray areas of the main character(s). Mining the layers of a story is key, along with keeping the stakes as high as possible. All successful TV series are about winning and losing.",
+    "page": "p.100",
+    "topic": "mining moral dilemmas",
+    "level": "episode",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Central questions and mysteries stoke our curiosity. We're waiting to see how a crime/legal/medical/love story is going to play out. As long as we keep wondering and anticipating and discussing and posting – we're going to keep watching. As soon as all questions are answered, the series must either introduce new central questions or end.",
+    "page": "p.100-101",
+    "topic": "questions sustain series",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The difficulty is the show was never really that much about the client. When you see a lot of network shows, you can feel the network notes: \"I have to care about the stakes in this,\" which always means dramatizing the client. But we have a limited number of pages. We do 58-page scripts for a 42½-minute show. For us, the stakes were always, for example, will Alicia win because if she loses, her job will be in danger.",
+    "page": "p.102",
+    "topic": "stakes in characters",
+    "level": "episode",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "On The Good Fight, our main cast is a character. That's why we have the most fun when the show starts turning internal. We did an episode on The Good Wife called \"Red Team, Blue Team\" which was a mock court between our associates and our partners. In that episode, suddenly there was civil war within the firm. And that was so exciting because then you didn't have these straw men on the other side. That episode really engaged the audience to choose sides with their favorite characters within the firm.",
+    "page": "p.102",
+    "topic": "internal conflict",
+    "level": "episode",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I would say 98 percent of TV is setting up straw men and straw women to be knocked down because everybody would rather enjoy propaganda than drama. Propaganda is confirming what you already believe.",
+    "page": "p.102",
+    "topic": "drama vs propaganda",
+    "level": "script",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Theoretically, the characters that we like are our regular cast members. The goal is to have them disagreeing with one another, and being able to recognize that each one has a valid point.",
+    "page": "p.103",
+    "topic": "valid opposing views",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "What we're usually doing is throwing two concepts together that don't necessarily seem to fit and then try to find a way as you weave your way through it. Our characters multitask, so they're learning something from one case that influences the other.",
+    "page": "p.105",
+    "topic": "thematic juxtaposition",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "So I think you don't build with theme in mind, but you can't help but write with theme in mind. We just don't call it theme; we call making a deadline.",
+    "page": "p.105",
+    "topic": "theme emerges organically",
+    "level": "episode",
+    "tag": "theme",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "If for some reason we were building it for the network, I think the pushback, if there were any, would come from the structural oddities of how we chose to tell these stories, as opposed to the politics of the show; I think that would be more of an issue at a network; they tend to want things more clearly tied up at the end. Ambiguity is not anybody's friend on network television.",
+    "page": "p.106",
+    "topic": "network vs streaming ambiguity",
+    "level": "serial",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "For anybody who was brought up on either LA Law, Law & Order, The Practice, any of those series, there had to be some dramatic stakes. It's like if you played tennis without a net; everybody would just be crazy. This view of how a courtroom works certainly goes out the window if you give a certain number of people these \"Get Out of Jail Free\" cards, because then the courtroom is kind of a joke. And only people that are considered \"bad\" end up there.",
+    "page": "p.103",
+    "topic": "courtroom stakes",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The most essential ingredient to great storytelling is empathy. How does a writer foster empathy? Through character vulnerability.",
+    "page": "p.110",
+    "topic": "empathy via vulnerability",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "For viewers to develop a relationship with a character over many episodes, there must be such a level of complexity in their character that whatever internal problems they have can be solved only through external interactions, with other characters.",
+    "page": "p.110",
+    "topic": "complexity for empathy",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Adding to the complexity is the fact that what characters need the most is paradoxically often what they resist the most. As you draft your pilot, what's the first impression your characters make? It's not an absolute, but our first impressions are almost always wrong. And we want our viewers to be wrong, because if what we see is what we get, there is no complexity, mystery, or anything to discover about the character as the series progresses.",
+    "page": "p.110",
+    "topic": "first impressions wrong",
+    "level": "character",
+    "tag": "character-design",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "All heroes are depicted as having an expertise with a liability. When I interviewed Breaking Bad's creator/showrunner Vince Gilligan, he espoused that he constructs characters by giving them a \"grounded superpower.\" In the case of Walt, it was his \"ability for self-delusion.\"",
+    "page": "p.111",
+    "topic": "grounded superpower",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Even superheroes have vulnerabilities. This positive/negative charge is how energy works; it's also the way drama (and comedy) works. Characters' internal relationships to their specific strengths and corresponding weaknesses is what makes a somewhat generic character into an iconic one.",
+    "page": "p.111",
+    "topic": "strengths and weaknesses",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "As we develop our characters, we often find the most difficult challenge for them to face is in the situations where they need to forgive, forget, and move on. Characters who tend to be the most iconic and indelible are stubborn, more likely to resist change and make pronouncements that they are never going to forgive or forget something. It's irrevocable, irreparable, and seemingly impossible to forgive a particularly heinous transgression or breach of trust – the lifeblood of good drama.",
+    "page": "p.111",
+    "topic": "forgiveness as engine",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Hypothesis. Set up a character's positive attributes and corresponding flaws. This happens via the writer assigning a cluster of distinctive traits to each character, and then adding emotion. As the story progresses, the circumstances of the story will cause the characters – and us – to evaluate their actions.",
+    "page": "p.112",
+    "topic": "hypothesis step",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Alignment. Does the story align us with why the characters are the way they are – their goals, motives, and psychology? How readily do we align with these goals and beliefs? Allegiance. Do we \"agree\" with the character, i.e., start to feel a sense of identification or loyalty towards them? Do we empathize and/or feel sympathy for their values?",
+    "page": "p.112",
+    "topic": "alignment and allegiance",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "This hypothesis/alignment/allegiance process is at the core of empathy and sympathy for storytellers. Not only must we emotionally track characters from scene to scene, episode to episode, and season to season, but we must also ask ourselves how we want the audience to feel. In this way, all effective storytelling generates an active conversation or debate between the characters' actions and the audience's emotional response (laughter, tears, outrage, fear) to those actions. Ultimately, this is what Aristotle called catharsis.",
+    "page": "p.113",
+    "topic": "catharsis mechanism",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Empathy is dependent on point of view. It's circumstantial, and Succession achieves this brilliantly. Pride and hubris are vices of the ego, and every member of the Roy clan is corrupted, which places this satirical, funny series in the genre of family noir.",
+    "page": "p.113",
+    "topic": "empathy and POV",
+    "level": "character",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "For me, that becomes the central question on Succession. Instead of rooting for the Ewing/Carrington families to stay together, we're wondering why the Roys don't fall apart. Succession is a series that dares us to care about its main characters, a series in which only the hired help, staff, and outsiders (Tom, Greg, Willa, Tabitha, Naomi, Jennifer) trying to gain entry into the Roy clan are wholly sympathetic.",
+    "page": "p.114",
+    "topic": "Succession central question",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Showrunner Armstrong's worldview (as expressed in Succession) isn't about nihilism or idealism. It's about the price of greed, and its ripple effects in a world in which, as Logan is apt to say, \"Money wins.\"",
+    "page": "p.115",
+    "topic": "worldview in series",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A prestige TV series like Succession could not exist on a broadcast television network – today or ever. The remarkably prolific late TV mogul Aaron Spelling (who executive-produced Dynasty) was notorious for not showing the ugly underbelly behind the façade of glamour.",
+    "page": "p.119",
+    "topic": "platform and tone",
+    "level": "serial",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Like so many of the exceptional TV series explored in this book, WandaVision is a show about loss, and the ultimate superpower: forgiveness.",
+    "page": "p.120",
+    "topic": "forgiveness theme",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "When I wrote it, the honest truth is I had no regard for thinking about who would be likable, who you would root for. I suppose your empathy does need to engage at some level, probably. But it's not the way I think about these things. Maybe because I come from comedy and the way that you engage with a comic figure is possibly a different way from how the audience is normally invited to engage in a drama.",
+    "page": "p.121",
+    "topic": "empathy in comedy",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I've got a bunch of different ways of thinking about the empathy question. One is that, as a writer, you need to have the ability to imagine yourself into other people's shoes, and I tend to think that the viewers will share that. That while they may not be thinking that these are wonderful people they're observing, they might nevertheless be able to imagine what it could be like to be them.",
+    "page": "p.121",
+    "topic": "viewer imagination",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I think my final feeling on the empathy question is that it might not be that important whether you can root for the characters or like them so long as you know that the show has an attitude towards them. If there is that sense invisibly pervading the show, then I think it's bearable.",
+    "page": "p.121",
+    "topic": "show's attitude",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "But the tone is a delicate balancing act. If the level of satirical judgment or dramatic irony is too much, and you can feel the hand of the author too heavily, then the show falls flat, the tension is gone. Too much authorial direction, instruction, and it's all dead. Too little and I'd say it was sort of pointless, or flabby, you lose the rationale for putting anything in or taking anything out.",
+    "page": "p.121",
+    "topic": "tone balance",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Often the family dynamic, the mom or dad are so fascinating, beguiling, powerful, that nothing in the world feels quite as alive or thrilling. It's impossible to leave alone. Like a drug or a screwed-up but enthralling relationship. Something you can't stop returning to. And I think that's a tragic situation. Right? The tragedy of these people to some extent is that they can never quite find anything as interesting anywhere in the world as their family.",
+    "page": "p.122",
+    "topic": "family as addiction",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The Roys also have a codependent relationship to power; it's like an addiction. Each child has an attachment to their damaged pasts without going to therapy and trying to heal. What I extract is, it's their self-loathing as punishment for white privilege. They're all haunted by shame, but it's repressed and camouflaged by the material trappings of wealth.",
+    "page": "p.122",
+    "topic": "codependence and power",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I would hope we've got sufficiently complicated characters that you believe them when sometimes they behave in awful ways and sometimes good ways. They're consistently inconsistent, like most human beings.",
+    "page": "p.123",
+    "topic": "consistent inconsistency",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The best bits of the writers' room are a bunch of observations like that that become contentions and turn into arguments about character and what's immovable and constant about character, and what is the margin for change, growth, or diminishment.",
+    "page": "p.123",
+    "topic": "writers room debates",
+    "level": "character",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "With Logan, his media empire (specifically newspapers) is shifting in the wake of technology. He's outdated, and his health is betraying him, too. He's weak and aged. I think that's the main reason we empathize with him from the very beginning. Mortality and illness are life's great equalizers.",
+    "page": "p.123",
+    "topic": "mortality as equalizer",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The structure of the room is to spend a month or more on broad themes, character shapes, stuff, jokes, material for moments that might happen. But the main thing I'm hoping for is to feel the shape of the seasons. Things change a lot. You know, you find brilliant performance, and you want to write more for a certain actor; or locations change, and you have to cut pages and shift story. But essentially, we know the story that we're headed. When we were writing the first episode, we knew what was going to happen in the final episode of the season.",
+    "page": "p.124",
+    "topic": "season structure method",
+    "level": "season",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "And I like that a lot. I know that some people can feel constrained or that it feels too rigid. But, for me, it gives me a greater sense of confidence, offers more freedom in that we can smell the plot and character roses along the way. I would be not very relaxed if I didn't know where we were heading.",
+    "page": "p.124",
+    "topic": "knowing the ending",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Part of that's what you're talking about, I love, the details. I feel like one of the things you do when you first appraise a show – or a person, or a film, but in this case the show – is you decide how much you trust your whole endeavor. And I think it's really important to get the texture right, that the graphics on the news look like real graphics and the locations feel authentic.",
+    "page": "p.125",
+    "topic": "texture and trust",
+    "level": "scene",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The concentric circles of who knows what about. A scandal is tough sometimes to keep hold of. And you just have to research it well and keep all that information in your mind. There are also concentric circles of certainty, I think, for a showrunner and a show as an entity.",
+    "page": "p.126",
+    "topic": "circles of knowledge",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "The more things you have in orbit that are a part of your emotional solar system, the more gravity you have going on you. Knowing the family history, I think, provides a sense of solidity to the audience about the world that they're inhabiting.",
+    "page": "p.126",
+    "topic": "family history gravity",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Every television series is about a family – whether they're related by blood or not. Some series are literally about a family: Succession, Schitt's Creek, Black-ish, The Chi, Ozark, Modern Family, This Is Us, The Crown, and, of course, Game of Thrones. Some focus on a workplace \"family\": The Office, Black Monday, Ted Lasso, Brooklyn Nine-Nine, Grey's Anatomy, The Good Doctor, The Good Fight; while others focus on a family of friends: Friends, I May Destroy You, The Good Place, Insecure, Community.",
+    "page": "p.127",
+    "topic": "every series is family",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The goal for every new TV series is for it to feel fresh in its own right – which means that all TV families need to be imperfect and, on some level, discontented. Or, as Leo Tolstoy wrote in the first sentence of Anna Karenina: \"Happy families are all alike; every unhappy family is unhappy in its own way.\"",
+    "page": "p.127",
+    "topic": "imperfect families",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Today's audiences may not be able to relate to what it's like being a KGB spy in the 1980s, a money-laundering puppet for a cartel, a royal, or a football coach. But we can all relate to what it feels like to be in a family, which is the main point of this chapter: Family stories are universal.",
+    "page": "p.128",
+    "topic": "family universality",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Some series focus on workplace colleagues that interact as a family unit might (Grey's Anatomy, Scandal, Le Bureau des Légendes, The Wire), encompassing the dynamics of authority figures (mom and dad), siblings (rivalries and bonding), spouses, wise elders (grandparents), prodigal sons and daughters, black-sheep outcasts, and some characters that act like children: from tantrum-prone toddlers to rebellious teenagers.",
+    "page": "p.128",
+    "topic": "workplace family roles",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "You choose your friends, but you can't choose your family.",
+    "page": "p.128",
+    "topic": "chosen vs blood family",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In Succession, aging billionaire/patriarch/tycoon Logan Roy (Brian Cox) wields his power over his adult children like an emotional cudgel by withholding his approval and validation from his heir(s) apparent. Logan represents the antithesis of unconditional love. His relationships with his kids are all transactional.",
+    "page": "p.129",
+    "topic": "transactional family",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "All \"family\" members, including friends and colleagues, can be adept at pushing each other's psychological buttons (aka emotional triggers). The better someone knows you, the more familiar they are with your weaknesses and vulnerabilities. In other words, the people who love you most know how to hurt you the most. Trust in close relationships is built out of respect for these boundaries.",
+    "page": "p.129",
+    "topic": "emotional triggers",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Familial power dynamics influence the choices characters make in order to feel loved, reassured, respected, and validated from season to season.",
+    "page": "p.130",
+    "topic": "power dynamics drive story",
+    "level": "season",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Family dynamics are especially useful when assembling an ensemble cast. It's not that you'll need to cover every gender, age, or familial role. But it is helpful to determine how each character might relate to one another in both positive and negative ways.",
+    "page": "p.130",
+    "topic": "ensemble assembly",
+    "level": "character",
+    "tag": "ensemble",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "All relationships are like mirrors, and each person we encounter reflects our sense of self right back to us. They can also remind us of someone else either in appearance, attitude, or how they make us feel. This causes characters to project their past onto new individuals – perhaps overreacting to a quasi-judgmental remark that (usually subconsciously) reminds them of a judgmental parent, former lover, or estranged family member.",
+    "page": "p.130",
+    "topic": "relationships as mirrors",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The subtext of virtually any scene is familial power dynamics, psychological wounds from the past, and subtle movements that reaffirm clan position.",
+    "page": "p.130",
+    "topic": "scene subtext",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Great series are about great relationships that are consciously and/or unconsciously based on family dynamics. Where does your series \"live\"? What's its primary arena? What's its tonal \"sweet spot\"? As you ponder these questions, bear in mind that home is where the heart is.",
+    "page": "p.131",
+    "topic": "series arena",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "The show is so much about emotions and character . . . it's not an issue-based show. It's funny because the assignment was issue-based, but I'm like, if I just embody gentrification in the two sisters, I never have to worry about it. I never have to be didactic or anything. The characters just embody the issue.",
+    "page": "p.135",
+    "topic": "characters embody issues",
+    "level": "character",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There's not one sex scene on Vida that is gratuitous. It always either shifts the character or reaffirms a narrative. So that's super important, especially when you're dealing with queer sex scenes.",
+    "page": "p.133",
+    "topic": "purposeful sex scenes",
+    "level": "scene",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Our families have the potential to love us the most, but also to hurt us the most. It's complicated, and you don't try to manufacture a \"happy ending.\"",
+    "page": "p.137",
+    "topic": "family complexity",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The basis of our show comes from family experience; [it is] for sure also about the danger even more than about love. Yes, it is about the search for love, and looking for the approval of my mother and father. But, at the same time, they push me somewhere that maybe I don't want to go. I'm not ready to go. It's not my place to go. So it's really the center of the show.",
+    "page": "p.138",
+    "topic": "family as danger",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Yes, your family is your support, but, at the same time, it's something that you have to free yourself from in order to find yourself. There is a funny contradiction in that the family itself is a value in the organized crime world.",
+    "page": "p.138",
+    "topic": "family paradox",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "When you betray your family or you betray your group, you are part of the world that accepts you. It feels very painful to say, \"I don't want to be like you anymore,\" or even, \"I don't agree with you.\" It looks like a big betrayal. This culture is very strong.",
+    "page": "p.139",
+    "topic": "betrayal and belonging",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We have to deal with reality. We cannot just invent things, because it's not correct with this kind of story, people die. One of our consultants brought us in for a private talk. We met in a cemetery, and while we were talking about all his life, he was walking around the graves, saying, \"This was my friend; he died at age 22. And this one died at 27. This one was 31.\" Like a war. This told us we had to be realistic about the death toll.",
+    "page": "p.144",
+    "topic": "realism in crime drama",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The decision was to create the perception that you are completely in the eyes of the character. Each episode is in the POV of one specific character. And being and empathizing totally with this character, you realize you don't know when you're going to die. You can be the best actor in the world, but if you have read all the scripts and you know that at the end you're going to die, it can influence how you play the role in each \"present\" moment of the story. So, we don't tell them.",
+    "page": "p.144",
+    "topic": "POV per episode",
+    "level": "episode",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Streaming programs that drop us into the lives of characters we can relate to, whose problems resonate with us, satisfies much more than a hunger for entertainment, escapism, or distraction. Television today provides audiences with empathy on demand.",
+    "page": "p.145",
+    "topic": "empathy on demand",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The best television writing has an external dimension. In other words, we have to know more than just our characters' plot-level wants and needs in the series, the season, the story, the subplot, and the scenes. We're also compelled to understand who they are, what they fear, what they hope for – the subtext, the emotional challenge, the dimension of their internal struggles. We need to grasp the why.",
+    "page": "p.145",
+    "topic": "internal dimension",
+    "level": "character",
+    "tag": "character-design",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Great storytelling demonstrates that vulnerability is not a weakness, but a strength. Of course, being vulnerable requires the courage to be our most authentic selves in the present moment, despite our past traumas – which cause emotional voids, our coping mechanisms to avoid vulnerability.",
+    "page": "p.146",
+    "topic": "vulnerability as strength",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In real life, people will do just about anything to avoid facing difficult emotions and uncomfortable conversations. But in our second lives, we're compelled by discomfort; it draws us in. That's what good drama and comedy are all about: we can vicariously experience catharsis.",
+    "page": "p.146",
+    "topic": "discomfort draws us in",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Shame is universal.",
+    "page": "p.146",
+    "topic": "shame as engine",
+    "level": "character",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Generational trauma is at the center of everything in Mare of Easttown – including, as it turns out, the central murder mystery that propels the show forward – but for no one is that truer than for Mare Sheehan.",
+    "page": "p.147",
+    "topic": "generational trauma",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Mare of Easttown is that rarest of mysteries – structurally solid as a piece of genre-writing, yet infinitely more fascinating as a character study that happens to involve a murder.",
+    "page": "p.150",
+    "topic": "character over genre",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In this town, everyone is atoning for something.",
+    "page": "p.151",
+    "topic": "atonement as theme",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Ingelsby's Easttown, a fictional township in Delaware County, Pennsylvania, is so specifically drawn that it takes on an air of universality. We all know someone who lives in an Easttown. These traumas, shames, and emotional voids are familiar if not personally relatable.",
+    "page": "p.151",
+    "topic": "specificity breeds universality",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The critique is the fabric of the show itself. By presenting a very specific reality, we are shown what is unacceptable. Inadequate mental health care cost Mare a father and a son. Rampant opioid abuse creates addicts – some that see no option but to steal or sell their bodies.",
+    "page": "p.151",
+    "topic": "social critique as fabric",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I May Destroy You is a journey through the stages of trauma and personal grief. Sadly, the mystery that drives the story – what happened on the night in question – isn't particularly groundbreaking. But the way in which that storytelling device is used to mine the soul of the show's protagonist feels totally revolutionary.",
+    "page": "p.152",
+    "topic": "trauma as story engine",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Throughout the series, Coel presents us with conflict after conflict where both or all parties are, on some level, operating in the right but where a lack of self-knowledge and the presence of unaddressed pain prevents these competing egos from communicating effectively with one another.",
+    "page": "p.154",
+    "topic": "unaddressed pain blocks truth",
+    "level": "character",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The person she needs to forgive isn't some abuser but herself. In doing so, she's released from the shame and despair that's haunted her since the story began.",
+    "page": "p.154",
+    "topic": "self-forgiveness as resolution",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Coming-of-age stories, particularly ones concerning young love, are often wistful or told with an undercurrent of nostalgia for better, simpler times. It's the nostalgia of those who selectively or willfully misremember their youths told in a manner that soothes or comforts their aging minds. Sally Rooney and Alice Birch's Normal People takes a battering ram to that form of nostalgia and presents an unflinching look at the complexity and emotional vulnerability of experiencing everything for the first time.",
+    "page": "p.155",
+    "topic": "nostalgia subverted",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I believe identifying shame is vital to character development, especially the way 'shame' is defined by Dr. Brené Brown, author of the bestselling book Daring Greatly, as the fear of disconnection. Dr. Brown is referring to disconnection from the community. Shame rears its ugly head when we believe there's something wrong with us, that we are, in some fundamental way, deficient.",
+    "page": "p.158",
+    "topic": "shame as disconnection",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Deep down, we don't feel loveable or good enough, and so we try to conform to what we presume other people want us to be – and hide those parts of ourselves that we're convinced are unacceptable. It's both an inner renunciation of Self and something we project outward.",
+    "page": "p.158",
+    "topic": "masks and shame",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In Unorthodox, Esty is born into the Satmar Hasidic community in the Williamsburg neighborhood of Brooklyn. The Hasidic lifestyle and traditions are all she knows, given that her estranged mother mysteriously abandoned her as a child, her father is an alcoholic, and Esty was raised by her ultra-Orthodox grandparents. At the age of 19, Esty already feels inadequate as daughter, granddaughter, and wife, so the prospect of becoming a mother terrifies her and motivates her exodus from the Williamsburg shtetl. For me, all of Esty's initial actions are motivated by shame.",
+    "page": "p.158",
+    "topic": "shame motivates action",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There's a great quote that I heard from Ryan Murphy: 'The more specific you make something, the more universal it becomes.'",
+    "page": "p.160",
+    "topic": "specificity = universality",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We basically decided we were going to begin with just the beginning of, like, being old enough to get married, her meeting her husband, and how the whole thing collapses. And we were going to begin from the point where she leaves the marriage and weave those stories together until they dovetail and you finally understand why she left the marriage. So, in a way, you're building up to them meeting again. But up until then, little by little, they're tracking each other, but they're never in the same frame until the second half of the last episode.",
+    "page": "p.160",
+    "topic": "dual timeline structure",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "You don't fully understand everything until the end. It's a process of discovery for the audience, but with the right amount of context.",
+    "page": "p.160",
+    "topic": "controlled revelation",
+    "level": "season",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I think part of what's tough about portraying addiction on screen is if you're not inside the head of an addict, then people walk away with those questions like, 'Why should I care about this person who doesn't appear to care about herself?' But, in my experience, that's almost the exact opposite of what's going on inside the head of someone who's struggling with addiction. For me, it was never that I didn't care about myself or my life or my actions. I cared deeply about all of it. Maybe even too much.",
+    "page": "p.166",
+    "topic": "addiction from inside",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I wanted to convey an understanding that it's not a lack of emotion that exists within an addict. It's an overwhelming sense of emotion, which is a key aspect of Rue's character. In some ways, that served as the template for the whole design of the series, which was essentially that all of our camera movements, lighting and cinematography, and even scene construction to a large extent, should mirror that overabundance of emotion; that we should have this kind of extreme subjectivity in terms of lighting and production design.",
+    "page": "p.166",
+    "topic": "emotion as visual design",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I just follow the emotion of something. I've watched a lot of films, and so I play off of what my own expectations are as I write, and what I want to see and what I think subverts my own expectations and/or audience's expectations. It's not an intellectual process whatsoever.",
+    "page": "p.166",
+    "topic": "instinct over intellect",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I think the toughest thing with television is you make something and then people respond to it. And obviously that response can really confuse whoever hears it. And then you're working in reaction or trying to play to certain things. And I just keep going, 'I just have to write this for myself.' I can't do this conventional TV thing of going to all the characters when I'm supposed to or doling out plot in equal measure. It's those types of conventions that I'm not ever interested in.",
+    "page": "p.167",
+    "topic": "resist convention",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "As a viewer in 2020, I don't want to follow a predictable pattern. For me, as soon as I figure out the pattern, I'm bored.",
+    "page": "p.167",
+    "topic": "unpredictability",
+    "level": "season",
+    "tag": "franchise-type",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Sometimes the pilot establishes that form, as a kind of template. But viewers are more sophisticated now. I believe they want to be challenged.",
+    "page": "p.167",
+    "topic": "pilot as template",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "What's great about television in general is I can start that character's journey in season 1, and I can continue to build on it and continue to dig deeper and deeper into what that impact is and how that affects her life and her relationships. How hard it's going to be for Rue to trust someone; not just because she lost her father, but also feeling like the rug can be ripped out from under her at any moment.",
+    "page": "p.168",
+    "topic": "long-form character depth",
+    "level": "serial",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It goes back to the idea that I've always played with, which is, what are those little moments in childhood and in life that shape who we are? Even though you might not have done something to a person, just the mere act of witnessing it is going to shape you in some way, and you don't know what it is until it's triggered.",
+    "page": "p.165",
+    "topic": "formative moments",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Absentee parents can create emotional voids in people at really young ages. These voids need to be filled with something, which seem to be sex, drugs, and adrenaline.",
+    "page": "p.169",
+    "topic": "emotional voids",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I think there are these varying degrees of who we are and what we reveal. Overconfidence is, I think, a mask that I see often and feel in many ways because you want to present a version of yourself that is knowledgeable and cool and is OK with whatever is going on. It's completely anathema to the amount of anxiety that I think we all feel at this particular moment in time.",
+    "page": "p.170",
+    "topic": "masks and identity",
+    "level": "character",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "One of the things I was really interested in was creating an emotional realism. That is what is constant and fixed. She's an addict. She will behave like an addict. And that holds true for almost all the characters, that whatever is going on in their lives we're going to treat with true sensitivity and without any easy answers. And, aesthetically, we wanted a visual articulation of that. We wanted it to be something that reflected that emotional realism, but wasn't married to reality. I think when you're trying to chase reality on film, it has its limits. And our hope was to get to a greater truth.",
+    "page": "p.171",
+    "topic": "emotional realism",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I used to have this one-page printout of the 'core tenets' of our show; how to deal with the lighting and filtration to use, down to what stop we should shoot everything at.",
+    "page": "p.172",
+    "topic": "show bible tenets",
+    "level": "serial",
+    "tag": "series-bible",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "With season 2, I remember my producing partner, Kevin Turen, was like, 'Let's outline the thing first.' And so, because I love to talk about ideas, I outlined the whole second season. And then I sat down to write it and literally I could have cried every day because suddenly the life and unpredictability of it just disappeared. And I think the only way that I'm able to write a show that's so personal is just to write it myself.",
+    "page": "p.173",
+    "topic": "outlining kills spontaneity",
+    "level": "script",
+    "tag": "outline-board",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "There are many ways to tell a story in episodic television, and each approach differs depending on your series' premise and point of view (POV). So, let's start with this basic question: Whose story is it?",
+    "page": "p.175",
+    "topic": "whose story",
+    "level": "serial",
+    "tag": "pov",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Primarily utilized to show the world of the series through one dominant perspective, this limited POV is particularly important because often the series' lead has something to hide.",
+    "page": "p.175",
+    "topic": "single lead POV",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In each of the preceding examples, the audience is privy to the protagonist's vulnerabilities, whereas all or many of the other characters are (mostly) presented with a façade or persona of the protagonist rather than someone willing to disclose their secrets and ulterior motives.",
+    "page": "p.176",
+    "topic": "audience as confidant",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Sherlock needs Watson, but he's loath to admit it, which fuels their bromance with humor and conflict. Walter White and Jesse Pinkman have the same dynamic on Breaking Bad.",
+    "page": "p.176",
+    "topic": "protagonist + sidekick",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In Better Call Saul, protagonist Jimmy McGill incrementally and inevitably invents his alias, Saul Goodman, but his transformation is heavily influenced by his business partner/partner in crime: his girlfriend, Kim Wexler. Kim is the pivotal character (aka agent of change) in the series' latter seasons, and the cliffhanger at the conclusion of season 5 shocks and surprises us as much as it does Jimmy/Saul when Kim proposes marriage.",
+    "page": "p.176",
+    "topic": "pivotal character",
+    "level": "serial",
+    "tag": "ensemble",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "What differentiates these series from being pure 'ensemble' dramedies is the dominance of their lead characters' POV. Sex and the City begins and ends with Carrie's newspaper column, told via V.O. and setting up each episode's main theme.",
+    "page": "p.177",
+    "topic": "lead POV vs ensemble",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Voice-Over (V.O.) Narration as Running Commentary on Current Action. This is generally used to widen perspective and place events in a thematic or ironic context. Use sparingly, and never to narrate something we're seeing for ourselves, but rather as counterpoint, irony, and subtext. Beware of U.V.O.: Unnecessary Voice-Over.",
+    "page": "p.177",
+    "topic": "voice-over rules",
+    "level": "script",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's the articulation of his inner psychology in voice-over that enables us to grasp at the why. The V.O. keeps the audience inside Dexter's head and tries to help us reconcile his violent actions. His emotionless voice lulls us and draws us in. And, even though his killing sprees compel us to turn away, we keep watching again and again – because while Dexter is a monster, he's a well-intentioned monster.",
+    "page": "p.178",
+    "topic": "V.O. builds empathy",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Dual protagonist POVs are almost always improved and enhanced when each of the equal protagonists have different opinions, values, and perspectives, as well as their symbiotic, complementary strengths and weaknesses. The basic idea behind this theory is that if you put two incomplete people together, you get one whole, well-rounded individual.",
+    "page": "p.179",
+    "topic": "dual leads complement",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In ensemble shows, several characters might be involved in the same A, B, or even C story. There can be a lot of crossover.",
+    "page": "p.179",
+    "topic": "ensemble crossover",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The main purpose of flashbacks is to inform present-day dilemmas or provide the key to solving a central mystery. They can also be used to provide subtext.",
+    "page": "p.180",
+    "topic": "flashbacks as subtext",
+    "level": "episode",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In The Queen's Gambit, flashbacks are employed to illuminate Beth Harmon's backstory, particularly her formative years spent in an orphanage – giving foundational character insight to her present-day behavior and outlook on the world.",
+    "page": "p.180",
+    "topic": "flashback for character",
+    "level": "season",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Once you establish the dominant POV(s), the next challenge for writers is how to externalize inner psychology through action, subtext, and narrative 'devices.'",
+    "page": "p.181",
+    "topic": "externalizing POV",
+    "level": "script",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Watchmen, which is set 34 years after the events in the comic books, makes jumps in time not only on a series level, but also within episodes.",
+    "page": "p.183",
+    "topic": "time jumps",
+    "level": "serial",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Subtext is unspoken communication conveyed through intonation, facial expressions, and body language. As we all know, what people say and what they mean are often diametrically opposed. As Aristotle espoused over 2,000 years ago: characters are defined by their actions, not by what they say, but rather by what they do – and why.",
+    "page": "p.183",
+    "topic": "subtext defined",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Why is it so hard for human beings to speak the truth? Shame. Fear of disconnection and/or rejection. In other cases, we're afraid of hurting someone else's feelings. More often, it seems easier to soften the truth – which often compounds and makes everything worse.",
+    "page": "p.183",
+    "topic": "why characters lie",
+    "level": "character",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Information is power. It's not just about who does what, when, but who knows what, when.",
+    "page": "p.184",
+    "topic": "information as power",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Who controls the dissemination of information is also important.",
+    "page": "p.184",
+    "topic": "information control",
+    "level": "season",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The audience is innocent, but not naïve.",
+    "page": "p.184",
+    "topic": "audience sophistication",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's important to remember that not every character has 100 percent clarity about how they feel. In fact, it's always much more authentic if a character behaves in a way that's antithetical to how they actually feel.",
+    "page": "p.184",
+    "topic": "behavior vs feeling",
+    "level": "character",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "All human beings have three lives: public, private, and secret.",
+    "page": "p.185",
+    "topic": "three lives",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Fleabag, which in its entirety is a masterclass in subtext, is a journey of a woman whose suppressed grief leads her to act in self-destructive ways. The innermost layer, or the wound that guides all of her thoughts and actions, is grief, and only towards the end of series 1 are all the layers unraveled, and this truth revealed.",
+    "page": "p.185",
+    "topic": "wound under subtext",
+    "level": "serial",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "POV impacts dialogue by projecting the past on the present moment.",
+    "page": "p.186",
+    "topic": "past shapes dialogue",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A wise mentor once shared her theory with me that we each behave differently depending on the specific context of an interaction – and with whom. The idea is that people are the poet (idealist, romantic, optimist), the cynic (critic, judge, pessimist), or the thief (manipulator, parasite, deceiver), but we toggle between each role situationally and transactionally.",
+    "page": "p.186",
+    "topic": "poet cynic thief",
+    "level": "character",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Subtext gives voice to what is not spoken but implied. Subtext is primarily articulated through body language, facial expressions, intonation and/or awkward pauses. No matter how brilliantly you can write dialogue, do not overlook the profound value of silence.",
+    "page": "p.186",
+    "topic": "value of silence",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There's a depth of real pain that truly resonates. And that's the best advice any writer could ever get. It's very personal, which is where all the best stories emerge from.",
+    "page": "p.188",
+    "topic": "personal pain in writing",
+    "level": "script",
+    "tag": "drafts-polish",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I just wanted to write a show that reflected life as I experience it, which is that on any given day something hilarious can happen, and you're laughing hysterically on the phone with your best friend and then something fucking terrible happens. I think the normal formula for storytelling is something good happens, something bad happens, something good happens, something bad happens. We're very used to the formula of good and bad, good and bad, good and bad. This is not how I experience life.",
+    "page": "p.188",
+    "topic": "anti-formula storytelling",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I don't write from the outside in, I write from the inside out.",
+    "page": "p.188",
+    "topic": "inside-out writing",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "On Dead to Me, much of the dramatic conflict comes from 'Who knows what when?' The pilot is especially brilliant because in that first flashback we see Judy in the hospital, and it looks like she has lost a spouse. But later, when you replay the same flashback, we see that the nurse has just told her she's suffered another miscarriage. You, as the storyteller, play with the truth.",
+    "page": "p.189",
+    "topic": "who knows what when",
+    "level": "episode",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In season 1 when we were in the writers' room and we were making this a show, we kept asking ourselves, 'What makes this a series? What are the devices we're going to use and what is our framework as storytellers?' I remember early on in the room, one of the writers, Anthony King, was like, 'It's dramatic irony.' That's what we're doing here. I didn't think of it like that. I didn't type out the pilot thinking, 'How do I do dramatic irony?' It didn't even occur to me that that's what it was. And then once we homed in on that, it's a very useful device.",
+    "page": "p.190",
+    "topic": "dramatic irony as device",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "I also want to slow-play the characters for you to help viewers better understand and empathize with them. I'm always interested in straddling the line of good and bad with my characters, because it's something that fascinates me in life. Unfortunately, you really can't boil people down to good and bad. I think we want to a lot of times. But, in reality, we all have a shadow side. Sometimes we're at our best. Often, we are not.",
+    "page": "p.189",
+    "topic": "moral ambiguity",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A writers' room term you probably know is 'schmuck bait' – a cliffhanger that tests the audience's willing suspension of disbelief. I don't like to do that. I don't think that's insulting to the audience.",
+    "page": "p.191",
+    "topic": "schmuck bait",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "I'm interested in not knowing certain things. I think there's a power in not knowing because that is, again, my experience of life. You just don't know certain things. You can't be inside another person's head and heart. You can try. You can assume. But you just don't know.",
+    "page": "p.192",
+    "topic": "power of not knowing",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I wanted you to feel his absence, because that's what it's like when somebody dies.",
+    "page": "p.192",
+    "topic": "absence as presence",
+    "level": "serial",
+    "tag": "scene-construction",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "You know, we are always riding that line – this is a dark comedy, but it's also a mystery, but it's also a drama, and also a thriller. I didn't want it to be too heavy. I thought three months takes away some of that intensity. And I thought it would be interesting to meet this family in the moment that Jen, the matriarch of the family, is deciding it's time to get back to normal.",
+    "page": "p.192",
+    "topic": "tone balancing",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Antagonists can take many forms – and are not always personified.",
+    "page": "p.194",
+    "topic": "non-personified antagonists",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In Chernobyl, the antagonist is the Soviet power structure. In Barry, the main antagonist is PTSD from Barry's traumatic past as a Marine deployed to Afghanistan. In Mare of Easttown and Fleabag, the main antagonist is grief. In Hacks, the main antagonist is the fear of obscurity. In Succession, the main antagonist is greed.",
+    "page": "p.194",
+    "topic": "abstract antagonists",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "All villains are antagonists, but not all antagonists are villains. In many romantic comedies, the love interests are each other's antagonists.",
+    "page": "p.195",
+    "topic": "villain vs antagonist",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The antagonist will be the primary (usually negative) person or force that most actively challenges or threatens your protagonist – thereby directly impeding your protagonist from attaining their main goals.",
+    "page": "p.195",
+    "topic": "antagonist defined",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "Antagonists tend to be parasites who outwardly seek to get power from others – by any means necessary: deception, theft, murder, manipulation – as opposed to protagonists, who tend to discover that their power lies within.",
+    "page": "p.196",
+    "topic": "parasites vs inner power",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Antagonists almost always try to subvert the truth. Usually, their intention is to stay in control and/or to maintain the status quo, even if they're miserable.",
+    "page": "p.196",
+    "topic": "antagonists subvert truth",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Secrets and lies are the currency in Big Little Lies, Euphoria, Your Honor, Better Call Saul, Ted Lasso, The Undoing, Tehran, Lupin, Fargo, Bridgerton, Babylon Berlin, The Marvelous Mrs. Maisel, Younger, Shtisel, Dead to Me, Barry, Underground Railroad, The Sinner, Insecure, and so many more engrossing shows.",
+    "page": "p.196",
+    "topic": "secrets as currency",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Antagonists are roadblocks or speed bumps in a protagonist's micro missions. Episodic series encompass overarching goals for each main character in a season or over the course of the whole series. But, as we all know, as soon as that primary goal is successfully attained, the series is usually over – unless it pivots to another overarching mission or goal.",
+    "page": "p.196",
+    "topic": "antagonist as roadblock",
+    "level": "season",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Most villains do not change. While their specific goals may change, antagonists are the same at the end of the story as they were at the beginning. True villains do not evolve or learn from their failures. If the villain were to evolve, to grow, then they would no longer be the villain.",
+    "page": "p.197",
+    "topic": "villains don't change",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The antagonist will often have the same goal as the protagonist – but with a negative or evil agenda.",
+    "page": "p.197",
+    "topic": "same goal different agenda",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Your enemy's enemy is your friend.",
+    "page": "p.197",
+    "topic": "enemy alignment",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If your plot is lacking dramatic tension/conflict, you'll need to make your antagonist stronger.",
+    "page": "p.198",
+    "topic": "stronger antagonist",
+    "level": "season",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In many cases, the true antagonist is not revealed as the enemy until the climax.",
+    "page": "p.198",
+    "topic": "hidden antagonist",
+    "level": "season",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The most iconic antagonists possess both positive and negative characteristics – and are uniquely flawed in both sympathetic and nefarious ways.",
+    "page": "p.198",
+    "topic": "flawed antagonists",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Of course, some memorable antagonists are just pure evil. Every villain is the hero of his/her/their own story.",
+    "page": "p.199",
+    "topic": "villain as hero",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "While it's generally best to personify and personalize an antagonist, sometimes the source of antagonism is systemic, all-encompassing, and/or oblique.",
+    "page": "p.199",
+    "topic": "systemic antagonism",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Man against society: Characters often have the burden of facing a social construct far beyond their control – be it the Regency era ruling structure in England on Bridgerton, the monarchy in The Crown and The Great, or the cops in The Wire, in which the unstoppable drug trade corrupts the city of Baltimore.",
+    "page": "p.200",
+    "topic": "man vs society",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Man against self: Sometimes the main character is his own worst enemy. In Mad Men, Don Draper fights to conceal his checkered past, a far cry from his urbane advertising executive persona.",
+    "page": "p.200",
+    "topic": "man vs self",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Man against multiple forces: As evidenced by some of the preceding examples, antagonistic forces can intersect. The more obstacles, the better, so long as they're organic to the story. Intersecting antagonistic forces are most effective when they're thematically linked.",
+    "page": "p.201",
+    "topic": "thematically linked forces",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In most live-action sitcoms and relationship dramedies, the stakes aren't life or death, but they will ideally feel like life and death to the characters.",
+    "page": "p.201",
+    "topic": "emotional life-or-death",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The external world mirrors the internal world, which is usually why protagonists overcome their inner demons by slaying their external adversaries. Getting stronger involves healing and self-acceptance. Real heroes learn this invaluable life lesson.",
+    "page": "p.202",
+    "topic": "external mirrors internal",
+    "level": "character",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Every principal character on Pose enters the story with a traumatic history rooted in persecution, ignorance, and rejection from their own families. Instead of 'unconditional' love and acceptance, they were stigmatized, judged, and cast out.",
+    "page": "p.202",
+    "topic": "family as antagonist",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If you investigate all the various forms of antagonistic energy that exist in the show, whether it's lack of support from their family, the government, whether it's their survival against issues around class, the HIV/AIDS epidemic, the crack epidemic, all of it is rooted in two truisms: racism and then homophobia/transphobia. That permeates everything. It colors everything they're up against.",
+    "page": "p.202",
+    "topic": "systemic antagonism layered",
+    "level": "serial",
+    "tag": "antagonist",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "TV is a very intimate medium. Everyone has a TV in their home, and as a creator you are invited into folks' space to commune, and to share stories and experiences. Prior to the early aughts, narratives were not centering LGBTQ+ people. And if they were, those narratives were rooted in homophobia or transphobia.",
+    "page": "p.203",
+    "topic": "TV as intimate medium",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There's that unspoken contract that you create with your audience, and from the very beginning, the premise and themes of the show were love and family and resilience. So it was a narrative choice not to go there.",
+    "page": "p.209",
+    "topic": "audience contract",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "With television, you never exactly know what show is going to pop. What show is the audience going to show up for? Will you find an audience? You never really know. You just put it out in the world and hope for the best. I didn't know how it would be received. But even if the audience didn't show up, even if we were canceled, we would have the one season. So my collaborators and I asked ourselves what was important for us to express in this one season, these eight episodes.",
+    "page": "p.208",
+    "topic": "one-season mindset",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "I think that between 20 and 30 is where my sweet spot is, in whatever genre. If consumption changes in shape and color and device, producers and writers also have to change. Sticking more things into less time is a wonderful exercise. More for less, we respect your time!",
+    "page": "p.231",
+    "topic": "episode length",
+    "level": "episode",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The bottom line is not to be afraid to take risks. I like chaos, adrenaline. They are essential to cause an electroshock-like effect in the viewer, and for this sudden attack to lead to addiction.",
+    "page": "p.231",
+    "topic": "risk and adrenaline",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The worse it gets for your characters, the more interested the viewer is. On one occasion, we took Tokyo away from the Mint tied to a stretcher. When we did that, we didn't know what was going to happen. Nor how she was going to return. But we did it. That is an irreversible turn. You need a hundred of those.",
+    "page": "p.231",
+    "topic": "irreversible turns",
+    "level": "season",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It has actually been a tremendous exercise in freedom, because once we worked on the plan to bring Berlin back, we found a new flashback line.",
+    "page": "p.231",
+    "topic": "flashbacks as freedom",
+    "level": "season",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A certain essence of La Casa de Papel is contained in Berlin. We brought Berlin back because the character worked very well; we also really liked writing him.",
+    "page": "p.232",
+    "topic": "Berlin as essence",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We work on his duality and his ambiguities, with more freedom and enjoyment. Berlin is a fan favorite. He was a misogynist, a narcissist, a truly odious guy, but also a hero, a loyal brother, and someone with a playful facet that was fascinating: an absolutely fun character.",
+    "page": "p.232",
+    "topic": "moral ambiguity",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's that emotional part that comes from Latin culture, the part that differentiates us from the Anglo-Saxon narrative, which is much colder and rational, if you will. We have transformed the genre into something extremely affectionate, where the emotional storylines, love, fraternity, and friendship, are almost as important as the robbery bit itself. Action without emotion is cold and insubstantial.",
+    "page": "p.233",
+    "topic": "emotion in heist genre",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The idea of the series is not innocent: we start by printing money, which is one of the elements of legitimacy of the state. And to that, we added that they had to be thieves who were likable. If I wrote about irreproachable heroes, we would have less sources for conflict.",
+    "page": "p.233",
+    "topic": "likable thieves",
+    "level": "serial",
+    "tag": "empathy",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "A killer has to operate in the shadows, and an actor has to operate in the light. A killer has to suppress all of his emotion; an actor has to access it all. A killer has to be anonymous, but an actor craves notice. All of these opposites helped bring the show into sharp focus for us.",
+    "page": "p.235",
+    "topic": "hitman-actor paradox",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "When Barry is in the criminal world, the stakes are incredibly high, but the drama is incredibly low. He never stresses out. It's just muscle memory for him, like on autopilot. When he gets into the acting class drama world, the stakes clearly are very low, but the drama is incredibly high.",
+    "page": "p.236",
+    "topic": "inverted stakes",
+    "level": "episode",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There was a book written by Sebastian Junger called Tribe that became a touchstone for us. It's about humans looking for purpose. It's a great read about human beings and how happiness comes from a commitment to a purpose.",
+    "page": "p.237",
+    "topic": "purpose as theme",
+    "level": "serial",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "What makes Barry rootable, I think, is the choice he made in the pilot. He could continue to live in this way that he knew was wrong, or he could make a decision which he knew objectively would cause him all kinds of damage and heartache. He instinctively knew there was a better way to be, and he chose that path – consequences be damned.",
+    "page": "p.238",
+    "topic": "rootable choice",
+    "level": "character",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Audiences are always making presumptions about what's going to happen next. For me, if the show is great, the audience's presumptions are always wrong. You can't predict where it's going to go.",
+    "page": "p.242",
+    "topic": "defy expectations",
+    "level": "serial",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There's another term that somebody taught me, which is 'eating your seed corn.' If you're a farmer and you plant corn, you take a certain amount of that corn every year and turn it into seed for the following season. If you eat all of the corn, then you don't have anything to plant next year.",
+    "page": "p.243",
+    "topic": "eating your seed corn",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "I say make yourself some rules, commit to the rules and then do the work of being surprising and outsmarting yourself.",
+    "page": "p.243",
+    "topic": "rules then surprise",
+    "level": "serial",
+    "tag": "act-structure",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "On Barry, we do a little bit of both. When I learned to write, there were no ABCs. We didn't use letters like that. You would start out trying to come up with kind of a story idea for each of the main four characters. A lot of it was 'How do we get these people talking to each other? How do we put them on opposite sides of issues?'",
+    "page": "p.241",
+    "topic": "no ABC structure",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "The HBO execs were the ones that really zeroed in on that. Their note was about clarity: 'We know what a hitman is. We know what an actor is. But what is a hitman agent? What is that? Is that real?' Something was not sitting right there.",
+    "page": "p.239",
+    "topic": "network clarity note",
+    "level": "serial",
+    "tag": "development-cycle",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Theme is a central idea expressed through action. It can add dimension and resonance. In episodic television, theme is the glue that holds multiple, and sometimes divergent, storylines together. Theme is what the story is really about, more than just a series of events, but some kind of underlying universal truth about life.",
+    "page": "p.245",
+    "topic": "theme defined",
+    "level": "episode",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "On a TV series, theme can be articulated by a character – through dialogue or V.O. or some other narrative device. But, for me, theme works best as subtext – on a subliminal level – for the audience.",
+    "page": "p.245",
+    "topic": "theme as subtext",
+    "level": "episode",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Indeed, theme is the most polarizing issue among showrunners. My observation is that great TV pilots tend to establish a strong central theme for the series ahead – either explicitly or tacitly, articulated or inferred.",
+    "page": "p.249",
+    "topic": "theme in pilots",
+    "level": "episode",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "After all is said and done, theme is a Rorschach test for each viewer, as our unique life experiences influence everything we see.",
+    "page": "p.249",
+    "topic": "theme as Rorschach",
+    "level": "episode",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I think that this question, about the theme of a work of art, is a profound question that has intrigued me as an artist. Do you have to be aware of the work's theme while writing it, or is it something that is hidden in your deep subconscious, and pops up later? I believe that sometimes, when I start writing a new work, or a new episode, and I know its underlying theme, it might be dangerous to the work because although this awareness is the core of the work, it might sabotage its internal layer and raise to the surface elements that are supposed to be hidden.",
+    "page": "p.249",
+    "topic": "theme as subconscious",
+    "level": "episode",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Shtisel is a series about a broken heart. A series that deals with our fragile existence and the heart's impatience. When an object is broken, we immediately feel the loss, the damaged magic and innocence. However, we can also think about the physical aspect – when an object is broken, it also expands and occupies more space in the world.",
+    "page": "p.250",
+    "topic": "broken heart expands",
+    "level": "serial",
+    "tag": "theme",
+    "stage": "bible"
+  },
+  {
+    "source": "landau",
+    "quote": "I would like to think about this relationship as the one between cholent, the ultimate Jewish dish, to its ingredients. If you take each ingredient and cook it on its own overnight on a low flame, you will not get cholent. And when you are sitting in front of a plate of good dark brown cholent, you cannot determine which ingredient contributed the most to its taste and smell.",
+    "page": "p.252",
+    "topic": "cholent metaphor",
+    "level": "episode",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The subtext must never show. As the ancient Greeks had understood, and as Shakespeare taught us, a play takes place on the stage, but brings to the stage only the outer layers, the text. Had Oedipus known that he was going to murder his father and marry his mother, it would not have been a play, but rather an article by Freud.",
+    "page": "p.252",
+    "topic": "subtext hidden",
+    "level": "scene",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The life of each of us, each human being, is made of a collection of poetic, heartbreaking, funny, once-in-a-lifetime moments, and our job as storytellers is to find a way to convert them from a resume to a story.",
+    "page": "p.253",
+    "topic": "resume to story",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "If there is one thing that I have learned over the years, it is to always write when you are hungry. Hungry for food, hungry for love, hungry for a hug, hungry for a mother or a father, hunger for the children you have or the children that you don't have. A story is born out of want, heartbreak, and pain.",
+    "page": "p.258",
+    "topic": "write when hungry",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It is not an eternal and final redemption, but rather a small everyday redemption: a drizzle falling on a fountain at the city square; a biscuit dipped in a steaming glass of tea at the end of a bad day; a plate of hot soup that reminds you of your mother; a sun ray that comes out through the clouds in the middle of a gray winter day. These are the types of redemption that I am trying to find for myself and for my protagonists.",
+    "page": "p.257",
+    "topic": "everyday redemption",
+    "level": "character",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Our goal is to always leave the viewer feeling that not everything has been articulated. Even better, that nothing has been articulated. The understanding that some things remain unsaid, not everything is known, and some things are hidden. If you have something to think about between turning off your tablet after watching an episode and falling asleep, that episode has probably touched your heart.",
+    "page": "p.254",
+    "topic": "leave unsaid",
+    "level": "episode",
+    "tag": "dialogue-subtext",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "A cliffhanger is a plot device that leaves one or more characters facing either a dangerous situation or a shocking revelation. As all drama is essentially manipulation (and not reality), a cliffhanger leaves today's spoiler-sensitive streaming audiences with a tantalizing paradox: 'I can't wait to find out what happens next – don't tell me.'",
+    "page": "p.259",
+    "topic": "cliffhanger defined",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Today, forcing a cliffhanger at the end of each act break is deadly. And 'writing to the act break' via contrivance no longer applies. Instead, act breaks can land on a turning point that emerges from characters, not merely from plot.",
+    "page": "p.260",
+    "topic": "act breaks from character",
+    "level": "episode",
+    "tag": "act-breaks",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Suspense is key to all satisfying cliffhangers in all genres. Suspense has two components: Anticipation (of what's going to happen next) and Surprise (when it actually happens, hopefully in an unexpected, inevitable but not predictable way).",
+    "page": "p.261",
+    "topic": "suspense formula",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Cliffhangers often hinge on survival (literal or psychological/emotional). Without risk and something valuable at stake, there is no drama or comedy, and without the upside of reward or potential reward, there is no drama or comedy. You'll need the possibility of the positive and negative to generate suspense.",
+    "page": "p.261",
+    "topic": "stakes and polarity",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Seek out the positive (+) and negative (−) charge in each episode, scene, act, and make sure you have sufficient dramatic tension. The polarity of a +/− charge is how energy works. It's also the lifeblood of satisfying drama and comedy.",
+    "page": "p.261",
+    "topic": "plus-minus charge",
+    "level": "scene",
+    "tag": "dramatic-beat",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The challenge in episodic television is when to reveal the full truth. As a writer/showrunner, you may opt to withhold the full truth for a while, but be sure to reveal the truth by the end of the season.",
+    "page": "p.269",
+    "topic": "truth reveal timing",
+    "level": "season",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Think about the role of time in your series. Notice how characters in all genres are always rushing somewhere – they must hurry and do something – or else. Give yourself and your protagonist(s) a deadline. It ratchets up dramatic tension and can help you finish your pilot script.",
+    "page": "p.270",
+    "topic": "deadline pressure",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "It's like you want people to be completely surprised, and then when they think about it, say like, 'Well, of course that's what was gonna happen.' So, yeah, it's like a parlor trick.",
+    "page": "p.270",
+    "topic": "inevitable surprise",
+    "level": "episode",
+    "tag": "cliffhangers",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We always have a theme. We have thematics for every season, but once we start getting into the individual episodes, we consider what each individual episode is thematically outside of its service to the whole. Like, on its own, on a literary level, what's this episode about? So that it's like ten short stories that create one novel at the end.",
+    "page": "p.273",
+    "topic": "episode as short story",
+    "level": "season",
+    "tag": "theme",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Trust is such a huge part of the show in general. Going into season 2, one of the big themes guiding the whole season was the idea that intimacy equals danger. And it is that strange thing where if you get close to someone, that means they can know something. Like your own children can suddenly be a danger, in what they say.",
+    "page": "p.273",
+    "topic": "intimacy equals danger",
+    "level": "season",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We've talked a lot about the fact that crime saved this family, in a way. They would have been divorced. The family would have split up. And so, in some bizarre way, it held them together.",
+    "page": "p.274",
+    "topic": "crime saved family",
+    "level": "serial",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In general, we just made a very concerted effort right from the beginning to not play a lot of mystery and to play the fallout of the truth. We'll let the audience know things. We won't have someone go into a room and do something the audience doesn't see. We want to see characters doing the things they're doing and deal with the reality of the things they're doing. We're not a show that likes to be coy. Ever.",
+    "page": "p.274",
+    "topic": "no mystery, play truth",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The reason I think Ruth is the moral compass of the show is that she's just about basic survival needs. She's not greedy. She doesn't come from ego. She still believes in the system. She still thinks that if Wyatt can go to college, he has a chance.",
+    "page": "p.275",
+    "topic": "Ruth as moral compass",
+    "level": "character",
+    "tag": "character-design",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The theme of season 2 is that intimacy equals danger. And then in season 3, we had two themes in mind. One is that expansion equals insecurity and status quo equals security. The other was that capitalism is like a marriage; it doesn't work if there's not a winner or loser.",
+    "page": "p.277",
+    "topic": "season themes Ozark",
+    "level": "season",
+    "tag": "theme",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "Without all of those little moments to love the characters and relate, nothing else would matter. It works on an almost subliminal level. But without the love and caring, there can be no impact to the cliffhangers. It's a point I can't underscore enough to emerging TV writers.",
+    "page": "p.278",
+    "topic": "mundane moments matter",
+    "level": "scene",
+    "tag": "empathy",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "There are no rules in comedy except that it needs to be funny – which can be highly subjective.",
+    "page": "p.279",
+    "topic": "comedy has no rules",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "But seriously, no one can teach you to be funny.",
+    "page": "p.279",
+    "topic": "funny is a gift",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "But having given you all these rules, the truth is that if it's funny every week – and also has heart – you can toss out the rules and laugh your way to the bank.",
+    "page": "p.280",
+    "topic": "funny plus heart",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "I'm unapologetically earnest. It's OK. Call me a nerd, but I want the work to be a hug. I want the work to make people happy after their day. Because I know what most people deal with, especially people from these communities that are underserved – LGBTQ communities, Latinx communities, veteran communities; these are people that are just shit on all the time. I want them to have a space where they are loved and hugged and reminded that there is good in the world.",
+    "page": "p.285",
+    "topic": "work as a hug",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "You start with an emotion, and that's sort of where the story goes. This season, we went out of our comfort zones, and we started to try to do it more... Serialized.",
+    "page": "p.289",
+    "topic": "break from emotion",
+    "level": "season",
+    "tag": "story-engine",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "The biggest takeaway my dad and I had from this entire experience was that our show was inherently a drama. It was about loss.",
+    "page": "p.299",
+    "topic": "comedy is drama",
+    "level": "serial",
+    "tag": "tone-genre",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We wrote a 14-minute version of what we wanted the show to be; we went out to friends – it's how Catherine got involved – and we said to her, can you do us a favor and be in this with us? We took out the 14-minute presentation pilot, and nobody bought it. We took it to every cable network, every network.",
+    "page": "p.300",
+    "topic": "presentation pilot",
+    "level": "serial",
+    "tag": "pitch-deck",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "In those early seasons, we were laying groundwork. I took my dad's lead, in terms of the value in earning a moment, or earning a revelation, or earning sentimentality, in our case. I think if we had introduced the softer side of this show any earlier than we did, it probably would have come off as a little saccharin.",
+    "page": "p.302",
+    "topic": "earning sentimentality",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "We would go episode by episode, breaking it all down: A, B, and C. It was always in A, B, and C structure. We really used those table reads not as a gauge for whether the episode is funny, because we knew that when it got on its feet on set, it would be, but rather as a structural thing. For the writers, we were in there not thinking about whether a joke landed, but rather, 'Does the structure of this episode work? Do the stories make sense?'",
+    "page": "p.304",
+    "topic": "table reads as structure",
+    "level": "episode",
+    "tag": "abc-storylines",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "The mirror has always been about people's self-reflection. It came about because, for me, being in the bathroom was the only place where I'm facing the rawest version of myself. And I'm cut off from the outside world.",
+    "page": "p.309",
+    "topic": "mirror motif",
+    "level": "serial",
+    "tag": "pov",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "In writing, I obviously need to laugh and find it funny, that the moment of truth, and to hear it out loud amongst the writers in the room is probably the most helpful thing we do. We kind of get into character and then can see what plays.",
+    "page": "p.310",
+    "topic": "table reads for comedy",
+    "level": "episode",
+    "tag": "writers-room",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "Pitch docs, series bibles, and treatments are used exclusively as selling tools (again, proof-of-concept) rather than as roadmaps that must be strictly followed in the writers' room.",
+    "page": "p.312",
+    "topic": "pitch docs as selling tools",
+    "level": "docs",
+    "tag": "series-bible",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "As the adage goes: you don't get a second chance to make a good first impression.",
+    "page": "p.313",
+    "topic": "first impression",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Every pitch needs to be customized based on the project and the potential buyers. To use baking a cake as metaphor, every pitch needs to contain all or most of the following ingredients, but not necessarily in this order.",
+    "page": "p.314",
+    "topic": "pitch ingredients",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Why this idea? How did you come up with it? What was the catalyst? How is it wholly original, or a fresh spin or take on a familiar idea? Why do you feel it will connect with an audience?",
+    "page": "p.314",
+    "topic": "why this idea",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Why you as its author/creator/producer? I have found it's a good icebreaker to begin a pitch with your personal passion and connection to this story and these characters. Why are you uniquely qualified and compelled to write this pilot and/or to steer this series?",
+    "page": "p.314",
+    "topic": "why you",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Why now? Timing is everything. Look at the world around you, near and far. What outrages you? What stories are not being told or told well? How can your project fill a void of stories set in a particular world or about a unique group of people?",
+    "page": "p.314",
+    "topic": "why now",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "The more specific you make something, the more universal it becomes.",
+    "page": "p.314",
+    "topic": "specific is universal",
+    "level": "serial",
+    "tag": "logline",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Your pitch presentation should have the same tone as the genre of the series. If it's a comedy, your pitch had better be funny. If it's an edgy thriller, it needs to offer suspense, thrills, and chills. If it's a family drama, the pitch needs to evoke empathy and pathos.",
+    "page": "p.314",
+    "topic": "pitch tone matches genre",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Once you've conveyed your personal passion and set the stage, it's time to tell them the story. Where to begin? Pitch out the teaser or cold open succinctly, but with just the right amount of detail, to establish tone and hook them in.",
+    "page": "p.315",
+    "topic": "start with teaser",
+    "level": "episode",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Pitch out the pilot episode, starting with a desperate protagonist in need. Urgency helps. Less is more. Choose your details wisely. Verbs are your friends as they convey proactive goals and stakes (or consequences).",
+    "page": "p.315",
+    "topic": "desperate protagonist",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Clarify the mythology/world building in your series. Briefly and succinctly pitch out the basic mythology and/or origin story of the series. Your series' mythology will take the form of a central mystery – secrets from the past that are actively hidden or obscured.",
+    "page": "p.316",
+    "topic": "mythology pitch",
+    "level": "serial",
+    "tag": "world-building",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Remember, there is no need to tell the execs everything you know. Not knowing what's going to happen invokes the central questions of your series to sustain your series over time. An effective pitch will entice your listeners to ask you questions.",
+    "page": "p.316",
+    "topic": "leave mystery in pitch",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Fuel your story engines to illustrate the sustainability of your series after the pilot. This is your series' franchise. Have at least three examples for future episodes. What are the 'story engines,' i.e., what will drive the series from episode to episode?",
+    "page": "p.317",
+    "topic": "story engines in pitch",
+    "level": "serial",
+    "tag": "story-engine",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Stick the landing: End your pitch of the pilot episode on a high note that portends future conflicts versus too much resolution and harmony. The primary difference between a TV series and a movie is, by and large, a movie is intended to be finite. In contrast, the end of a TV pilot is just the beginning of what's going to be an ongoing journey for the characters.",
+    "page": "p.317",
+    "topic": "stick the landing",
+    "level": "episode",
+    "tag": "pilot",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Know your genre inside and out. If your ambition is to create a new, groundbreaking sci-fi series, do your homework and know about every sci-fi series past, present, and on the horizon. Remember, you're not just competing with what's currently on the air; you're also competing with every series in the same genre from the past decade and more.",
+    "page": "p.318",
+    "topic": "know your genre",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Show and tell them your series is set on fertile ground. How will it connect to an audience and captivate them over time? How will your series last beyond season 1, assuming it's not a limited series?",
+    "page": "p.319",
+    "topic": "fertile ground",
+    "level": "serial",
+    "tag": "franchise-type",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "'Sit back in your chair.' This is simplest and best advice I've ever been given about how to comport oneself in a professional meeting. When we appear prepared, engaged, and confident (but not arrogant), we allow the potential buyers to relax and enjoy our presentation.",
+    "page": "p.320",
+    "topic": "sit back in chair",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Make them care. Empathy, empathy, empathy. Get them invested in the plight of your characters. Keep them on the edge of their seats with suspense – which is generated by their emotional investment in the characters.",
+    "page": "p.320",
+    "topic": "empathy in pitch",
+    "level": "docs",
+    "tag": "pitch-oral",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Finish the pitch and don't buy it back. What this means is when you're done with your rehearsed pitch: shut up. This is crucial to (potentially) closing the sale. Do not give in to this temptation. When you're done pitching, try to embrace the silence with confidence.",
+    "page": "p.320",
+    "topic": "don't buy it back",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Don't burn any bridges. When you go into a network or studio executive's office, it's extremely important to remember that your #1 priority is not to make the sale. Your #1 priority is to establish rapport with the exec.",
+    "page": "p.321",
+    "topic": "don't burn bridges",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "Be overprepared, just in case. I generally recommend that you have three pitches prepared when you're meeting with a producer. If you strike out with one, move on to the next one.",
+    "page": "p.321",
+    "topic": "be overprepared",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "We pitched verbally. Then we sent in written documents: the pitch document that is the concept and main narrative arcs of the series as well as the summary of the pitch conversation and at the same time we send the 'DEV PRO' (Development Process) document that outlines to the broadcaster what we're going to do, how we're going to do it, who we're going to do it with, how much it's going to cost and what rights are included.",
+    "page": "p.326",
+    "topic": "pitch doc plus DEV PRO",
+    "level": "docs",
+    "tag": "pitch-deck",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "We own 100 percent of the asset. We control the brand. We control the trademark. And we own 100 percent of the asset. We only license the asset around the world; we do not sell it for more than a license period.",
+    "page": "p.327",
+    "topic": "brand ownership",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "One of our principles of writing, one of our rules, was you don't keep any good ideas for the next season. In France, we say, 'You burn all your ships.' All the ideas you have, you put even in the season you are writing now. Don't keep anything for the next one.",
+    "page": "p.327",
+    "topic": "burn all ships",
+    "level": "season",
+    "tag": "season-arc",
+    "stage": "writers-room"
+  },
+  {
+    "source": "landau",
+    "quote": "All the characters have to be a mystery because, if not, if you know them too quickly, you can't do a show with them because the show is for five years. You can't get tired of them. And to do that, we have to keep some piece of mystery. It's very interesting to discover new angles and new faces of the characters that you can't do initially.",
+    "page": "p.325",
+    "topic": "characters as mystery",
+    "level": "character",
+    "tag": "character-arc",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The best pitches are the ones where they go, 'We'd like to read your treatment, your pitch document.' And then they read and say, 'Now we want to talk, start the conversation.'",
+    "page": "p.329",
+    "topic": "best pitches",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  },
+  {
+    "source": "landau",
+    "quote": "A series is not just a deal; it's an emotionally engaged product. People are going to give you 10 to 24 hours a season to look at something. That is an enormous amount of time, and, therefore, you need to respect them if you want to get that respect back.",
+    "page": "p.329",
+    "topic": "respect viewer time",
+    "level": "industry",
+    "tag": "marketplace",
+    "stage": null
+  },
+  {
+    "source": "landau",
+    "quote": "The creators most passionate about their shows are the ones that usually move ahead. That's the truth.",
+    "page": "p.330",
+    "topic": "passion wins",
+    "level": "industry",
+    "tag": "pitch-meeting",
+    "stage": "pitch"
+  }
+]

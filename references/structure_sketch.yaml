@@ -1,0 +1,142 @@
+# Phase 1: Structure the author's sketch into Netflix pitch sections + storylines.
+# Takes free-form notes → outputs partial pitch + storylines with gaps.
+#
+# Variables: {author_sketch}
+
+system: |
+  You are an experienced TV development executive. Your job is to take
+  the creator's free-form notes and structure them into a TV series pitch
+  framework.
+
+  ## Your task
+
+  1. Read all provided materials (notes, character lists, outlines, research).
+  2. Map what you find to the 7 Netflix pitch sections (below).
+  3. For each section, mark coverage: [x] solid, [~] partial, [ ] missing.
+  4. Extract storylines — character-driven dramatic arcs.
+  5. For each storyline, identify dramatic beats and gaps.
+
+  ## 7 Pitch Sections
+
+  1. STORY QUESTIONS — who, what, why, conflicts, stakes, themes
+  2. OVERVIEW — synopsis + why this series
+  3. WORLD — where, when, profession, texture
+  4. TONE — feeling, visual style, comparables
+  5. CHARACTERS — backstory, traits, arc, relationships (Rootworthy: Catalyst, Moral Compass, Transformation)
+  6. SEASON SUMMARIES — per-character emotional journey (Harmon's Story Circle)
+  7. EPISODE MAP — 10-episode structure (3-act, Todd Kessler template)
+
+  ## Storylines
+
+  A storyline is NOT a theme or topic. It is a **character's dramatic
+  transformation** through the season:
+
+  - WHO changes
+  - FROM what state TO what state
+  - Through what dramatic beats (turning points)
+
+  Each storyline has:
+  - id: short snake_case identifier
+  - character: primary character
+  - transformation: "state A → events → state B" (one sentence)
+  - dramatic_beats: dict of beat_name → question/description
+    Standard beats: catalyst, first_test, moral_dilemma, point_of_no_return,
+    crisis, transformation. Add custom beats if the story needs them.
+  - gaps: list of specific unknowns that need book material
+  - books_to_search: which books might have relevant material
+    (empty list if this is purely author's invention)
+
+  ## Output format
+
+  Return structured data with:
+  - pitch_audit: 7 sections with status and notes
+  - storylines: list of character storylines with beats and gaps
+  - open_questions: things the author needs to decide (not findable in books)
+
+  ## Language
+
+  If materials are in Russian, write in Russian.
+
+user_template: |
+  ## Author's Materials
+
+  {author_sketch}
+
+  ## Task
+
+  Structure these materials into Netflix pitch sections and extract storylines.
+  Be specific about what's missing — don't say "needs work", say exactly
+  what fact or decision is missing. Identify which gaps might be fillable
+  from source books and which require author decisions.
+
+output_schema:
+  type: object
+  properties:
+    pitch_audit:
+      type: array
+      items:
+        type: object
+        properties:
+          section:
+            type: string
+            description: "Section name (e.g. 'Story Questions', 'Characters')"
+          status:
+            type: string
+            enum: ["solid", "partial", "missing"]
+          what_exists:
+            type: string
+            description: "Summary of what's already covered"
+          what_missing:
+            type: string
+            description: "Specific gaps or weaknesses"
+        required: [section, status, what_exists, what_missing]
+        additionalProperties: false
+    storylines:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: "Short snake_case identifier"
+          character:
+            type: string
+            description: "Primary character name"
+          transformation:
+            type: string
+            description: "state A → events → state B"
+          dramatic_beats:
+            type: object
+            description: "beat_name → question or description"
+          gaps:
+            type: array
+            items:
+              type: string
+            description: "Specific unknowns needing book material"
+          books_to_search:
+            type: array
+            items:
+              type: string
+            description: "Book slugs to search (empty if author's invention)"
+        required: [id, character, transformation, dramatic_beats, gaps, books_to_search]
+        additionalProperties: false
+    open_questions:
+      type: array
+      items:
+        type: object
+        properties:
+          question:
+            type: string
+            description: "What needs to be decided"
+          why_it_matters:
+            type: string
+            description: "Impact on the pitch"
+          options:
+            type: array
+            items:
+              type: string
+            description: "Possible answers (if applicable)"
+        required: [question, why_it_matters, options]
+        additionalProperties: false
+  required: [pitch_audit, storylines, open_questions]
+  additionalProperties: false
