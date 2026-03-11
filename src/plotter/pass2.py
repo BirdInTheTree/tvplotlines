@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from plotter.llm import LLMConfig, call_llm, call_llm_batch
+from plotter.llm import LLMConfig, call_llm, call_llm_batch, call_llm_parallel
 from plotter.models import (
     CastMember,
     EpisodeBreakdown,
@@ -102,38 +102,21 @@ def assign_events(
     return _parse_breakdown(data, episode_id)
 
 
-def assign_events_batch(
+def _prepare_bulk(
     show: str,
     season: int,
     synopses: list[str],
     context: SeriesContext,
     cast: list[CastMember],
     storylines: list[Plotline],
-    *,
-    config: LLMConfig | None = None,
-) -> list[EpisodeBreakdown]:
-    """Assign events for all episodes in a single batch (50% cheaper).
-
-    Falls back to sequential calls for non-Anthropic providers.
-
-    Args:
-        show: Series title.
-        season: Season number.
-        synopses: Synopsis text for each episode (full season).
-        context: Series context from Pass 0.
-        cast: Cast from Pass 1.
-        storylines: Storylines from Pass 1.
-        config: LLM settings.
+) -> tuple[str, list[str], list[str], list]:
+    """Prepare shared data for parallel/batch Pass 2 calls.
 
     Returns:
-        List of EpisodeBreakdown, one per episode.
+        (system_prompt, user_messages, episode_ids, validators)
     """
-    if config is None:
-        config = LLMConfig()
-
     system_prompt = load_prompt("pass2")
 
-    # Build user messages for each episode
     user_messages = []
     episode_ids = []
     for i, synopsis in enumerate(synopses):
@@ -162,7 +145,6 @@ def assign_events_batch(
             ensure_ascii=False,
         ))
 
-    # Build validators for each episode
     def _make_validator(ep_id: str):
         def _validate_ep(data: dict) -> None:
             bd = _parse_breakdown(data, ep_id)
@@ -171,7 +153,84 @@ def assign_events_batch(
 
     validators = [_make_validator(ep_id) for ep_id in episode_ids]
 
-    # Send batch
+    return system_prompt, user_messages, episode_ids, validators
+
+
+def assign_events_parallel(
+    show: str,
+    season: int,
+    synopses: list[str],
+    context: SeriesContext,
+    cast: list[CastMember],
+    storylines: list[Plotline],
+    *,
+    config: LLMConfig | None = None,
+) -> list[EpisodeBreakdown]:
+    """Assign events for all episodes in parallel (fast, full price).
+
+    Args:
+        show: Series title.
+        season: Season number.
+        synopses: Synopsis text for each episode (full season).
+        context: Series context from Pass 0.
+        cast: Cast from Pass 1.
+        storylines: Storylines from Pass 1.
+        config: LLM settings.
+
+    Returns:
+        List of EpisodeBreakdown, one per episode.
+    """
+    if config is None:
+        config = LLMConfig()
+
+    system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
+        show, season, synopses, context, cast, storylines,
+    )
+
+    results = call_llm_parallel(
+        system_prompt, user_messages, config,
+        cache_system=True, validators=validators,
+    )
+
+    return [
+        _parse_breakdown(data, ep_id)
+        for data, ep_id in zip(results, episode_ids)
+    ]
+
+
+def assign_events_batch(
+    show: str,
+    season: int,
+    synopses: list[str],
+    context: SeriesContext,
+    cast: list[CastMember],
+    storylines: list[Plotline],
+    *,
+    config: LLMConfig | None = None,
+) -> list[EpisodeBreakdown]:
+    """Assign events for all episodes in a single batch (50% cheaper, slower).
+
+    Falls back to parallel calls for non-Anthropic providers.
+
+    Args:
+        show: Series title.
+        season: Season number.
+        synopses: Synopsis text for each episode (full season).
+        context: Series context from Pass 0.
+        cast: Cast from Pass 1.
+        storylines: Storylines from Pass 1.
+        config: LLM settings.
+
+    Returns:
+        List of EpisodeBreakdown, one per episode.
+    """
+    if config is None:
+        config = LLMConfig()
+
+    system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
+        show, season, synopses, context, cast, storylines,
+    )
+
     results = call_llm_batch(
         system_prompt, user_messages, config,
         cache_system=True, validators=validators,

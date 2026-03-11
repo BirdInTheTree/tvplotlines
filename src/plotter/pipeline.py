@@ -6,7 +6,7 @@ from plotter.llm import LLMConfig
 from plotter.models import PlotterResult, SeriesContext
 from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
-from plotter.pass2 import assign_events, assign_events_batch
+from plotter.pass2 import assign_events, assign_events_batch, assign_events_parallel
 from plotter.pass3 import review_storylines
 from plotter.postprocess import compute_span
 from plotter.verdicts import apply_verdicts
@@ -21,7 +21,7 @@ def get_plotlines(
     llm_provider: str = "anthropic",
     model: str | None = None,
     skip_review: bool = False,
-    use_batch: bool = True,
+    pass2_mode: str = "parallel",
 ) -> PlotterResult:
     """Extract storylines from TV series synopses.
 
@@ -37,7 +37,10 @@ def get_plotlines(
         llm_provider: "anthropic" or "openai".
         model: Specific model name, or provider default.
         skip_review: If True, skip Pass 3 (narratologist review).
-        use_batch: If True, use batch API for Pass 2 (Anthropic only, 50% cheaper).
+        pass2_mode: How to run Pass 2:
+            "parallel" — all episodes at once via async (fast, default)
+            "batch" — Anthropic batch API (50% cheaper, slower)
+            "sequential" — one episode at a time (simple, for debugging)
 
     Returns:
         PlotterResult with context, cast, plotlines, and episode breakdowns.
@@ -54,7 +57,12 @@ def get_plotlines(
     )
 
     # Pass 2: assign events for each episode
-    if use_batch and config.provider == "anthropic":
+    if pass2_mode == "parallel":
+        breakdowns = assign_events_parallel(
+            show, season, episodes, context, cast, storylines,
+            config=config,
+        )
+    elif pass2_mode == "batch":
         breakdowns = assign_events_batch(
             show, season, episodes, context, cast, storylines,
             config=config,
