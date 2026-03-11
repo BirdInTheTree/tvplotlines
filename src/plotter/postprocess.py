@@ -29,6 +29,57 @@ def compute_span(
         plotline.span = present_episodes
 
 
+def assign_orphan_events(
+    plotlines: list[Plotline],
+    episodes: list[EpisodeBreakdown],
+) -> None:
+    """Assign null-storyline events to the most common storyline for their characters.
+
+    For each unassigned event, find the storyline most frequently associated
+    with its characters across the season. In-place modification.
+    """
+    # Build character → storyline frequency map from assigned events
+    char_storyline_counts: dict[str, Counter[str]] = {}
+    for ep in episodes:
+        for event in ep.events:
+            if event.storyline is None:
+                continue
+            for char in event.characters:
+                if char not in char_storyline_counts:
+                    char_storyline_counts[char] = Counter()
+                char_storyline_counts[char][event.storyline] += 1
+
+    plotline_ids = {p.id for p in plotlines}
+
+    # Assign orphan events
+    for ep in episodes:
+        for event in ep.events:
+            if event.storyline is not None:
+                continue
+            if not event.characters:
+                continue
+
+            # Aggregate storyline votes from all characters in this event
+            votes: Counter[str] = Counter()
+            for char in event.characters:
+                if char in char_storyline_counts:
+                    votes.update(char_storyline_counts[char])
+
+            if not votes:
+                # Fallback: use the most common storyline in this episode
+                ep_counts: Counter[str] = Counter()
+                for other in ep.events:
+                    if other.storyline:
+                        ep_counts[other.storyline] += 1
+                if ep_counts:
+                    votes = ep_counts
+
+            if votes:
+                best = votes.most_common(1)[0][0]
+                if best in plotline_ids:
+                    event.storyline = best
+
+
 def compute_weight(
     plotlines: list[Plotline],
     episode: EpisodeBreakdown,

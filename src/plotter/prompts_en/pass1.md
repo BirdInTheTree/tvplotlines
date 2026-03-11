@@ -83,7 +83,9 @@ Story DNA is reconstructed from the aggregate of mentions across the season. Don
 
 ### Naming
 
-Name = abstract word by GOAL, not by event. Ensemble: always `Driver: Theme` (e.g. "Jon: Honor", "Cersei: Power"). Others: add driver when one character drives multiple storylines.
+Name and id = ONE abstract word by GOAL, not by event or outcome. Examples: "belonging", "leadership", "love", "redemption", "investigation". Do NOT use compound names like "gang_survival" or "family_destruction" — use "survival" or "family". The `id` must be a single snake_case word matching the `name`.
+
+Ensemble: always `Driver: Theme` (e.g. "Jon: Honor", "Cersei: Power"). Others: add driver when one character drives multiple storylines.
 
 ### Series format and resolution
 

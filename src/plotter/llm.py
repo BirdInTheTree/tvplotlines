@@ -29,6 +29,7 @@ class LLMConfig:
 
     provider: str = "anthropic"  # "anthropic" | "openai"
     model: str | None = None  # None = provider default
+    lang: str = "ru"  # "ru" | "en" — prompt language
 
     @property
     def resolved_model(self) -> str:
@@ -158,7 +159,7 @@ async def acall_llm_batch(
             custom_id=f"req_{i:04d}",
             params=MessageCreateParamsNonStreaming(
                 model=config.resolved_model,
-                max_tokens=8192,
+                max_tokens=6144,
                 temperature=0,
                 system=system_content,
                 messages=[{"role": "user", "content": user_msg}],
@@ -267,7 +268,7 @@ async def _acall_anthropic(
 
     response = await client.messages.create(
         model=config.resolved_model,
-        max_tokens=8192,
+        max_tokens=6144,
         temperature=0,
         system=system_content,
         messages=messages,

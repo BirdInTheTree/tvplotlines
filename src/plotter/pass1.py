@@ -7,10 +7,16 @@ Output: list[CastMember], list[Plotline].
 from __future__ import annotations
 
 import json
+import logging
+from collections import Counter
 
-from plotter.llm import LLMConfig, call_llm
+from plotter.llm import LLMConfig, call_llm, call_llm_parallel
 from plotter.models import CastMember, Plotline, SeriesContext
 from plotter.prompts import load_prompt
+
+logger = logging.getLogger(__name__)
+
+_VOTING_ROUNDS = 3
 
 _VALID_TYPES = {"episodic", "serialized", "runner"}
 _VALID_RANKS = {"A", "B", "C", "runner"}
@@ -55,7 +61,7 @@ def extract_storylines(
         ensure_ascii=False,
     )
 
-    system_prompt = load_prompt("pass1")
+    system_prompt = load_prompt("pass1", lang=config.lang)
 
     def _full_validate(data: dict) -> None:
         """Parse and validate in one step for retry support."""
@@ -63,7 +69,25 @@ def extract_storylines(
         s = _parse_storylines(data, c)
         _validate(s, c, context)
 
-    data = call_llm(system_prompt, user_message, config, validator=_full_validate)
+    # Majority voting: run Pass 1 multiple times, pick most common storyline set
+    user_messages = [user_message] * _VOTING_ROUNDS
+    validators = [_full_validate] * _VOTING_ROUNDS
+    results = call_llm_parallel(
+        system_prompt, user_messages, config, validators=validators,
+    )
+
+    # Pick the result whose storyline ID set appears most often
+    id_sets = [
+        tuple(sorted(s["id"] for s in r.get("storylines", [])))
+        for r in results
+    ]
+    most_common_ids = Counter(id_sets).most_common(1)[0][0]
+    # Use the first result that matches
+    data = next(r for r, ids in zip(results, id_sets) if ids == most_common_ids)
+    logger.info(
+        "Pass 1 voting: %d/%d agreed on %s",
+        id_sets.count(most_common_ids), _VOTING_ROUNDS, most_common_ids,
+    )
 
     cast = _parse_cast(data)
     storylines = _parse_storylines(data, cast)

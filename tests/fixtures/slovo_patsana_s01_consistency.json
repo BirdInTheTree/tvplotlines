@@ -1,87 +1,82 @@
 {
   "n_runs": 3,
-  "avg_coverage": 0.9769,
-  "consistency_ari": 0.595,
-  "score": 0.5812,
+  "avg_coverage": 0.9978,
+  "consistency_ari": 0.8816,
+  "score": 0.8797,
   "runs": [
     {
       "plotlines": [
         "belonging",
-        "brotherhood",
         "leadership",
-        "innocence",
-        "family_destruction",
-        "investigation",
-        "romance_tragedy"
+        "love",
+        "family",
+        "justice",
+        "redemption"
       ],
-      "coverage": 0.9455782312925171,
+      "coverage": 1.0,
       "cast": [
         "andrey",
         "marat",
         "vova",
-        "aigul",
+        "julia",
         "ira",
-        "mother",
+        "aigul",
         "ildar",
-        "kashchey",
+        "kaschey",
         "turbo",
         "eralash",
-        "natasha",
-        "kirill"
-      ]
-    },
-    {
-      "plotlines": [
-        "belonging",
-        "brotherhood",
-        "leadership",
-        "love_tragedy",
-        "family_destruction",
-        "investigation",
-        "salvation"
-      ],
-      "coverage": 0.9921875,
-      "cast": [
-        "andrey",
-        "marat",
-        "vova",
-        "ira",
-        "aigul",
-        "mama_yulia",
-        "ildar",
-        "kashchey",
-        "turbo",
-        "yeralash",
+        "iskander",
         "natasha"
       ]
     },
     {
       "plotlines": [
-        "criminal_descent",
-        "brotherhood",
+        "belonging",
         "leadership",
-        "family_collapse",
+        "love",
+        "family",
         "redemption",
-        "investigation",
-        "love_tragedy"
+        "investigation"
       ],
-      "coverage": 0.9929577464788732,
+      "coverage": 0.9933333333333333,
       "cast": [
         "andrey",
         "marat",
         "vova",
-        "aigul",
         "julia",
         "ira",
+        "aigul",
         "ildar",
-        "natasha",
-        "turbo",
-        "zima",
         "kaschey",
+        "turbo",
         "eralash",
         "iskander",
-        "kirill",
-        "yellow"
+        "natasha"
+      ]
+    },
+    {
+      "plotlines": [
+        "belonging",
+        "leadership",
+        "love",
+        "family",
+        "justice",
+        "redemption"
+      ],
+      "coverage": 1.0,
+      "cast": [
+        "andrey",
+        "marat",
+        "vova",
+        "julia",
+        "ira",
+        "aigul",
+        "ildar",
+        "kaschey",
+        "turbo",
+        "eralash",
+        "iskander",
+        "natasha"
       ]
     }
   ]

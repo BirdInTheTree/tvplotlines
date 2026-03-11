@@ -116,7 +116,7 @@ def review_storylines(
         ensure_ascii=False,
     )
 
-    system_prompt = load_prompt("pass3")
+    system_prompt = load_prompt("pass3", lang=config.lang)
 
     def _full_validate(data: dict) -> None:
         _parse_verdicts(data, plotlines, episodes)

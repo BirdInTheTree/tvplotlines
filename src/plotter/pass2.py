@@ -88,7 +88,7 @@ def assign_events(
         ensure_ascii=False,
     )
 
-    system_prompt = load_prompt("pass2")
+    system_prompt = load_prompt("pass2", lang=config.lang)
     # Cache system prompt — same for all episodes
     def _full_validate(data: dict) -> None:
         bd = _parse_breakdown(data, episode_id)
@@ -109,13 +109,14 @@ def _prepare_bulk(
     context: SeriesContext,
     cast: list[CastMember],
     storylines: list[Plotline],
+    config: LLMConfig,
 ) -> tuple[str, list[str], list[str], list]:
     """Prepare shared data for parallel/batch Pass 2 calls.
 
     Returns:
         (system_prompt, user_messages, episode_ids, validators)
     """
-    system_prompt = load_prompt("pass2")
+    system_prompt = load_prompt("pass2", lang=config.lang)
 
     user_messages = []
     episode_ids = []
@@ -184,7 +185,7 @@ def assign_events_parallel(
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, synopses, context, cast, storylines,
+        show, season, synopses, context, cast, storylines, config,
     )
 
     results = call_llm_parallel(
@@ -228,7 +229,7 @@ def assign_events_batch(
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, synopses, context, cast, storylines,
+        show, season, synopses, context, cast, storylines, config,
     )
 
     results = call_llm_batch(
@@ -326,6 +327,15 @@ def _validate(
                         f"Event {event.event!r}: also_affects {sid!r} "
                         f"not found in storylines"
                     )
+
+    # Reject if too many events have no storyline assignment
+    total = len(breakdown.events)
+    nulls = sum(1 for e in breakdown.events if e.storyline is None)
+    if total > 0 and nulls / total > 0.10:
+        raise ValueError(
+            f"Too many unassigned events: {nulls}/{total} "
+            f"({nulls/total:.0%}). Max allowed: 10%."
+        )
 
     for interaction in breakdown.interactions:
         if interaction.type not in _VALID_INTERACTION_TYPES:
