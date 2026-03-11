@@ -12,6 +12,7 @@ requires-python = ">=3.11"
 dependencies = [
     "anthropic>=0.40",
     "openai>=1.50",
+    "scikit-learn>=1.4",
 ]
 
 [project.optional-dependencies]
@@ -20,8 +21,8 @@ dev = [
     "pytest-asyncio>=0.24",
 ]
 
-[project.scripts]
-plotter = "plotter.cli:main"
+# [project.scripts]
+# plotter = "plotter.cli:main"  # TODO: implement CLI (prepare, lookup)
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/plotter"]
