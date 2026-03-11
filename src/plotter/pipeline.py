@@ -8,7 +8,7 @@ from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
 from plotter.pass2 import assign_events, assign_events_batch, assign_events_parallel
 from plotter.pass3 import review_storylines
-from plotter.postprocess import compute_span
+from plotter.postprocess import assign_orphan_events, compute_span
 from plotter.verdicts import apply_verdicts
 
 
@@ -79,7 +79,8 @@ def get_plotlines(
             )
             breakdowns.append(breakdown)
 
-    # Post-processing: compute span from Pass 2 results
+    # Post-processing: assign orphan events, then compute span
+    assign_orphan_events(storylines, breakdowns)
     compute_span(storylines, breakdowns)
 
     # Pass 3: narratologist review
