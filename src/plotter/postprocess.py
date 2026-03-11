@@ -65,6 +65,15 @@ def assign_orphan_events(
                 if char in char_storyline_counts:
                     votes.update(char_storyline_counts[char])
 
+            if not votes:
+                # Fallback: use the most common storyline in this episode
+                ep_counts: Counter[str] = Counter()
+                for other in ep.events:
+                    if other.storyline:
+                        ep_counts[other.storyline] += 1
+                if ep_counts:
+                    votes = ep_counts
+
             if votes:
                 best = votes.most_common(1)[0][0]
                 if best in plotline_ids:
