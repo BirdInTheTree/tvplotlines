@@ -20,7 +20,7 @@ def get_plotlines(
     context: SeriesContext | None = None,
     llm_provider: str = "anthropic",
     model: str | None = None,
-    lang: str = "ru",
+    lang: str = "en",
     skip_review: bool = False,
     pass2_mode: str = "parallel",
 ) -> PlotterResult:
