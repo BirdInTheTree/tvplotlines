@@ -6,6 +6,7 @@ Requires ANTHROPIC_API_KEY in environment. Run manually:
 
 from __future__ import annotations
 
+import json
 import os
 from pathlib import Path
 
@@ -14,6 +15,7 @@ import pytest
 from plotter import get_plotlines
 
 FIXTURES = Path(__file__).parent / "fixtures"
+SNAPSHOT_PATH = FIXTURES / "slovo_patsana_s01_result.json"
 
 
 def _load_episodes() -> list[str]:
@@ -63,6 +65,13 @@ def test_full_pipeline():
     # Post-processing: span computed
     for line in result.plotlines:
         assert len(line.span) >= 1
+
+    # Save snapshot for Pass 3 development
+    SNAPSHOT_PATH.write_text(
+        json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"\nSnapshot saved to {SNAPSHOT_PATH}")
 
     # Print summary
     print(f"\n{'='*60}")

@@ -6,7 +6,7 @@ Prompts are the source of truth — if they change, update models to match.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass
@@ -95,3 +95,7 @@ class PlotterResult:
     cast: list[CastMember] = field(default_factory=list)
     plotlines: list[Plotline] = field(default_factory=list)
     episodes: list[EpisodeBreakdown] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        """Serialize to plain dict (for JSON export)."""
+        return asdict(self)
