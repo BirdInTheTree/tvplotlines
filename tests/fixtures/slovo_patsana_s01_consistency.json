@@ -1,0 +1,88 @@
+{
+  "n_runs": 3,
+  "avg_coverage": 0.9769,
+  "consistency_ari": 0.595,
+  "score": 0.5812,
+  "runs": [
+    {
+      "plotlines": [
+        "belonging",
+        "brotherhood",
+        "leadership",
+        "innocence",
+        "family_destruction",
+        "investigation",
+        "romance_tragedy"
+      ],
+      "coverage": 0.9455782312925171,
+      "cast": [
+        "andrey",
+        "marat",
+        "vova",
+        "aigul",
+        "ira",
+        "mother",
+        "ildar",
+        "kashchey",
+        "turbo",
+        "eralash",
+        "natasha",
+        "kirill"
+      ]
+    },
+    {
+      "plotlines": [
+        "belonging",
+        "brotherhood",
+        "leadership",
+        "love_tragedy",
+        "family_destruction",
+        "investigation",
+        "salvation"
+      ],
+      "coverage": 0.9921875,
+      "cast": [
+        "andrey",
+        "marat",
+        "vova",
+        "ira",
+        "aigul",
+        "mama_yulia",
+        "ildar",
+        "kashchey",
+        "turbo",
+        "yeralash",
+        "natasha"
+      ]
+    },
+    {
+      "plotlines": [
+        "criminal_descent",
+        "brotherhood",
+        "leadership",
+        "family_collapse",
+        "redemption",
+        "investigation",
+        "love_tragedy"
+      ],
+      "coverage": 0.9929577464788732,
+      "cast": [
+        "andrey",
+        "marat",
+        "vova",
+        "aigul",
+        "julia",
+        "ira",
+        "ildar",
+        "natasha",
+        "turbo",
+        "zima",
+        "kaschey",
+        "eralash",
+        "iskander",
+        "kirill",
+        "yellow"
+      ]
+    }
+  ]
+}
