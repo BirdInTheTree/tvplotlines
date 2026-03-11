@@ -159,6 +159,7 @@ async def acall_llm_batch(
             params=MessageCreateParamsNonStreaming(
                 model=config.resolved_model,
                 max_tokens=8192,
+                temperature=0,
                 system=system_content,
                 messages=[{"role": "user", "content": user_msg}],
             ),
@@ -267,6 +268,7 @@ async def _acall_anthropic(
     response = await client.messages.create(
         model=config.resolved_model,
         max_tokens=8192,
+        temperature=0,
         system=system_content,
         messages=messages,
     )
@@ -289,6 +291,7 @@ async def _acall_openai(
     response = await client.chat.completions.create(
         model=config.resolved_model,
         messages=openai_messages,
+        temperature=0,
         response_format={"type": "json_object"},
     )
 
