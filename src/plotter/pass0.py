@@ -53,7 +53,7 @@ def detect_context(
         ensure_ascii=False,
     )
 
-    system_prompt = load_prompt("pass0")
+    system_prompt = load_prompt("pass0", lang=config.lang)
     data = call_llm(system_prompt, user_message, config, validator=_validate)
 
     return SeriesContext(

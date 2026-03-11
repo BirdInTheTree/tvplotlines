@@ -55,7 +55,7 @@ def extract_storylines(
         ensure_ascii=False,
     )
 
-    system_prompt = load_prompt("pass1")
+    system_prompt = load_prompt("pass1", lang=config.lang)
 
     def _full_validate(data: dict) -> None:
         """Parse and validate in one step for retry support."""

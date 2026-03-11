@@ -29,6 +29,7 @@ class LLMConfig:
 
     provider: str = "anthropic"  # "anthropic" | "openai"
     model: str | None = None  # None = provider default
+    lang: str = "ru"  # "ru" | "en" — prompt language
 
     @property
     def resolved_model(self) -> str:
