@@ -6,7 +6,7 @@ from plotter.llm import LLMConfig
 from plotter.models import PlotterResult, SeriesContext
 from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
-from plotter.pass2 import assign_events
+from plotter.pass2 import assign_events, assign_events_batch
 from plotter.pass3 import review_storylines
 from plotter.postprocess import compute_span
 from plotter.verdicts import apply_verdicts
@@ -21,6 +21,7 @@ def get_plotlines(
     llm_provider: str = "anthropic",
     model: str | None = None,
     skip_review: bool = False,
+    use_batch: bool = True,
 ) -> PlotterResult:
     """Extract storylines from TV series synopses.
 
@@ -36,6 +37,7 @@ def get_plotlines(
         llm_provider: "anthropic" or "openai".
         model: Specific model name, or provider default.
         skip_review: If True, skip Pass 3 (narratologist review).
+        use_batch: If True, use batch API for Pass 2 (Anthropic only, 50% cheaper).
 
     Returns:
         PlotterResult with context, cast, plotlines, and episode breakdowns.
@@ -52,13 +54,19 @@ def get_plotlines(
     )
 
     # Pass 2: assign events for each episode
-    breakdowns = []
-    for i, synopsis in enumerate(episodes):
-        breakdown = assign_events(
-            show, season, i + 1, synopsis, context, cast, storylines,
+    if use_batch and config.provider == "anthropic":
+        breakdowns = assign_events_batch(
+            show, season, episodes, context, cast, storylines,
             config=config,
         )
-        breakdowns.append(breakdown)
+    else:
+        breakdowns = []
+        for i, synopsis in enumerate(episodes):
+            breakdown = assign_events(
+                show, season, i + 1, synopsis, context, cast, storylines,
+                config=config,
+            )
+            breakdowns.append(breakdown)
 
     # Post-processing: compute span from Pass 2 results
     compute_span(storylines, breakdowns)

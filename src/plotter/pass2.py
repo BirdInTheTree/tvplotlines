@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from plotter.llm import LLMConfig, call_llm
+from plotter.llm import LLMConfig, call_llm, call_llm_batch
 from plotter.models import (
     CastMember,
     EpisodeBreakdown,
@@ -100,6 +100,87 @@ def assign_events(
     )
 
     return _parse_breakdown(data, episode_id)
+
+
+def assign_events_batch(
+    show: str,
+    season: int,
+    synopses: list[str],
+    context: SeriesContext,
+    cast: list[CastMember],
+    storylines: list[Plotline],
+    *,
+    config: LLMConfig | None = None,
+) -> list[EpisodeBreakdown]:
+    """Assign events for all episodes in a single batch (50% cheaper).
+
+    Falls back to sequential calls for non-Anthropic providers.
+
+    Args:
+        show: Series title.
+        season: Season number.
+        synopses: Synopsis text for each episode (full season).
+        context: Series context from Pass 0.
+        cast: Cast from Pass 1.
+        storylines: Storylines from Pass 1.
+        config: LLM settings.
+
+    Returns:
+        List of EpisodeBreakdown, one per episode.
+    """
+    if config is None:
+        config = LLMConfig()
+
+    system_prompt = load_prompt("pass2")
+
+    # Build user messages for each episode
+    user_messages = []
+    episode_ids = []
+    for i, synopsis in enumerate(synopses):
+        episode_id = f"S{season:02d}E{i + 1:02d}"
+        episode_ids.append(episode_id)
+        user_messages.append(json.dumps(
+            {
+                "show": show,
+                "season": season,
+                "episode": episode_id,
+                "franchise_type": context.franchise_type,
+                "story_engine": context.story_engine,
+                "cast": [
+                    {"id": c.id, "name": c.name, "aliases": c.aliases}
+                    for c in cast
+                ],
+                "storylines": [
+                    {
+                        "id": s.id, "name": s.name, "driver": s.driver,
+                        "goal": s.goal, "type": s.type, "rank": s.rank,
+                    }
+                    for s in storylines
+                ],
+                "synopsis": synopsis,
+            },
+            ensure_ascii=False,
+        ))
+
+    # Build validators for each episode
+    def _make_validator(ep_id: str):
+        def _validate_ep(data: dict) -> None:
+            bd = _parse_breakdown(data, ep_id)
+            _validate(bd, storylines, cast)
+        return _validate_ep
+
+    validators = [_make_validator(ep_id) for ep_id in episode_ids]
+
+    # Send batch
+    results = call_llm_batch(
+        system_prompt, user_messages, config,
+        cache_system=True, validators=validators,
+    )
+
+    return [
+        _parse_breakdown(data, ep_id)
+        for data, ep_id in zip(results, episode_ids)
+    ]
 
 
 def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
