@@ -47,8 +47,6 @@ def get_plotlines(
         PlotterResult with context, cast, plotlines, and episode breakdowns.
     """
     config = LLMConfig(provider=llm_provider, model=model, lang=lang)
-    # Pass 2 uses Russian prompts (better calibrated for event assignment)
-    config_pass2 = LLMConfig(provider=llm_provider, model=model, lang="ru")
 
     # Pass 0: detect context (skip if provided)
     if context is None:
@@ -63,19 +61,19 @@ def get_plotlines(
     if pass2_mode == "parallel":
         breakdowns = assign_events_parallel(
             show, season, episodes, context, cast, storylines,
-            config=config_pass2,
+            config=config,
         )
     elif pass2_mode == "batch":
         breakdowns = assign_events_batch(
             show, season, episodes, context, cast, storylines,
-            config=config_pass2,
+            config=config,
         )
     else:
         breakdowns = []
         for i, synopsis in enumerate(episodes):
             breakdown = assign_events(
                 show, season, i + 1, synopsis, context, cast, storylines,
-                config=config_pass2,
+                config=config,
             )
             breakdowns.append(breakdown)
 
