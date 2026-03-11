@@ -1,21 +1,25 @@
 """Prompt templates for each pipeline pass.
 
 Prompts are stored as .md files and loaded at runtime as system prompts.
-Source of truth: how2pitch/pitch_bible/md/prompt-pass*.md
-These are copies — when source prompts change, update copies here.
+Two language versions: Russian (default, this package) and English (prompts_en).
 """
 
 from importlib import resources
 
 
-def load_prompt(pass_name: str) -> str:
-    """Load a prompt template by pass name.
+def load_prompt(pass_name: str, *, lang: str = "ru") -> str:
+    """Load a prompt template by pass name and language.
 
     Args:
         pass_name: "pass0", "pass1", "pass2", or "pass3".
+        lang: "ru" (default) or "en".
 
     Returns:
         Prompt text (markdown).
     """
     filename = f"{pass_name}.md"
-    return resources.files(__package__).joinpath(filename).read_text(encoding="utf-8")
+    if lang == "en":
+        pkg = "plotter.prompts_en"
+    else:
+        pkg = __package__
+    return resources.files(pkg).joinpath(filename).read_text(encoding="utf-8")

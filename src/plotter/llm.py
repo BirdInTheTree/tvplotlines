@@ -69,7 +69,7 @@ async def acall_llm(
             messages.append({"role": "assistant", "content": text if "text" in dir() else ""})
             messages.append({
                 "role": "user",
-                "content": f"Ответ не является валидным JSON. Ошибка: {last_error}\n\nПовтори ответ — строго JSON, без markdown-обёртки.",
+                "content": f"Response is not valid JSON. Error: {last_error}\n\nRepeat — strictly JSON, no markdown wrapping.",
             })
             continue
 
@@ -81,7 +81,7 @@ async def acall_llm(
                 messages.append({"role": "assistant", "content": text})
                 messages.append({
                     "role": "user",
-                    "content": f"JSON распарсился, но не прошёл валидацию: {last_error}\n\nИсправь и повтори — строго JSON.",
+                    "content": f"JSON parsed but failed validation: {last_error}\n\nFix and repeat — strictly JSON.",
                 })
                 continue
 
