@@ -12,7 +12,7 @@ def load_prompt(pass_name: str) -> str:
     """Load a prompt template by pass name.
 
     Args:
-        pass_name: "pass0", "pass1", or "pass2".
+        pass_name: "pass0", "pass1", "pass2", or "pass3".
 
     Returns:
         Prompt text (markdown).

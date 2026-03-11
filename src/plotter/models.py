@@ -88,6 +88,14 @@ class EpisodeBreakdown:
 
 
 @dataclass
+class Verdict:
+    """A structural decision from Pass 3 (narratologist review)."""
+
+    action: str  # "MERGE" | "REASSIGN" | "PROMOTE" | "DEMOTE" | "CREATE" | "DROP"
+    data: dict  # full verdict payload — structure depends on action
+
+
+@dataclass
 class PlotterResult:
     """Complete output of the Plotter pipeline."""
 

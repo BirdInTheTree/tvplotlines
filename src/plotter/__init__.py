@@ -9,6 +9,7 @@ from plotter.models import (
     Plotline,
     PlotterResult,
     SeriesContext,
+    Verdict,
 )
 from plotter.pipeline import get_plotlines
 
@@ -22,4 +23,5 @@ __all__ = [
     "Plotline",
     "PlotterResult",
     "SeriesContext",
+    "Verdict",
 ]

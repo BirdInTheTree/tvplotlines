@@ -1,4 +1,4 @@
-"""Main pipeline: get_plotlines() orchestrates Pass 0 → Pass 1 → Pass 2 → post-processing."""
+"""Main pipeline: get_plotlines() orchestrates Pass 0 → Pass 1 → Pass 2 → Pass 3 → post-processing."""
 
 from __future__ import annotations
 
@@ -7,7 +7,9 @@ from plotter.models import PlotterResult, SeriesContext
 from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
 from plotter.pass2 import assign_events
-from plotter.postprocess import aggregate_patches, compute_span
+from plotter.pass3 import review_storylines
+from plotter.postprocess import compute_span
+from plotter.verdicts import apply_verdicts
 
 
 def get_plotlines(
@@ -18,11 +20,13 @@ def get_plotlines(
     context: SeriesContext | None = None,
     llm_provider: str = "anthropic",
     model: str | None = None,
+    skip_review: bool = False,
 ) -> PlotterResult:
     """Extract storylines from TV series synopses.
 
     Runs the full pipeline: Pass 0 (context) → Pass 1 (storylines) →
-    Pass 2 (events per episode) → post-processing (span, patches).
+    Pass 2 (events per episode) → Pass 3 (narratologist review) →
+    post-processing (span).
 
     Args:
         show: Series title.
@@ -31,6 +35,7 @@ def get_plotlines(
         context: If provided, skip Pass 0 (auto-detection).
         llm_provider: "anthropic" or "openai".
         model: Specific model name, or provider default.
+        skip_review: If True, skip Pass 3 (narratologist review).
 
     Returns:
         PlotterResult with context, cast, plotlines, and episode breakdowns.
@@ -58,12 +63,16 @@ def get_plotlines(
     # Post-processing: compute span from Pass 2 results
     compute_span(storylines, breakdowns)
 
-    # Collect patches for review
-    patches = aggregate_patches(breakdowns)
-    if patches:
-        # TODO: apply patches — rerun Pass 1 if needed
-        # For now, patches are available in each EpisodeBreakdown
-        pass
+    # Pass 3: narratologist review
+    if not skip_review:
+        verdicts = review_storylines(
+            show, season, context, cast, storylines, breakdowns,
+            config=config,
+        )
+        if verdicts:
+            storylines = apply_verdicts(verdicts, storylines, breakdowns)
+            # Recompute span after verdicts changed assignments
+            compute_span(storylines, breakdowns)
 
     return PlotterResult(
         context=context,
