@@ -1,12 +1,12 @@
 # Plotter autoresearch
 
-Автономная оптимизация промптов для пайплайна извлечения сюжетных линий.
+Автономная оптимизация пайплайна извлечения сюжетных линий.
 
 ## Setup
 
 1. **Agree on a run tag**: propose a tag based on today's date (e.g. `mar11`). The branch `autoresearch/<tag>` must not already exist.
 2. **Create the branch**: `git checkout -b autoresearch/<tag>` from current main.
-3. **Read the in-scope files**:
+3. **Read the in-scope files** — read ALL of these before starting, do not skip any:
    - `CLAUDE.md` — project context and conventions.
    - `md/architecture.md` — pipeline architecture.
    - `md/prompt-experiment-ideas.md` — experiment hypotheses (H1–H14).
@@ -16,30 +16,37 @@
    - `src/plotter/prompts/pass3.md` — Pass 3 prompt (narratologist review).
    - `src/plotter/metrics.py` — metric computation (read-only).
    - `tests/fixtures/slovo_patsana_s01_consistency.json` — current baseline.
-4. **Verify API key**: Check that `ANTHROPIC_API_KEY` is set (`set -a && source .env && set +a`).
+4. **Source environment**: `set -a && source .env && set +a` — this loads the API key. Ensure it's sourced before every run.
 5. **Initialize results.tsv**: Create `results.tsv` with header row. Baseline will be the first entry.
 6. **Confirm and go**.
 
 ## Experimentation
 
-Each experiment = modify one or more prompt files → run N pipeline passes → compute score.
+Each experiment = modify prompts and/or pipeline code → run N pipeline passes → compute score.
 
 **What you CAN modify:**
-- Prompt files: `src/plotter/prompts/pass{0,1,2,3}.md` — these are the only files you edit.
-- Role formulations, step structure, strictness criteria, examples, wording.
+- Prompt files: `src/plotter/prompts/pass{0,1,2,3}.md` — role formulations, step structure, strictness criteria, examples, wording.
+- Pipeline code: `src/plotter/pass0.py`, `pass1.py`, `pass2.py`, `pass3.py` — parsing, validation, data preparation, what gets sent to LLM.
+- Post-processing: `src/plotter/postprocess.py`, `verdicts.py` — span/weight computation, verdict application.
+- Orchestration: `src/plotter/pipeline.py` — pass ordering, what data flows between passes.
+- LLM settings: `src/plotter/llm.py` — model name, temperature, max_tokens. These are experiment parameters too.
 
-**What you CANNOT modify:**
-- Pipeline code (`pipeline.py`, `pass0.py`, `pass1.py`, `pass2.py`, `pass3.py`).
-- Metric code (`metrics.py`).
-- Validation code (`pass2.py:_validate`, `pass3.py:_parse_verdicts`).
-- Model settings (model name, temperature, max_tokens).
-- Test fixtures.
+**What you CANNOT modify** (fixed evaluation — otherwise optimization is meaningless):
+- Metric code: `src/plotter/metrics.py` — the scoring function.
+- Test harness: `tests/test_consistency.py` — how experiments are run.
+- Test fixtures: `tests/fixtures/` — input data.
 
-**The goal: get the highest score = coverage × consistency(ARI).**
+**Cost** is a soft constraint. Some increase is acceptable for meaningful score gains, but it should not blow up dramatically. A 10% score improvement that doubles cost? Worth considering. The same score at half the cost? Definitely keep. The `cost_usd` column in results.tsv tracks this — use it to compare experiments.
+
+**The goal:** The pipeline takes TV series synopses and extracts storylines — narrative threads that span multiple episodes. A good result means:
+- **High coverage** — every narrative event in a synopsis is assigned to a storyline (not left orphaned).
+- **High consistency** — running the pipeline twice on the same input gives structurally the same storylines. Different wording is fine ("belonging" vs "acceptance"), but the same characters should end up grouped together.
+
+Currently measured as `score = coverage × consistency(ARI)` — see `metrics.py` for details. This may not be the optimal way to measure quality; if you see problems with the metric, document them in `metric-concerns.md` but do not modify `metrics.py` during experiments.
 
 Current baseline: score **0.581** (coverage 0.977, ARI 0.595). Run without Pass 3 review.
 
-**Simplicity criterion**: All else being equal, shorter prompts are better. If removing text gives equal or better results — keep. A 0.01 score improvement that adds 50 lines of examples? Probably not worth it. A 0.01 improvement from simplifying instructions? Definitely keep.
+**Simplicity criterion**: All else being equal, simpler is better — shorter prompts, less code. If removing text or code gives equal or better results — keep. A 0.01 score improvement that adds 50 lines of complexity? Probably not worth it. A 0.01 improvement from simplifying? Definitely keep.
 
 **The first run**: Establish baseline with current prompts (should match the stored baseline).
 
@@ -48,10 +55,6 @@ Current baseline: score **0.581** (coverage 0.977, ARI 0.595). Run without Pass 
 Each experiment requires N independent pipeline runs (N=3 minimum) to compute consistency.
 
 ```bash
-# Source API key
-set -a && source .env && set +a
-
-# Run the consistency test (3 pipeline runs, computes ARI)
 python -m pytest tests/test_consistency.py -v -s > run.log 2>&1
 ```
 
@@ -69,7 +72,7 @@ Consistency (ARI): 0.595
 Score: 0.581
 ```
 
-**Time budget**: Each experiment takes ~10 minutes (3 runs × ~3 minutes each). If a run exceeds 20 minutes, kill it.
+**Time budget**: Each experiment takes ~10 minutes (3 runs × ~3 minutes each). If a run exceeds 20 minutes, kill it (`kill %1` or `kill <PID>`) and treat it as a crash — log, revert, move on.
 
 **Cost**: Each experiment costs ~$1–3 (API calls). Budget accordingly.
 
@@ -110,9 +113,9 @@ LOOP FOREVER:
    - Hypotheses that affect Pass 1–2 (larger impact on consistency).
    - Hypotheses that simplify prompts (cheaper per run).
    - Combining two previous near-wins.
-3. Edit the prompt file(s). One change per experiment — isolate variables.
-4. `git commit` the prompt change.
-5. Run: `set -a && source .env && set +a && python -m pytest tests/test_consistency.py -v -s > run.log 2>&1`
+3. Edit prompt(s) and/or pipeline code. One change per experiment — isolate variables.
+4. `git commit` the change.
+5. Run: `python -m pytest tests/test_consistency.py -v -s > run.log 2>&1`
 6. Extract: `grep -E "^(Avg coverage|Consistency|Score):" run.log`
 7. If grep is empty, the run crashed. Check `tail -n 50 run.log` and attempt a fix.
 8. Record results in `results.tsv` (do NOT commit results.tsv — leave untracked).
@@ -121,7 +124,7 @@ LOOP FOREVER:
 
 **Crashes**: If validation errors consistently fail, the prompt change broke structural output. Revert and try a different approach.
 
-**NEVER STOP**: Do NOT pause to ask the human. Do NOT ask "should I keep going?". You are autonomous. If you run out of hypotheses from the list, try your own ideas: rephrase instructions, add/remove examples, change ordering, adjust strictness. The loop runs until the human interrupts you.
+**NEVER STOP**: Once the loop begins, do NOT pause to ask the human. Do NOT ask "should I keep going?" or "is this a good stopping point?". The human might be asleep or away and expects you to continue working *indefinitely* until manually stopped. Each experiment takes ~10 minutes, so you can run ~6 per hour, ~50 overnight. If you run out of hypotheses from the list, think harder — reread the prompts, try combining near-misses, try radical changes. The loop runs until the human interrupts you, period.
 
 ## Strategy notes
 
