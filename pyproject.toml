@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "plotter"
 version = "0.1.0"
 description = "Extract storylines from TV series synopses using LLM"
-# readme = "README.md"
+readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
