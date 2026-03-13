@@ -20,6 +20,14 @@ export OPENAI_API_KEY=sk-...
 
 ## Quick start
 
+### CLI
+
+```bash
+plotter run synopses/*.txt --show "Breaking Bad" --season 1 -o bb_s01.json
+```
+
+### Python
+
 ```python
 from plotter import get_plotlines
 
