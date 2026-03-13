@@ -18,6 +18,12 @@ export ANTHROPIC_API_KEY=sk-ant-...
 export OPENAI_API_KEY=sk-...
 ```
 
+Or put them in a `.env` file (requires `pip install plotter[dotenv]`):
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
 ## Quick start
 
 ### CLI

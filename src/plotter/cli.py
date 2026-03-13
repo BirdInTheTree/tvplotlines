@@ -15,6 +15,12 @@ from pathlib import Path
 
 def _run(args: argparse.Namespace) -> None:
     """Run the full pipeline on synopsis files."""
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+
     from plotter import get_plotlines
 
     # Read synopsis files in sorted order
