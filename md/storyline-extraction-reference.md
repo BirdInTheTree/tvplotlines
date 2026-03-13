@@ -1,1 +1,0 @@
-/Users/nvashko/Projects/how2pitch/pitch_bible/md/storyline-extraction-reference.md
