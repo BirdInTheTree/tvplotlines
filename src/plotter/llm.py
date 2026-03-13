@@ -22,6 +22,61 @@ logger = logging.getLogger(__name__)
 _MAX_RETRIES = 2
 _BATCH_POLL_INTERVAL = 10  # seconds between batch status checks
 
+# Pricing per million tokens (USD) — updated as of 2026-03
+_PRICING = {
+    "claude-sonnet-4-20250514": {"input": 3.0, "output": 15.0},
+    "claude-haiku-4-5-20251001": {"input": 0.80, "output": 4.0},
+    "gpt-4o": {"input": 2.50, "output": 10.0},
+}
+
+
+@dataclass
+class UsageStats:
+    """Accumulated token usage and estimated cost."""
+
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cache_read_tokens: int = 0
+    cache_creation_tokens: int = 0
+    requests: int = 0
+
+    def add(self, input_tok: int, output_tok: int,
+            cache_read: int = 0, cache_creation: int = 0) -> None:
+        self.input_tokens += input_tok
+        self.output_tokens += output_tok
+        self.cache_read_tokens += cache_read
+        self.cache_creation_tokens += cache_creation
+        self.requests += 1
+
+    def estimate_cost(self, model: str) -> float:
+        """Estimate cost in USD based on model pricing."""
+        pricing = _PRICING.get(model)
+        if not pricing:
+            return 0.0
+        # Cache reads are 90% cheaper, cache creation is 25% more expensive
+        effective_input = (
+            (self.input_tokens - self.cache_read_tokens - self.cache_creation_tokens)
+            + self.cache_read_tokens * 0.1
+            + self.cache_creation_tokens * 1.25
+        )
+        return (
+            effective_input * pricing["input"] / 1_000_000
+            + self.output_tokens * pricing["output"] / 1_000_000
+        )
+
+    def summary(self, model: str = "") -> str:
+        cost = self.estimate_cost(model)
+        cost_str = f", ~${cost:.3f}" if cost > 0 else ""
+        return (
+            f"{self.requests} requests, "
+            f"{self.input_tokens:,} input + {self.output_tokens:,} output tokens"
+            f"{cost_str}"
+        )
+
+
+# Global usage tracker — reset per pipeline run
+usage = UsageStats()
+
 
 @dataclass
 class LLMConfig:
@@ -274,6 +329,13 @@ async def _acall_anthropic(
         messages=messages,
     )
 
+    u = response.usage
+    usage.add(
+        u.input_tokens, u.output_tokens,
+        cache_read=getattr(u, "cache_read_input_tokens", 0) or 0,
+        cache_creation=getattr(u, "cache_creation_input_tokens", 0) or 0,
+    )
+
     await client.close()
     return response.content[0].text
 
@@ -295,6 +357,9 @@ async def _acall_openai(
         temperature=0,
         response_format={"type": "json_object"},
     )
+
+    if response.usage:
+        usage.add(response.usage.prompt_tokens, response.usage.completion_tokens)
 
     await client.close()
     return response.choices[0].message.content

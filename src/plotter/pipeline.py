@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from plotter.llm import LLMConfig
+from plotter.llm import LLMConfig, UsageStats, usage
 from plotter.models import PlotterResult, SeriesContext
 from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
@@ -48,6 +48,10 @@ def get_plotlines(
     """
     config = LLMConfig(provider=llm_provider, model=model, lang=lang)
 
+    # Reset usage tracker for this run
+    global usage
+    usage.__init__()
+
     # Pass 0: detect context (skip if provided)
     if context is None:
         context = detect_context(show, season, episodes, config=config)
@@ -92,9 +96,11 @@ def get_plotlines(
             # Recompute span after verdicts changed assignments
             compute_span(storylines, breakdowns)
 
-    return PlotterResult(
+    result = PlotterResult(
         context=context,
         cast=cast,
         plotlines=storylines,
         episodes=breakdowns,
     )
+    result.usage = usage.summary(config.resolved_model)
+    return result

@@ -64,6 +64,8 @@ def _run(args: argparse.Namespace) -> None:
     print(f"Episodes: {len(result.episodes)}")
     for ep in result.episodes:
         print(f"  {ep.episode}: {len(ep.events)} events")
+    if hasattr(result, "usage"):
+        print(f"\nUsage: {result.usage}")
 
 
 def main() -> None:

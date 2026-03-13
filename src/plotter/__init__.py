@@ -11,6 +11,7 @@ from plotter.models import (
     SeriesContext,
     Verdict,
 )
+from plotter.llm import UsageStats, usage
 from plotter.pipeline import get_plotlines
 
 __all__ = [
@@ -23,5 +24,7 @@ __all__ = [
     "Plotline",
     "PlotterResult",
     "SeriesContext",
+    "UsageStats",
+    "usage",
     "Verdict",
 ]
