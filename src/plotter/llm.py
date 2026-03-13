@@ -80,11 +80,25 @@ usage = UsageStats()
 
 @dataclass
 class LLMConfig:
-    """Configuration for LLM calls."""
+    """Configuration for LLM calls.
 
-    provider: str = "anthropic"  # "anthropic" | "openai"
+    Provider can be "anthropic" (native SDK) or any OpenAI-compatible
+    provider: "openai", "ollama", "deepseek", "groq", etc.
+    For non-standard providers, set base_url explicitly.
+    """
+
+    provider: str = "anthropic"  # "anthropic" | "openai" | any OpenAI-compatible
     model: str | None = None  # None = provider default
     lang: str = "ru"  # "ru" | "en" — prompt language
+    base_url: str | None = None  # Override API endpoint (for DeepSeek, Ollama, etc.)
+    api_key: str | None = None  # Override API key (None = use env var)
+
+    # Known OpenAI-compatible providers with default base_url and model
+    _OPENAI_COMPATIBLE = {
+        "ollama": ("http://localhost:11434/v1", "qwen2.5:14b", "ollama"),
+        "deepseek": ("https://api.deepseek.com/v1", "deepseek-chat", None),
+        "groq": ("https://api.groq.com/openai/v1", "llama-3.3-70b-versatile", None),
+    }
 
     @property
     def resolved_model(self) -> str:
@@ -94,7 +108,14 @@ class LLMConfig:
             "anthropic": "claude-sonnet-4-20250514",
             "openai": "gpt-4o",
         }
-        return defaults[self.provider]
+        # Check known providers
+        if self.provider in self._OPENAI_COMPATIBLE:
+            return self._OPENAI_COMPATIBLE[self.provider][1]
+        return defaults.get(self.provider, self.model or "gpt-4o")
+
+    @property
+    def is_openai_compatible(self) -> bool:
+        return self.provider != "anthropic"
 
 
 # ---------------------------------------------------------------------------
@@ -295,7 +316,7 @@ async def _araw_call(
     """Async raw LLM call, return response text."""
     if config.provider == "anthropic":
         return await _acall_anthropic(system_prompt, messages, config, cache_system)
-    elif config.provider == "openai":
+    elif config.is_openai_compatible:
         return await _acall_openai(system_prompt, messages, config)
     else:
         raise ValueError(f"Unknown provider: {config.provider}")
@@ -347,16 +368,34 @@ async def _acall_openai(
 ) -> str:
     import openai
 
-    client = openai.AsyncOpenAI()
+    # Resolve base_url and api_key for known providers
+    base_url = config.base_url
+    api_key = config.api_key
+    if not base_url and config.provider in config._OPENAI_COMPATIBLE:
+        info = config._OPENAI_COMPATIBLE[config.provider]
+        base_url = info[0]
+        api_key = api_key or info[2]  # e.g. "ollama" for local
+
+    kwargs = {}
+    if base_url:
+        kwargs["base_url"] = base_url
+    if api_key:
+        kwargs["api_key"] = api_key
+
+    client = openai.AsyncOpenAI(**kwargs)
 
     openai_messages = [{"role": "system", "content": system_prompt}] + messages
 
-    response = await client.chat.completions.create(
-        model=config.resolved_model,
-        messages=openai_messages,
-        temperature=0,
-        response_format={"type": "json_object"},
-    )
+    create_kwargs = {
+        "model": config.resolved_model,
+        "messages": openai_messages,
+        "temperature": 0,
+    }
+    # Only standard OpenAI supports response_format reliably
+    if config.provider == "openai":
+        create_kwargs["response_format"] = {"type": "json_object"}
+
+    response = await client.chat.completions.create(**create_kwargs)
 
     if response.usage:
         usage.add(response.usage.prompt_tokens, response.usage.completion_tokens)

@@ -20,6 +20,7 @@ def get_plotlines(
     context: SeriesContext | None = None,
     llm_provider: str = "anthropic",
     model: str | None = None,
+    base_url: str | None = None,
     lang: str = "en",
     skip_review: bool = False,
     pass2_mode: str = "parallel",
@@ -46,7 +47,7 @@ def get_plotlines(
     Returns:
         PlotterResult with context, cast, plotlines, and episode breakdowns.
     """
-    config = LLMConfig(provider=llm_provider, model=model, lang=lang)
+    config = LLMConfig(provider=llm_provider, model=model, base_url=base_url, lang=lang)
 
     # Reset usage tracker for this run
     global usage

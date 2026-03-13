@@ -43,6 +43,7 @@ def _run(args: argparse.Namespace) -> None:
         lang=args.lang,
         llm_provider=args.provider,
         model=args.model,
+        base_url=args.base_url,
         skip_review=args.skip_review,
         pass2_mode=args.pass2_mode,
     )
@@ -85,8 +86,10 @@ def main() -> None:
     run_parser.add_argument("--season", type=int, default=1, help="Season number (default: 1)")
     run_parser.add_argument("--lang", default="en", help="Language: en or ru (default: en)")
     run_parser.add_argument("--output", "-o", type=Path, help="Output JSON path")
-    run_parser.add_argument("--provider", default="anthropic", help="LLM provider (default: anthropic)")
+    run_parser.add_argument("--provider", default="anthropic",
+                            help="LLM provider: anthropic, openai, ollama, deepseek, groq, or any OpenAI-compatible")
     run_parser.add_argument("--model", default=None, help="Specific model name")
+    run_parser.add_argument("--base-url", default=None, help="Custom API endpoint (for OpenAI-compatible providers)")
     run_parser.add_argument("--skip-review", action="store_true", help="Skip Pass 3 narratologist review")
     run_parser.add_argument("--pass2-mode", default="parallel", choices=["parallel", "batch", "sequential"])
 
