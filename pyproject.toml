@@ -21,8 +21,8 @@ dev = [
     "pytest-asyncio>=0.24",
 ]
 
-# [project.scripts]
-# plotter = "plotter.cli:main"  # TODO: implement CLI (prepare, lookup)
+[project.scripts]
+plotter = "plotter.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/plotter"]
