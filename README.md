@@ -120,6 +120,44 @@ result.to_dict()   # Serialize to plain dict for JSON export
 | `batch` | Slow | 50% off | Anthropic batch API — cheaper for large seasons |
 | `sequential` | Slow | Full price | One episode at a time — for debugging |
 
+## LLM providers
+
+Plotter works with Anthropic (default) and any OpenAI-compatible API.
+
+```bash
+# Anthropic (default)
+export ANTHROPIC_API_KEY=sk-ant-...
+plotter run *.txt --show "House"
+
+# OpenAI
+export OPENAI_API_KEY=sk-...
+plotter run *.txt --show "House" --provider openai
+
+# Ollama (local, free)
+ollama pull qwen2.5:14b
+plotter run *.txt --show "House" --provider ollama
+
+# DeepSeek
+export DEEPSEEK_API_KEY=sk-...
+plotter run *.txt --show "House" --provider deepseek
+
+# Any OpenAI-compatible endpoint
+plotter run *.txt --show "House" --provider openai \
+    --base-url https://api.together.xyz/v1 \
+    --model meta-llama/Llama-3-70b
+```
+
+In Python:
+
+```python
+result = get_plotlines(
+    show="House", season=1, episodes=episodes,
+    llm_provider="ollama",           # or "deepseek", "groq", etc.
+    model="qwen2.5:14b",             # optional, provider has defaults
+    base_url="http://localhost:11434/v1",  # optional for known providers
+)
+```
+
 ## Franchise types
 
 Plotter classifies shows into four structural types that determine how storylines are extracted:
