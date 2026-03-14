@@ -87,7 +87,7 @@ Name and id = ONE abstract word by GOAL, not by event or outcome. Examples: "bel
 
 Episodic storyline (franchise engine): name it by the franchise formula — "Case of the Week", "Crime of the Week", "Mission", etc. — so it is immediately clear this is a recurring structure.
 
-Ensemble: always `Driver: Theme` (e.g. "Jon: Honor", "Cersei: Power"). Others: add driver when one character drives multiple storylines.
+Always use `Driver: Theme` format for storyline names (e.g. "House: Authority", "Cameron: Ethics", "Jon: Honor"). This makes it clear who drives each storyline and prevents confusion during event assignment.
 
 ### Series format and resolution
 
@@ -119,7 +119,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
   "storylines": [
     {
       "id": "empire",
-      "name": "Empire",
+      "name": "Walt: Empire",
       "driver": "walt",
       "goal": "build a drug business",
       "obstacle": "moral choices, escalating danger, unpredictable partners",
@@ -131,7 +131,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
     },
     {
       "id": "family",
-      "name": "Family",
+      "name": "Walt: Family",
       "driver": "walt",
       "goal": "keep the family together and hide the truth",
       "obstacle": "cancer, family pressure for treatment, escalating lies",
@@ -143,7 +143,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
     },
     {
       "id": "investigation",
-      "name": "Investigation",
+      "name": "Hank: Investigation",
       "driver": "hank",
       "goal": "find the new meth producer",
       "obstacle": "no direct evidence, only circumstantial traces",
@@ -155,7 +155,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
     },
     {
       "id": "partnership",
-      "name": "Partnership",
+      "name": "Jesse: Partnership",
       "driver": "jesse",
       "goal": "survive as Walt's drug business partner",
       "obstacle": "incompetence, fear, conflict with Walt",
