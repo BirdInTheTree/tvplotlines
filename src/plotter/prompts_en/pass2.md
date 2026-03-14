@@ -20,6 +20,8 @@
 
 One event = one action by one character (or group) that changes the situation. Two actions by different characters = two events. Two actions at the same moment where the second is an immediate consequence of the first = one event. Make sure every sentence of the synopsis is reflected in at least one event.
 
+Write event descriptions that are specific and concrete. Include character names, what specifically happens, and the emotional or dramatic consequence. Bad: "The team works on the case." Good: "House orders a lumbar puncture over Cameron's objection, risking paralysis to test his sarcoidosis theory." Specificity helps distinguish events across storylines.
+
 ### Step 2: Assign each event to a storyline
 
 ### Step 3: Identify interactions between storylines
