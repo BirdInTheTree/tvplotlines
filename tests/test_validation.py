@@ -156,8 +156,14 @@ class TestPass2Validation:
         validate_pass2(bd, _make_storylines(), _make_cast())
 
     def test_null_storyline_ok(self):
-        """Unassigned events (-> ADD_LINE patch) should pass validation."""
+        """A few unassigned events (-> ADD_LINE patch) should pass validation."""
         bd = _make_breakdown()
+        # Add enough events so that 1 null is under the 10% threshold
+        for i in range(10):
+            bd.events.append(Event(
+                event=f"filler {i}", storyline="empire",
+                function="escalation", characters=["walt"],
+            ))
         bd.events[0].storyline = None
         validate_pass2(bd, _make_storylines(), _make_cast())
 

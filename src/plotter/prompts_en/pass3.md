@@ -19,6 +19,7 @@ You are the first to see the full picture: storylines + all events across all ep
 - **cast**: character list with `id`, `name`
 - **plotlines**: storyline list with `id`, `name`, `driver`, `goal`, `obstacle`, `stakes`, `type`, `rank`, `nature`, `confidence`, `span`, `weight_per_episode`
 - **episodes**: for each episode — `events` (with storyline assignments), `theme`, `interactions`, `patches`
+- **diagnostics** (optional): automated flags from post-processing. Each flag has `plotline`, `flag` ("demoted" or "dominant"), and `reason`. These are computed facts — use them in your analysis.
 
 ## Task
 

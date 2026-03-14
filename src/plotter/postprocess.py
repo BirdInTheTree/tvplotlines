@@ -111,6 +111,62 @@ def compute_weight(
     return weights
 
 
+def validate_ranks(
+    plotlines: list[Plotline],
+    episodes: list[EpisodeBreakdown],
+    *,
+    min_span_frac: float = 0.25,
+    dominance_threshold: float = 0.50,
+) -> list[dict]:
+    """Check rank-span consistency and event dominance. In-place fixes.
+
+    Rules:
+    1. A-rank line with span < 25% of season → demote to B.
+    2. Any line with > 50% of all events → flag for Pass 3 context.
+
+    Returns list of flags (dicts with line id, flag type, details).
+    """
+    n_episodes = len(episodes)
+    if n_episodes == 0:
+        return []
+
+    # Count events per line
+    total_events = 0
+    counts: Counter[str] = Counter()
+    for ep in episodes:
+        for event in ep.events:
+            total_events += 1
+            if event.storyline:
+                counts[event.storyline] += 1
+
+    flags = []
+
+    for plotline in plotlines:
+        span_len = len(plotline.span) if isinstance(plotline.span, list) else 0
+        span_frac = span_len / n_episodes
+
+        # Rule 1: A-rank + short span → demote
+        if plotline.rank == "A" and span_frac < min_span_frac:
+            plotline.rank = "B"
+            flags.append({
+                "plotline": plotline.id,
+                "flag": "demoted",
+                "reason": f"rank A but span {span_len}/{n_episodes} ({span_frac:.0%})",
+            })
+
+        # Rule 2: dominates event share → flag
+        if total_events > 0:
+            share = counts.get(plotline.id, 0) / total_events
+            if share > dominance_threshold:
+                flags.append({
+                    "plotline": plotline.id,
+                    "flag": "dominant",
+                    "reason": f"{share:.0%} of events ({counts[plotline.id]}/{total_events})",
+                })
+
+    return flags
+
+
 def aggregate_patches(episodes: list[EpisodeBreakdown]) -> list[Patch]:
     """Collect all patches from all episodes into one list."""
     all_patches = []

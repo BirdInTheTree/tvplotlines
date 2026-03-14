@@ -1,7 +1,7 @@
 """Unit tests for post-processing (no LLM calls)."""
 
 from plotter.models import EpisodeBreakdown, Event, Plotline
-from plotter.postprocess import aggregate_patches, compute_span, compute_weight
+from plotter.postprocess import aggregate_patches, compute_span, compute_weight, validate_ranks
 
 
 def _make_plotline(id: str) -> Plotline:
@@ -60,6 +60,79 @@ class TestComputeWeight:
         weights = compute_weight([line_a, line_b], ep)
         assert weights["a"] == "primary"
         assert weights["b"] == "glimpse"
+
+
+class TestValidateRanks:
+    def test_demotes_a_rank_short_span(self):
+        """A-rank line spanning 2/10 episodes should be demoted to B."""
+        short = _make_plotline("short")
+        short.rank = "A"
+        short.span = ["S01E01", "S01E02"]
+
+        long = _make_plotline("long")
+        long.rank = "A"
+        long.span = [f"S01E{i:02d}" for i in range(1, 9)]
+
+        episodes = [
+            _make_episode(f"S01E{i:02d}", ["short", "long"] if i <= 2 else ["long"])
+            for i in range(1, 11)
+        ]
+        compute_span([short, long], episodes)
+        flags = validate_ranks([short, long], episodes)
+
+        assert short.rank == "B"
+        assert long.rank == "A"
+        assert any(f["flag"] == "demoted" for f in flags)
+
+    def test_no_demotion_when_span_sufficient(self):
+        """A-rank line spanning 4/10 episodes should keep rank A."""
+        line = _make_plotline("mid")
+        line.rank = "A"
+        line.span = [f"S01E{i:02d}" for i in range(1, 5)]
+
+        episodes = [
+            _make_episode(f"S01E{i:02d}", ["mid"] if i <= 4 else [])
+            for i in range(1, 11)
+        ]
+        flags = validate_ranks([line], episodes)
+
+        assert line.rank == "A"
+        assert not any(f["flag"] == "demoted" for f in flags)
+
+    def test_flags_dominant_line(self):
+        """Line with >50% events should be flagged."""
+        big = _make_plotline("big")
+        small = _make_plotline("small")
+        big.span = [f"S01E{i:02d}" for i in range(1, 11)]
+        small.span = ["S01E01", "S01E02"]
+
+        # 8 events for big, 2 for small → big = 80%
+        events_big = [
+            Event(event=f"e{i}", storyline="big", function="escalation", characters=["x"])
+            for i in range(8)
+        ]
+        events_small = [
+            Event(event=f"e{i}", storyline="small", function="setup", characters=["x"])
+            for i in range(2)
+        ]
+        episodes = [
+            EpisodeBreakdown(episode="S01E01", events=events_big + events_small, theme="t"),
+        ]
+        flags = validate_ranks([big, small], episodes)
+
+        assert any(f["flag"] == "dominant" and f["plotline"] == "big" for f in flags)
+
+    def test_b_rank_not_demoted(self):
+        """B-rank line with short span should not be demoted."""
+        line = _make_plotline("minor")
+        line.rank = "B"
+        line.span = ["S01E01"]
+
+        episodes = [_make_episode(f"S01E{i:02d}", ["minor"] if i == 1 else []) for i in range(1, 11)]
+        flags = validate_ranks([line], episodes)
+
+        assert line.rank == "B"
+        assert not any(f["flag"] == "demoted" for f in flags)
 
 
 class TestAggregatePatches:

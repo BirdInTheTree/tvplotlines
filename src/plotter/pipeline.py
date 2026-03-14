@@ -8,7 +8,7 @@ from plotter.pass0 import detect_context
 from plotter.pass1 import extract_storylines
 from plotter.pass2 import assign_events, assign_events_batch, assign_events_parallel
 from plotter.pass3 import review_storylines
-from plotter.postprocess import assign_orphan_events, compute_span
+from plotter.postprocess import assign_orphan_events, compute_span, validate_ranks
 from plotter.verdicts import apply_verdicts
 
 
@@ -82,20 +82,23 @@ def get_plotlines(
             )
             breakdowns.append(breakdown)
 
-    # Post-processing: assign orphan events, then compute span
+    # Post-processing: assign orphan events, compute span, validate ranks
     assign_orphan_events(storylines, breakdowns)
     compute_span(storylines, breakdowns)
+    flags = validate_ranks(storylines, breakdowns)
 
-    # Pass 3: narratologist review
+    # Pass 3: narratologist review (with diagnostic flags as context)
     if not skip_review:
         verdicts = review_storylines(
             show, season, context, cast, storylines, breakdowns,
+            diagnostics=flags or None,
             config=config,
         )
         if verdicts:
             storylines = apply_verdicts(verdicts, storylines, breakdowns)
-            # Recompute span after verdicts changed assignments
+            # Recompute span and re-validate after verdicts
             compute_span(storylines, breakdowns)
+            validate_ranks(storylines, breakdowns)
 
     result = PlotterResult(
         context=context,

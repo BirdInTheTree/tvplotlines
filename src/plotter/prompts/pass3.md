@@ -19,6 +19,7 @@
 - **cast**: список персонажей с `id`, `name`
 - **plotlines**: список линий с `id`, `name`, `driver`, `goal`, `obstacle`, `stakes`, `type`, `rank`, `nature`, `confidence`, `span`, `weight_per_episode`
 - **episodes**: для каждого эпизода — `events` (с привязкой к линиям), `theme`, `interactions`, `patches`
+- **diagnostics** (опционально): автоматические флаги из пост-обработки. Каждый флаг содержит `plotline`, `flag` ("demoted" или "dominant") и `reason`. Это вычисленные факты — учитывай их в анализе.
 
 ## Задача
 
