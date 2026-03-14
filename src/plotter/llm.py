@@ -261,7 +261,8 @@ async def acall_llm_batch(
     # Collect results keyed by custom_id
     raw_results: dict[str, str | None] = {}
     errors: dict[str, str] = {}
-    async for result in client.messages.batches.results(batch_id):
+    results_stream = await client.messages.batches.results(batch_id)
+    async for result in results_stream:
         cid = result.custom_id
         if result.result.type == "succeeded":
             raw_results[cid] = result.result.message.content[0].text
