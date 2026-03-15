@@ -97,13 +97,16 @@ def extract_storylines(
 def _parse_cast(data: dict) -> list[CastMember]:
     cast = []
     for c in data.get("cast", []):
-        cast.append(
-            CastMember(
-                id=c["id"],
-                name=c["name"],
-                aliases=c.get("aliases", []),
+        try:
+            cast.append(
+                CastMember(
+                    id=c["id"],
+                    name=c["name"],
+                    aliases=c.get("aliases", []),
+                )
             )
-        )
+        except KeyError as e:
+            raise ValueError(f"Cast member missing required field: {e}") from e
     return cast
 
 
@@ -111,25 +114,31 @@ def _parse_storylines(data: dict, cast: list[CastMember]) -> list[Plotline]:
     cast_ids = {c.id for c in cast}
     storylines = []
     for s in data.get("storylines", []):
-        driver = s["driver"]
+        try:
+            driver = s["driver"]
+        except KeyError as e:
+            raise ValueError(f"Storyline missing required field: {e}") from e
         if driver not in cast_ids:
             raise ValueError(
                 f"Storyline {s['id']!r} has driver {driver!r} not found in cast: {cast_ids}"
             )
-        storylines.append(
-            Plotline(
-                id=s["id"],
-                name=s["name"],
-                driver=driver,
-                goal=s["goal"],
-                obstacle=s["obstacle"],
-                stakes=s["stakes"],
-                type=s["type"],
-                rank=s["rank"],
-                nature=s["nature"],
-                confidence=s["confidence"],
+        try:
+            storylines.append(
+                Plotline(
+                    id=s["id"],
+                    name=s["name"],
+                    driver=driver,
+                    goal=s["goal"],
+                    obstacle=s["obstacle"],
+                    stakes=s["stakes"],
+                    type=s["type"],
+                    rank=s["rank"],
+                    nature=s["nature"],
+                    confidence=s["confidence"],
+                )
             )
-        )
+        except KeyError as e:
+            raise ValueError(f"Storyline {s.get('id', '?')!r} missing field: {e}") from e
     return storylines
 
 

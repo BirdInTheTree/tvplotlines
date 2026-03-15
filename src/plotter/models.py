@@ -103,6 +103,7 @@ class PlotterResult:
     cast: list[CastMember] = field(default_factory=list)
     plotlines: list[Plotline] = field(default_factory=list)
     episodes: list[EpisodeBreakdown] = field(default_factory=list)
+    usage: str = ""
 
     def to_dict(self) -> dict:
         """Serialize to plain dict (for JSON export)."""

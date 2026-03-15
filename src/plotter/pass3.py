@@ -152,7 +152,10 @@ def _parse_verdicts(
 
     verdicts = []
     for v in data.get("verdicts", []):
-        action = v["action"]
+        try:
+            action = v["action"]
+        except KeyError as e:
+            raise ValueError(f"Verdict missing required field: {e}") from e
         if action not in _VALID_ACTIONS:
             raise ValueError(f"Invalid verdict action: {action!r}")
 

@@ -139,15 +139,18 @@ def validate_ranks(
             if event.storyline:
                 counts[event.storyline] += 1
 
+    # Collect all flags first, then apply mutations — avoids Rule 1 demotions
+    # affecting Rule 2 dominance checks on the same pass
     flags = []
+    demotions: list[Plotline] = []
 
     for plotline in plotlines:
         span_len = len(plotline.span) if isinstance(plotline.span, list) else 0
         span_frac = span_len / n_episodes
 
-        # Rule 1: A-rank + short span → demote
+        # Rule 1: A-rank + short span → mark for demotion
         if plotline.rank == "A" and span_frac < min_span_frac:
-            plotline.rank = "B"
+            demotions.append(plotline)
             flags.append({
                 "plotline": plotline.id,
                 "flag": "demoted",
@@ -163,6 +166,10 @@ def validate_ranks(
                     "flag": "dominant",
                     "reason": f"{share:.0%} of events ({counts[plotline.id]}/{total_events})",
                 })
+
+    # Apply demotions after all rules evaluated
+    for plotline in demotions:
+        plotline.rank = "B"
 
     return flags
 
