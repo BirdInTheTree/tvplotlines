@@ -38,5 +38,6 @@ htmlcov/
 # Playwright MCP
 .playwright-mcp/
 
-# Internal task tracking (not public)
+# Internal — not part of the library
 tasks/
+CLAUDE.md
