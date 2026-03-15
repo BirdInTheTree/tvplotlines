@@ -48,6 +48,21 @@
 
 Для **limited**-сериалов в финальном эпизоде: ожидай `resolution` или `climax` для каждой линии, не `seed` или `cliffhanger`.
 
+## Нарративные приёмы (devices)
+
+Если событие использует нарративный приём, укажи его в поле `devices`. У большинства событий приёмов нет — оставь пустой список.
+
+| приём | что означает | пример |
+|-------|-------------|--------|
+| `dramatic_irony` | зритель знает то, чего не знает персонаж | Детективы допрашивают человека, которого зритель уже знает как убийцу |
+| `flashback` | событие показано не в хронологическом порядке (прошлое) | Персонаж вспоминает сцену из детства, объясняющую его поведение |
+| `flashforward` | событие показано не в хронологическом порядке (будущее) | Холодное открытие показывает последствие до того как мы увидим причину |
+| `callback` | реализация того, что было заложено в предыдущем эпизоде | Пистолет, упомянутый в эпизоде 1, наконец используется |
+| `twist` | новая информация переосмысляет понимание зрителя | Выясняется что союзник всё время был антагонистом |
+| `unreliable` | рассказчик или точка зрения искажает произошедшее | События в пересказе персонажа расходятся с тем что было на самом деле |
+
+Используй поле `devices` линии из Pass 1 как подсказку что искать.
+
 ## Interactions между линиями
 
 После распределения событий определи связи:
@@ -76,28 +91,32 @@ Weight (`primary` / `background` / `glimpse`) вычисляется кодом 
       "storyline": "empire",
       "function": "escalation",
       "characters": ["walt", "jesse"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": []
     },
     {
       "event": "Крейзи-8 рассказывает о детстве, Уолт — о раке",
       "storyline": "empire",
       "function": "escalation",
       "characters": ["walt"],
-      "also_affects": ["family"]
+      "also_affects": ["family"],
+      "devices": ["dramatic_irony"]
     },
     {
       "event": "Уолт составляет список «за» и «против» убийства",
       "storyline": "empire",
       "function": "turning_point",
       "characters": ["walt"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": []
     },
     {
       "event": "Скайлер организует семейную интервенцию",
       "storyline": "family",
       "function": "setup",
       "characters": ["skyler", "walt"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": ["dramatic_irony"]
     },
     {
       "event": "Семья за химию, Уолт хочет отказаться",
@@ -183,6 +202,7 @@ Weight (`primary` / `background` / `glimpse`) вычисляется кодом 
 - `function`: enum — `"setup"` | `"escalation"` | `"turning_point"` | `"climax"` | `"resolution"` | `"cliffhanger"` | `"seed"`
 - `characters`: array of strings — `id` персонажей из cast. Для гостевых персонажей используй формат `"guest:краткое_имя"` (напр. `"guest:native_girl"`)
 - `also_affects`: array of strings | null — `id` побочно затронутых линий
+- `devices`: array of strings — нарративные приёмы этого события: `"dramatic_irony"`, `"flashback"`, `"flashforward"`, `"callback"`, `"twist"`, `"unreliable"`. Пустой список если нет. Используй поле `devices` линии из Pass 1 как подсказку что искать.
 
 **summary.interactions[].**:
 - `type`: enum — `"thematic_rhyme"` | `"dramatic_irony"` | `"convergence"` | `"meta"`
