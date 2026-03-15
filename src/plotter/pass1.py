@@ -135,6 +135,7 @@ def _parse_storylines(data: dict, cast: list[CastMember]) -> list[Plotline]:
                     rank=s["rank"],
                     nature=s["nature"],
                     confidence=s["confidence"],
+                    devices=s.get("devices", []),
                 )
             )
         except KeyError as e:

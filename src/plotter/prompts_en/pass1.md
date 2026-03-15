@@ -89,6 +89,21 @@ Episodic storyline (franchise engine): name it by the franchise formula — "Cas
 
 Always use `Driver: Theme` format for storyline names (e.g. "House: Authority", "Cameron: Ethics", "Jon: Honor"). This makes it clear who drives each storyline and prevents confusion during event assignment.
 
+### Narrative devices
+
+While reading synopses, note if a storyline employs recurring narrative devices. List them in the `devices` field. Most storylines have none — leave the list empty.
+
+| device | what it means |
+|--------|--------------|
+| `dramatic_irony` | audience knows something the characters in this storyline do not |
+| `flashback` | events in this storyline are shown out of chronological order (past) |
+| `flashforward` | events in this storyline are shown out of chronological order (future) |
+| `callback` | this storyline pays off something established earlier |
+| `twist` | this storyline contains a reveal that reframes the audience's understanding |
+| `unreliable` | events in this storyline are distorted by narrator or point-of-view |
+
+Only list devices that are **characteristic** of the storyline across the season, not one-off occurrences.
+
 ### Series format and resolution
 
 - **ongoing**: storylines may extend beyond the season, cliffhanger in the finale is acceptable.
@@ -127,7 +142,8 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "A",
       "type": "serialized",
       "nature": "plot-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "family",
@@ -139,7 +155,8 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "B",
       "type": "serialized",
       "nature": "character-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "investigation",
@@ -151,7 +168,8 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "C",
       "type": "serialized",
       "nature": "plot-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "partnership",
@@ -163,7 +181,8 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "B",
       "type": "serialized",
       "nature": "character-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": []
     }
   ]
 }
@@ -187,6 +206,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
 - `rank`: enum — `"A"` | `"B"` | `"C"` | `"runner"` — typical role across the season
 - `nature`: enum — `"plot-led"` | `"character-led"`
 - `confidence`: enum — `"solid"` | `"partial"` | `"inferred"`
+- `devices`: array of strings — narrative devices characteristic of this storyline: `"dramatic_irony"`, `"flashback"`, `"flashforward"`, `"callback"`, `"twist"`, `"unreliable"`. Empty if none.
 
 Language of `goal`, `obstacle`, `stakes` fields — in the language of the synopsis.
 

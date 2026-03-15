@@ -80,6 +80,7 @@ def assign_events(
                     "goal": s.goal,
                     "type": s.type,
                     "rank": s.rank,
+                    "devices": s.devices,
                 }
                 for s in storylines
             ],
@@ -138,6 +139,7 @@ def _prepare_bulk(
                     {
                         "id": s.id, "name": s.name, "driver": s.driver,
                         "goal": s.goal, "type": s.type, "rank": s.rank,
+                        "devices": s.devices,
                     }
                     for s in storylines
                 ],
@@ -257,6 +259,7 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
                     function=e["function"],
                     characters=e.get("characters", []),
                     also_affects=e.get("also_affects"),
+                    devices=e.get("devices", []),
                 )
             )
         except KeyError as exc:
