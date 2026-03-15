@@ -340,14 +340,8 @@ def _validate(
                         f"not found in storylines"
                     )
 
-    # Reject if too many events have no storyline assignment
-    total = len(breakdown.events)
-    nulls = sum(1 for e in breakdown.events if e.storyline is None)
-    if total > 0 and nulls / total > 0.10:
-        raise ValueError(
-            f"Too many unassigned events: {nulls}/{total} "
-            f"({nulls/total:.0%}). Max allowed: 10%."
-        )
+    # Unassigned events are handled by postprocess.assign_orphan_events()
+    # after all episodes are processed — no rejection here.
 
     for interaction in breakdown.interactions:
         if interaction.type not in _VALID_INTERACTION_TYPES:
