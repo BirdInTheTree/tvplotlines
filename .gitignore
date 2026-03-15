@@ -37,3 +37,6 @@ htmlcov/
 
 # Playwright MCP
 .playwright-mcp/
+
+# Internal task tracking (not public)
+tasks/
