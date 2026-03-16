@@ -181,7 +181,10 @@ def get_plotlines(
         )
         _fire(callback, "on_pass3_complete", verdicts)
         if verdicts:
-            plotlines = apply_verdicts(verdicts, plotlines, breakdowns)
+            plotlines = apply_verdicts(
+                verdicts, plotlines, breakdowns,
+                franchise_type=context.franchise_type,
+            )
             # Recompute span and re-validate after verdicts
             compute_span(plotlines, breakdowns)
             validate_ranks(plotlines, breakdowns)

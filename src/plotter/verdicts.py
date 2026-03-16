@@ -17,6 +17,8 @@ def apply_verdicts(
     verdicts: list[Verdict],
     plotlines: list[Plotline],
     episodes: list[EpisodeBreakdown],
+    *,
+    franchise_type: str = "serial",
 ) -> list[Plotline]:
     """Apply verdicts to plotlines and episodes (in-place for episodes).
 
@@ -41,9 +43,9 @@ def apply_verdicts(
         elif action == "REASSIGN":
             _apply_reassign(d, episodes)
         elif action == "PROMOTE":
-            _apply_rank_change(d, plotline_index)
+            _apply_rank_change(d, plotline_index, plotlines, franchise_type)
         elif action == "DEMOTE":
-            _apply_rank_change(d, plotline_index)
+            _apply_rank_change(d, plotline_index, plotlines, franchise_type)
         elif action == "CREATE":
             _apply_create(d, plotlines, plotline_index, episodes)
         elif action == "DROP":
@@ -100,10 +102,25 @@ def _apply_reassign(d: dict, episodes: list[EpisodeBreakdown]) -> None:
     logger.warning("REASSIGN: event not found in %s: '%s'", episode_id, event_text[:50])
 
 
-def _apply_rank_change(d: dict, index: dict[str, Plotline]) -> None:
+def _apply_rank_change(
+    d: dict,
+    index: dict[str, Plotline],
+    all_plotlines: list[Plotline],
+    franchise_type: str,
+) -> None:
     """PROMOTE or DEMOTE: change plotline rank."""
     target_id = d["target"]
     new_rank = d["new_rank"]
+
+    # Block PROMOTE to A if there's already an A-rank storyline (non-ensemble)
+    if new_rank == "A" and franchise_type != "ensemble":
+        has_a = any(p.rank == "A" for p in all_plotlines)
+        if has_a:
+            logger.warning(
+                "Blocked PROMOTE %s to A: franchise_type=%r already has an A-rank storyline",
+                target_id, franchise_type,
+            )
+            return
 
     plotline = index.get(target_id)
     if plotline:
