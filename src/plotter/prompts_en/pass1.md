@@ -75,6 +75,8 @@ For ensemble shows: multiple A storylines are expected because no single charact
 
 If you're tempted to assign A to more than one storyline in a serial — ask: which character's goal drives the MOST scenes? That one is A. The rest are B.
 
+The rank table above is about rank DISTRIBUTION, not about total storyline count. Do not drop valid storylines to fit the table — if a character has a goal, obstacle, and stakes across the season, it is a storyline regardless of how many B or C slots you think you have.
+
 ### By conflict nature
 
 - **Plot-led** — external goal vs antagonist.
@@ -141,7 +143,7 @@ Only list devices that are **characteristic** of the storyline across the season
 ### Quantity expectations
 
 - Procedural: 2–3 storylines per episode (1 episodic + 1–2 serialized).
-- Serial: 3–8 serialized storylines per season.
+- Serial: 4–8 serialized storylines per season.
 - Ensemble: 4–6 parallel storylines.
 
 ## Output format
