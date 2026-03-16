@@ -32,6 +32,7 @@ def get_plotlines(
     season: int,
     episodes: list[str],
     *,
+    prior: PlotterResult | None = None,
     context: SeriesContext | None = None,
     cast: list[CastMember] | None = None,
     plotlines: list[Plotline] | None = None,
@@ -51,6 +52,11 @@ def get_plotlines(
         show: Series title.
         season: Season number.
         episodes: Synopsis text for each episode (full season).
+        prior: PlotterResult from the previous season. When provided and
+            context is None, reuses prior.context to skip Pass 0. Also
+            passes prior cast and plotlines to Pass 1 for continuity.
+            Incompatible with anthology format (anthology seasons are
+            independent by definition).
         context: If provided, skip Pass 0 (auto-detection).
         cast: If provided with plotlines, skip Pass 1.
         plotlines: If provided with cast, skip Pass 1.
@@ -82,6 +88,17 @@ def get_plotlines(
     if batch_id is not None and pass2_mode != "batch":
         raise ValueError(f"batch_id requires pass2_mode='batch', got {pass2_mode!r}")
 
+    # Validate prior parameter
+    if prior is not None:
+        prior_context = context or prior.context
+        if prior_context.format == "anthology":
+            raise ValueError(
+                "prior is not supported for anthology format "
+                "(anthology seasons are independent by definition)"
+            )
+        if context is None:
+            context = prior.context
+
     # Reset usage tracker for this run
     global usage
     usage.__init__()
@@ -91,10 +108,13 @@ def get_plotlines(
         context = detect_context(show, season, episodes, config=config)
     _fire(callback, "on_pass0_complete", context)
 
-    # Pass 1: extract cast and storylines from all synopses
+    # Pass 1: extract cast and plotlines from all synopses
     if cast is None:
-        cast, storylines = extract_storylines(
-            show, season, context, episodes, config=config,
+        cast, plotlines = extract_storylines(
+            show, season, context, episodes,
+            prior_cast=prior.cast if prior else None,
+            prior_plotlines=prior.plotlines if prior else None,
+            config=config,
         )
     _fire(callback, "on_pass1_complete", cast, plotlines)
 
@@ -102,12 +122,12 @@ def get_plotlines(
     if breakdowns is None:
         if pass2_mode == "parallel":
             breakdowns = assign_events_parallel(
-                show, season, episodes, context, cast, storylines,
+                show, season, episodes, context, cast, plotlines,
                 config=config,
             )
         elif pass2_mode == "batch":
             breakdowns = assign_events_batch(
-                show, season, episodes, context, cast, storylines,
+                show, season, episodes, context, cast, plotlines,
                 config=config,
                 batch_id=batch_id,
                 on_batch_submitted=lambda bid: _fire(callback, "on_batch_submitted", bid),
@@ -116,7 +136,7 @@ def get_plotlines(
             breakdowns = []
             for i, synopsis in enumerate(episodes):
                 breakdown = assign_events(
-                    show, season, i + 1, synopsis, context, cast, storylines,
+                    show, season, i + 1, synopsis, context, cast, plotlines,
                     config=config,
                 )
                 breakdowns.append(breakdown)
@@ -127,28 +147,28 @@ def get_plotlines(
     _fire(callback, "on_pass2_complete", breakdowns)
 
     # Post-processing: assign orphan events, compute span, validate ranks
-    assign_orphan_events(storylines, breakdowns)
-    compute_span(storylines, breakdowns)
-    flags = validate_ranks(storylines, breakdowns)
+    assign_orphan_events(plotlines, breakdowns)
+    compute_span(plotlines, breakdowns)
+    flags = validate_ranks(plotlines, breakdowns)
 
     # Pass 3: narratologist review (with diagnostic flags as context)
     if not skip_review:
         verdicts = review_storylines(
-            show, season, context, cast, storylines, breakdowns,
+            show, season, context, cast, plotlines, breakdowns,
             diagnostics=flags or None,
             config=config,
         )
         _fire(callback, "on_pass3_complete", verdicts)
         if verdicts:
-            storylines = apply_verdicts(verdicts, storylines, breakdowns)
+            plotlines = apply_verdicts(verdicts, plotlines, breakdowns)
             # Recompute span and re-validate after verdicts
-            compute_span(storylines, breakdowns)
-            validate_ranks(storylines, breakdowns)
+            compute_span(plotlines, breakdowns)
+            validate_ranks(plotlines, breakdowns)
 
     result = PlotterResult(
         context=context,
         cast=cast,
-        plotlines=storylines,
+        plotlines=plotlines,
         episodes=breakdowns,
     )
     result.usage = usage.summary(config.resolved_model)
