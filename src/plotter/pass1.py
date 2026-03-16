@@ -24,12 +24,64 @@ _VALID_NATURES = {"plot-led", "character-led"}
 _VALID_CONFIDENCE = {"solid", "partial", "inferred"}
 
 
+def _build_user_message(
+    show: str,
+    season: int,
+    context: SeriesContext,
+    episodes: list[str],
+    *,
+    prior_cast: list[CastMember] | None = None,
+    prior_plotlines: list[Plotline] | None = None,
+) -> str:
+    """Build the JSON user message for Pass 1.
+
+    Args:
+        show: Series title.
+        season: Season number.
+        context: From Pass 0 or user-provided.
+        episodes: All episode synopses.
+        prior_cast: Cast from the previous season (for continuity).
+        prior_plotlines: Storylines from the previous season (for continuity).
+
+    Returns:
+        JSON-encoded string ready to send as a user message.
+    """
+    data = {
+        "show": show,
+        "season": season,
+        "franchise_type": context.franchise_type,
+        "story_engine": context.story_engine,
+        "synopses": [
+            {"episode": f"S{season:02d}E{i+1:02d}", "text": s}
+            for i, s in enumerate(episodes)
+        ],
+    }
+    if prior_cast and prior_plotlines:
+        data["prior_season"] = {
+            "cast": [
+                {"id": c.id, "name": c.name, "aliases": c.aliases}
+                for c in prior_cast
+            ],
+            "plotlines": [
+                {
+                    "id": p.id, "name": p.name, "driver": p.driver,
+                    "goal": p.goal, "obstacle": p.obstacle, "stakes": p.stakes,
+                    "type": p.type, "rank": p.rank,
+                }
+                for p in prior_plotlines
+            ],
+        }
+    return json.dumps(data, ensure_ascii=False)
+
+
 def extract_storylines(
     show: str,
     season: int,
     context: SeriesContext,
     episodes: list[str],
     *,
+    prior_cast: list[CastMember] | None = None,
+    prior_plotlines: list[Plotline] | None = None,
     config: LLMConfig | None = None,
 ) -> tuple[list[CastMember], list[Plotline]]:
     """Extract cast and storylines from all season synopses.
@@ -39,6 +91,8 @@ def extract_storylines(
         season: Season number.
         context: From Pass 0 or user-provided.
         episodes: All episode synopses.
+        prior_cast: Cast from the previous season (for continuity).
+        prior_plotlines: Storylines from the previous season (for continuity).
         config: LLM settings.
 
     Returns:
@@ -47,18 +101,9 @@ def extract_storylines(
     if config is None:
         config = LLMConfig()
 
-    user_message = json.dumps(
-        {
-            "show": show,
-            "season": season,
-            "franchise_type": context.franchise_type,
-            "story_engine": context.story_engine,
-            "synopses": [
-                {"episode": f"S{season:02d}E{i+1:02d}", "text": s}
-                for i, s in enumerate(episodes)
-            ],
-        },
-        ensure_ascii=False,
+    user_message = _build_user_message(
+        show, season, context, episodes,
+        prior_cast=prior_cast, prior_plotlines=prior_plotlines,
     )
 
     system_prompt = load_prompt("pass1", lang=config.lang)
