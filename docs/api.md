@@ -36,6 +36,85 @@ Returned by `get_plotlines()`.
 
 ## Data models
 
-See source: `src/plotter/models.py`
+### Plotline
 
-*Full auto-generated reference coming soon.*
+A narrative thread with Story DNA:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `str` | Unique identifier |
+| `name` | `str` | e.g. "Walt: Empire" |
+| `driver` | `str` | Character who drives the storyline |
+| `goal` | `str` | What the driver wants |
+| `obstacle` | `str` | What stands in the way |
+| `stakes` | `str` | What happens if the driver fails |
+| `rank` | `str` | A (main), B (secondary), C (tertiary), runner |
+| `type` | `str` | episodic, serialized, runner |
+| `span` | `list[str]` | Which episodes it appears in (computed from events) |
+
+### Event
+
+A single narrative beat within an episode:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `event` | `str` | What happens |
+| `storyline` | `str` | Which plotline it belongs to |
+| `function` | `str` | setup, escalation, turning_point, climax, resolution, cliffhanger, seed |
+| `characters` | `list[str]` | Who is involved |
+| `also_affects` | `str \| None` | Secondary storyline connection |
+
+## Pass 2 modes
+
+| Mode | Speed | Cost | Use case |
+|------|-------|------|----------|
+| `parallel` | Fast | Full price | Default — all episodes at once via async |
+| `batch` | Slow | 50% off | Anthropic batch API — cheaper for large seasons |
+| `sequential` | Slow | Full price | One episode at a time — for debugging |
+
+## LLM providers
+
+Plotter works with Anthropic (default) and any OpenAI-compatible API.
+
+```bash
+# Anthropic (default)
+export ANTHROPIC_API_KEY=sk-ant-...
+plotter run *.txt --show "House"
+
+# OpenAI
+export OPENAI_API_KEY=sk-...
+plotter run *.txt --show "House" --provider openai
+
+# Ollama (local, free)
+ollama pull qwen2.5:14b
+plotter run *.txt --show "House" --provider ollama
+
+# DeepSeek
+export DEEPSEEK_API_KEY=sk-...
+plotter run *.txt --show "House" --provider deepseek
+
+# Any OpenAI-compatible endpoint
+plotter run *.txt --show "House" --provider openai \
+    --base-url https://api.together.xyz/v1 \
+    --model meta-llama/Llama-3-70b
+```
+
+In Python:
+
+```python
+result = get_plotlines(
+    show="House", season=1, episodes=episodes,
+    llm_provider="ollama",           # or "deepseek", "groq", etc.
+    model="qwen2.5:14b",             # optional, provider has defaults
+    base_url="http://localhost:11434/v1",  # optional for known providers
+)
+```
+
+## Franchise types
+
+Plotter classifies shows into four structural types that determine how storylines are extracted:
+
+- **Procedural** — self-contained episode stories (House, CSI)
+- **Serial** — continuous arcs across episodes (Breaking Bad, The Wire)
+- **Hybrid** — case-of-week + serialized arcs (X-Files, Buffy)
+- **Ensemble** — multiple equal-weight character arcs (Game of Thrones, This Is Us)

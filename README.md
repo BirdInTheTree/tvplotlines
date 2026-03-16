@@ -1,8 +1,57 @@
 # Plotter
 
-Extract storylines from TV series synopses using LLM.
+[![PyPI](https://img.shields.io/pypi/v/plotter)](https://pypi.org/project/plotter/)
+[![License](https://img.shields.io/github/license/BirdInTheTree/plotter)](LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/plotter)](https://pypi.org/project/plotter/)
 
-Given episode synopses for a season, Plotter identifies narrative threads (storylines), assigns events to them, and produces a structured breakdown of the season's narrative architecture.
+LLM-powered narrative breakdown for TV series. Feed it episode synopses — get plotlines with Story DNA (driver, goal, obstacle, stakes), A/B/C ranking, and per-episode event tracking. Built for development executives and writers who need to analyze shows fast.
+
+Works from synopses alone — no scripts or transcripts needed.
+## Example output
+
+Breaking Bad, Season 1 (truncated):
+
+```json
+{
+  "context": {
+    "franchise_type": "serial",
+    "story_engine": "A high school teacher builds a drug empire, testing how far he'll go for family and control"
+  },
+  "plotlines": [
+    {
+      "name": "Walt: Empire",
+      "driver": "walt",
+      "goal": "build a profitable drug business to secure his family's financial future",
+      "obstacle": "inexperience in criminal world, violent dealers, maintaining secrecy",
+      "stakes": "death, imprisonment, family destruction",
+      "rank": "A",
+      "span": ["S01E01", "S01E02", "S01E03", "S01E04", "S01E05", "S01E06", "S01E07"]
+    },
+    {
+      "name": "Jesse: Survival",
+      "driver": "jesse",
+      "goal": "survive as Walt's partner in the dangerous drug trade",
+      "obstacle": "violent dealers like Tuco, lack of street credibility, Walt's reckless decisions",
+      "stakes": "death, severe injury, imprisonment",
+      "rank": "A",
+      "span": ["S01E01", "S01E02", "S01E03", "S01E04", "S01E05", "S01E06", "S01E07"]
+    }
+  ],
+  "episodes": [
+    {
+      "episode": "S01E01",
+      "events": [
+        {
+          "event": "Hank shows off his gun at Walt's 50th birthday party and invites him on a DEA ride-along",
+          "storyline": "investigation",
+          "function": "setup",
+          "characters": ["hank", "walt"]
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Installation
 
@@ -55,117 +104,51 @@ for ep in result.episodes:
         print(f"  [{event.function}] {event.event} -> {event.storyline}")
 ```
 
+## Key concepts
+
+- **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
+- **Story DNA** — the core conflict structure of a plotline: who drives it (*driver*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
+- **A/B/C ranking** — plotline weight within the season: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
+- **Franchise type** — structural classification of the show: procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
+- **Story engine** — one-sentence description of the show's core dramatic mechanism
+
 ## How it works
 
 The pipeline has four passes, each a separate LLM call with a specialized prompt:
 
-| Pass | Role | Input | Output |
-|------|------|-------|--------|
-| **Pass 0** | Context detection | Show title + first synopses | Franchise type, story engine |
-| **Pass 1** | Storyline extraction | All synopses + context | Cast + storylines with Story DNA |
-| **Pass 2** | Event assignment | One synopsis + storylines | Events assigned to storylines |
-| **Pass 3** | Narratologist review | Full result | Verdicts (merge, reassign, create, drop) |
+| Pass       | Role                | Input                       | Output                                   |
+| ---------- | ------------------- | --------------------------- | ---------------------------------------- |
+| **Pass 0** | Context detection   | Show title + first synopses | Franchise type, story engine             |
+| **Pass 1** | Plotline extraction | All synopses + context      | Cast + plotlines with Story DNA          |
+| **Pass 2** | Event assignment    | One synopsis + plotlines    | Events assigned to plotlines             |
+| **Pass 3** | Quality review      | Full result                 | Verdicts (merge, reassign, create, drop) |
 
-Pass 2 runs in parallel for all episodes. Pass 3 is optional — it provides a "second opinion" on the full picture that no earlier pass could see.
-
-## API
-
-### `get_plotlines()`
-
-```python
-result = get_plotlines(
-    show="Breaking Bad",
-    season=1,
-    episodes=["synopsis 1", "synopsis 2", ...],
-    # Optional:
-    context=None,          # Skip Pass 0, provide SeriesContext directly
-    llm_provider="anthropic",  # "anthropic" or "openai"
-    model=None,            # Provider default (claude-sonnet-4, gpt-4o)
-    lang="en",             # Prompt language: "en" or "ru"
-    skip_review=False,     # Skip Pass 3
-    pass2_mode="parallel", # "parallel", "batch", or "sequential"
-)
-```
-
-Returns a `PlotterResult`:
-
-```python
-result.context     # SeriesContext — franchise type, story engine, genre
-result.cast        # list[CastMember] — id, name, aliases
-result.plotlines   # list[Plotline] — id, name, driver, goal, rank, span, ...
-result.episodes    # list[EpisodeBreakdown] — events, theme, interactions
-result.to_dict()   # Serialize to plain dict for JSON export
-```
-
-### Key types
-
-**Plotline** — a narrative thread with Story DNA:
-- `driver` — character who drives the storyline
-- `goal`, `obstacle`, `stakes` — the conflict
-- `rank` — A (main), B (secondary), C (tertiary), runner
-- `type` — episodic, serialized, runner
-- `span` — which episodes it appears in (computed from events)
-
-**Event** — a single narrative beat within an episode:
-- `storyline` — which plotline it belongs to
-- `function` — setup, escalation, turning_point, climax, resolution, cliffhanger, seed
-- `characters` — who is involved
-- `also_affects` — secondary storyline connections
-
-### Pass 2 modes
-
-| Mode | Speed | Cost | Use case |
-|------|-------|------|----------|
-| `parallel` | Fast | Full price | Default — all episodes at once via async |
-| `batch` | Slow | 50% off | Anthropic batch API — cheaper for large seasons |
-| `sequential` | Slow | Full price | One episode at a time — for debugging |
+Pass 2 runs in parallel for all episodes. Pass 3 reviews the full picture that no earlier pass could see and corrects the result (merge redundant plotlines, reassign misplaced events, etc.).
 
 ## LLM providers
 
-Plotter works with Anthropic (default) and any OpenAI-compatible API.
+Plotter works with Anthropic (default) and any OpenAI-compatible API:
 
 ```bash
-# Anthropic (default)
-export ANTHROPIC_API_KEY=sk-ant-...
-plotter run *.txt --show "House"
-
-# OpenAI
-export OPENAI_API_KEY=sk-...
-plotter run *.txt --show "House" --provider openai
-
-# Ollama (local, free)
-ollama pull qwen2.5:14b
-plotter run *.txt --show "House" --provider ollama
-
-# DeepSeek
-export DEEPSEEK_API_KEY=sk-...
-plotter run *.txt --show "House" --provider deepseek
-
-# Any OpenAI-compatible endpoint
-plotter run *.txt --show "House" --provider openai \
-    --base-url https://api.together.xyz/v1 \
-    --model meta-llama/Llama-3-70b
+plotter run *.txt --show "House"                    # Anthropic (default)
+plotter run *.txt --show "House" --provider openai   # OpenAI
+plotter run *.txt --show "House" --provider ollama   # Ollama (local, free)
 ```
 
-In Python:
+See [docs/api.md](docs/api.md) for full API reference, provider options, and pass modes.
 
-```python
-result = get_plotlines(
-    show="House", season=1, episodes=episodes,
-    llm_provider="ollama",           # or "deepseek", "groq", etc.
-    model="qwen2.5:14b",             # optional, provider has defaults
-    base_url="http://localhost:11434/v1",  # optional for known providers
-)
+## Citation
+
+If you use Plotter in your research, please cite:
+
+```bibtex
+@software{plotter2026,
+  author = {Vashko, N.},
+  title = {Plotter: Automated Narrative Breakdown for TV Series},
+  year = {2026},
+  url = {https://github.com/BirdInTheTree/plotter}
+}
 ```
-
-## Franchise types
-
-Plotter classifies shows into four structural types that determine how storylines are extracted:
-
-- **Procedural** — self-contained episode stories (House, CSI)
-- **Serial** — continuous arcs across episodes (Breaking Bad, The Wire)
-- **Hybrid** — case-of-week + serialized arcs (X-Files, Buffy)
-- **Ensemble** — multiple equal-weight character arcs (Game of Thrones, This Is Us)
 
 ## License
 
