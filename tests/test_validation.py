@@ -101,6 +101,29 @@ class TestPass1Validation:
         with pytest.raises(ValueError, match="episodic"):
             validate_pass1(_make_storylines(), _make_cast(), ctx)
 
+    def test_serial_rejects_multiple_a_rank(self):
+        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
+        lines = _make_storylines()
+        lines[1].rank = "A"  # now both are A
+        with pytest.raises(ValueError, match="1 A-rank"):
+            validate_pass1(lines, _make_cast(), ctx)
+
+    def test_serial_accepts_one_a_rank(self):
+        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
+        validate_pass1(_make_storylines(), _make_cast(), ctx)  # 1 A + 1 B
+
+    def test_ensemble_needs_multiple_a_rank(self):
+        ctx = SeriesContext(franchise_type="ensemble", story_engine="x", genre="drama")
+        lines = _make_storylines()  # 1 A + 1 B
+        with pytest.raises(ValueError, match="2\\+ A-rank"):
+            validate_pass1(lines, _make_cast(), ctx)
+
+    def test_ensemble_accepts_multiple_a_rank(self):
+        ctx = SeriesContext(franchise_type="ensemble", story_engine="x", genre="drama")
+        lines = _make_storylines()
+        lines[1].rank = "A"  # both A
+        validate_pass1(lines, _make_cast(), ctx)
+
 
 # --- Pass 2 ---
 

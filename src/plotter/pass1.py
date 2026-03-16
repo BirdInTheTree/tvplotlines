@@ -252,3 +252,17 @@ def _validate(
                 f"franchise_type={context.franchise_type!r} expects exactly 1 episodic "
                 f"storyline, got {episodic_count}"
             )
+
+    # A-rank count must match franchise type
+    a_count = sum(1 for s in storylines if s.rank == "A")
+    if context.franchise_type in ("serial", "procedural", "hybrid"):
+        if a_count != 1:
+            raise ValueError(
+                f"franchise_type={context.franchise_type!r} expects exactly 1 A-rank "
+                f"storyline, got {a_count}"
+            )
+    elif context.franchise_type == "ensemble":
+        if a_count < 2:
+            raise ValueError(
+                f"franchise_type='ensemble' expects 2+ A-rank storylines, got {a_count}"
+            )

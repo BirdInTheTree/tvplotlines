@@ -55,14 +55,25 @@ Additionally: a storyline has a three-act structure, conflict, and a causal chai
 
 Assign each storyline a rank — its typical role across the season:
 
-- **A** — protagonist's storyline or franchise engine, most screen time, plot-led conflict
-- **B** — second in importance, often character-led, carries the episode's theme
-- **C** — third, lighter in tone, less screen time
-- **runner** — incomplete Story DNA, no obstacle/resolution
+- **A** — protagonist's main arc or franchise engine. Most screen time, highest stakes.
+- **B** — secondary storylines. Character-led, carry the theme, 1–2 scenes per act.
+- **C** — minor threads. Least screen time, often comic relief or seed for future arcs.
+- **runner** — incomplete Story DNA, no obstacle/resolution.
 
-For serial/ensemble, rank may shift episode to episode (a storyline is A in one, B in another). Here, indicate the typical rank across the season. Pass 2 may override per episode.
+### Rank count by franchise type
 
-In procedural/hybrid: the episodic storyline (franchise engine) = always A.
+| type | A | B | C |
+|------|---|---|---|
+| procedural | exactly 1 (franchise engine) | 1–2 | 0–1 |
+| hybrid | exactly 1 (franchise engine) | 1–2 serialized | 0–1 |
+| serial | exactly 1 (protagonist's arc) | 1–4 | 0–2 |
+| ensemble | 2–4 (equal-weight leads) | 0–2 | 0–2 |
+
+For serial shows: the A storyline belongs to the protagonist. All other storylines — no matter how important — are B or C. A storyline driven by the antagonist (e.g. Gus in Breaking Bad S04) is B, not A, because screen time and narrative focus still center on the protagonist.
+
+For ensemble shows: multiple A storylines are expected because no single character dominates screen time.
+
+If you're tempted to assign A to more than one storyline in a serial — ask: which character's goal drives the MOST scenes? That one is A. The rest are B.
 
 ### By conflict nature
 
