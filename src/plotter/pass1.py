@@ -74,6 +74,36 @@ def _build_user_message(
     return json.dumps(data, ensure_ascii=False)
 
 
+def _check_prior_overlap(
+    new_plotlines: list[Plotline],
+    prior_plotlines: list[Plotline],
+) -> None:
+    """Warn if a new plotline shares a driver with a prior plotline that wasn't continued.
+
+    Args:
+        new_plotlines: Storylines extracted for the current season.
+        prior_plotlines: Storylines from the previous season.
+    """
+    prior_by_driver: dict[str, list[Plotline]] = {}
+    for p in prior_plotlines:
+        prior_by_driver.setdefault(p.driver, []).append(p)
+
+    new_ids = {p.id for p in new_plotlines}
+
+    for driver, priors in prior_by_driver.items():
+        for prior in priors:
+            if prior.id in new_ids:
+                continue  # Prior storyline was continued — no issue
+            new_with_same_driver = [p for p in new_plotlines if p.driver == driver]
+            for new_p in new_with_same_driver:
+                logger.warning(
+                    "Prior storyline %r (driver=%s) was not continued, "
+                    "but new storyline %r has the same driver. "
+                    "Possible duplicate?",
+                    prior.id, driver, new_p.id,
+                )
+
+
 def extract_storylines(
     show: str,
     season: int,
@@ -136,6 +166,10 @@ def extract_storylines(
 
     cast = _parse_cast(data)
     storylines = _parse_storylines(data, cast)
+
+    if prior_plotlines:
+        _check_prior_overlap(storylines, prior_plotlines)
+
     return cast, storylines
 
 

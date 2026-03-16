@@ -1,9 +1,10 @@
 """Tests for prior season data injection in Pass 1."""
 
 import json
+import logging
 
 from plotter.models import CastMember, Plotline, SeriesContext
-from plotter.pass1 import _build_user_message
+from plotter.pass1 import _build_user_message, _check_prior_overlap
 
 
 def _make_context():
@@ -67,3 +68,33 @@ class TestBuildUserMessage:
         )
         data = json.loads(msg)
         assert "prior_season" not in data
+
+
+class TestPriorOverlapWarning:
+    def test_warns_on_same_driver_not_continued(self, caplog):
+        prior_plotlines = _make_prior_plotlines()  # empire, driver=walt
+        new_plotlines = [
+            Plotline(
+                id="drug_business", name="Walt: Drug Business", driver="walt",
+                goal="expand meth operation", obstacle="rivals", stakes="death",
+                type="serialized", rank="A", nature="plot-led", confidence="solid",
+            ),
+        ]
+        with caplog.at_level(logging.WARNING):
+            _check_prior_overlap(new_plotlines, prior_plotlines)
+        assert "empire" in caplog.text
+        assert "drug_business" in caplog.text
+
+    def test_no_warning_when_id_reused(self, caplog):
+        prior_plotlines = _make_prior_plotlines()  # empire, driver=walt
+        new_plotlines = [
+            Plotline(
+                id="empire", name="Walt: Empire", driver="walt",
+                goal="expand empire", obstacle="DEA", stakes="prison",
+                type="serialized", rank="A", nature="plot-led", confidence="solid",
+            ),
+        ]
+        with caplog.at_level(logging.WARNING):
+            _check_prior_overlap(new_plotlines, prior_plotlines)
+        warning_records = [r for r in caplog.records if r.levelno >= logging.WARNING]
+        assert warning_records == []
