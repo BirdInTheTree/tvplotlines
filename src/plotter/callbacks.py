@@ -51,4 +51,4 @@ class PipelineCallback:
         """Called with batch ID immediately after batch creation."""
 
     def on_pass3_complete(self, verdicts: list[Verdict]) -> None:
-        """Called after narratologist review (Pass 3)."""
+        """Called after structural review (Pass 3)."""

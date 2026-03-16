@@ -91,7 +91,7 @@ class EpisodeBreakdown:
 
 @dataclass
 class Verdict:
-    """A structural decision from Pass 3 (narratologist review)."""
+    """A structural decision from Pass 3 (structural review)."""
 
     action: str  # "MERGE" | "REASSIGN" | "PROMOTE" | "DEMOTE" | "CREATE" | "DROP"
     data: dict  # full verdict payload — structure depends on action

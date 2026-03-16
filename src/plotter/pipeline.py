@@ -68,7 +68,7 @@ def get_plotlines(
         breakdowns: If provided, skip Pass 2.
         llm_provider: "anthropic" or "openai".
         model: Specific model name, or provider default.
-        skip_review: If True, skip Pass 3 (narratologist review).
+        skip_review: If True, skip Pass 3 (structural review).
         pass2_mode: How to run Pass 2:
             "parallel" — all episodes at once via async (fast, default)
             "batch" — Anthropic batch API (50% cheaper, slower)
@@ -172,7 +172,7 @@ def get_plotlines(
     compute_span(plotlines, breakdowns)
     flags = validate_ranks(plotlines, breakdowns)
 
-    # Pass 3: narratologist review (with diagnostic flags as context)
+    # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:
         verdicts = review_storylines(
             show, season, context, cast, plotlines, breakdowns,

@@ -1,4 +1,4 @@
-"""Pass 3: Narratologist review of full pipeline results.
+"""Pass 3: Structural review of full pipeline results.
 
 Input: complete PlotterResult (lines + events + span + weight).
 Output: list of Verdict objects to apply.
@@ -34,7 +34,7 @@ def review_storylines(
     diagnostics: list[dict] | None = None,
     config: LLMConfig | None = None,
 ) -> list[Verdict]:
-    """Run narratologist review on pipeline results.
+    """Run structural review on pipeline results.
 
     Args:
         show: Series title.
