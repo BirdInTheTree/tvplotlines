@@ -28,7 +28,7 @@ def _build_user_message(
     show: str,
     season: int,
     context: SeriesContext,
-    episodes: list[str],
+    episodes: list[tuple[str, str]],
     *,
     prior_cast: list[CastMember] | None = None,
     prior_plotlines: list[Plotline] | None = None,
@@ -39,7 +39,7 @@ def _build_user_message(
         show: Series title.
         season: Season number.
         context: From Pass 0 or user-provided.
-        episodes: All episode synopses.
+        episodes: List of (episode_id, synopsis_text) pairs.
         prior_cast: Cast from the previous season (for continuity).
         prior_plotlines: Storylines from the previous season (for continuity).
 
@@ -52,8 +52,8 @@ def _build_user_message(
         "franchise_type": context.franchise_type,
         "story_engine": context.story_engine,
         "synopses": [
-            {"episode": f"S{season:02d}E{i+1:02d}", "text": s}
-            for i, s in enumerate(episodes)
+            {"episode": eid, "text": text}
+            for eid, text in episodes
         ],
     }
     if prior_cast and prior_plotlines:
@@ -108,7 +108,7 @@ def extract_storylines(
     show: str,
     season: int,
     context: SeriesContext,
-    episodes: list[str],
+    episodes: list[tuple[str, str]],
     *,
     prior_cast: list[CastMember] | None = None,
     prior_plotlines: list[Plotline] | None = None,
@@ -120,7 +120,7 @@ def extract_storylines(
         show: Series title.
         season: Season number.
         context: From Pass 0 or user-provided.
-        episodes: All episode synopses.
+        episodes: List of (episode_id, synopsis_text) pairs.
         prior_cast: Cast from the previous season (for continuity).
         prior_plotlines: Storylines from the previous season (for continuity).
         config: LLM settings.

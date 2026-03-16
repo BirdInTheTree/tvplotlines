@@ -36,13 +36,13 @@ def _make_prior_plotlines():
 
 class TestBuildUserMessage:
     def test_without_prior(self):
-        msg = _build_user_message("Breaking Bad", 2, _make_context(), ["ep1", "ep2"])
+        msg = _build_user_message("Breaking Bad", 2, _make_context(), [("S02E01", "ep1"), ("S02E02", "ep2")])
         data = json.loads(msg)
         assert "prior_season" not in data
 
     def test_with_prior(self):
         msg = _build_user_message(
-            "Breaking Bad", 2, _make_context(), ["ep1", "ep2"],
+            "Breaking Bad", 2, _make_context(), [("S02E01", "ep1"), ("S02E02", "ep2")],
             prior_cast=_make_prior_cast(),
             prior_plotlines=_make_prior_plotlines(),
         )
@@ -63,7 +63,7 @@ class TestBuildUserMessage:
     def test_empty_prior_lists_no_injection(self):
         """Empty prior cast/plotlines should not inject prior_season block."""
         msg = _build_user_message(
-            "Breaking Bad", 2, _make_context(), ["ep1"],
+            "Breaking Bad", 2, _make_context(), [("S02E01", "ep1")],
             prior_cast=[], prior_plotlines=[],
         )
         data = json.loads(msg)

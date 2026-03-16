@@ -33,7 +33,7 @@ _VALID_PATCH_ACTIONS = {"ADD_LINE", "CHECK_LINE", "SPLIT_LINE", "RERANK"}
 def assign_events(
     show: str,
     season: int,
-    episode_number: int,
+    episode_id: str,
     synopsis: str,
     context: SeriesContext,
     cast: list[CastMember],
@@ -46,7 +46,7 @@ def assign_events(
     Args:
         show: Series title.
         season: Season number.
-        episode_number: Episode number (1-based).
+        episode_id: Episode identifier (e.g. "S01E01").
         synopsis: Synopsis text for this episode.
         context: Series context from Pass 0.
         cast: Cast from Pass 1.
@@ -58,8 +58,6 @@ def assign_events(
     """
     if config is None:
         config = LLMConfig()
-
-    episode_id = f"S{season:02d}E{episode_number:02d}"
 
     user_message = json.dumps(
         {
@@ -106,13 +104,16 @@ def assign_events(
 def _prepare_bulk(
     show: str,
     season: int,
-    synopses: list[str],
+    episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
     storylines: list[Plotline],
     config: LLMConfig,
 ) -> tuple[str, list[str], list[str], list]:
     """Prepare shared data for parallel/batch Pass 2 calls.
+
+    Args:
+        episodes: List of (episode_id, synopsis_text) pairs.
 
     Returns:
         (system_prompt, user_messages, episode_ids, validators)
@@ -121,8 +122,7 @@ def _prepare_bulk(
 
     user_messages = []
     episode_ids = []
-    for i, synopsis in enumerate(synopses):
-        episode_id = f"S{season:02d}E{i + 1:02d}"
+    for episode_id, synopsis in episodes:
         episode_ids.append(episode_id)
         user_messages.append(json.dumps(
             {
@@ -162,7 +162,7 @@ def _prepare_bulk(
 def assign_events_parallel(
     show: str,
     season: int,
-    synopses: list[str],
+    episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
     storylines: list[Plotline],
@@ -174,7 +174,7 @@ def assign_events_parallel(
     Args:
         show: Series title.
         season: Season number.
-        synopses: Synopsis text for each episode (full season).
+        episodes: List of (episode_id, synopsis_text) pairs.
         context: Series context from Pass 0.
         cast: Cast from Pass 1.
         storylines: Storylines from Pass 1.
@@ -187,7 +187,7 @@ def assign_events_parallel(
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, synopses, context, cast, storylines, config,
+        show, season, episodes, context, cast, storylines, config,
     )
 
     results = call_llm_parallel(
@@ -204,7 +204,7 @@ def assign_events_parallel(
 def assign_events_batch(
     show: str,
     season: int,
-    synopses: list[str],
+    episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
     storylines: list[Plotline],
@@ -220,7 +220,7 @@ def assign_events_batch(
     Args:
         show: Series title.
         season: Season number.
-        synopses: Synopsis text for each episode (full season).
+        episodes: List of (episode_id, synopsis_text) pairs.
         context: Series context from Pass 0.
         cast: Cast from Pass 1.
         storylines: Storylines from Pass 1.
@@ -233,7 +233,7 @@ def assign_events_batch(
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, synopses, context, cast, storylines, config,
+        show, season, episodes, context, cast, storylines, config,
     )
 
     results = call_llm_batch(

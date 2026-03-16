@@ -45,7 +45,7 @@ class TestPriorContextReuse:
         monkeypatch.setattr(pipeline_mod, "extract_storylines", mock_extract)
 
         try:
-            pipeline_mod.get_plotlines("Breaking Bad", 2, ["synopsis"], prior=prior)
+            pipeline_mod.get_plotlines("Breaking Bad", 2, {"S02E01": "synopsis"}, prior=prior)
         except Exception:
             pass
 
@@ -74,7 +74,7 @@ class TestPriorContextReuse:
 
         try:
             pipeline_mod.get_plotlines(
-                "Breaking Bad", 2, ["synopsis"],
+                "Breaking Bad", 2, {"S02E01": "synopsis"},
                 prior=prior, cast=explicit_cast, plotlines=explicit_plotlines,
             )
         except Exception:
@@ -90,6 +90,6 @@ class TestPriorContextReuse:
         prior.context.format = "anthology"
         with pytest.raises(ValueError, match="anthology"):
             get_plotlines(
-                "Test Show", 2, ["synopsis"],
+                "Test Show", 2, {"S02E01": "synopsis"},
                 prior=prior,
             )

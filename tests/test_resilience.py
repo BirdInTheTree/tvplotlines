@@ -166,7 +166,7 @@ class TestResumeValidation:
 
         with pytest.raises(ValueError, match="cast and plotlines must be provided together"):
             get_plotlines(
-                "Test", 1, ["ep1"],
+                "Test", 1, {"S01E01": "ep1"},
                 cast=[CastMember(id="a", name="A")],
                 plotlines=None,
             )
@@ -177,7 +177,7 @@ class TestResumeValidation:
 
         with pytest.raises(ValueError, match="cast and plotlines must be provided together"):
             get_plotlines(
-                "Test", 1, ["ep1"],
+                "Test", 1, {"S01E01": "ep1"},
                 cast=None,
                 plotlines=[Plotline(
                     id="s1", name="S1", driver="a", goal="g",
@@ -192,7 +192,7 @@ class TestResumeValidation:
 
         with pytest.raises(ValueError, match="breakdowns length"):
             get_plotlines(
-                "Test", 1, ["ep1", "ep2"],
+                "Test", 1, {"S01E01": "ep1", "S01E02": "ep2"},
                 breakdowns=[EpisodeBreakdown(episode="S01E01")],
             )
 

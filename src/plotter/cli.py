@@ -9,8 +9,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
+
+_EPISODE_ID_RE = re.compile(r"S\d{2}E\d{2}")
 
 
 def _run(args: argparse.Namespace) -> None:
@@ -23,15 +26,26 @@ def _run(args: argparse.Namespace) -> None:
 
     from plotter import get_plotlines
 
-    # Read synopsis files in sorted order
+    # Read synopsis files and extract episode IDs from filenames
     paths = sorted(args.files, key=lambda p: p.name)
     if not paths:
         print("No synopsis files found.", file=sys.stderr)
         sys.exit(1)
 
-    episodes = []
+    episodes: dict[str, str] = {}
     for p in paths:
-        episodes.append(p.read_text(encoding="utf-8"))
+        match = _EPISODE_ID_RE.search(p.stem)
+        if not match:
+            print(
+                f"Cannot extract episode ID (SddEdd) from filename: {p.name}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        episode_id = match.group()
+        if episode_id in episodes:
+            print(f"Duplicate episode ID {episode_id} from {p.name}", file=sys.stderr)
+            sys.exit(1)
+        episodes[episode_id] = p.read_text(encoding="utf-8")
 
     print(f"Running pipeline: {args.show} S{args.season:02d}")
     print(f"Episodes: {len(episodes)} synopses from {paths[0].name} to {paths[-1].name}")
