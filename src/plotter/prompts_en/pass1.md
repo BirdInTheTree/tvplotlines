@@ -83,9 +83,26 @@ Story DNA is reconstructed from the aggregate of mentions across the season. Don
 
 ### Naming
 
-Name and id = ONE abstract word by GOAL, not by event or outcome. Examples: "belonging", "leadership", "love", "redemption", "investigation". Do NOT use compound names like "gang_survival" or "family_destruction" — use "survival" or "family". The `id` must be a single snake_case word matching the `name`.
+Name and id = ONE abstract word by GOAL, not by event or outcome. Examples: "belonging", "leadership", "love", "redemption". Do NOT use compound names like "gang_survival" or "family_destruction" — use "survival" or "family". The `id` must be a single snake_case word matching the `name`.
 
-Ensemble: always `Driver: Theme` (e.g. "Jon: Honor", "Cersei: Power"). Others: add driver when one character drives multiple storylines.
+Episodic storyline (franchise engine): name it by the franchise formula — "Case of the Week", "Crime of the Week", "Mission", etc. — so it is immediately clear this is a recurring structure.
+
+Always use `Driver: Theme` format for storyline names (e.g. "House: Authority", "Cameron: Ethics", "Jon: Honor"). This makes it clear who drives each storyline and prevents confusion during event assignment.
+
+### Narrative devices
+
+While reading synopses, note if a storyline employs recurring narrative devices. List them in the `devices` field. Most storylines have none — leave the list empty.
+
+| device | what it means |
+|--------|--------------|
+| `dramatic_irony` | audience knows something the characters in this storyline do not |
+| `flashback` | events in this storyline are shown out of chronological order (past) |
+| `flashforward` | events in this storyline are shown out of chronological order (future) |
+| `callback` | this storyline pays off something established earlier |
+| `twist` | this storyline contains a reveal that reframes the audience's understanding |
+| `unreliable` | events in this storyline are distorted by narrator or point-of-view |
+
+Only list devices that are **characteristic** of the storyline across the season, not one-off occurrences.
 
 ### Series format and resolution
 
@@ -117,7 +134,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
   "storylines": [
     {
       "id": "empire",
-      "name": "Empire",
+      "name": "Walt: Empire",
       "driver": "walt",
       "goal": "build a drug business",
       "obstacle": "moral choices, escalating danger, unpredictable partners",
@@ -125,11 +142,12 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "A",
       "type": "serialized",
       "nature": "plot-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "family",
-      "name": "Family",
+      "name": "Walt: Family",
       "driver": "walt",
       "goal": "keep the family together and hide the truth",
       "obstacle": "cancer, family pressure for treatment, escalating lies",
@@ -137,11 +155,12 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "B",
       "type": "serialized",
       "nature": "character-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "investigation",
-      "name": "Investigation",
+      "name": "Hank: Investigation",
       "driver": "hank",
       "goal": "find the new meth producer",
       "obstacle": "no direct evidence, only circumstantial traces",
@@ -149,11 +168,12 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "C",
       "type": "serialized",
       "nature": "plot-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": ["dramatic_irony"]
     },
     {
       "id": "partnership",
-      "name": "Partnership",
+      "name": "Jesse: Partnership",
       "driver": "jesse",
       "goal": "survive as Walt's drug business partner",
       "obstacle": "incompetence, fear, conflict with Walt",
@@ -161,7 +181,8 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
       "rank": "B",
       "type": "serialized",
       "nature": "character-led",
-      "confidence": "solid"
+      "confidence": "solid",
+      "devices": []
     }
   ]
 }
@@ -185,6 +206,7 @@ Response — strictly JSON, no markdown wrapping, no comments outside JSON.
 - `rank`: enum — `"A"` | `"B"` | `"C"` | `"runner"` — typical role across the season
 - `nature`: enum — `"plot-led"` | `"character-led"`
 - `confidence`: enum — `"solid"` | `"partial"` | `"inferred"`
+- `devices`: array of strings — narrative devices characteristic of this storyline: `"dramatic_irony"`, `"flashback"`, `"flashforward"`, `"callback"`, `"twist"`, `"unreliable"`. Empty if none.
 
 Language of `goal`, `obstacle`, `stakes` fields — in the language of the synopsis.
 

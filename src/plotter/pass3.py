@@ -31,6 +31,7 @@ def review_storylines(
     plotlines: list[Plotline],
     episodes: list[EpisodeBreakdown],
     *,
+    diagnostics: list[dict] | None = None,
     config: LLMConfig | None = None,
 ) -> list[Verdict]:
     """Run narratologist review on pipeline results.
@@ -56,8 +57,7 @@ def review_storylines(
         weights = compute_weight(plotlines, ep)
         weight_data[ep.episode] = weights
 
-    user_message = json.dumps(
-        {
+    payload = {
             "show": show,
             "season": season,
             "franchise_type": context.franchise_type,
@@ -112,9 +112,12 @@ def review_storylines(
                 }
                 for ep in episodes
             ],
-        },
-        ensure_ascii=False,
-    )
+        }
+
+    if diagnostics:
+        payload["diagnostics"] = diagnostics
+
+    user_message = json.dumps(payload, ensure_ascii=False)
 
     system_prompt = load_prompt("pass3", lang=config.lang)
 
@@ -149,7 +152,10 @@ def _parse_verdicts(
 
     verdicts = []
     for v in data.get("verdicts", []):
-        action = v["action"]
+        try:
+            action = v["action"]
+        except KeyError as e:
+            raise ValueError(f"Verdict missing required field: {e}") from e
         if action not in _VALID_ACTIONS:
             raise ValueError(f"Invalid verdict action: {action!r}")
 

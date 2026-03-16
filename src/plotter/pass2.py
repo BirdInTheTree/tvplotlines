@@ -80,6 +80,7 @@ def assign_events(
                     "goal": s.goal,
                     "type": s.type,
                     "rank": s.rank,
+                    "devices": s.devices,
                 }
                 for s in storylines
             ],
@@ -138,6 +139,7 @@ def _prepare_bulk(
                     {
                         "id": s.id, "name": s.name, "driver": s.driver,
                         "goal": s.goal, "type": s.type, "rank": s.rank,
+                        "devices": s.devices,
                     }
                     for s in storylines
                 ],
@@ -208,6 +210,8 @@ def assign_events_batch(
     storylines: list[Plotline],
     *,
     config: LLMConfig | None = None,
+    batch_id: str | None = None,
+    on_batch_submitted=None,
 ) -> list[EpisodeBreakdown]:
     """Assign events for all episodes in a single batch (50% cheaper, slower).
 
@@ -235,6 +239,7 @@ def assign_events_batch(
     results = call_llm_batch(
         system_prompt, user_messages, config,
         cache_system=True, validators=validators,
+        batch_id=batch_id, on_batch_submitted=on_batch_submitted,
     )
 
     return [
@@ -246,39 +251,49 @@ def assign_events_batch(
 def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
     events = []
     for e in data.get("events", []):
-        events.append(
-            Event(
-                event=e["event"],
-                storyline=e.get("storyline"),
-                function=e["function"],
-                characters=e.get("characters", []),
-                also_affects=e.get("also_affects"),
+        try:
+            events.append(
+                Event(
+                    event=e["event"],
+                    storyline=e.get("storyline"),
+                    function=e["function"],
+                    characters=e.get("characters", []),
+                    also_affects=e.get("also_affects"),
+                    devices=e.get("devices", []),
+                )
             )
-        )
+        except KeyError as exc:
+            raise ValueError(f"Event missing required field: {exc}") from exc
 
     summary = data.get("summary", {})
 
     interactions = []
     for i in summary.get("interactions", []):
-        interactions.append(
-            Interaction(
-                type=i["type"],
-                lines=i["lines"],
-                description=i["description"],
-                subtype=i.get("subtype"),
+        try:
+            interactions.append(
+                Interaction(
+                    type=i["type"],
+                    lines=i["lines"],
+                    description=i["description"],
+                    subtype=i.get("subtype"),
+                )
             )
-        )
+        except KeyError as exc:
+            raise ValueError(f"Interaction missing required field: {exc}") from exc
 
     patches = []
     for p in summary.get("patches", []):
-        patches.append(
-            Patch(
-                action=p["action"],
-                target=p["target"],
-                reason=p["reason"],
-                episodes=p.get("episodes", []),
+        try:
+            patches.append(
+                Patch(
+                    action=p["action"],
+                    target=p["target"],
+                    reason=p["reason"],
+                    episodes=p.get("episodes", []),
+                )
             )
-        )
+        except KeyError as exc:
+            raise ValueError(f"Patch missing required field: {exc}") from exc
 
     return EpisodeBreakdown(
         episode=data.get("episode", episode_id),
@@ -328,14 +343,8 @@ def _validate(
                         f"not found in storylines"
                     )
 
-    # Reject if too many events have no storyline assignment
-    total = len(breakdown.events)
-    nulls = sum(1 for e in breakdown.events if e.storyline is None)
-    if total > 0 and nulls / total > 0.10:
-        raise ValueError(
-            f"Too many unassigned events: {nulls}/{total} "
-            f"({nulls/total:.0%}). Max allowed: 10%."
-        )
+    # Unassigned events are handled by postprocess.assign_orphan_events()
+    # after all episodes are processed — no rejection here.
 
     for interaction in breakdown.interactions:
         if interaction.type not in _VALID_INTERACTION_TYPES:

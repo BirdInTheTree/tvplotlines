@@ -37,3 +37,7 @@ htmlcov/
 
 # Playwright MCP
 .playwright-mcp/
+
+# Internal — not part of the library
+tasks/
+CLAUDE.md

@@ -20,6 +20,8 @@
 
 One event = one action by one character (or group) that changes the situation. Two actions by different characters = two events. Two actions at the same moment where the second is an immediate consequence of the first = one event. Make sure every sentence of the synopsis is reflected in at least one event.
 
+Write event descriptions that are specific and concrete. Include character names, what specifically happens, and the emotional or dramatic consequence. Bad: "The team works on the case." Good: "House orders a lumbar puncture over Cameron's objection, risking paralysis to test his sarcoidosis theory." Specificity helps distinguish events across storylines.
+
 ### Step 2: Assign each event to a storyline
 
 ### Step 3: Identify interactions between storylines
@@ -45,6 +47,19 @@ One event = one action by one character (or group) that changes the situation. T
 | `seed` | Seeds a future storyline |
 
 For **limited** series in the final episode: expect `resolution` or `climax` for each storyline, not `seed` or `cliffhanger`.
+
+## Narrative devices
+
+If an event employs a narrative device, list it in the `devices` field. Most events have none — leave the list empty.
+
+| device | what it means | example |
+|--------|--------------|---------|
+| `dramatic_irony` | audience knows something the character does not | Detectives interview a man the audience already knows is the killer |
+| `flashback` | event shown out of chronological order (past) | Character remembers a childhood scene that explains current behavior |
+| `flashforward` | event shown out of chronological order (future) | Cold open shows a consequence before we see the cause |
+| `callback` | payoff of something established in an earlier episode | The gun mentioned in episode 1 is finally used |
+| `twist` | new information reframes the audience's understanding | Reveal that the ally was the antagonist all along |
+| `unreliable` | narrator or point-of-view distorts what happened | Events as told by a character contradict what actually occurred |
 
 ## Interactions between storylines
 
@@ -74,28 +89,32 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
       "storyline": "empire",
       "function": "escalation",
       "characters": ["walt", "jesse"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": []
     },
     {
       "event": "Krazy-8 talks about his childhood, Walt about cancer",
       "storyline": "empire",
       "function": "escalation",
       "characters": ["walt"],
-      "also_affects": ["family"]
+      "also_affects": ["family"],
+      "devices": ["dramatic_irony"]
     },
     {
       "event": "Walt makes a pros and cons list for killing",
       "storyline": "empire",
       "function": "turning_point",
       "characters": ["walt"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": []
     },
     {
       "event": "Skyler organizes a family intervention",
       "storyline": "family",
       "function": "setup",
       "characters": ["skyler", "walt"],
-      "also_affects": null
+      "also_affects": null,
+      "devices": ["dramatic_irony"]
     },
     {
       "event": "Family votes for chemo, Walt wants to refuse",
@@ -181,6 +200,7 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
 - `function`: enum — `"setup"` | `"escalation"` | `"turning_point"` | `"climax"` | `"resolution"` | `"cliffhanger"` | `"seed"`
 - `characters`: array of strings — `id` of characters from cast. For guest characters use the format `"guest:short_name"` (e.g. `"guest:native_girl"`)
 - `also_affects`: array of strings | null — `id` of secondarily affected storylines
+- `devices`: array of strings — narrative devices this event employs: `"dramatic_irony"`, `"flashback"`, `"flashforward"`, `"callback"`, `"twist"`, `"unreliable"`. Empty if none. Use the storyline's `devices` from Pass 1 as a hint for what to look for.
 
 **summary.interactions[].**:
 - `type`: enum — `"thematic_rhyme"` | `"dramatic_irony"` | `"convergence"` | `"meta"`

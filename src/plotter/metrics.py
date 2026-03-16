@@ -8,6 +8,8 @@ Combined score = coverage × consistency.
 
 from __future__ import annotations
 
+from collections import Counter
+
 from plotter.models import EpisodeBreakdown
 
 
@@ -57,14 +59,20 @@ def compute_consistency_ari(
     for run in runs:
         labels = []
         for ep in run:
-            # Map character → dominant storyline in this episode
-            char_storylines: dict[str, str] = {}
+            # Map character → most frequent storyline in this episode
+            char_counts: dict[str, Counter[str]] = {}
             for event in ep.events:
-                if event.storyline is None:
+                if not event.storyline:
                     continue
                 for char in event.characters:
-                    if char in cast_ids and char not in char_storylines:
-                        char_storylines[char] = event.storyline
+                    if char in cast_ids:
+                        if char not in char_counts:
+                            char_counts[char] = Counter()
+                        char_counts[char][event.storyline] += 1
+            char_storylines: dict[str, str] = {
+                char: counts.most_common(1)[0][0]
+                for char, counts in char_counts.items()
+            }
 
             for char_id in cast_ids:
                 labels.append(char_storylines.get(char_id, "__absent__"))

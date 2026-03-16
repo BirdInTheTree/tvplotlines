@@ -42,6 +42,7 @@ class Plotline:
     rank: str  # "A" | "B" | "C" | "runner"
     nature: str  # "plot-led" | "character-led"
     confidence: str  # "solid" | "partial" | "inferred"
+    devices: list[str] = field(default_factory=list)  # narrative devices used in this storyline
     span: list[str] = field(default_factory=list)  # computed from Pass 2
 
 
@@ -54,6 +55,7 @@ class Event:
     function: str  # "setup" | "escalation" | "turning_point" | "climax" | "resolution" | "cliffhanger" | "seed"
     characters: list[str]  # CastMember.id; guests use "guest:short_name"
     also_affects: list[str] | None = None  # Plotline.id list
+    devices: list[str] = field(default_factory=list)  # narrative devices: dramatic_irony, flashback, etc.
 
 
 @dataclass
@@ -103,6 +105,7 @@ class PlotterResult:
     cast: list[CastMember] = field(default_factory=list)
     plotlines: list[Plotline] = field(default_factory=list)
     episodes: list[EpisodeBreakdown] = field(default_factory=list)
+    usage: str = ""
 
     def to_dict(self) -> dict:
         """Serialize to plain dict (for JSON export)."""
