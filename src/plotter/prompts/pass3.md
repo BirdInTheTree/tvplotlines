@@ -62,9 +62,9 @@ DROP линию только если она фантомная (нет собы
 
 Computed weight (primary/background/glimpse) — объективные данные. Rank (A/B/C) — субъективная оценка аналитика. Если данные противоречат оценке:
 
-- Линия rank=C, но weight=primary в большинстве эпизодов → PROMOTE
+- Линия rank=C, но weight=primary в большинстве эпизодов → PROMOTE (но никогда до A если уже есть A-линия в serial/procedural/hybrid — только ensemble допускает несколько A)
 - Линия rank=A, но weight=glimpse или отсутствует в половине сезона → DEMOTE
-- Две линии rank=A с одинаковым весом — возможно одна из них B
+- Две линии rank=A с одинаковым весом — DEMOTE одну из них до B (serial/procedural/hybrid должны иметь ровно 1 A)
 
 ### Шаг 5: Проверь осиротевшие события
 

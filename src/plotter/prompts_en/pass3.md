@@ -62,9 +62,9 @@ Two storylines with the same driver and adjacent goals — most likely one story
 
 Computed weight (primary/background/glimpse) — objective data. Rank (A/B/C) — the analyst's subjective assessment. If data contradicts the assessment:
 
-- Storyline rank=C, but weight=primary in most episodes → PROMOTE
+- Storyline rank=C, but weight=primary in most episodes → PROMOTE (but never to A if there is already an A-rank storyline in serial/procedural/hybrid — only ensemble allows multiple A)
 - Storyline rank=A, but weight=glimpse or absent in half the season → DEMOTE
-- Two storylines rank=A with equal weight — possibly one of them is B
+- Two storylines rank=A with equal weight — DEMOTE one of them to B (serial/procedural/hybrid must have exactly 1 A)
 
 ### Step 5: Check orphaned events
 
