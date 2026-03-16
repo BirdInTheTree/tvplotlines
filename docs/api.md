@@ -2,7 +2,7 @@
 
 ## get_plotlines()
 
-Main entry point. Extracts storylines from a season of TV synopses.
+Main entry point. Extracts plotlines from a season of TV synopses.
 
 ```python
 from plotter import get_plotlines
@@ -11,6 +11,7 @@ result = get_plotlines(
     show="House",
     season=1,
     episodes=synopses,
+    prior=None,                  # PlotterResult from previous season
     llm_provider="anthropic",    # "anthropic" | "openai"
     model=None,                  # specific model or provider default
     pass2_mode="parallel",       # "parallel" | "batch" | "sequential"
@@ -23,6 +24,21 @@ result = get_plotlines(
 )
 ```
 
+### Multi-season processing
+
+Pass the result of the previous season to maintain character and storyline ID continuity:
+
+```python
+r1 = get_plotlines("Breaking Bad", 1, episodes_s01)
+r2 = get_plotlines("Breaking Bad", 2, episodes_s02, prior=r1)
+r3 = get_plotlines("Breaking Bad", 3, episodes_s03, prior=r2)
+```
+
+When `prior` is provided:
+- Pass 0 is skipped (reuses `prior.context`)
+- Pass 1 receives prior cast and plotlines, reusing IDs for continuing characters and storylines
+- Not supported for anthology format (raises `ValueError`)
+
 ## PlotterResult
 
 Returned by `get_plotlines()`.
@@ -31,7 +47,7 @@ Returned by `get_plotlines()`.
 |-------|------|-------------|
 | `context` | `SeriesContext` | Detected series context |
 | `cast` | `list[CastMember]` | Main cast members |
-| `plotlines` | `list[Plotline]` | Discovered storylines |
+| `plotlines` | `list[Plotline]` | Discovered plotlines |
 | `episodes` | `list[EpisodeBreakdown]` | Per-episode breakdowns |
 
 ## Data models
@@ -44,7 +60,7 @@ A narrative thread with Story DNA:
 |-------|------|-------------|
 | `id` | `str` | Unique identifier |
 | `name` | `str` | e.g. "Walt: Empire" |
-| `driver` | `str` | Character who drives the storyline |
+| `driver` | `str` | Character who drives the plotline |
 | `goal` | `str` | What the driver wants |
 | `obstacle` | `str` | What stands in the way |
 | `stakes` | `str` | What happens if the driver fails |
@@ -62,7 +78,7 @@ A single narrative beat within an episode:
 | `storyline` | `str` | Which plotline it belongs to |
 | `function` | `str` | setup, escalation, turning_point, climax, resolution, cliffhanger, seed |
 | `characters` | `list[str]` | Who is involved |
-| `also_affects` | `str \| None` | Secondary storyline connection |
+| `also_affects` | `str \| None` | Secondary plotline connection |
 
 ## Pass 2 modes
 
@@ -112,7 +128,7 @@ result = get_plotlines(
 
 ## Franchise types
 
-Plotter classifies shows into four structural types that determine how storylines are extracted:
+Plotter classifies shows into four structural types that determine how plotlines are extracted:
 
 - **Procedural** — self-contained episode stories (House, CSI)
 - **Serial** — continuous arcs across episodes (Breaking Bad, The Wire)

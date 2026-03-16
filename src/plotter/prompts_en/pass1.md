@@ -16,9 +16,26 @@
 - **format**: ongoing / limited / anthology / null (from Pass 0)
 - **synopses**: all season synopses (text)
 
+## Prior season (if provided)
+
+If `prior_season` is present in the input, it contains cast and storylines from the previous season.
+
+**Process prior data BEFORE analyzing new synopses:**
+
+For each storyline in `prior_season.plotlines`, decide based on the NEW season's synopses:
+- **CONTINUES** — the storyline is present this season. Keep the same `id`, update goal/obstacle/stakes to reflect the new season's material.
+- **TRANSFORMED** — same driver, but goal fundamentally changed. Keep the `id`, rewrite Story DNA.
+- **ENDED** — the storyline resolved or disappeared. Don't include it.
+
+For each character in `prior_season.cast`:
+- If the character appears in this season's synopses — reuse the same `id` and `name`.
+- If the character does not appear — don't include them.
+
+Only after processing all prior storylines, identify NEW storylines not present before.
+
 ## Task
 
-Read ALL season synopses. Extract the list of storylines and the main cast.
+Read ALL season synopses. If `prior_season` data is provided, first process prior storylines (see Prior season section), then identify new storylines. Extract the list of storylines and the main cast.
 
 ## Rules
 
