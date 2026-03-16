@@ -19,7 +19,7 @@ _VALID_FORMATS = {"ongoing", "limited", "anthology"}
 def detect_context(
     show: str,
     season: int,
-    episodes: list[str],
+    episodes: list[tuple[str, str]],
     *,
     description: str = "",
     config: LLMConfig | None = None,
@@ -29,7 +29,7 @@ def detect_context(
     Args:
         show: Series title.
         season: Season number.
-        episodes: All episode synopses (first 2-3 will be used).
+        episodes: List of (episode_id, synopsis_text) pairs (first 3 used).
         description: Show description / logline (optional).
         config: LLM settings.
 
@@ -46,8 +46,8 @@ def detect_context(
             "season": season,
             "description": description,
             "sample_synopses": [
-                {"episode": f"S{season:02d}E{i+1:02d}", "text": s}
-                for i, s in enumerate(sample)
+                {"episode": eid, "text": text}
+                for eid, text in sample
             ],
         },
         ensure_ascii=False,

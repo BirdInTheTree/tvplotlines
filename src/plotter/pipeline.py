@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import re
 
 from plotter.callbacks import PipelineCallback
 from plotter.llm import LLMConfig, UsageStats, usage
@@ -15,6 +16,8 @@ from plotter.postprocess import assign_orphan_events, compute_span, validate_ran
 from plotter.verdicts import apply_verdicts
 
 logger = logging.getLogger(__name__)
+
+_EPISODE_ID_RE = re.compile(r"^S\d{2}E\d{2}$")
 
 
 def _fire(callback: PipelineCallback | None, method: str, *args) -> None:
@@ -30,7 +33,7 @@ def _fire(callback: PipelineCallback | None, method: str, *args) -> None:
 def get_plotlines(
     show: str,
     season: int,
-    episodes: list[str],
+    episodes: dict[str, str],
     *,
     prior: PlotterResult | None = None,
     context: SeriesContext | None = None,
@@ -51,7 +54,9 @@ def get_plotlines(
     Args:
         show: Series title.
         season: Season number.
-        episodes: Synopsis text for each episode (full season).
+        episodes: Dict mapping episode IDs (e.g. "S01E01") to synopsis texts.
+            Keys must match S{dd}E{dd} format and the season number must match
+            the ``season`` parameter.
         prior: PlotterResult from the previous season. When provided and
             context is None, reuses prior.context to skip Pass 0. Also
             passes prior cast and plotlines to Pass 1 for continuity.
@@ -76,13 +81,29 @@ def get_plotlines(
     """
     config = LLMConfig(provider=llm_provider, model=model, base_url=base_url, lang=lang)
 
+    # Validate episode keys and convert to sorted (id, text) pairs
+    season_prefix = f"S{season:02d}"
+    for key in episodes:
+        if not _EPISODE_ID_RE.match(key):
+            raise ValueError(
+                f"Episode key {key!r} must match S{{dd}}E{{dd}} format (e.g. 'S01E01')"
+            )
+        if not key.startswith(season_prefix):
+            raise ValueError(
+                f"Episode key {key!r} does not match season={season} "
+                f"(expected prefix {season_prefix!r})"
+            )
+    episode_pairs = [(eid, episodes[eid]) for eid in sorted(episodes)]
+    episode_ids = [eid for eid, _ in episode_pairs]
+    episode_texts = [text for _, text in episode_pairs]
+
     # Validate resume parameters
     if (cast is None) != (plotlines is None):
         raise ValueError("cast and plotlines must be provided together (or both omitted)")
 
-    if breakdowns is not None and len(breakdowns) != len(episodes):
+    if breakdowns is not None and len(breakdowns) != len(episode_ids):
         raise ValueError(
-            f"breakdowns length ({len(breakdowns)}) != episodes length ({len(episodes)})"
+            f"breakdowns length ({len(breakdowns)}) != episodes length ({len(episode_ids)})"
         )
 
     if batch_id is not None and pass2_mode != "batch":
@@ -105,13 +126,13 @@ def get_plotlines(
 
     # Pass 0: detect context (skip if provided)
     if context is None:
-        context = detect_context(show, season, episodes, config=config)
+        context = detect_context(show, season, episode_pairs[:3], config=config)
     _fire(callback, "on_pass0_complete", context)
 
     # Pass 1: extract cast and plotlines from all synopses
     if cast is None:
         cast, plotlines = extract_storylines(
-            show, season, context, episodes,
+            show, season, context, episode_pairs,
             prior_cast=prior.cast if prior else None,
             prior_plotlines=prior.plotlines if prior else None,
             config=config,
@@ -122,21 +143,21 @@ def get_plotlines(
     if breakdowns is None:
         if pass2_mode == "parallel":
             breakdowns = assign_events_parallel(
-                show, season, episodes, context, cast, plotlines,
+                show, season, episode_pairs, context, cast, plotlines,
                 config=config,
             )
         elif pass2_mode == "batch":
             breakdowns = assign_events_batch(
-                show, season, episodes, context, cast, plotlines,
+                show, season, episode_pairs, context, cast, plotlines,
                 config=config,
                 batch_id=batch_id,
                 on_batch_submitted=lambda bid: _fire(callback, "on_batch_submitted", bid),
             )
         elif pass2_mode == "sequential":
             breakdowns = []
-            for i, synopsis in enumerate(episodes):
+            for i, (episode_id, synopsis) in enumerate(episode_pairs):
                 breakdown = assign_events(
-                    show, season, i + 1, synopsis, context, cast, plotlines,
+                    show, season, episode_id, synopsis, context, cast, plotlines,
                     config=config,
                 )
                 breakdowns.append(breakdown)

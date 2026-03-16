@@ -10,7 +10,11 @@ from plotter import get_plotlines
 result = get_plotlines(
     show="House",
     season=1,
-    episodes=synopses,
+    episodes={                       # dict[str, str]: episode_id → synopsis
+        "S01E01": "Dr. House takes on a kindergarten teacher...",
+        "S01E02": "A teenage swimmer collapses...",
+        # ...
+    },
     prior=None,                  # PlotterResult from previous season
     llm_provider="anthropic",    # "anthropic" | "openai"
     model=None,                  # specific model or provider default
@@ -29,9 +33,9 @@ result = get_plotlines(
 Pass the result of the previous season to maintain character and storyline ID continuity:
 
 ```python
-r1 = get_plotlines("Breaking Bad", 1, episodes_s01)
-r2 = get_plotlines("Breaking Bad", 2, episodes_s02, prior=r1)
-r3 = get_plotlines("Breaking Bad", 3, episodes_s03, prior=r2)
+r1 = get_plotlines("Breaking Bad", 1, {"S01E01": "...", "S01E02": "...", ...})
+r2 = get_plotlines("Breaking Bad", 2, {"S02E01": "...", "S02E02": "...", ...}, prior=r1)
+r3 = get_plotlines("Breaking Bad", 3, {"S03E01": "...", "S03E02": "...", ...}, prior=r2)
 ```
 
 When `prior` is provided:
@@ -119,7 +123,8 @@ In Python:
 
 ```python
 result = get_plotlines(
-    show="House", season=1, episodes=episodes,
+    show="House", season=1,
+    episodes={"S01E01": "synopsis...", "S01E02": "synopsis..."},
     llm_provider="ollama",           # or "deepseek", "groq", etc.
     model="qwen2.5:14b",             # optional, provider has defaults
     base_url="http://localhost:11434/v1",  # optional for known providers

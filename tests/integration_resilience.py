@@ -22,21 +22,25 @@ from plotter.models import CastMember, EpisodeBreakdown, Plotline, SeriesContext
 
 
 # 3 minimal synopses — enough to exercise the pipeline cheaply
-EPISODES = [
-    "Detective Lena arrives in the small town of Millbrook to investigate the disappearance "
-    "of teenager Amy Chen. She meets Sheriff Dan, who is skeptical of outside help. "
-    "Lena discovers Amy's diary hidden under her mattress, with entries about a secret "
-    "meeting place in the woods.",
-
-    "Lena follows the diary clues to an abandoned cabin in the woods, where she finds "
-    "Amy's phone. Sheriff Dan reveals his son Jake was dating Amy. Meanwhile, Amy's mother "
-    "Carol holds a vigil in town. Lena finds a threatening text from an unknown number on "
-    "Amy's phone.",
-
-    "The threatening texts are traced to local businessman Mr. Pratt, who was trying to buy "
-    "the Chen family land. Amy is found alive, hiding at a friend's house after Pratt "
-    "threatened her family. Sheriff Dan arrests Pratt. Lena says goodbye to the town.",
-]
+EPISODES = {
+    "S01E01": (
+        "Detective Lena arrives in the small town of Millbrook to investigate the disappearance "
+        "of teenager Amy Chen. She meets Sheriff Dan, who is skeptical of outside help. "
+        "Lena discovers Amy's diary hidden under her mattress, with entries about a secret "
+        "meeting place in the woods."
+    ),
+    "S01E02": (
+        "Lena follows the diary clues to an abandoned cabin in the woods, where she finds "
+        "Amy's phone. Sheriff Dan reveals his son Jake was dating Amy. Meanwhile, Amy's mother "
+        "Carol holds a vigil in town. Lena finds a threatening text from an unknown number on "
+        "Amy's phone."
+    ),
+    "S01E03": (
+        "The threatening texts are traced to local businessman Mr. Pratt, who was trying to buy "
+        "the Chen family land. Amy is found alive, hiding at a friend's house after Pratt "
+        "threatened her family. Sheriff Dan arrests Pratt. Lena says goodbye to the town."
+    ),
+}
 
 
 class RecordingCallback(PipelineCallback):
