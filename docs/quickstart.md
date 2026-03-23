@@ -3,13 +3,13 @@
 ## Install
 
 ```bash
-pip install plotter
+pip install tvplotlines
 ```
 
 ## Basic usage
 
 ```python
-from plotter import get_plotlines
+from tvplotlines import get_plotlines
 
 result = get_plotlines(
     show="Breaking Bad",

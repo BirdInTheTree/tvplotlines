@@ -10,9 +10,9 @@ import json
 import logging
 from collections import Counter
 
-from plotter.llm import LLMConfig, call_llm, call_llm_parallel
-from plotter.models import CastMember, Plotline, SeriesContext
-from plotter.prompts import load_prompt
+from tvplotlines.llm import LLMConfig, call_llm, call_llm_parallel
+from tvplotlines.models import CastMember, Plotline, SeriesContext
+from tvplotlines.prompts import load_prompt
 
 logger = logging.getLogger(__name__)
 

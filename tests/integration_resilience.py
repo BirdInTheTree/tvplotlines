@@ -17,8 +17,8 @@ import sys
 from dotenv import load_dotenv
 load_dotenv()
 
-from plotter import get_plotlines, PipelineCallback
-from plotter.models import CastMember, EpisodeBreakdown, Plotline, SeriesContext, Verdict
+from tvplotlines import get_plotlines, PipelineCallback
+from tvplotlines.models import CastMember, EpisodeBreakdown, Plotline, SeriesContext, Verdict
 
 
 # 3 minimal synopses — enough to exercise the pipeline cheaply

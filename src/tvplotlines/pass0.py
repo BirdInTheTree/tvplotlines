@@ -8,9 +8,9 @@ from __future__ import annotations
 
 import json
 
-from plotter.llm import LLMConfig, call_llm
-from plotter.models import SeriesContext
-from plotter.prompts import load_prompt
+from tvplotlines.llm import LLMConfig, call_llm
+from tvplotlines.models import SeriesContext
+from tvplotlines.prompts import load_prompt
 
 _VALID_FRANCHISE_TYPES = {"procedural", "serial", "hybrid", "ensemble"}
 _VALID_FORMATS = {"ongoing", "limited", "anthology"}

@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import pytest
 
-from plotter.models import (
+from tvplotlines.models import (
     CastMember,
     EpisodeBreakdown,
     Event,
     Plotline,
     Verdict,
 )
-from plotter.verdicts import apply_verdicts
+from tvplotlines.verdicts import apply_verdicts
 
 
 def _make_plotlines() -> list[Plotline]:

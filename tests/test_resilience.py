@@ -7,8 +7,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from plotter.callbacks import PipelineCallback
-from plotter.llm import (
+from tvplotlines.callbacks import PipelineCallback
+from tvplotlines.llm import (
     LLMConfig,
     _araw_call_with_retry,
     _MAX_NETWORK_RETRIES,
@@ -48,8 +48,8 @@ class TestNetworkRetry:
                 raise anthropic.APIConnectionError(request=MagicMock())
             return '{"result": "ok"}'
 
-        with patch("plotter.llm._araw_call", side_effect=flaky_raw_call), \
-             patch("plotter.llm.asyncio.sleep", new_callable=AsyncMock):
+        with patch("tvplotlines.llm._araw_call", side_effect=flaky_raw_call), \
+             patch("tvplotlines.llm.asyncio.sleep", new_callable=AsyncMock):
             result = await _araw_call_with_retry("sys", [{}], config, False)
 
         assert result == '{"result": "ok"}'
@@ -63,8 +63,8 @@ class TestNetworkRetry:
         async def always_fail(*args, **kwargs):
             raise anthropic.APIConnectionError(request=MagicMock())
 
-        with patch("plotter.llm._araw_call", side_effect=always_fail), \
-             patch("plotter.llm.asyncio.sleep", new_callable=AsyncMock):
+        with patch("tvplotlines.llm._araw_call", side_effect=always_fail), \
+             patch("tvplotlines.llm.asyncio.sleep", new_callable=AsyncMock):
             with pytest.raises(anthropic.APIConnectionError):
                 await _araw_call_with_retry("sys", [{}], config, False)
 
@@ -82,8 +82,8 @@ class TestNetworkRetry:
             return '{"ok": true}'
         fail_twice.count = 0
 
-        with patch("plotter.llm._araw_call", side_effect=fail_twice), \
-             patch("plotter.llm.asyncio.sleep", sleep_mock):
+        with patch("tvplotlines.llm._araw_call", side_effect=fail_twice), \
+             patch("tvplotlines.llm.asyncio.sleep", sleep_mock):
             await _araw_call_with_retry("sys", [{}], config, False)
 
         # Two retries: delays should be 2^1=2 and 2^2=4
@@ -110,7 +110,7 @@ class TestPartialParallel:
                 raise ValueError("transient")
             return {"msg": msg}
 
-        with patch("plotter.llm.acall_llm", side_effect=mock_acall_llm):
+        with patch("tvplotlines.llm.acall_llm", side_effect=mock_acall_llm):
             results = await acall_llm_parallel(
                 "sys", ["ok1", "fail_first", "ok2"], config,
             )
@@ -161,8 +161,8 @@ class TestResumeValidation:
     """get_plotlines validates resume inputs before running."""
 
     def test_cast_without_plotlines_raises(self):
-        from plotter.pipeline import get_plotlines
-        from plotter.models import CastMember
+        from tvplotlines.pipeline import get_plotlines
+        from tvplotlines.models import CastMember
 
         with pytest.raises(ValueError, match="cast and plotlines must be provided together"):
             get_plotlines(
@@ -172,8 +172,8 @@ class TestResumeValidation:
             )
 
     def test_plotlines_without_cast_raises(self):
-        from plotter.pipeline import get_plotlines
-        from plotter.models import Plotline
+        from tvplotlines.pipeline import get_plotlines
+        from tvplotlines.models import Plotline
 
         with pytest.raises(ValueError, match="cast and plotlines must be provided together"):
             get_plotlines(
@@ -187,8 +187,8 @@ class TestResumeValidation:
             )
 
     def test_breakdowns_length_mismatch_raises(self):
-        from plotter.pipeline import get_plotlines
-        from plotter.models import EpisodeBreakdown
+        from tvplotlines.pipeline import get_plotlines
+        from tvplotlines.models import EpisodeBreakdown
 
         with pytest.raises(ValueError, match="breakdowns length"):
             get_plotlines(
@@ -206,7 +206,7 @@ class TestBatchTimeout:
 
     @pytest.mark.asyncio
     async def test_batch_polling_timeout(self, config):
-        import plotter.llm as llm_module
+        import tvplotlines.llm as llm_module
 
         # Temporarily set a very short timeout for testing
         original = llm_module._BATCH_TIMEOUT
@@ -223,8 +223,8 @@ class TestBatchTimeout:
             mock_client.messages.batches.retrieve.return_value = mock_batch
 
             with patch("anthropic.AsyncAnthropic", return_value=mock_client), \
-                 patch("plotter.llm.asyncio.sleep", new_callable=AsyncMock):
-                from plotter.llm import acall_llm_batch
+                 patch("tvplotlines.llm.asyncio.sleep", new_callable=AsyncMock):
+                from tvplotlines.llm import acall_llm_batch
 
                 with pytest.raises(TimeoutError, match="did not complete"):
                     await acall_llm_batch(
@@ -275,7 +275,7 @@ class TestBatchCallback:
         mock_client.messages.batches.results.return_value = AsyncResultStream([mock_result])
 
         with patch("anthropic.AsyncAnthropic", return_value=mock_client):
-            from plotter.llm import acall_llm_batch
+            from tvplotlines.llm import acall_llm_batch
 
             await acall_llm_batch(
                 "sys", ["msg"], config,

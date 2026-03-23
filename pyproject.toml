@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "plotter"
+name = "tvplotlines"
 version = "0.1.0"
 description = "Extract storylines from TV series synopses using LLM"
 readme = "README.md"
@@ -38,8 +38,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/BirdInTheTree/plotter"
-Documentation = "https://github.com/BirdInTheTree/plotter/tree/main/docs"
+Repository = "https://github.com/BirdInTheTree/tvplotlines"
+Documentation = "https://github.com/BirdInTheTree/tvplotlines/tree/main/docs"
 
 [project.optional-dependencies]
 dotenv = ["python-dotenv>=1.0"]
@@ -50,10 +50,10 @@ dev = [
 ]
 
 [project.scripts]
-plotter = "plotter.cli:main"
+tvplotlines = "tvplotlines.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/plotter"]
+packages = ["src/tvplotlines"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,6 +1,6 @@
 """Pass 3: Structural review of full pipeline results.
 
-Input: complete PlotterResult (lines + events + span + weight).
+Input: complete TVPlotlinesResult (lines + events + span + weight).
 Output: list of Verdict objects to apply.
 """
 
@@ -8,16 +8,16 @@ from __future__ import annotations
 
 import json
 
-from plotter.llm import LLMConfig, call_llm
-from plotter.models import (
+from tvplotlines.llm import LLMConfig, call_llm
+from tvplotlines.models import (
     CastMember,
     EpisodeBreakdown,
     Plotline,
     SeriesContext,
     Verdict,
 )
-from plotter.postprocess import compute_weight
-from plotter.prompts import load_prompt
+from tvplotlines.postprocess import compute_weight
+from tvplotlines.prompts import load_prompt
 
 _VALID_ACTIONS = {"MERGE", "REASSIGN", "PROMOTE", "DEMOTE", "CREATE", "DROP"}
 _VALID_RANKS = {"A", "B", "C", "runner"}

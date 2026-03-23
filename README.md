@@ -1,8 +1,8 @@
-# Plotter
+# tvplotlines
 
-[![PyPI](https://img.shields.io/pypi/v/plotter)](https://pypi.org/project/plotter/)
-[![License](https://img.shields.io/github/license/BirdInTheTree/plotter)](LICENSE)
-[![Python](https://img.shields.io/pypi/pyversions/plotter)](https://pypi.org/project/plotter/)
+[![PyPI](https://img.shields.io/pypi/v/tvplotlines)](https://pypi.org/project/tvplotlines/)
+[![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines)](LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/tvplotlines)](https://pypi.org/project/tvplotlines/)
 
 LLM-powered narrative breakdown for TV series. Feed it episode synopses — get plotlines with Story DNA (driver, goal, obstacle, stakes), A/B/C ranking, and per-episode event tracking. Built for development executives and writers who need to analyze shows fast.
 
@@ -56,7 +56,7 @@ Breaking Bad, Season 1 (truncated):
 ## Installation
 
 ```bash
-pip install plotter
+pip install tvplotlines
 ```
 
 Requires an API key for at least one LLM provider:
@@ -67,7 +67,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 export OPENAI_API_KEY=sk-...
 ```
 
-Or put them in a `.env` file (requires `pip install plotter[dotenv]`):
+Or put them in a `.env` file (requires `pip install tvplotlines[dotenv]`):
 
 ```
 ANTHROPIC_API_KEY=sk-ant-...
@@ -78,13 +78,13 @@ ANTHROPIC_API_KEY=sk-ant-...
 ### CLI
 
 ```bash
-plotter run synopses/*.txt --show "Breaking Bad" --season 1 -o bb_s01.json
+tvplotlines run synopses/*.txt --show "Breaking Bad" --season 1 -o bb_s01.json
 ```
 
 ### Python
 
 ```python
-from plotter import get_plotlines
+from tvplotlines import get_plotlines
 
 episodes = [
     "In the pilot, Walter White is diagnosed with cancer...",
@@ -127,26 +127,26 @@ Pass 2 runs in parallel for all episodes. Pass 3 reviews the full picture that n
 
 ## LLM providers
 
-Plotter works with Anthropic (default) and any OpenAI-compatible API:
+tvplotlines works with Anthropic (default) and any OpenAI-compatible API:
 
 ```bash
-plotter run *.txt --show "House"                    # Anthropic (default)
-plotter run *.txt --show "House" --provider openai   # OpenAI
-plotter run *.txt --show "House" --provider ollama   # Ollama (local, free)
+tvplotlines run *.txt --show "House"                    # Anthropic (default)
+tvplotlines run *.txt --show "House" --provider openai   # OpenAI
+tvplotlines run *.txt --show "House" --provider ollama   # Ollama (local, free)
 ```
 
 See [docs/api.md](docs/api.md) for full API reference, provider options, and pass modes.
 
 ## Citation
 
-If you use Plotter in your research, please cite:
+If you use tvplotlines in your research, please cite:
 
 ```bibtex
-@software{plotter2026,
+@software{tvplotlines2026,
   author = {Vashko, N.},
-  title = {Plotter: Automated Narrative Breakdown for TV Series},
+  title = {tvplotlines: Automated Narrative Breakdown for TV Series},
   year = {2026},
-  url = {https://github.com/BirdInTheTree/plotter}
+  url = {https://github.com/BirdInTheTree/tvplotlines}
 }
 ```
 

@@ -3,8 +3,8 @@
 import json
 import logging
 
-from plotter.models import CastMember, Plotline, SeriesContext
-from plotter.pass1 import _build_user_message, _check_prior_overlap
+from tvplotlines.models import CastMember, Plotline, SeriesContext
+from tvplotlines.pass1 import _build_user_message, _check_prior_overlap
 
 
 def _make_context():

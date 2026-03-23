@@ -21,18 +21,18 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-# Load .env and add plotter src to path
+# Load .env and add tvplotlines src to path
 _project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_project_root / "src"))
 
 import dotenv
 dotenv.load_dotenv(_project_root / ".env")
 
-from plotter.llm import LLMConfig, UsageStats, usage
-from plotter.metrics import compute_consistency_ari, compute_coverage
-from plotter.models import PlotterResult
-from plotter.pass1_merged import extract_storylines_merged
-from plotter.pipeline import get_plotlines
+from tvplotlines.llm import LLMConfig, UsageStats, usage
+from tvplotlines.metrics import compute_consistency_ari, compute_coverage
+from tvplotlines.models import TVPlotlinesResult
+from tvplotlines.pass1_merged import extract_storylines_merged
+from tvplotlines.pipeline import get_plotlines
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -58,7 +58,7 @@ class RunResult:
     seconds: float
     franchise_type: str
     storyline_count: int
-    result: PlotterResult
+    result: TVPlotlinesResult
 
 
 def load_synopses(code: str, info: dict) -> list[str]:

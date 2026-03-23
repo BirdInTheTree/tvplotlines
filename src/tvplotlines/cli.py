@@ -1,8 +1,8 @@
-"""CLI for plotter: extract storylines from TV series synopses.
+"""CLI for tvplotlines: extract storylines from TV series synopses.
 
 Usage:
-    plotter run synopses/SP_S01E*.txt --show "Слово пацана" --season 1
-    plotter run episodes/ --show "House" --season 1 --lang en --output house_s01.json
+    tvplotlines run synopses/SP_S01E*.txt --show "Слово пацана" --season 1
+    tvplotlines run episodes/ --show "House" --season 1 --lang en --output house_s01.json
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ def _run(args: argparse.Namespace) -> None:
     except ImportError:
         pass
 
-    from plotter import get_plotlines
+    from tvplotlines import get_plotlines
 
     # Read synopsis files and extract episode IDs from filenames
     paths = sorted(args.files, key=lambda p: p.name)
@@ -85,12 +85,12 @@ def _run(args: argparse.Namespace) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        prog="plotter",
+        prog="tvplotlines",
         description="Extract storylines from TV series synopses using LLM.",
     )
     sub = parser.add_subparsers(dest="command")
 
-    # plotter run
+    # tvplotlines run
     run_parser = sub.add_parser("run", help="Run pipeline on synopsis files")
     run_parser.add_argument(
         "files", nargs="+", type=Path,

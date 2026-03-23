@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from plotter.models import EpisodeBreakdown, Plotline, Verdict
+from tvplotlines.models import EpisodeBreakdown, Plotline, Verdict
 
 logger = logging.getLogger(__name__)
 

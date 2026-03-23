@@ -1,19 +1,19 @@
-"""Plotter — extract storylines from TV series synopses using LLM."""
+"""tvplotlines — extract storylines from TV series synopses using LLM."""
 
-from plotter.callbacks import PipelineCallback
-from plotter.models import (
+from tvplotlines.callbacks import PipelineCallback
+from tvplotlines.models import (
     CastMember,
     EpisodeBreakdown,
     Event,
     Interaction,
     Patch,
     Plotline,
-    PlotterResult,
+    TVPlotlinesResult,
     SeriesContext,
     Verdict,
 )
-from plotter.llm import UsageStats, usage
-from plotter.pipeline import get_plotlines
+from tvplotlines.llm import UsageStats, usage
+from tvplotlines.pipeline import get_plotlines
 
 __all__ = [
     "get_plotlines",
@@ -24,7 +24,7 @@ __all__ = [
     "Interaction",
     "Patch",
     "Plotline",
-    "PlotterResult",
+    "TVPlotlinesResult",
     "SeriesContext",
     "UsageStats",
     "usage",

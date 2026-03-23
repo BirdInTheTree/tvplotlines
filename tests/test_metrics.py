@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from plotter.metrics import compute_coverage, compute_consistency_ari, compute_score
-from plotter.models import EpisodeBreakdown, Event
+from tvplotlines.metrics import compute_coverage, compute_consistency_ari, compute_score
+from tvplotlines.models import EpisodeBreakdown, Event
 
 
 def _ep(events_data: list[tuple[str, str | None]]) -> EpisodeBreakdown:

@@ -1,7 +1,7 @@
 """Unit tests for post-processing (no LLM calls)."""
 
-from plotter.models import EpisodeBreakdown, Event, Plotline
-from plotter.postprocess import aggregate_patches, compute_span, compute_weight, validate_ranks
+from tvplotlines.models import EpisodeBreakdown, Event, Plotline
+from tvplotlines.postprocess import aggregate_patches, compute_span, compute_weight, validate_ranks
 
 
 def _make_plotline(id: str) -> Plotline:
@@ -137,7 +137,7 @@ class TestValidateRanks:
 
 class TestAggregatePatches:
     def test_collects_from_all_episodes(self):
-        from plotter.models import Patch
+        from tvplotlines.models import Patch
         ep1 = EpisodeBreakdown(
             episode="S01E01", theme="t",
             patches=[Patch(action="ADD_LINE", target="x", reason="r")],

@@ -5,7 +5,7 @@
 Main entry point. Extracts plotlines from a season of TV synopses.
 
 ```python
-from plotter import get_plotlines
+from tvplotlines import get_plotlines
 
 result = get_plotlines(
     show="House",
@@ -15,7 +15,7 @@ result = get_plotlines(
         "S01E02": "A teenage swimmer collapses...",
         # ...
     },
-    prior=None,                  # PlotterResult from previous season
+    prior=None,                  # TVPlotlinesResult from previous season
     llm_provider="anthropic",    # "anthropic" | "openai"
     model=None,                  # specific model or provider default
     pass2_mode="parallel",       # "parallel" | "batch" | "sequential"
@@ -43,7 +43,7 @@ When `prior` is provided:
 - Pass 1 receives prior cast and plotlines, reusing IDs for continuing characters and storylines
 - Not supported for anthology format (raises `ValueError`)
 
-## PlotterResult
+## TVPlotlinesResult
 
 Returned by `get_plotlines()`.
 
@@ -94,27 +94,27 @@ A single narrative beat within an episode:
 
 ## LLM providers
 
-Plotter works with Anthropic (default) and any OpenAI-compatible API.
+tvplotlines works with Anthropic (default) and any OpenAI-compatible API.
 
 ```bash
 # Anthropic (default)
 export ANTHROPIC_API_KEY=sk-ant-...
-plotter run *.txt --show "House"
+tvplotlines run *.txt --show "House"
 
 # OpenAI
 export OPENAI_API_KEY=sk-...
-plotter run *.txt --show "House" --provider openai
+tvplotlines run *.txt --show "House" --provider openai
 
 # Ollama (local, free)
 ollama pull qwen2.5:14b
-plotter run *.txt --show "House" --provider ollama
+tvplotlines run *.txt --show "House" --provider ollama
 
 # DeepSeek
 export DEEPSEEK_API_KEY=sk-...
-plotter run *.txt --show "House" --provider deepseek
+tvplotlines run *.txt --show "House" --provider deepseek
 
 # Any OpenAI-compatible endpoint
-plotter run *.txt --show "House" --provider openai \
+tvplotlines run *.txt --show "House" --provider openai \
     --base-url https://api.together.xyz/v1 \
     --model meta-llama/Llama-3-70b
 ```
@@ -133,7 +133,7 @@ result = get_plotlines(
 
 ## Franchise types
 
-Plotter classifies shows into four structural types that determine how plotlines are extracted:
+tvplotlines classifies shows into four structural types that determine how plotlines are extracted:
 
 - **Procedural** — self-contained episode stories (House, CSI)
 - **Serial** — continuous arcs across episodes (Breaking Bad, The Wire)

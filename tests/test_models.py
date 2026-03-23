@@ -1,6 +1,6 @@
 """Smoke tests for data models."""
 
-from plotter.models import CastMember, Plotline, PlotterResult, SeriesContext
+from tvplotlines.models import CastMember, Plotline, TVPlotlinesResult, SeriesContext
 
 
 def test_plotline_creation():
@@ -20,13 +20,13 @@ def test_plotline_creation():
     assert line.span == []
 
 
-def test_plotter_result_creation():
+def test_tvplotlines_result_creation():
     ctx = SeriesContext(
         franchise_type="serial",
         story_engine="test engine",
         genre="drama",
     )
-    result = PlotterResult(context=ctx)
+    result = TVPlotlinesResult(context=ctx)
     assert result.cast == []
     assert result.plotlines == []
     assert result.episodes == []

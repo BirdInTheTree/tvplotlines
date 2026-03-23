@@ -11,11 +11,11 @@ import json
 import logging
 from collections import Counter
 
-from plotter.llm import LLMConfig, call_llm_parallel
-from plotter.models import CastMember, Plotline, SeriesContext
-from plotter.pass0 import _VALID_FRANCHISE_TYPES, _VALID_FORMATS
-from plotter.pass1 import _parse_cast, _parse_storylines, _validate, _VOTING_ROUNDS
-from plotter.prompts import load_prompt
+from tvplotlines.llm import LLMConfig, call_llm_parallel
+from tvplotlines.models import CastMember, Plotline, SeriesContext
+from tvplotlines.pass0 import _VALID_FRANCHISE_TYPES, _VALID_FORMATS
+from tvplotlines.pass1 import _parse_cast, _parse_storylines, _validate, _VOTING_ROUNDS
+from tvplotlines.prompts import load_prompt
 
 logger = logging.getLogger(__name__)
 

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from plotter.models import EpisodeBreakdown, Patch, Plotline
+from tvplotlines.models import EpisodeBreakdown, Patch, Plotline
 
 
 def compute_span(

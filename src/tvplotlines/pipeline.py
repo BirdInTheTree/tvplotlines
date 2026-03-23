@@ -5,15 +5,15 @@ from __future__ import annotations
 import logging
 import re
 
-from plotter.callbacks import PipelineCallback
-from plotter.llm import LLMConfig, UsageStats, usage
-from plotter.models import CastMember, EpisodeBreakdown, Plotline, PlotterResult, SeriesContext
-from plotter.pass0 import detect_context
-from plotter.pass1 import extract_storylines
-from plotter.pass2 import assign_events, assign_events_batch, assign_events_parallel
-from plotter.pass3 import review_storylines
-from plotter.postprocess import assign_orphan_events, compute_span, validate_ranks
-from plotter.verdicts import apply_verdicts
+from tvplotlines.callbacks import PipelineCallback
+from tvplotlines.llm import LLMConfig, UsageStats, usage
+from tvplotlines.models import CastMember, EpisodeBreakdown, Plotline, TVPlotlinesResult, SeriesContext
+from tvplotlines.pass0 import detect_context
+from tvplotlines.pass1 import extract_storylines
+from tvplotlines.pass2 import assign_events, assign_events_batch, assign_events_parallel
+from tvplotlines.pass3 import review_storylines
+from tvplotlines.postprocess import assign_orphan_events, compute_span, validate_ranks
+from tvplotlines.verdicts import apply_verdicts
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ def get_plotlines(
     season: int,
     episodes: dict[str, str],
     *,
-    prior: PlotterResult | None = None,
+    prior: TVPlotlinesResult | None = None,
     context: SeriesContext | None = None,
     cast: list[CastMember] | None = None,
     plotlines: list[Plotline] | None = None,
@@ -48,7 +48,7 @@ def get_plotlines(
     pass2_mode: str = "parallel",
     batch_id: str | None = None,
     callback: PipelineCallback | None = None,
-) -> PlotterResult:
+) -> TVPlotlinesResult:
     """Extract storylines from TV series synopses.
 
     Args:
@@ -57,7 +57,7 @@ def get_plotlines(
         episodes: Dict mapping episode IDs (e.g. "S01E01") to synopsis texts.
             Keys must match S{dd}E{dd} format and the season number must match
             the ``season`` parameter.
-        prior: PlotterResult from the previous season. When provided and
+        prior: TVPlotlinesResult from the previous season. When provided and
             context is None, reuses prior.context to skip Pass 0. Also
             passes prior cast and plotlines to Pass 1 for continuity.
             Incompatible with anthology format (anthology seasons are
@@ -77,7 +77,7 @@ def get_plotlines(
         callback: PipelineCallback subclass for progress notifications.
 
     Returns:
-        PlotterResult with context, cast, plotlines, and episode breakdowns.
+        TVPlotlinesResult with context, cast, plotlines, and episode breakdowns.
     """
     config = LLMConfig(provider=llm_provider, model=model, base_url=base_url, lang=lang)
 
@@ -189,7 +189,7 @@ def get_plotlines(
             compute_span(plotlines, breakdowns)
             validate_ranks(plotlines, breakdowns)
 
-    result = PlotterResult(
+    result = TVPlotlinesResult(
         context=context,
         cast=cast,
         plotlines=plotlines,

@@ -1,13 +1,13 @@
-"""Example: run plotter pipeline on synopsis files and save result.
+"""Example: run tvplotlines pipeline on synopsis files and save result.
 
 Equivalent CLI command:
-    plotter run synopses/SP_S01E*.txt --show "Слово пацана" --season 1 --lang ru -o result.json
+    tvplotlines run synopses/SP_S01E*.txt --show "Слово пацана" --season 1 --lang ru -o result.json
 """
 
 import json
 from pathlib import Path
 
-from plotter import get_plotlines
+from tvplotlines import get_plotlines
 
 SYNOPSES_DIR = Path("synopses")
 

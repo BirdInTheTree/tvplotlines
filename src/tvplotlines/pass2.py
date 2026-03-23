@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import json
 
-from plotter.llm import LLMConfig, call_llm, call_llm_batch, call_llm_parallel
-from plotter.models import (
+from tvplotlines.llm import LLMConfig, call_llm, call_llm_batch, call_llm_parallel
+from tvplotlines.models import (
     CastMember,
     EpisodeBreakdown,
     Event,
@@ -18,7 +18,7 @@ from plotter.models import (
     Plotline,
     SeriesContext,
 )
-from plotter.prompts import load_prompt
+from tvplotlines.prompts import load_prompt
 
 _VALID_FUNCTIONS = {
     "setup", "escalation", "turning_point", "climax",

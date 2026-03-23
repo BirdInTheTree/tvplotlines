@@ -1,4 +1,4 @@
-# Plotter
+# tvplotlines
 
 Automatic storyline extraction from TV series synopses.
 

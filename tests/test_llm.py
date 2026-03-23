@@ -2,7 +2,7 @@
 
 import pytest
 
-from plotter.llm import _extract_json
+from tvplotlines.llm import _extract_json
 
 
 class TestExtractJson:

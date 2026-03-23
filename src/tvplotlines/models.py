@@ -1,4 +1,4 @@
-"""Data models for Plotter pipeline.
+"""Data models for tvplotlines pipeline.
 
 These dataclasses mirror the JSON output of Pass 0, Pass 1, and Pass 2 prompts.
 Prompts are the source of truth — if they change, update models to match.
@@ -98,8 +98,8 @@ class Verdict:
 
 
 @dataclass
-class PlotterResult:
-    """Complete output of the Plotter pipeline."""
+class TVPlotlinesResult:
+    """Complete output of the tvplotlines pipeline."""
 
     context: SeriesContext
     cast: list[CastMember] = field(default_factory=list)
