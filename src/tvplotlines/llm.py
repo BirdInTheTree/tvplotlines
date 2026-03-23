@@ -95,7 +95,7 @@ class LLMConfig:
 
     provider: str = "anthropic"  # "anthropic" | "openai" | any OpenAI-compatible
     model: str | None = None  # None = provider default
-    lang: str = "ru"  # "ru" | "en" — prompt language
+    lang: str = "en"  # prompt language (only "en" currently supported)
     base_url: str | None = None  # Override API endpoint (for DeepSeek, Ollama, etc.)
     api_key: str | None = None  # Override API key (None = use env var)
     timeout: float = 120.0  # Request timeout in seconds
