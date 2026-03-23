@@ -1,6 +1,6 @@
-"""Pass 0: Detect series context (franchise type + story engine).
+"""Pass 0: Detect series context (format + story engine).
 
-Input: show name, season, first 2-3 synopses, optional description.
+Input: show name, season, first 3 synopses.
 Output: SeriesContext.
 """
 
@@ -12,8 +12,7 @@ from tvplotlines.llm import LLMConfig, call_llm
 from tvplotlines.models import SeriesContext
 from tvplotlines.prompts import load_prompt
 
-_VALID_FRANCHISE_TYPES = {"procedural", "serial", "hybrid", "ensemble"}
-_VALID_FORMATS = {"ongoing", "limited", "anthology"}
+_VALID_FORMATS = {"procedural", "serial", "hybrid", "limited"}
 
 
 def detect_context(
@@ -21,7 +20,6 @@ def detect_context(
     season: int,
     episodes: list[tuple[str, str]],
     *,
-    description: str = "",
     config: LLMConfig | None = None,
 ) -> SeriesContext:
     """Auto-detect series context from first synopses.
@@ -30,11 +28,10 @@ def detect_context(
         show: Series title.
         season: Season number.
         episodes: List of (episode_id, synopsis_text) pairs (first 3 used).
-        description: Show description / logline (optional).
         config: LLM settings.
 
     Returns:
-        SeriesContext with franchise_type, story_engine, genre, format.
+        SeriesContext with format, is_ensemble, is_anthology, story_engine, genre.
     """
     if config is None:
         config = LLMConfig()
@@ -44,7 +41,6 @@ def detect_context(
         {
             "show": show,
             "season": season,
-            "description": description,
             "sample_synopses": [
                 {"episode": eid, "text": text}
                 for eid, text in sample
@@ -57,26 +53,27 @@ def detect_context(
     data = call_llm(system_prompt, user_message, config, validator=_validate)
 
     return SeriesContext(
-        franchise_type=data["franchise_type"],
+        format=data["format"],
         story_engine=data["story_engine"],
         genre=data.get("genre", ""),
-        format=data.get("format"),
+        is_ensemble=bool(data.get("is_ensemble", False)),
+        is_anthology=bool(data.get("is_anthology", False)),
     )
 
 
 def _validate(data: dict) -> None:
     """Validate Pass 0 output. Raises ValueError on problems."""
-    ft = data.get("franchise_type")
-    if ft not in _VALID_FRANCHISE_TYPES:
+    fmt = data.get("format")
+    if fmt not in _VALID_FORMATS:
         raise ValueError(
-            f"Invalid franchise_type: {ft!r}. Expected one of {_VALID_FRANCHISE_TYPES}"
+            f"Invalid format: {fmt!r}. Expected one of {_VALID_FORMATS}"
         )
 
     if not data.get("story_engine"):
         raise ValueError("story_engine is empty")
 
-    fmt = data.get("format")
-    if fmt is not None and fmt not in _VALID_FORMATS:
-        raise ValueError(
-            f"Invalid format: {fmt!r}. Expected one of {_VALID_FORMATS} or null"
-        )
+    if not isinstance(data.get("is_ensemble"), bool):
+        raise ValueError("is_ensemble must be a boolean")
+
+    if not isinstance(data.get("is_anthology"), bool):
+        raise ValueError("is_anthology must be a boolean")

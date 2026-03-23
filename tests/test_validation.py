@@ -20,34 +20,48 @@ from tvplotlines.pass2 import _validate as validate_pass2
 class TestPass0Validation:
     def test_valid(self):
         validate_pass0({
-            "franchise_type": "serial",
+            "format": "serial",
             "story_engine": "test engine",
             "genre": "drama",
-            "format": "ongoing",
+            "is_ensemble": False,
+            "is_anthology": False,
         })
-
-    def test_invalid_franchise_type(self):
-        with pytest.raises(ValueError, match="franchise_type"):
-            validate_pass0({"franchise_type": "soap", "story_engine": "x"})
-
-    def test_empty_story_engine(self):
-        with pytest.raises(ValueError, match="story_engine"):
-            validate_pass0({"franchise_type": "serial", "story_engine": ""})
 
     def test_invalid_format(self):
         with pytest.raises(ValueError, match="format"):
             validate_pass0({
-                "franchise_type": "serial",
-                "story_engine": "x",
                 "format": "miniseries",
+                "story_engine": "x",
+                "is_ensemble": False,
+                "is_anthology": False,
             })
 
-    def test_null_format_ok(self):
-        validate_pass0({
-            "franchise_type": "serial",
-            "story_engine": "x",
-            "format": None,
-        })
+    def test_empty_story_engine(self):
+        with pytest.raises(ValueError, match="story_engine"):
+            validate_pass0({
+                "format": "serial",
+                "story_engine": "",
+                "is_ensemble": False,
+                "is_anthology": False,
+            })
+
+    def test_is_ensemble_must_be_bool(self):
+        with pytest.raises(ValueError, match="is_ensemble"):
+            validate_pass0({
+                "format": "serial",
+                "story_engine": "x",
+                "is_ensemble": "yes",
+                "is_anthology": False,
+            })
+
+    def test_is_anthology_must_be_bool(self):
+        with pytest.raises(ValueError, match="is_anthology"):
+            validate_pass0({
+                "format": "serial",
+                "story_engine": "x",
+                "is_ensemble": False,
+                "is_anthology": "yes",
+            })
 
 
 # --- Pass 1 ---
@@ -59,15 +73,15 @@ def _make_cast():
     ]
 
 
-def _make_storylines():
+def _make_plotlines():
     return [
         Plotline(
-            id="empire", name="Empire", driver="walt",
+            id="empire", name="Empire", hero="walt",
             goal="build empire", obstacle="morality", stakes="death",
             type="serialized", rank="A", nature="plot-led", confidence="solid",
         ),
         Plotline(
-            id="partnership", name="Partnership", driver="jesse",
+            id="partnership", name="Partnership", hero="jesse",
             goal="survive", obstacle="fear", stakes="prison",
             type="serialized", rank="B", nature="character-led", confidence="solid",
         ),
@@ -76,51 +90,55 @@ def _make_storylines():
 
 class TestPass1Validation:
     def test_valid(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
-        validate_pass1(_make_storylines(), _make_cast(), ctx)
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
+        validate_pass1(_make_plotlines(), _make_cast(), ctx)
 
-    def test_no_storylines(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
-        with pytest.raises(ValueError, match="No storylines"):
+    def test_no_plotlines(self):
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
+        with pytest.raises(ValueError, match="No plotlines"):
             validate_pass1([], _make_cast(), ctx)
 
     def test_no_cast(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
         with pytest.raises(ValueError, match="No cast"):
-            validate_pass1(_make_storylines(), [], ctx)
+            validate_pass1(_make_plotlines(), [], ctx)
 
     def test_invalid_type(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
-        lines = _make_storylines()
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
+        lines = _make_plotlines()
         lines[0].type = "anthology"
         with pytest.raises(ValueError, match="invalid type"):
             validate_pass1(lines, _make_cast(), ctx)
 
-    def test_procedural_needs_episodic(self):
-        ctx = SeriesContext(franchise_type="procedural", story_engine="x", genre="drama")
-        with pytest.raises(ValueError, match="episodic"):
-            validate_pass1(_make_storylines(), _make_cast(), ctx)
+    def test_procedural_needs_case_of_the_week(self):
+        ctx = SeriesContext(format="procedural", story_engine="x", genre="drama")
+        with pytest.raises(ValueError, match="case_of_the_week"):
+            validate_pass1(_make_plotlines(), _make_cast(), ctx)
 
     def test_serial_rejects_multiple_a_rank(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
-        lines = _make_storylines()
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
+        lines = _make_plotlines()
         lines[1].rank = "A"  # now both are A
         with pytest.raises(ValueError, match="1 A-rank"):
             validate_pass1(lines, _make_cast(), ctx)
 
     def test_serial_accepts_one_a_rank(self):
-        ctx = SeriesContext(franchise_type="serial", story_engine="x", genre="drama")
-        validate_pass1(_make_storylines(), _make_cast(), ctx)  # 1 A + 1 B
+        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
+        validate_pass1(_make_plotlines(), _make_cast(), ctx)  # 1 A + 1 B
 
     def test_ensemble_needs_multiple_a_rank(self):
-        ctx = SeriesContext(franchise_type="ensemble", story_engine="x", genre="drama")
-        lines = _make_storylines()  # 1 A + 1 B
+        ctx = SeriesContext(
+            format="serial", story_engine="x", genre="drama", is_ensemble=True,
+        )
+        lines = _make_plotlines()  # 1 A + 1 B
         with pytest.raises(ValueError, match="2\\+ A-rank"):
             validate_pass1(lines, _make_cast(), ctx)
 
     def test_ensemble_accepts_multiple_a_rank(self):
-        ctx = SeriesContext(franchise_type="ensemble", story_engine="x", genre="drama")
-        lines = _make_storylines()
+        ctx = SeriesContext(
+            format="serial", story_engine="x", genre="drama", is_ensemble=True,
+        )
+        lines = _make_plotlines()
         lines[1].rank = "A"  # both A
         validate_pass1(lines, _make_cast(), ctx)
 
@@ -132,11 +150,11 @@ def _make_breakdown():
         episode="S01E01",
         events=[
             Event(
-                event="Walt cooks", storyline="empire",
+                event="Walt cooks", plotline="empire",
                 function="setup", characters=["walt", "jesse"],
             ),
             Event(
-                event="Jesse runs", storyline="partnership",
+                event="Jesse runs", plotline="partnership",
                 function="escalation", characters=["jesse"],
             ),
         ],
@@ -153,45 +171,45 @@ def _make_breakdown():
 
 class TestPass2Validation:
     def test_valid(self):
-        validate_pass2(_make_breakdown(), _make_storylines(), _make_cast())
+        validate_pass2(_make_breakdown(), _make_plotlines(), _make_cast())
 
     def test_invalid_function(self):
         bd = _make_breakdown()
         bd.events[0].function = "explosion"
         with pytest.raises(ValueError, match="invalid function"):
-            validate_pass2(bd, _make_storylines(), _make_cast())
+            validate_pass2(bd, _make_plotlines(), _make_cast())
 
-    def test_unknown_storyline(self):
+    def test_unknown_plotline(self):
         bd = _make_breakdown()
-        bd.events[0].storyline = "nonexistent"
-        with pytest.raises(ValueError, match="not found in Pass 1"):
-            validate_pass2(bd, _make_storylines(), _make_cast())
+        bd.events[0].plotline = "nonexistent"
+        with pytest.raises(ValueError, match="not found in plotlines"):
+            validate_pass2(bd, _make_plotlines(), _make_cast())
 
     def test_unknown_character(self):
         bd = _make_breakdown()
         bd.events[0].characters = ["unknown_person"]
         with pytest.raises(ValueError, match="not in cast"):
-            validate_pass2(bd, _make_storylines(), _make_cast())
+            validate_pass2(bd, _make_plotlines(), _make_cast())
 
     def test_guest_character_ok(self):
         bd = _make_breakdown()
         bd.events[0].characters = ["walt", "guest:patient"]
-        validate_pass2(bd, _make_storylines(), _make_cast())
+        validate_pass2(bd, _make_plotlines(), _make_cast())
 
-    def test_null_storyline_ok(self):
+    def test_null_plotline_ok(self):
         """A few unassigned events (-> ADD_LINE patch) should pass validation."""
         bd = _make_breakdown()
         # Add enough events so that 1 null is under the 10% threshold
         for i in range(10):
             bd.events.append(Event(
-                event=f"filler {i}", storyline="empire",
+                event=f"filler {i}", plotline="empire",
                 function="escalation", characters=["walt"],
             ))
-        bd.events[0].storyline = None
-        validate_pass2(bd, _make_storylines(), _make_cast())
+        bd.events[0].plotline = None
+        validate_pass2(bd, _make_plotlines(), _make_cast())
 
     def test_invalid_interaction_type(self):
         bd = _make_breakdown()
         bd.interactions[0].type = "magic"
         with pytest.raises(ValueError, match="invalid type"):
-            validate_pass2(bd, _make_storylines(), _make_cast())
+            validate_pass2(bd, _make_plotlines(), _make_cast())

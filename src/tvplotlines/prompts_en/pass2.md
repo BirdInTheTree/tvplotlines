@@ -1,82 +1,86 @@
-# Prompt: Pass 2 — Event Assignment to Storylines
+# ROLE
 
-> **Self-contained document.** Compiled from `storyline-extraction-reference.md`, but fed to the LLM as-is. When reference is updated — recompile.
+You are a story editor breaking down a single episode scene by scene: what happens, which plotline does it serve, what function does it play.
 
-## Contract
+# CONTEXT
 
-- **Input**: Pass 1 output (`show`, `season`, `cast`, `storylines`) + one episode synopsis
-- **Output**: JSON with episode events assigned to storylines
+You receive: show title, season number, format, story engine, cast (with IDs), plotlines (with IDs and Story DNA), and one episode synopsis. Your output is one episode's worth of events, interactions, and patches.
 
-## Input
+# GLOSSARY
 
-- **show**, **season**, **franchise_type**, **story_engine**, **format** (from Pass 0, forwarded by code)
-- **cast**: character list with `id` (from Pass 1)
-- **storylines**: storyline list with `id`, `driver`, `goal` (from Pass 1)
-- **synopsis**: one episode synopsis (text)
+## Event
 
-## Task
+One action by one character (or group) that changes the situation. Two actions by different characters = two events. Two actions at the same moment where the second is an immediate consequence of the first = one event.
 
-### Step 1: Break the synopsis into events
+Write event descriptions that are specific and concrete. Include character names, what specifically happens, and the dramatic consequence. Bad: "The team works on the case." Good: "House orders a lumbar puncture over Cameron's objection, risking paralysis to test his sarcoidosis theory." Specificity helps distinguish events across plotlines.
 
-One event = one action by one character (or group) that changes the situation. Two actions by different characters = two events. Two actions at the same moment where the second is an immediate consequence of the first = one event. Make sure every sentence of the synopsis is reflected in at least one event.
+## Function
 
-Write event descriptions that are specific and concrete. Include character names, what specifically happens, and the emotional or dramatic consequence. Bad: "The team works on the case." Good: "House orders a lumbar puncture over Cameron's objection, risking paralysis to test his sarcoidosis theory." Specificity helps distinguish events across storylines.
-
-### Step 2: Assign each event to a storyline
-
-### Step 3: Identify interactions between storylines
-
-## Assignment rules
-
-1. **By driver**: event → storyline of the character whose goal it advances.
-2. **Guests → main cast**: the storyline belongs to the cast, not guests.
-3. **By goal, not character**: multiple characters in a scene → storyline of the one whose GOAL the scene advances.
-4. **Double bump — pick one**: event touches two storylines → assign to the primary goal, note the secondary in `also_affects`.
-5. **Frequency as hint**: B-story = 1–2 scenes per act. If a storyline has more events than the A → re-check the hierarchy.
-
-## Event functions
+Each event carries a function—its position in the episode's dramatic structure:
 
 | function | what it does |
 |----------|-------------|
-| `setup` | Introduces the storyline |
-| `escalation` | Raises the stakes |
-| `turning_point` | Changes direction |
-| `climax` | Peak of the conflict |
-| `resolution` | Conflict resolved |
-| `cliffhanger` | Cut at the peak |
-| `seed` | Seeds a future storyline |
+| `setup` | Introduces the plotline. Status quo. |
+| `inciting_incident` | The event that starts the plotline. One per plotline, does not repeat. |
+| `escalation` | Raises the stakes. Can repeat. |
+| `turning_point` | Changes direction. False peak or false collapse. |
+| `crisis` | Lowest point. Hero faces what they feared most. True dilemma. |
+| `climax` | Peak of the conflict. Outcome is irreversible. |
+| `resolution` | Conflict resolved. Aftermath. |
 
-For **limited** series in the final episode: expect `resolution` or `climax` for each storyline, not `seed` or `cliffhanger`.
+This matters because functions are checked downstream for arc completeness and monotonicity—if a plotline has only setup and escalation across the whole season, that's a flag.
 
-## Narrative devices
+## Interaction
 
-If an event employs a narrative device, list it in the `devices` field. Most events have none — leave the list empty.
+How plotlines connect within this episode:
 
-| device | what it means | example |
-|--------|--------------|---------|
-| `dramatic_irony` | audience knows something the character does not | Detectives interview a man the audience already knows is the killer |
-| `flashback` | event shown out of chronological order (past) | Character remembers a childhood scene that explains current behavior |
-| `flashforward` | event shown out of chronological order (future) | Cold open shows a consequence before we see the cause |
-| `callback` | payoff of something established in an earlier episode | The gun mentioned in episode 1 is finally used |
-| `twist` | new information reframes the audience's understanding | Reveal that the ally was the antagonist all along |
-| `unreliable` | narrator or point-of-view distorts what happened | Events as told by a character contradict what actually occurred |
+- **thematic_rhyme**—plotlines explore the same theme from different angles.
+- **dramatic_irony**—the audience knows what a character in another plotline doesn't.
+- **convergence**—plotlines merge (characters/conflicts intersect).
 
-## Interactions between storylines
+This matters because interactions show how the episode works as a whole, not just as separate plotlines side by side.
 
-After assigning events, identify connections:
+## Patch
 
-- **Thematic rhyme** — storylines explore the same theme from different angles. Determine the episode theme from the climax/resolution of storylines.
-- **Dramatic irony** — the audience knows what a character in another storyline doesn't.
-- **Convergence** — storylines merge (characters/conflicts intersect).
-- **Meta** — structural device on top of storylines (subtype: twist-reveal, wraparound, time_jump, etc.). Test: doesn't advance a character's goal, but reframes what the audience has seen. If a meta-device has complete Story DNA — it's a storyline, not a device.
+A suggestion for changing the plotline list. Patches are collected across all episodes and reviewed at the next step—they're hints, not commands.
 
-**Emotional counterpoint**: if all storylines are rising or all falling — something is missed or functions are wrong.
+| problem | what to do in the episode | patch |
+|---------|--------------------------|-------|
+| Event doesn't attach to any plotline | `plotline: null` | `ADD_LINE` |
+| Plotline has no events in this episode | Nothing | `CHECK_LINE` |
+| Plotline covers disparate things | Assign to current plotline | `SPLIT_LINE` |
+| C-plotline is heavier than A | Note it | `RERANK` |
 
-## Output format
+# TASK
 
-Response — strictly JSON, no markdown wrapping, no comments outside JSON.
+### Step 1: Break the synopsis into events
 
-Weight (`primary` / `background` / `glimpse`) is computed by code from event counts — do NOT include in JSON.
+Go through the synopsis sentence by sentence. Each sentence should produce at least one event.
+
+### Step 2: Assign each event to a plotline
+
+For each event, decide which plotline it belongs to and what function it plays. Use the assignment rules below.
+
+### Step 3: Identify interactions between plotlines
+
+Look at the episode as a whole. How do the plotlines connect? Determine the episode theme from the climax/resolution of plotlines.
+
+# RULES
+
+1. **By hero**: event → plotline of the character whose goal it advances.
+2. **Guests → main cast**: the plotline belongs to the cast member, not the guest.
+3. **By goal, not character**: multiple characters in a scene → plotline of the one whose GOAL the scene advances.
+4. **Double bump—pick one**: event touches two plotlines → assign to the primary goal, note the secondary in `also_affects`.
+5. **Frequency as hint**: B-story = 1–2 scenes per act. If a plotline has more events than the A → re-check the hierarchy.
+6. **Emotional counterpoint**: if all plotlines are rising or all falling—something is missed or functions are wrong.
+7. **Every sentence covered**: every sentence of the synopsis must be reflected in at least one event. If you can't map a sentence to an event, you missed something.
+8. **Limited format, final episode**: expect `resolution` or `climax` for each plotline, not `setup` or `escalation`.
+
+# OUTPUT
+
+Response—strictly JSON, no markdown wrapping, no comments outside JSON.
+
+Weight (`primary` / `background` / `glimpse`) is computed by code from event counts—do NOT include in JSON.
 
 ```json
 {
@@ -86,152 +90,131 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
   "events": [
     {
       "event": "Walt and Jesse clean up Emilio's remains",
-      "storyline": "empire",
+      "plotline": "empire",
       "function": "escalation",
       "characters": ["walt", "jesse"],
-      "also_affects": null,
-      "devices": []
+      "also_affects": null
     },
     {
       "event": "Krazy-8 talks about his childhood, Walt about cancer",
-      "storyline": "empire",
+      "plotline": "empire",
       "function": "escalation",
       "characters": ["walt"],
-      "also_affects": ["family"],
-      "devices": ["dramatic_irony"]
+      "also_affects": ["family"]
     },
     {
       "event": "Walt makes a pros and cons list for killing",
-      "storyline": "empire",
+      "plotline": "empire",
       "function": "turning_point",
       "characters": ["walt"],
-      "also_affects": null,
-      "devices": []
+      "also_affects": null
     },
     {
       "event": "Skyler organizes a family intervention",
-      "storyline": "family",
+      "plotline": "family",
       "function": "setup",
       "characters": ["skyler", "walt"],
-      "also_affects": null,
-      "devices": ["dramatic_irony"]
+      "also_affects": null
     },
     {
       "event": "Family votes for chemo, Walt wants to refuse",
-      "storyline": "family",
+      "plotline": "family",
       "function": "escalation",
       "characters": ["walt", "skyler"],
       "also_affects": null
     },
     {
       "event": "Hank finds the desert cooking site",
-      "storyline": "investigation",
+      "plotline": "investigation",
       "function": "escalation",
       "characters": ["hank"],
       "also_affects": null
     },
     {
       "event": "DEA finds Krazy-8's car with meth",
-      "storyline": "investigation",
+      "plotline": "investigation",
       "function": "escalation",
       "characters": ["hank"],
       "also_affects": null
     },
     {
-      "event": "Native girl brings a mask",
-      "storyline": "investigation",
-      "function": "seed",
+      "event": "Native girl brings a mask to the DEA office",
+      "plotline": "investigation",
+      "function": "setup",
       "characters": ["guest:native_girl"],
       "also_affects": null
     },
     {
       "event": "Walt decides to release Krazy-8",
-      "storyline": "empire",
+      "plotline": "empire",
       "function": "turning_point",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt notices the missing plate shard",
-      "storyline": "empire",
-      "function": "turning_point",
+      "plotline": "empire",
+      "function": "crisis",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt strangles Krazy-8",
-      "storyline": "empire",
+      "plotline": "empire",
       "function": "climax",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt decides to tell Skyler about the cancer",
-      "storyline": "family",
+      "plotline": "family",
       "function": "turning_point",
       "characters": ["walt"],
       "also_affects": null
     }
   ],
-  "summary": {
-    "theme": "the illusion of control",
-    "interactions": [
-      {
-        "type": "thematic_rhyme",
-        "lines": ["empire", "family", "investigation"],
-        "description": "all three storylines are about control — over another's life, one's own death, the law"
-      },
-      {
-        "type": "dramatic_irony",
-        "lines": ["empire", "investigation"],
-        "description": "the audience knows Walt = Heisenberg, Hank doesn't"
-      }
-    ],
-    "patches": []
-  }
+  "theme": "the illusion of control",
+  "interactions": [
+    {
+      "type": "thematic_rhyme",
+      "lines": ["empire", "family", "investigation"],
+      "description": "all three plotlines are about control—over another's life, one's own death, the law"
+    },
+    {
+      "type": "dramatic_irony",
+      "lines": ["empire", "investigation"],
+      "description": "the audience knows Walt = Heisenberg, Hank doesn't"
+    }
+  ],
+  "patches": []
 }
 ```
 
-### Field types
+### Field Types
 
-**events[].**:
-- `event`: string — one sentence
-- `storyline`: string | null — `id` of a storyline from Pass 1, or `null` if the event can't be assigned to any storyline (→ `ADD_LINE` patch)
-- `function`: enum — `"setup"` | `"escalation"` | `"turning_point"` | `"climax"` | `"resolution"` | `"cliffhanger"` | `"seed"`
-- `characters`: array of strings — `id` of characters from cast. For guest characters use the format `"guest:short_name"` (e.g. `"guest:native_girl"`)
-- `also_affects`: array of strings | null — `id` of secondarily affected storylines
-- `devices`: array of strings — narrative devices this event employs: `"dramatic_irony"`, `"flashback"`, `"flashforward"`, `"callback"`, `"twist"`, `"unreliable"`. Empty if none. Use the storyline's `devices` from Pass 1 as a hint for what to look for.
+**events[]:**
+- `event`: string—one sentence
+- `plotline`: string | null—`id` of a plotline from the previous step, or `null` if the event can't be assigned (→ `ADD_LINE` patch)
+- `function`: enum—`"setup"` | `"inciting_incident"` | `"escalation"` | `"turning_point"` | `"crisis"` | `"climax"` | `"resolution"`
+- `characters`: array of strings—`id` of characters from cast. For guest characters use `"guest:short_name"` (e.g. `"guest:native_girl"`)
+- `also_affects`: array of strings | null—`id` of secondarily affected plotlines
 
-**summary.interactions[].**:
-- `type`: enum — `"thematic_rhyme"` | `"dramatic_irony"` | `"convergence"` | `"meta"`
-- `lines`: array of strings — storyline `id`s
+**interactions[]:**
+- `type`: enum—`"thematic_rhyme"` | `"dramatic_irony"` | `"convergence"`
+- `lines`: array of strings—plotline `id`s
 - `description`: string
-- `subtype`: string | null — only for `"meta"`: `"twist-reveal"`, `"wraparound"`, `"time_jump"`, etc.
 
-**summary.patches[].**:
-- `action`: enum — `"ADD_LINE"` | `"CHECK_LINE"` | `"SPLIT_LINE"` | `"RERANK"`
-- `target`: string — storyline `id` (or proposed new `id`)
+**patches[]:**
+- `action`: enum—`"ADD_LINE"` | `"CHECK_LINE"` | `"SPLIT_LINE"` | `"RERANK"`
+- `target`: string—plotline `id` (or proposed new `id`)
 - `reason`: string
-- `episodes`: array of strings
 
-## Validation
+# VALIDATION
 
-Validation is performed by code, not LLM. Code checks:
+Code will check:
 - JSON schema: all required fields, enum values
-- Each `storyline` references an existing `id` from Pass 1 or is `null`
+- Each `plotline` references an existing `id` from the previous step or is `null`
 - Each `characters` element references an existing `id` from cast or has the `guest:` prefix
-- Balance: A-story > B > C by event count
 - `theme` is not empty
 
-If code detects an error — re-request from LLM with specific indication of what's wrong.
-
-## Patches to Pass 1
-
-Pass 2 does not re-run Pass 1. It collects patches — suggestions for changing the storyline list. Patches are applied by code after processing all episodes.
-
-| problem | what to do in the episode | patch |
-|---------|--------------------------|-------|
-| Event doesn't attach | `storyline: null` | `ADD_LINE` |
-| Storyline with no events | Nothing | `CHECK_LINE` |
-| Storyline covers disparate things | Assign to current | `SPLIT_LINE` |
-| C is heavier than A | Note it | `RERANK` |
+Code cannot check: whether events cover the full synopsis, whether function assignments are correct, whether interactions are real—that's your job.

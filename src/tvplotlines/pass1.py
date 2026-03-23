@@ -1,6 +1,6 @@
-"""Pass 1: Extract storylines and cast from all season synopses.
+"""Pass 1: Extract plotlines and cast from all season synopses.
 
-Input: show, season, franchise_type, story_engine, all synopses.
+Input: show, season, format, story_engine, all synopses.
 Output: list[CastMember], list[Plotline].
 """
 
@@ -18,9 +18,9 @@ logger = logging.getLogger(__name__)
 
 _VOTING_ROUNDS = 3
 
-_VALID_TYPES = {"episodic", "serialized", "runner"}
-_VALID_RANKS = {"A", "B", "C", "runner"}
-_VALID_NATURES = {"plot-led", "character-led"}
+_VALID_TYPES = {"case_of_the_week", "serialized", "runner"}
+_VALID_RANKS = {"A", "B", "C"}
+_VALID_NATURES = {"plot-led", "character-led", "theme-led"}
 _VALID_CONFIDENCE = {"solid", "partial", "inferred"}
 
 
@@ -33,23 +33,12 @@ def _build_user_message(
     prior_cast: list[CastMember] | None = None,
     prior_plotlines: list[Plotline] | None = None,
 ) -> str:
-    """Build the JSON user message for Pass 1.
-
-    Args:
-        show: Series title.
-        season: Season number.
-        context: From Pass 0 or user-provided.
-        episodes: List of (episode_id, synopsis_text) pairs.
-        prior_cast: Cast from the previous season (for continuity).
-        prior_plotlines: Storylines from the previous season (for continuity).
-
-    Returns:
-        JSON-encoded string ready to send as a user message.
-    """
+    """Build the JSON user message for Pass 1."""
     data = {
         "show": show,
         "season": season,
-        "franchise_type": context.franchise_type,
+        "format": context.format,
+        "is_ensemble": context.is_ensemble,
         "story_engine": context.story_engine,
         "synopses": [
             {"episode": eid, "text": text}
@@ -64,7 +53,7 @@ def _build_user_message(
             ],
             "plotlines": [
                 {
-                    "id": p.id, "name": p.name, "driver": p.driver,
+                    "id": p.id, "name": p.name, "hero": p.hero,
                     "goal": p.goal, "obstacle": p.obstacle, "stakes": p.stakes,
                     "type": p.type, "rank": p.rank,
                 }
@@ -78,33 +67,28 @@ def _check_prior_overlap(
     new_plotlines: list[Plotline],
     prior_plotlines: list[Plotline],
 ) -> None:
-    """Warn if a new plotline shares a driver with a prior plotline that wasn't continued.
-
-    Args:
-        new_plotlines: Storylines extracted for the current season.
-        prior_plotlines: Storylines from the previous season.
-    """
-    prior_by_driver: dict[str, list[Plotline]] = {}
+    """Warn if a new plotline shares a hero with a prior plotline that wasn't continued."""
+    prior_by_hero: dict[str, list[Plotline]] = {}
     for p in prior_plotlines:
-        prior_by_driver.setdefault(p.driver, []).append(p)
+        prior_by_hero.setdefault(p.hero, []).append(p)
 
     new_ids = {p.id for p in new_plotlines}
 
-    for driver, priors in prior_by_driver.items():
+    for hero, priors in prior_by_hero.items():
         for prior in priors:
             if prior.id in new_ids:
-                continue  # Prior storyline was continued — no issue
-            new_with_same_driver = [p for p in new_plotlines if p.driver == driver]
-            for new_p in new_with_same_driver:
+                continue
+            new_with_same_hero = [p for p in new_plotlines if p.hero == hero]
+            for new_p in new_with_same_hero:
                 logger.warning(
-                    "Prior storyline %r (driver=%s) was not continued, "
-                    "but new storyline %r has the same driver. "
+                    "Prior plotline %r (hero=%s) was not continued, "
+                    "but new plotline %r has the same hero. "
                     "Possible duplicate?",
-                    prior.id, driver, new_p.id,
+                    prior.id, hero, new_p.id,
                 )
 
 
-def extract_storylines(
+def extract_plotlines(
     show: str,
     season: int,
     context: SeriesContext,
@@ -114,7 +98,7 @@ def extract_storylines(
     prior_plotlines: list[Plotline] | None = None,
     config: LLMConfig | None = None,
 ) -> tuple[list[CastMember], list[Plotline]]:
-    """Extract cast and storylines from all season synopses.
+    """Extract cast and plotlines from all season synopses.
 
     Args:
         show: Series title.
@@ -122,11 +106,11 @@ def extract_storylines(
         context: From Pass 0 or user-provided.
         episodes: List of (episode_id, synopsis_text) pairs.
         prior_cast: Cast from the previous season (for continuity).
-        prior_plotlines: Storylines from the previous season (for continuity).
+        prior_plotlines: Plotlines from the previous season (for continuity).
         config: LLM settings.
 
     Returns:
-        Tuple of (cast, storylines).
+        Tuple of (cast, plotlines).
     """
     if config is None:
         config = LLMConfig()
@@ -141,23 +125,22 @@ def extract_storylines(
     def _full_validate(data: dict) -> None:
         """Parse and validate in one step for retry support."""
         c = _parse_cast(data)
-        s = _parse_storylines(data, c)
-        _validate(s, c, context)
+        p = _parse_plotlines(data, c)
+        _validate(p, c, context)
 
-    # Majority voting: run Pass 1 multiple times, pick most common storyline set
+    # Majority voting: run Pass 1 multiple times, pick most common plotline set
     user_messages = [user_message] * _VOTING_ROUNDS
     validators = [_full_validate] * _VOTING_ROUNDS
     results = call_llm_parallel(
         system_prompt, user_messages, config, validators=validators,
     )
 
-    # Pick the result whose storyline ID set appears most often
+    # Pick the result whose plotline ID set appears most often
     id_sets = [
-        tuple(sorted(s["id"] for s in r.get("storylines", [])))
+        tuple(sorted(s["id"] for s in r.get("plotlines", [])))
         for r in results
     ]
     most_common_ids = Counter(id_sets).most_common(1)[0][0]
-    # Use the first result that matches
     data = next(r for r, ids in zip(results, id_sets) if ids == most_common_ids)
     logger.info(
         "Pass 1 voting: %d/%d agreed on %s",
@@ -165,12 +148,12 @@ def extract_storylines(
     )
 
     cast = _parse_cast(data)
-    storylines = _parse_storylines(data, cast)
+    plotlines = _parse_plotlines(data, cast)
 
     if prior_plotlines:
-        _check_prior_overlap(storylines, prior_plotlines)
+        _check_prior_overlap(plotlines, prior_plotlines)
 
-    return cast, storylines
+    return cast, plotlines
 
 
 def _parse_cast(data: dict) -> list[CastMember]:
@@ -189,24 +172,24 @@ def _parse_cast(data: dict) -> list[CastMember]:
     return cast
 
 
-def _parse_storylines(data: dict, cast: list[CastMember]) -> list[Plotline]:
+def _parse_plotlines(data: dict, cast: list[CastMember]) -> list[Plotline]:
     cast_ids = {c.id for c in cast}
-    storylines = []
-    for s in data.get("storylines", []):
+    plotlines = []
+    for s in data.get("plotlines", []):
         try:
-            driver = s["driver"]
+            hero = s["hero"]
         except KeyError as e:
-            raise ValueError(f"Storyline missing required field: {e}") from e
-        if driver not in cast_ids:
+            raise ValueError(f"Plotline missing required field: {e}") from e
+        if hero not in cast_ids:
             raise ValueError(
-                f"Storyline {s['id']!r} has driver {driver!r} not found in cast: {cast_ids}"
+                f"Plotline {s['id']!r} has hero {hero!r} not found in cast: {cast_ids}"
             )
         try:
-            storylines.append(
+            plotlines.append(
                 Plotline(
                     id=s["id"],
                     name=s["name"],
-                    driver=driver,
+                    hero=hero,
                     goal=s["goal"],
                     obstacle=s["obstacle"],
                     stakes=s["stakes"],
@@ -214,55 +197,59 @@ def _parse_storylines(data: dict, cast: list[CastMember]) -> list[Plotline]:
                     rank=s["rank"],
                     nature=s["nature"],
                     confidence=s["confidence"],
-                    devices=s.get("devices", []),
                 )
             )
         except KeyError as e:
-            raise ValueError(f"Storyline {s.get('id', '?')!r} missing field: {e}") from e
-    return storylines
+            raise ValueError(f"Plotline {s.get('id', '?')!r} missing field: {e}") from e
+    return plotlines
 
 
 def _validate(
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     cast: list[CastMember],
     context: SeriesContext,
 ) -> None:
     """Validate Pass 1 output. Raises ValueError on problems."""
-    if not storylines:
-        raise ValueError("No storylines extracted")
+    if not plotlines:
+        raise ValueError("No plotlines extracted")
 
     if not cast:
         raise ValueError("No cast members extracted")
 
-    for s in storylines:
-        if s.type not in _VALID_TYPES:
-            raise ValueError(f"Storyline {s.id!r}: invalid type {s.type!r}")
-        if s.rank not in _VALID_RANKS:
-            raise ValueError(f"Storyline {s.id!r}: invalid rank {s.rank!r}")
-        if s.nature not in _VALID_NATURES:
-            raise ValueError(f"Storyline {s.id!r}: invalid nature {s.nature!r}")
-        if s.confidence not in _VALID_CONFIDENCE:
-            raise ValueError(f"Storyline {s.id!r}: invalid confidence {s.confidence!r}")
+    for p in plotlines:
+        if p.type not in _VALID_TYPES:
+            raise ValueError(f"Plotline {p.id!r}: invalid type {p.type!r}")
+        # Runner → rank must be None; non-runner → rank must be A/B/C
+        if p.type == "runner":
+            if p.rank is not None:
+                raise ValueError(f"Plotline {p.id!r}: runner must have rank=None, got {p.rank!r}")
+        else:
+            if p.rank not in _VALID_RANKS:
+                raise ValueError(f"Plotline {p.id!r}: invalid rank {p.rank!r}")
+        if p.nature not in _VALID_NATURES:
+            raise ValueError(f"Plotline {p.id!r}: invalid nature {p.nature!r}")
+        if p.confidence not in _VALID_CONFIDENCE:
+            raise ValueError(f"Plotline {p.id!r}: invalid confidence {p.confidence!r}")
 
-    # Procedural/hybrid must have exactly one episodic storyline
-    if context.franchise_type in ("procedural", "hybrid"):
-        episodic_count = sum(1 for s in storylines if s.type == "episodic")
-        if episodic_count != 1:
+    # Procedural/hybrid must have exactly one case_of_the_week plotline
+    if context.format in ("procedural", "hybrid"):
+        cotw_count = sum(1 for p in plotlines if p.type == "case_of_the_week")
+        if cotw_count != 1:
             raise ValueError(
-                f"franchise_type={context.franchise_type!r} expects exactly 1 episodic "
-                f"storyline, got {episodic_count}"
+                f"format={context.format!r} expects exactly 1 case_of_the_week "
+                f"plotline, got {cotw_count}"
             )
 
-    # A-rank count must match franchise type
-    a_count = sum(1 for s in storylines if s.rank == "A")
-    if context.franchise_type in ("serial", "procedural", "hybrid"):
+    # A-rank count: 1 for non-ensemble, 2+ for ensemble
+    a_count = sum(1 for p in plotlines if p.rank == "A")
+    if not context.is_ensemble:
         if a_count != 1:
             raise ValueError(
-                f"franchise_type={context.franchise_type!r} expects exactly 1 A-rank "
-                f"storyline, got {a_count}"
+                f"Non-ensemble format expects exactly 1 A-rank "
+                f"plotline, got {a_count}"
             )
-    elif context.franchise_type == "ensemble":
+    else:
         if a_count < 2:
             raise ValueError(
-                f"franchise_type='ensemble' expects 2+ A-rank storylines, got {a_count}"
+                f"Ensemble expects 2+ A-rank plotlines, got {a_count}"
             )

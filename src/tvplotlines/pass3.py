@@ -1,6 +1,6 @@
 """Pass 3: Structural review of full pipeline results.
 
-Input: complete TVPlotlinesResult (lines + events + span + weight).
+Input: complete TVPlotlinesResult (plotlines + events + span + weight).
 Output: list of Verdict objects to apply.
 """
 
@@ -19,11 +19,15 @@ from tvplotlines.models import (
 from tvplotlines.postprocess import compute_weight
 from tvplotlines.prompts import load_prompt
 
-_VALID_ACTIONS = {"MERGE", "REASSIGN", "PROMOTE", "DEMOTE", "CREATE", "DROP"}
-_VALID_RANKS = {"A", "B", "C", "runner"}
+_VALID_ACTIONS = {"MERGE", "REASSIGN", "PROMOTE", "DEMOTE", "CREATE", "DROP", "REFUNCTION"}
+_VALID_RANKS = {"A", "B", "C"}
+_VALID_FUNCTIONS = {
+    "setup", "inciting_incident", "escalation", "turning_point",
+    "crisis", "climax", "resolution",
+}
 
 
-def review_storylines(
+def review_plotlines(
     show: str,
     season: int,
     context: SeriesContext,
@@ -41,8 +45,9 @@ def review_storylines(
         season: Season number.
         context: From Pass 0 or user-provided.
         cast: Cast from Pass 1.
-        plotlines: Storylines from Pass 1 (with span computed).
+        plotlines: Plotlines from Pass 1 (with span computed).
         episodes: Episode breakdowns from Pass 2.
+        diagnostics: Automated flags from postprocess (arc_completeness, monotonicity, ranks).
         config: LLM settings.
 
     Returns:
@@ -58,61 +63,61 @@ def review_storylines(
         weight_data[ep.episode] = weights
 
     payload = {
-            "show": show,
-            "season": season,
-            "franchise_type": context.franchise_type,
-            "story_engine": context.story_engine,
-            "format": context.format,
-            "cast": [
-                {"id": c.id, "name": c.name}
-                for c in cast
-            ],
-            "plotlines": [
-                {
-                    "id": p.id,
-                    "name": p.name,
-                    "driver": p.driver,
-                    "goal": p.goal,
-                    "obstacle": p.obstacle,
-                    "stakes": p.stakes,
-                    "type": p.type,
-                    "rank": p.rank,
-                    "nature": p.nature,
-                    "confidence": p.confidence,
-                    "span": p.span,
-                    "weight_per_episode": {
-                        ep_id: w.get(p.id, "absent")
-                        for ep_id, w in weight_data.items()
-                    },
-                }
-                for p in plotlines
-            ],
-            "episodes": [
-                {
-                    "episode": ep.episode,
-                    "theme": ep.theme,
-                    "events": [
-                        {
-                            "event": e.event,
-                            "storyline": e.storyline,
-                            "function": e.function,
-                            "characters": e.characters,
-                            "also_affects": e.also_affects,
-                        }
-                        for e in ep.events
-                    ],
-                    "patches": [
-                        {
-                            "action": p.action,
-                            "target": p.target,
-                            "reason": p.reason,
-                        }
-                        for p in ep.patches
-                    ],
-                }
-                for ep in episodes
-            ],
-        }
+        "show": show,
+        "season": season,
+        "format": context.format,
+        "is_ensemble": context.is_ensemble,
+        "story_engine": context.story_engine,
+        "cast": [
+            {"id": c.id, "name": c.name}
+            for c in cast
+        ],
+        "plotlines": [
+            {
+                "id": p.id,
+                "name": p.name,
+                "hero": p.hero,
+                "goal": p.goal,
+                "obstacle": p.obstacle,
+                "stakes": p.stakes,
+                "type": p.type,
+                "rank": p.rank,
+                "nature": p.nature,
+                "confidence": p.confidence,
+                "span": p.span,
+                "weight_per_episode": {
+                    ep_id: w.get(p.id, "absent")
+                    for ep_id, w in weight_data.items()
+                },
+            }
+            for p in plotlines
+        ],
+        "episodes": [
+            {
+                "episode": ep.episode,
+                "theme": ep.theme,
+                "events": [
+                    {
+                        "event": e.event,
+                        "plotline": e.plotline,
+                        "function": e.function,
+                        "characters": e.characters,
+                        "also_affects": e.also_affects,
+                    }
+                    for e in ep.events
+                ],
+                "patches": [
+                    {
+                        "action": p.action,
+                        "target": p.target,
+                        "reason": p.reason,
+                    }
+                    for p in ep.patches
+                ],
+            }
+            for ep in episodes
+        ],
+    }
 
     if diagnostics:
         payload["diagnostics"] = diagnostics
@@ -183,7 +188,7 @@ def _parse_verdicts(
         elif action == "CREATE":
             _require_keys(v, ["plotline", "reassign_events", "reason"])
             pl = v["plotline"]
-            _require_keys(pl, ["id", "name", "driver", "goal", "obstacle", "stakes", "type", "rank", "nature"])
+            _require_keys(pl, ["id", "name", "hero", "goal", "obstacle", "stakes", "type", "rank", "nature"])
             for re in v["reassign_events"]:
                 if re["event"] not in all_events:
                     raise ValueError(f"CREATE reassign event not found: {re['event']!r}")
@@ -197,6 +202,13 @@ def _parse_verdicts(
                     raise ValueError(f"DROP redistribute event not found: {re['event']!r}")
                 if re["to"] not in all_ids:
                     raise ValueError(f"DROP redistribute target {re['to']!r} not in plotlines")
+
+        elif action == "REFUNCTION":
+            _require_keys(v, ["event", "episode", "old_function", "new_function", "reason"])
+            if v["event"] not in all_events:
+                raise ValueError(f"REFUNCTION event not found: {v['event']!r}")
+            if v["new_function"] not in _VALID_FUNCTIONS:
+                raise ValueError(f"REFUNCTION invalid function: {v['new_function']!r}")
 
         verdicts.append(Verdict(action=action, data=v))
 

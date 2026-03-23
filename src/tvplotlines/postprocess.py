@@ -16,13 +16,13 @@ def compute_span(
 ) -> None:
     """Fill Plotline.span from episode breakdowns (in-place).
 
-    A storyline is present in an episode if it has at least one event there.
+    A plotline is present in an episode if it has at least one event there.
     """
     for plotline in plotlines:
         present_episodes = []
         for ep in episodes:
             has_event = any(
-                e.storyline == plotline.id for e in ep.events
+                e.plotline == plotline.id for e in ep.events
             )
             if has_event:
                 present_episodes.append(ep.episode)
@@ -33,66 +33,66 @@ def assign_orphan_events(
     plotlines: list[Plotline],
     episodes: list[EpisodeBreakdown],
 ) -> None:
-    """Assign null-storyline events to the most common storyline for their characters.
+    """Assign null-plotline events to the most common plotline for their characters.
 
-    For each unassigned event, find the storyline most frequently associated
+    For each unassigned event, find the plotline most frequently associated
     with its characters across the season. In-place modification.
     """
-    # Build character → storyline frequency map from assigned events
-    char_storyline_counts: dict[str, Counter[str]] = {}
+    # Build character → plotline frequency map from assigned events
+    char_plotline_counts: dict[str, Counter[str]] = {}
     for ep in episodes:
         for event in ep.events:
-            if event.storyline is None:
+            if event.plotline is None:
                 continue
             for char in event.characters:
-                if char not in char_storyline_counts:
-                    char_storyline_counts[char] = Counter()
-                char_storyline_counts[char][event.storyline] += 1
+                if char not in char_plotline_counts:
+                    char_plotline_counts[char] = Counter()
+                char_plotline_counts[char][event.plotline] += 1
 
     plotline_ids = {p.id for p in plotlines}
 
     # Assign orphan events
     for ep in episodes:
         for event in ep.events:
-            if event.storyline is not None:
+            if event.plotline is not None:
                 continue
             if not event.characters:
                 continue
 
-            # Aggregate storyline votes from all characters in this event
+            # Aggregate plotline votes from all characters in this event
             votes: Counter[str] = Counter()
             for char in event.characters:
-                if char in char_storyline_counts:
-                    votes.update(char_storyline_counts[char])
+                if char in char_plotline_counts:
+                    votes.update(char_plotline_counts[char])
 
             if not votes:
-                # Fallback: use the most common storyline in this episode
+                # Fallback: use the most common plotline in this episode
                 ep_counts: Counter[str] = Counter()
                 for other in ep.events:
-                    if other.storyline:
-                        ep_counts[other.storyline] += 1
+                    if other.plotline:
+                        ep_counts[other.plotline] += 1
                 if ep_counts:
                     votes = ep_counts
 
             if votes:
                 best = votes.most_common(1)[0][0]
                 if best in plotline_ids:
-                    event.storyline = best
+                    event.plotline = best
 
 
 def compute_weight(
     plotlines: list[Plotline],
     episode: EpisodeBreakdown,
 ) -> dict[str, str]:
-    """Compute storyline weight for an episode based on event count.
+    """Compute plotline weight for an episode based on event count.
 
     Returns:
-        Dict mapping storyline id to weight ("primary" / "background" / "glimpse").
+        Dict mapping plotline id to weight ("primary" / "background" / "glimpse").
     """
     counts: Counter[str] = Counter()
     for event in episode.events:
-        if event.storyline:
-            counts[event.storyline] += 1
+        if event.plotline:
+            counts[event.plotline] += 1
 
     if not counts:
         return {}
@@ -100,13 +100,13 @@ def compute_weight(
     max_count = max(counts.values())
 
     weights = {}
-    for storyline_id, count in counts.items():
+    for plotline_id, count in counts.items():
         if count >= max_count * 0.5:
-            weights[storyline_id] = "primary"
+            weights[plotline_id] = "primary"
         elif count >= 2:
-            weights[storyline_id] = "background"
+            weights[plotline_id] = "background"
         else:
-            weights[storyline_id] = "glimpse"
+            weights[plotline_id] = "glimpse"
 
     return weights
 
@@ -136,8 +136,8 @@ def validate_ranks(
     for ep in episodes:
         for event in ep.events:
             total_events += 1
-            if event.storyline:
-                counts[event.storyline] += 1
+            if event.plotline:
+                counts[event.plotline] += 1
 
     # Collect all flags first, then apply mutations — avoids Rule 1 demotions
     # affecting Rule 2 dominance checks on the same pass

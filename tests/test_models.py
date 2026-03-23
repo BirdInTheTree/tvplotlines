@@ -7,7 +7,7 @@ def test_plotline_creation():
     line = Plotline(
         id="empire",
         name="Empire",
-        driver="walt",
+        hero="walt",
         goal="построить наркобизнес",
         obstacle="моральный выбор",
         stakes="смерть",
@@ -22,7 +22,7 @@ def test_plotline_creation():
 
 def test_tvplotlines_result_creation():
     ctx = SeriesContext(
-        franchise_type="serial",
+        format="serial",
         story_engine="test engine",
         genre="drama",
     )

@@ -1,7 +1,7 @@
 """Data models for tvplotlines pipeline.
 
 These dataclasses mirror the JSON output of Pass 0, Pass 1, and Pass 2 prompts.
-Prompts are the source of truth — if they change, update models to match.
+Glossary (tvplotlines-glossary.md) is the source of truth for definitions.
 """
 
 from __future__ import annotations
@@ -13,10 +13,11 @@ from dataclasses import asdict, dataclass, field
 class SeriesContext:
     """Series metadata from Pass 0 (or provided manually)."""
 
-    franchise_type: str  # "procedural" | "serial" | "hybrid" | "ensemble"
+    format: str  # "procedural" | "serial" | "hybrid" | "limited"
     story_engine: str  # one sentence — the mechanism that generates episodes
     genre: str  # "drama", "thriller", "comedy", etc.
-    format: str | None = None  # "ongoing" | "limited" | "anthology"
+    is_ensemble: bool = False  # 2+ co-equal A-rank plotlines, no single protagonist
+    is_anthology: bool = False  # seasons/episodes independent, no continuity
 
 
 @dataclass
@@ -30,47 +31,44 @@ class CastMember:
 
 @dataclass
 class Plotline:
-    """A storyline extracted by Pass 1."""
+    """A plotline extracted by Pass 1."""
 
     id: str  # snake_case identifier: "empire", "family"
-    name: str  # display name by goal: "Empire", "Investigation"
-    driver: str  # CastMember.id
+    name: str  # "Hero: Theme" format: "Walt: Empire"
+    hero: str  # CastMember.id
     goal: str
     obstacle: str
     stakes: str
-    type: str  # "episodic" | "serialized" | "runner"
-    rank: str  # "A" | "B" | "C" | "runner"
-    nature: str  # "plot-led" | "character-led"
+    type: str  # "case_of_the_week" | "serialized" | "runner"
+    rank: str | None  # "A" | "B" | "C" | None (None for type=runner)
+    nature: str  # "plot-led" | "character-led" | "theme-led"
     confidence: str  # "solid" | "partial" | "inferred"
-    devices: list[str] = field(default_factory=list)  # narrative devices used in this storyline
     span: list[str] = field(default_factory=list)  # computed from Pass 2
 
 
 @dataclass
 class Event:
-    """A single event within an episode, assigned to a storyline by Pass 2."""
+    """A single event within an episode, assigned to a plotline by Pass 2."""
 
     event: str  # one sentence
-    storyline: str | None  # Plotline.id, or None for unassigned (-> ADD_LINE patch)
-    function: str  # "setup" | "escalation" | "turning_point" | "climax" | "resolution" | "cliffhanger" | "seed"
+    plotline: str | None  # Plotline.id, or None for unassigned (-> ADD_LINE patch)
+    function: str  # "setup" | "inciting_incident" | "escalation" | "turning_point" | "crisis" | "climax" | "resolution"
     characters: list[str]  # CastMember.id; guests use "guest:short_name"
     also_affects: list[str] | None = None  # Plotline.id list
-    devices: list[str] = field(default_factory=list)  # narrative devices: dramatic_irony, flashback, etc.
 
 
 @dataclass
 class Interaction:
-    """A relationship between storylines within an episode."""
+    """A relationship between plotlines within an episode."""
 
-    type: str  # "thematic_rhyme" | "dramatic_irony" | "convergence" | "meta"
+    type: str  # "thematic_rhyme" | "dramatic_irony" | "convergence"
     lines: list[str]  # Plotline.id list
     description: str  # one sentence
-    subtype: str | None = None  # for meta: "twist-reveal", "wraparound", "time_jump"
 
 
 @dataclass
 class Patch:
-    """A suggestion from Pass 2 to modify the Pass 1 storyline list."""
+    """A suggestion from Pass 2 to modify the Pass 1 plotline list."""
 
     action: str  # "ADD_LINE" | "CHECK_LINE" | "SPLIT_LINE" | "RERANK"
     target: str  # Plotline.id (or proposed new id)
@@ -93,7 +91,7 @@ class EpisodeBreakdown:
 class Verdict:
     """A structural decision from Pass 3 (structural review)."""
 
-    action: str  # "MERGE" | "REASSIGN" | "PROMOTE" | "DEMOTE" | "CREATE" | "DROP"
+    action: str  # "MERGE" | "REASSIGN" | "PROMOTE" | "DEMOTE" | "CREATE" | "DROP" | "REFUNCTION"
     data: dict  # full verdict payload — structure depends on action
 
 

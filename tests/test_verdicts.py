@@ -17,17 +17,17 @@ from tvplotlines.verdicts import apply_verdicts
 def _make_plotlines() -> list[Plotline]:
     return [
         Plotline(
-            id="belonging", name="Belonging", driver="andrey",
+            id="belonging", name="Belonging", hero="andrey",
             goal="join the gang", obstacle="violence", stakes="family",
             type="serialized", rank="A", nature="character-led", confidence="solid",
         ),
         Plotline(
-            id="brotherhood", name="Brotherhood", driver="marat",
+            id="brotherhood", name="Brotherhood", hero="marat",
             goal="balance love and gang", obstacle="conflict", stakes="loss",
             type="serialized", rank="A", nature="character-led", confidence="solid",
         ),
         Plotline(
-            id="redemption", name="Redemption", driver="ira",
+            id="redemption", name="Redemption", hero="ira",
             goal="save Andrey", obstacle="distrust", stakes="failure",
             type="serialized", rank="C", nature="character-led", confidence="solid",
         ),
@@ -39,13 +39,13 @@ def _make_episodes() -> list[EpisodeBreakdown]:
         EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="Andrey joins the gang", storyline="belonging",
+                Event(event="Andrey joins the gang", plotline="belonging",
                       function="setup", characters=["andrey"]),
-                Event(event="Marat fights for honor", storyline="brotherhood",
+                Event(event="Marat fights for honor", plotline="brotherhood",
                       function="escalation", characters=["marat"]),
-                Event(event="Ira visits the school", storyline="redemption",
+                Event(event="Ira visits the school", plotline="redemption",
                       function="setup", characters=["ira"]),
-                Event(event="Unknown event", storyline=None,
+                Event(event="Unknown event", plotline=None,
                       function="setup", characters=["andrey"]),
             ],
             theme="belonging",
@@ -53,9 +53,9 @@ def _make_episodes() -> list[EpisodeBreakdown]:
         EpisodeBreakdown(
             episode="S01E02",
             events=[
-                Event(event="Andrey proves himself", storyline="belonging",
+                Event(event="Andrey proves himself", plotline="belonging",
                       function="escalation", characters=["andrey"]),
-                Event(event="Marat meets Aygul", storyline="brotherhood",
+                Event(event="Marat meets Aygul", plotline="brotherhood",
                       function="setup", characters=["marat"]),
             ],
             theme="loyalty",
@@ -84,14 +84,14 @@ class TestMerge:
         # Events reassigned
         ep1_events = episodes[0].events
         ira_event = next(e for e in ep1_events if e.event == "Ira visits the school")
-        assert ira_event.storyline == "belonging"
+        assert ira_event.plotline == "belonging"
 
     def test_merge_updates_also_affects(self):
         plotlines = _make_plotlines()
         episodes = [EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="Cross event", storyline="belonging",
+                Event(event="Cross event", plotline="belonging",
                       function="setup", characters=["andrey"],
                       also_affects=["redemption"]),
             ],
@@ -122,7 +122,7 @@ class TestReassign:
         apply_verdicts(verdicts, plotlines, episodes)
 
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.storyline == "belonging"
+        assert event.plotline == "belonging"
 
 
 class TestPromoteDemote:
@@ -166,7 +166,7 @@ class TestCreate:
             "plotline": {
                 "id": "investigation",
                 "name": "Investigation",
-                "driver": "ildar",
+                "hero": "ildar",
                 "goal": "catch the gang",
                 "obstacle": "no evidence",
                 "stakes": "criminals go free",
@@ -188,7 +188,7 @@ class TestCreate:
 
         # Event reassigned
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.storyline == "investigation"
+        assert event.plotline == "investigation"
 
         # New plotline has inferred confidence
         investigation = next(p for p in result if p.id == "investigation")
@@ -216,7 +216,7 @@ class TestDrop:
 
         # Event redistributed
         event = next(e for e in episodes[0].events if e.event == "Ira visits the school")
-        assert event.storyline == "belonging"
+        assert event.plotline == "belonging"
 
 
 class TestOriginalNotMutated:
@@ -253,7 +253,7 @@ class TestMultipleVerdicts:
                 "plotline": {
                     "id": "new_line",
                     "name": "New",
-                    "driver": "andrey",
+                    "hero": "andrey",
                     "goal": "new goal",
                     "obstacle": "new obstacle",
                     "stakes": "new stakes",
@@ -277,4 +277,4 @@ class TestMultipleVerdicts:
 
         assert "new_line" in [p.id for p in result]
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.storyline == "new_line"
+        assert event.plotline == "new_line"

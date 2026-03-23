@@ -9,10 +9,9 @@ from tvplotlines.pass1 import _build_user_message, _check_prior_overlap
 
 def _make_context():
     return SeriesContext(
-        franchise_type="serial",
+        format="serial",
         story_engine="A teacher builds a drug empire",
         genre="drama",
-        format="ongoing",
     )
 
 
@@ -26,7 +25,7 @@ def _make_prior_cast():
 def _make_prior_plotlines():
     return [
         Plotline(
-            id="empire", name="Walt: Empire", driver="walt",
+            id="empire", name="Walt: Empire", hero="walt",
             goal="build a drug business", obstacle="morality", stakes="death",
             type="serialized", rank="A", nature="plot-led", confidence="solid",
             span=["S01E01", "S01E07"],  # should be excluded from prior
@@ -71,11 +70,11 @@ class TestBuildUserMessage:
 
 
 class TestPriorOverlapWarning:
-    def test_warns_on_same_driver_not_continued(self, caplog):
-        prior_plotlines = _make_prior_plotlines()  # empire, driver=walt
+    def test_warns_on_same_hero_not_continued(self, caplog):
+        prior_plotlines = _make_prior_plotlines()  # empire, hero=walt
         new_plotlines = [
             Plotline(
-                id="drug_business", name="Walt: Drug Business", driver="walt",
+                id="drug_business", name="Walt: Drug Business", hero="walt",
                 goal="expand meth operation", obstacle="rivals", stakes="death",
                 type="serialized", rank="A", nature="plot-led", confidence="solid",
             ),
@@ -86,10 +85,10 @@ class TestPriorOverlapWarning:
         assert "drug_business" in caplog.text
 
     def test_no_warning_when_id_reused(self, caplog):
-        prior_plotlines = _make_prior_plotlines()  # empire, driver=walt
+        prior_plotlines = _make_prior_plotlines()  # empire, hero=walt
         new_plotlines = [
             Plotline(
-                id="empire", name="Walt: Empire", driver="walt",
+                id="empire", name="Walt: Empire", hero="walt",
                 goal="expand empire", obstacle="DEA", stakes="prison",
                 type="serialized", rank="A", nature="plot-led", confidence="solid",
             ),

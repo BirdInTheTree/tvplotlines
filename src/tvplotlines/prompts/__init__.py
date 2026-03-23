@@ -19,7 +19,7 @@ def load_prompt(pass_name: str, *, lang: str = "ru") -> str:
     """
     filename = f"{pass_name}.md"
     if lang == "en":
-        pkg = "plotter.prompts_en"
+        pkg = __package__.rsplit(".", 1)[0] + ".prompts_en"
     else:
         pkg = __package__
     return resources.files(pkg).joinpath(filename).read_text(encoding="utf-8")

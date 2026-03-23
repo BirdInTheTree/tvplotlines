@@ -9,9 +9,9 @@ from tvplotlines.callbacks import PipelineCallback
 from tvplotlines.llm import LLMConfig, UsageStats, usage
 from tvplotlines.models import CastMember, EpisodeBreakdown, Plotline, TVPlotlinesResult, SeriesContext
 from tvplotlines.pass0 import detect_context
-from tvplotlines.pass1 import extract_storylines
+from tvplotlines.pass1 import extract_plotlines
 from tvplotlines.pass2 import assign_events, assign_events_batch, assign_events_parallel
-from tvplotlines.pass3 import review_storylines
+from tvplotlines.pass3 import review_plotlines
 from tvplotlines.postprocess import assign_orphan_events, compute_span, validate_ranks
 from tvplotlines.verdicts import apply_verdicts
 
@@ -112,7 +112,7 @@ def get_plotlines(
     # Validate prior parameter
     if prior is not None:
         prior_context = context or prior.context
-        if prior_context.format == "anthology":
+        if prior_context.is_anthology:
             raise ValueError(
                 "prior is not supported for anthology format "
                 "(anthology seasons are independent by definition)"
@@ -131,7 +131,7 @@ def get_plotlines(
 
     # Pass 1: extract cast and plotlines from all synopses
     if cast is None:
-        cast, plotlines = extract_storylines(
+        cast, plotlines = extract_plotlines(
             show, season, context, episode_pairs,
             prior_cast=prior.cast if prior else None,
             prior_plotlines=prior.plotlines if prior else None,
@@ -174,7 +174,7 @@ def get_plotlines(
 
     # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:
-        verdicts = review_storylines(
+        verdicts = review_plotlines(
             show, season, context, cast, plotlines, breakdowns,
             diagnostics=flags or None,
             config=config,
@@ -183,7 +183,8 @@ def get_plotlines(
         if verdicts:
             plotlines = apply_verdicts(
                 verdicts, plotlines, breakdowns,
-                franchise_type=context.franchise_type,
+                series_format=context.format,
+                is_ensemble=context.is_ensemble,
             )
             # Recompute span and re-validate after verdicts
             compute_span(plotlines, breakdowns)

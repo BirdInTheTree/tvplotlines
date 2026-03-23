@@ -180,7 +180,7 @@ class TestResumeValidation:
                 "Test", 1, {"S01E01": "ep1"},
                 cast=None,
                 plotlines=[Plotline(
-                    id="s1", name="S1", driver="a", goal="g",
+                    id="s1", name="S1", hero="a", goal="g",
                     obstacle="o", stakes="s", type="serialized", rank="A",
                     nature="plot-led", confidence="solid",
                 )],

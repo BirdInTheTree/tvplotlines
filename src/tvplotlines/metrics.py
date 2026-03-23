@@ -1,7 +1,7 @@
 """Pipeline quality metrics: coverage and consistency.
 
-Coverage: fraction of events assigned to a storyline.
-Consistency: stability of storyline assignments across multiple runs (ARI).
+Coverage: fraction of events assigned to a plotline.
+Consistency: stability of plotline assignments across multiple runs (ARI).
 
 Combined score = coverage × consistency.
 """
@@ -14,7 +14,7 @@ from tvplotlines.models import EpisodeBreakdown
 
 
 def compute_coverage(episodes: list[EpisodeBreakdown]) -> float:
-    """Fraction of events with a non-null storyline assignment.
+    """Fraction of events with a non-null plotline assignment.
 
     Returns:
         Float in [0.0, 1.0]. 1.0 = every event assigned.
@@ -24,7 +24,7 @@ def compute_coverage(episodes: list[EpisodeBreakdown]) -> float:
     for ep in episodes:
         for event in ep.events:
             total += 1
-            if event.storyline is not None:
+            if event.plotline is not None:
                 assigned += 1
 
     if total == 0:
@@ -39,8 +39,8 @@ def compute_consistency_ari(
 ) -> float:
     """Measure consistency across multiple runs using ARI on (episode, character) grid.
 
-    Each run assigns characters to storylines per episode. ARI compares
-    these clusterings without caring about storyline names.
+    Each run assigns characters to plotlines per episode. ARI compares
+    these clusterings without caring about plotline names.
 
     Args:
         runs: List of runs, each run is a list of EpisodeBreakdown.
@@ -54,28 +54,28 @@ def compute_consistency_ari(
     if len(runs) < 2:
         return 1.0
 
-    # Build label vectors: for each (episode, character) → storyline label
+    # Build label vectors: for each (episode, character) → plotline label
     vectors = []
     for run in runs:
         labels = []
         for ep in run:
-            # Map character → most frequent storyline in this episode
+            # Map character → most frequent plotline in this episode
             char_counts: dict[str, Counter[str]] = {}
             for event in ep.events:
-                if not event.storyline:
+                if not event.plotline:
                     continue
                 for char in event.characters:
                     if char in cast_ids:
                         if char not in char_counts:
                             char_counts[char] = Counter()
-                        char_counts[char][event.storyline] += 1
-            char_storylines: dict[str, str] = {
+                        char_counts[char][event.plotline] += 1
+            char_plotlines: dict[str, str] = {
                 char: counts.most_common(1)[0][0]
                 for char, counts in char_counts.items()
             }
 
             for char_id in cast_ids:
-                labels.append(char_storylines.get(char_id, "__absent__"))
+                labels.append(char_plotlines.get(char_id, "__absent__"))
         vectors.append(labels)
 
     # Compute ARI for all pairs

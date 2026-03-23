@@ -1,6 +1,6 @@
-"""Pass 2: Assign events to storylines for a single episode.
+"""Pass 2: Assign events to plotlines for a single episode.
 
-Input: one episode synopsis + cast + storylines from Pass 1.
+Input: one episode synopsis + cast + plotlines from Pass 1.
 Output: EpisodeBreakdown.
 """
 
@@ -21,11 +21,11 @@ from tvplotlines.models import (
 from tvplotlines.prompts import load_prompt
 
 _VALID_FUNCTIONS = {
-    "setup", "escalation", "turning_point", "climax",
-    "resolution", "cliffhanger", "seed",
+    "setup", "inciting_incident", "escalation", "turning_point",
+    "crisis", "climax", "resolution",
 }
 _VALID_INTERACTION_TYPES = {
-    "thematic_rhyme", "dramatic_irony", "convergence", "meta",
+    "thematic_rhyme", "dramatic_irony", "convergence",
 }
 _VALID_PATCH_ACTIONS = {"ADD_LINE", "CHECK_LINE", "SPLIT_LINE", "RERANK"}
 
@@ -37,11 +37,11 @@ def assign_events(
     synopsis: str,
     context: SeriesContext,
     cast: list[CastMember],
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     *,
     config: LLMConfig | None = None,
 ) -> EpisodeBreakdown:
-    """Assign events from one episode to storylines.
+    """Assign events from one episode to plotlines.
 
     Args:
         show: Series title.
@@ -50,7 +50,7 @@ def assign_events(
         synopsis: Synopsis text for this episode.
         context: Series context from Pass 0.
         cast: Cast from Pass 1.
-        storylines: Storylines from Pass 1.
+        plotlines: Plotlines from Pass 1.
         config: LLM settings.
 
     Returns:
@@ -64,23 +64,22 @@ def assign_events(
             "show": show,
             "season": season,
             "episode": episode_id,
-            "franchise_type": context.franchise_type,
+            "format": context.format,
             "story_engine": context.story_engine,
             "cast": [
                 {"id": c.id, "name": c.name, "aliases": c.aliases}
                 for c in cast
             ],
-            "storylines": [
+            "plotlines": [
                 {
-                    "id": s.id,
-                    "name": s.name,
-                    "driver": s.driver,
-                    "goal": s.goal,
-                    "type": s.type,
-                    "rank": s.rank,
-                    "devices": s.devices,
+                    "id": p.id,
+                    "name": p.name,
+                    "hero": p.hero,
+                    "goal": p.goal,
+                    "type": p.type,
+                    "rank": p.rank,
                 }
-                for s in storylines
+                for p in plotlines
             ],
             "synopsis": synopsis,
         },
@@ -88,10 +87,10 @@ def assign_events(
     )
 
     system_prompt = load_prompt("pass2", lang=config.lang)
-    # Cache system prompt — same for all episodes
+
     def _full_validate(data: dict) -> None:
         bd = _parse_breakdown(data, episode_id)
-        _validate(bd, storylines, cast)
+        _validate(bd, plotlines, cast)
 
     data = call_llm(
         system_prompt, user_message, config,
@@ -107,17 +106,10 @@ def _prepare_bulk(
     episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     config: LLMConfig,
 ) -> tuple[str, list[str], list[str], list]:
-    """Prepare shared data for parallel/batch Pass 2 calls.
-
-    Args:
-        episodes: List of (episode_id, synopsis_text) pairs.
-
-    Returns:
-        (system_prompt, user_messages, episode_ids, validators)
-    """
+    """Prepare shared data for parallel/batch Pass 2 calls."""
     system_prompt = load_prompt("pass2", lang=config.lang)
 
     user_messages = []
@@ -129,19 +121,18 @@ def _prepare_bulk(
                 "show": show,
                 "season": season,
                 "episode": episode_id,
-                "franchise_type": context.franchise_type,
+                "format": context.format,
                 "story_engine": context.story_engine,
                 "cast": [
                     {"id": c.id, "name": c.name, "aliases": c.aliases}
                     for c in cast
                 ],
-                "storylines": [
+                "plotlines": [
                     {
-                        "id": s.id, "name": s.name, "driver": s.driver,
-                        "goal": s.goal, "type": s.type, "rank": s.rank,
-                        "devices": s.devices,
+                        "id": p.id, "name": p.name, "hero": p.hero,
+                        "goal": p.goal, "type": p.type, "rank": p.rank,
                     }
-                    for s in storylines
+                    for p in plotlines
                 ],
                 "synopsis": synopsis,
             },
@@ -151,7 +142,7 @@ def _prepare_bulk(
     def _make_validator(ep_id: str):
         def _validate_ep(data: dict) -> None:
             bd = _parse_breakdown(data, ep_id)
-            _validate(bd, storylines, cast)
+            _validate(bd, plotlines, cast)
         return _validate_ep
 
     validators = [_make_validator(ep_id) for ep_id in episode_ids]
@@ -165,29 +156,16 @@ def assign_events_parallel(
     episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     *,
     config: LLMConfig | None = None,
 ) -> list[EpisodeBreakdown]:
-    """Assign events for all episodes in parallel (fast, full price).
-
-    Args:
-        show: Series title.
-        season: Season number.
-        episodes: List of (episode_id, synopsis_text) pairs.
-        context: Series context from Pass 0.
-        cast: Cast from Pass 1.
-        storylines: Storylines from Pass 1.
-        config: LLM settings.
-
-    Returns:
-        List of EpisodeBreakdown, one per episode.
-    """
+    """Assign events for all episodes in parallel (fast, full price)."""
     if config is None:
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, episodes, context, cast, storylines, config,
+        show, season, episodes, context, cast, plotlines, config,
     )
 
     results = call_llm_parallel(
@@ -207,33 +185,18 @@ def assign_events_batch(
     episodes: list[tuple[str, str]],
     context: SeriesContext,
     cast: list[CastMember],
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     *,
     config: LLMConfig | None = None,
     batch_id: str | None = None,
     on_batch_submitted=None,
 ) -> list[EpisodeBreakdown]:
-    """Assign events for all episodes in a single batch (50% cheaper, slower).
-
-    Falls back to parallel calls for non-Anthropic providers.
-
-    Args:
-        show: Series title.
-        season: Season number.
-        episodes: List of (episode_id, synopsis_text) pairs.
-        context: Series context from Pass 0.
-        cast: Cast from Pass 1.
-        storylines: Storylines from Pass 1.
-        config: LLM settings.
-
-    Returns:
-        List of EpisodeBreakdown, one per episode.
-    """
+    """Assign events for all episodes in a single batch (50% cheaper, slower)."""
     if config is None:
         config = LLMConfig()
 
     system_prompt, user_messages, episode_ids, validators = _prepare_bulk(
-        show, season, episodes, context, cast, storylines, config,
+        show, season, episodes, context, cast, plotlines, config,
     )
 
     results = call_llm_batch(
@@ -255,34 +218,30 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
             events.append(
                 Event(
                     event=e["event"],
-                    storyline=e.get("storyline"),
+                    plotline=e.get("plotline"),
                     function=e["function"],
                     characters=e.get("characters", []),
                     also_affects=e.get("also_affects"),
-                    devices=e.get("devices", []),
                 )
             )
         except KeyError as exc:
             raise ValueError(f"Event missing required field: {exc}") from exc
 
-    summary = data.get("summary", {})
-
     interactions = []
-    for i in summary.get("interactions", []):
+    for i in data.get("interactions", []):
         try:
             interactions.append(
                 Interaction(
                     type=i["type"],
                     lines=i["lines"],
                     description=i["description"],
-                    subtype=i.get("subtype"),
                 )
             )
         except KeyError as exc:
             raise ValueError(f"Interaction missing required field: {exc}") from exc
 
     patches = []
-    for p in summary.get("patches", []):
+    for p in data.get("patches", []):
         try:
             patches.append(
                 Patch(
@@ -298,7 +257,7 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
     return EpisodeBreakdown(
         episode=data.get("episode", episode_id),
         events=events,
-        theme=summary.get("theme", ""),
+        theme=data.get("theme", ""),
         interactions=interactions,
         patches=patches,
     )
@@ -306,11 +265,11 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
 
 def _validate(
     breakdown: EpisodeBreakdown,
-    storylines: list[Plotline],
+    plotlines: list[Plotline],
     cast: list[CastMember],
 ) -> None:
     """Validate Pass 2 output. Raises ValueError on problems."""
-    storyline_ids = {s.id for s in storylines}
+    plotline_ids = {p.id for p in plotlines}
     cast_ids = {c.id for c in cast}
 
     for event in breakdown.events:
@@ -319,14 +278,12 @@ def _validate(
                 f"Event {event.event!r}: invalid function {event.function!r}"
             )
 
-        # storyline must reference Pass 1 or be null (-> patch)
-        if event.storyline is not None and event.storyline not in storyline_ids:
+        if event.plotline is not None and event.plotline not in plotline_ids:
             raise ValueError(
-                f"Event {event.event!r}: storyline {event.storyline!r} "
-                f"not found in Pass 1 storylines: {storyline_ids}"
+                f"Event {event.event!r}: plotline {event.plotline!r} "
+                f"not found in plotlines: {plotline_ids}"
             )
 
-        # characters must reference cast or use guest: prefix
         for char in event.characters:
             if not char.startswith("guest:") and char not in cast_ids:
                 raise ValueError(
@@ -334,17 +291,13 @@ def _validate(
                     f"not in cast and not a guest"
                 )
 
-        # also_affects must reference valid storyline ids
         if event.also_affects:
-            for sid in event.also_affects:
-                if sid not in storyline_ids:
+            for pid in event.also_affects:
+                if pid not in plotline_ids:
                     raise ValueError(
-                        f"Event {event.event!r}: also_affects {sid!r} "
-                        f"not found in storylines"
+                        f"Event {event.event!r}: also_affects {pid!r} "
+                        f"not found in plotlines"
                     )
-
-    # Unassigned events are handled by postprocess.assign_orphan_events()
-    # after all episodes are processed — no rejection here.
 
     for interaction in breakdown.interactions:
         if interaction.type not in _VALID_INTERACTION_TYPES:

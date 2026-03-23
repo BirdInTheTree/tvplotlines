@@ -12,10 +12,9 @@ from tvplotlines.models import (
 
 def _make_prior() -> TVPlotlinesResult:
     ctx = SeriesContext(
-        franchise_type="serial",
+        format="serial",
         story_engine="A teacher builds a drug empire",
         genre="drama",
-        format="ongoing",
     )
     cast = [
         CastMember(id="walt", name="Walter White", aliases=["Walt"]),
@@ -23,7 +22,7 @@ def _make_prior() -> TVPlotlinesResult:
     ]
     plotlines = [
         Plotline(
-            id="empire", name="Walt: Empire", driver="walt",
+            id="empire", name="Walt: Empire", hero="walt",
             goal="build a drug business", obstacle="morality", stakes="death",
             type="serialized", rank="A", nature="plot-led", confidence="solid",
         ),
@@ -42,7 +41,7 @@ class TestPriorContextReuse:
         mock_detect = MagicMock(side_effect=AssertionError("Pass 0 should be skipped"))
         monkeypatch.setattr(pipeline_mod, "detect_context", mock_detect)
         mock_extract = MagicMock(return_value=(prior.cast, prior.plotlines))
-        monkeypatch.setattr(pipeline_mod, "extract_storylines", mock_extract)
+        monkeypatch.setattr(pipeline_mod, "extract_plotlines", mock_extract)
 
         try:
             pipeline_mod.get_plotlines("Breaking Bad", 2, {"S02E01": "synopsis"}, prior=prior)
@@ -64,13 +63,13 @@ class TestPriorContextReuse:
         explicit_cast = [CastMember(id="custom", name="Custom")]
         explicit_plotlines = [
             Plotline(
-                id="custom_line", name="Custom", driver="custom",
+                id="custom_line", name="Custom", hero="custom",
                 goal="g", obstacle="o", stakes="s",
                 type="serialized", rank="A", nature="plot-led", confidence="solid",
             ),
         ]
         mock_extract = MagicMock()
-        monkeypatch.setattr(pipeline_mod, "extract_storylines", mock_extract)
+        monkeypatch.setattr(pipeline_mod, "extract_plotlines", mock_extract)
 
         try:
             pipeline_mod.get_plotlines(
@@ -87,7 +86,7 @@ class TestPriorContextReuse:
         from tvplotlines.pipeline import get_plotlines
 
         prior = _make_prior()
-        prior.context.format = "anthology"
+        prior.context.is_anthology = True
         with pytest.raises(ValueError, match="anthology"):
             get_plotlines(
                 "Test Show", 2, {"S02E01": "synopsis"},

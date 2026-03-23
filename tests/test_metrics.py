@@ -7,11 +7,11 @@ from tvplotlines.models import EpisodeBreakdown, Event
 
 
 def _ep(events_data: list[tuple[str, str | None]]) -> EpisodeBreakdown:
-    """Helper: create episode from (event_text, storyline) pairs."""
+    """Helper: create episode from (event_text, plotline) pairs."""
     return EpisodeBreakdown(
         episode="S01E01",
         events=[
-            Event(event=text, storyline=line, function="setup", characters=["a"])
+            Event(event=text, plotline=line, function="setup", characters=["a"])
             for text, line in events_data
         ],
     )
@@ -45,8 +45,8 @@ class TestConsistencyARI:
         ep = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", storyline="line_a", function="setup", characters=["char1"]),
-                Event(event="e2", storyline="line_b", function="setup", characters=["char2"]),
+                Event(event="e1", plotline="line_a", function="setup", characters=["char1"]),
+                Event(event="e2", plotline="line_b", function="setup", characters=["char2"]),
             ],
         )
         # Same data twice = perfect consistency
@@ -58,17 +58,17 @@ class TestConsistencyARI:
         ep_run1 = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", storyline="belonging", function="setup", characters=["char1"]),
-                Event(event="e2", storyline="belonging", function="setup", characters=["char2"]),
-                Event(event="e3", storyline="leadership", function="setup", characters=["char3"]),
+                Event(event="e1", plotline="belonging", function="setup", characters=["char1"]),
+                Event(event="e2", plotline="belonging", function="setup", characters=["char2"]),
+                Event(event="e3", plotline="leadership", function="setup", characters=["char3"]),
             ],
         )
         ep_run2 = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", storyline="acceptance", function="setup", characters=["char1"]),
-                Event(event="e2", storyline="acceptance", function="setup", characters=["char2"]),
-                Event(event="e3", storyline="power", function="setup", characters=["char3"]),
+                Event(event="e1", plotline="acceptance", function="setup", characters=["char1"]),
+                Event(event="e2", plotline="acceptance", function="setup", characters=["char2"]),
+                Event(event="e3", plotline="power", function="setup", characters=["char3"]),
             ],
         )
         ari = compute_consistency_ari(
@@ -82,19 +82,19 @@ class TestConsistencyARI:
         ep_run1 = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", storyline="A", function="setup", characters=["c1"]),
-                Event(event="e2", storyline="A", function="setup", characters=["c2"]),
-                Event(event="e3", storyline="B", function="setup", characters=["c3"]),
-                Event(event="e4", storyline="B", function="setup", characters=["c4"]),
+                Event(event="e1", plotline="A", function="setup", characters=["c1"]),
+                Event(event="e2", plotline="A", function="setup", characters=["c2"]),
+                Event(event="e3", plotline="B", function="setup", characters=["c3"]),
+                Event(event="e4", plotline="B", function="setup", characters=["c4"]),
             ],
         )
         ep_run2 = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", storyline="X", function="setup", characters=["c1"]),
-                Event(event="e2", storyline="Y", function="setup", characters=["c2"]),
-                Event(event="e3", storyline="X", function="setup", characters=["c3"]),
-                Event(event="e4", storyline="Y", function="setup", characters=["c4"]),
+                Event(event="e1", plotline="X", function="setup", characters=["c1"]),
+                Event(event="e2", plotline="Y", function="setup", characters=["c2"]),
+                Event(event="e3", plotline="X", function="setup", characters=["c3"]),
+                Event(event="e4", plotline="Y", function="setup", characters=["c4"]),
             ],
         )
         ari = compute_consistency_ari(

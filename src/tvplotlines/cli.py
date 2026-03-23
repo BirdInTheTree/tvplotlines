@@ -71,11 +71,15 @@ def _run(args: argparse.Namespace) -> None:
     print(f"\nSaved to {output}")
 
     # Print summary
-    print(f"Context: {result.context.franchise_type} | {result.context.story_engine}")
+    print(f"Context: {result.context.format} | {result.context.story_engine}")
+    if result.context.is_ensemble:
+        print("  (ensemble)")
+    if result.context.is_anthology:
+        print("  (anthology)")
     print(f"Cast: {len(result.cast)} characters")
-    print(f"Storylines: {len(result.plotlines)}")
+    print(f"Plotlines: {len(result.plotlines)}")
     for s in result.plotlines:
-        print(f"  [{s.rank}] {s.name} (driver={s.driver})")
+        print(f"  [{s.rank or 'runner'}] {s.name} (hero={s.hero})")
     print(f"Episodes: {len(result.episodes)}")
     for ep in result.episodes:
         print(f"  {ep.episode}: {len(ep.events)} events")
