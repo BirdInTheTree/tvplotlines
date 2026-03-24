@@ -175,7 +175,7 @@ LOOP FOREVER:
 - Focus on Pass 1 instructions that scale plotline count with season length.
 - Be careful not to over-generate plotlines for short shows — verify on fast set.
 - If a change helps House but hurts BB/SP/GOT, it's rejected (min constraint).
-- Pass 3 currently runs with `skip_review=True`. To test Pass 3 prompt changes, add `--no-skip-review` flag. But note: Pass 3 adds another LLM call = more variance. Test both ways.
+- Pass 3 runs by default. To disable it, add `--skip-review`. But note: Pass 3 adds another LLM call = more variance. Test both ways.
 - Theoretical grounding matters: changes should be defensible from narrative theory, not ad-hoc rules.
 
 ## v2 baseline reference
