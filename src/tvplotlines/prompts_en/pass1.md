@@ -145,8 +145,8 @@ Seed—an event function at the next step. Wraparound—a narrative device at th
 
 ### Quantity Expectations
 
-- Procedural: 2–3 plotlines (1 case_of_the_week + 1–2 serialized).
-- Hybrid: 3–6 plotlines.
+- Procedural: 1 case_of_the_week + serialized character arcs. For short seasons (≤10 eps): 2–4 total. For long seasons (11+ eps): 4–8 total — recurring cast members develop their own arcs over a full network season.
+- Hybrid: 3–6 plotlines. For long seasons (11+ eps): 5–8.
 - Serial: 3–8 serialized plotlines per season.
 - If is_ensemble: 4–6 parallel plotlines.
 
