@@ -80,6 +80,7 @@ def assign_events(
                     "stakes": p.stakes,
                     "type": p.type,
                     "rank": p.rank,
+                    "confidence": p.confidence,
                 }
                 for p in plotlines
             ],
@@ -134,6 +135,7 @@ def _prepare_bulk(
                         "id": p.id, "name": p.name, "hero": p.hero,
                         "goal": p.goal, "obstacle": p.obstacle,
                         "stakes": p.stakes, "type": p.type, "rank": p.rank,
+                        "confidence": p.confidence,
                     }
                     for p in plotlines
                 ],
