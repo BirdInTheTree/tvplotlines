@@ -42,7 +42,7 @@ Where:
 | Show | Code | Eps | Type | Lang |
 |------|------|-----|------|------|
 | Breaking Bad S01 | BB | 7 | serial | en |
-| Слово пацана S01 | SP | 8 | serial | ru |
+| Mad Men S01 | MADMEN | 13 | serial | en |
 | House S01 | HOUSE | 22 | procedural | en |
 | GoT S01 | GOT | 10 | ensemble | en |
 
