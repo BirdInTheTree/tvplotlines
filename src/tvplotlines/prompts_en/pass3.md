@@ -53,7 +53,17 @@ Complete Story DNA: **hero → goal → obstacle → stakes**.
 
 But shows can be poorly written. A plotline may exist without a clear goal, with nominal conflict, or be abandoned halfway. That doesn't mean it doesn't exist—it means it's weak. Don't discard weak plotlines—mark confidence instead.
 
-### Step 2: Check plotline arcs
+### Step 2: Spot-check event assignments
+
+Scan events across episodes. For each plotline, read its events and check: does this event advance THIS plotline's goal, or would it fit better elsewhere? Common errors:
+
+- Event assigned to hero's A-plotline but actually advances their B-plotline (wrong goal)
+- Event describes a character reacting to another plotline's conflict (should be `also_affects`, not primary assignment)
+- Multiple events in a row assigned to the same plotline but describing different conflicts
+
+If you find misassigned events → REASSIGN.
+
+### Step 3: Check plotline arcs
 
 For each plotline, look at event functions across the entire season. A healthy plotline has a progression: setup → inciting_incident → escalation → turning_point → crisis → climax → resolution. Problems:
 
@@ -64,7 +74,7 @@ For each plotline, look at event functions across the entire season. A healthy p
 
 Use `low_completeness` and `monotonicity_violation` diagnostics if provided.
 
-### Step 3: Look for duplication
+### Step 4: Look for duplication
 
 Two plotlines with the same hero and adjacent goals—most likely one plotline with phases. Signs:
 
@@ -72,7 +82,7 @@ Two plotlines with the same hero and adjacent goals—most likely one plotline w
 - Events of two plotlines alternate in the same episodes
 - No conflict between the two plotlines—they don't contradict each other
 
-### Step 4: Check ranks against data
+### Step 5: Check ranks against data
 
 Computed weight (primary/background/glimpse)—objective data. Rank (A/B/C)—the analyst's subjective assessment. If data contradicts the assessment:
 
@@ -82,14 +92,14 @@ Computed weight (primary/background/glimpse)—objective data. Rank (A/B/C)—th
 
 Use `rank_mismatch` diagnostics if provided.
 
-### Step 5: Check orphaned events
+### Step 6: Check orphaned events
 
 Events with `plotline: null`—the analyst couldn't assign them. For each:
 
 - Event belongs to an existing plotline (assignment error) → REASSIGN
 - Multiple orphaned events form a pattern (one hero, one goal) → CREATE a new plotline
 
-### Step 6: Check patches
+### Step 7: Check patches
 
 Patches from the previous step—hints, not assignments. For each patch decide whether it's justified:
 
@@ -98,7 +108,7 @@ Patches from the previous step—hints, not assignments. For each patch decide w
 - SPLIT_LINE: truly two different plotlines, or one plotline with phases?
 - RERANK: does data support a different rank?
 
-### Step 7: Check format consistency
+### Step 8: Check format consistency
 
 The plotline structure should match the format:
 
