@@ -22,12 +22,12 @@
 **Quality score** = mean across fast set shows of:
 
 ```
-show_score = coverage × max(coh_sep, 0)
+show_score = max(coh_sep, 0)
 ```
 
 Where:
-- **coverage** = fraction of events with non-null plotline assignment.
 - **coh_sep** = within-plotline coherence minus between-plotline separation, computed from OpenAI `text-embedding-3-small` embeddings. Higher = plotlines are more semantically distinct.
+- **Exclusion**: events assigned to `case_of_the_week` plotlines are excluded from coh_sep computation. Case-of-the-week is structurally diverse by design (different case each episode) — including it unfairly penalizes procedurals.
 
 **Constraint**: min(show_score) ≥ 0.01 — no show may collapse to zero. A change that improves the mean but kills one show is rejected.
 
@@ -126,25 +126,18 @@ Log to `results.tsv` (tab-separated).
 Header and columns:
 
 ```
-commit	mean_score	min_score	bb	sp	house	got	cost_usd	status	description
+commit	mean_score	min_score	bb	sp	house	got	bb_sil	sp_sil	house_sil	got_sil	cost_usd	status	description	notes
 ```
 
 1. git commit hash (short, 7 chars)
-2. mean_score across fast set
+2. mean_score across fast set (coh_sep, excluding cotw events)
 3. min_score across fast set
-4-7. per-show coh_sep values
-8. approximate cost in USD
-9. status: `keep`, `discard`, or `crash`
-10. short description of what changed
-
-Example:
-
-```
-commit	mean_score	min_score	bb	sp	house	got	cost_usd	status	description
-a1b2c3d	0.043	0.002	0.083	0.077	0.002	0.077	1.5	keep	baseline (new prompts)
-b2c3d4e	0.055	0.015	0.090	0.082	0.015	0.085	1.8	keep	add season-length scaling to pass1
-c3d4e5f	0.038	0.000	0.085	0.080	-0.003	0.070	1.5	discard	remove rank rules (house collapsed)
-```
+4-7. per-show coh_sep values (excluding cotw)
+8-11. per-show silhouette values (excluding cotw, for observation only)
+12. approximate cost in USD
+13. status: `keep`, `discard`, or `crash`
+14. short description of what changed
+15. notes — **mandatory** after every run. Write what you observed: why the score moved (or didn't), what the LLM did differently, what to try next. Without notes, patterns are invisible across experiments.
 
 ## The experiment loop
 
