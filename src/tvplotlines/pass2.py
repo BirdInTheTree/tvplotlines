@@ -76,6 +76,8 @@ def assign_events(
                     "name": p.name,
                     "hero": p.hero,
                     "goal": p.goal,
+                    "obstacle": p.obstacle,
+                    "stakes": p.stakes,
                     "type": p.type,
                     "rank": p.rank,
                 }
@@ -130,7 +132,8 @@ def _prepare_bulk(
                 "plotlines": [
                     {
                         "id": p.id, "name": p.name, "hero": p.hero,
-                        "goal": p.goal, "type": p.type, "rank": p.rank,
+                        "goal": p.goal, "obstacle": p.obstacle,
+                        "stakes": p.stakes, "type": p.type, "rank": p.rank,
                     }
                     for p in plotlines
                 ],
