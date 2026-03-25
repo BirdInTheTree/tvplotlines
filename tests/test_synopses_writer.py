@@ -1,4 +1,4 @@
-"""Tests for write_synopses: Wikipedia parsing, LLM rewriting, save logic."""
+"""Tests for synopses_writer: Wikipedia parsing, LLM rewriting, save logic."""
 
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -6,7 +6,7 @@ import json
 
 import pytest
 
-from tvplotlines.write_synopses import (
+from tvplotlines.synopses_writer import (
     fetch_season_page,
     parse_episode_table,
     rewrite_synopses,
@@ -87,7 +87,7 @@ def _make_error_response() -> MagicMock:
 
 
 class TestFetchSeasonPage:
-    @patch("tvplotlines.write_synopses.httpx.get")
+    @patch("tvplotlines.synopses_writer.httpx.get")
     def test_title_construction(self, mock_get):
         """Verify URL params for standard show names."""
         mock_get.return_value = _make_success_response("<html>content</html>")
@@ -99,7 +99,7 @@ class TestFetchSeasonPage:
         params = call_args.kwargs.get("params") or call_args[1].get("params")
         assert params["page"] == "House_(season_1)"
 
-    @patch("tvplotlines.write_synopses.httpx.get")
+    @patch("tvplotlines.synopses_writer.httpx.get")
     def test_title_construction_multi_word(self, mock_get):
         """Spaces in show name become underscores."""
         mock_get.return_value = _make_success_response()
@@ -110,7 +110,7 @@ class TestFetchSeasonPage:
         params = call_args.kwargs.get("params") or call_args[1].get("params")
         assert params["page"] == "Breaking_Bad_(season_2)"
 
-    @patch("tvplotlines.write_synopses.httpx.get")
+    @patch("tvplotlines.synopses_writer.httpx.get")
     def test_wiki_title_override(self, mock_get):
         """Explicit wiki_title skips automatic construction."""
         mock_get.return_value = _make_success_response()
@@ -121,8 +121,8 @@ class TestFetchSeasonPage:
         params = call_args.kwargs.get("params") or call_args[1].get("params")
         assert params["page"] == "House_season_1"
 
-    @patch("tvplotlines.write_synopses.httpx.get")
-    @patch("tvplotlines.write_synopses.time.sleep")
+    @patch("tvplotlines.synopses_writer.httpx.get")
+    @patch("tvplotlines.synopses_writer.time.sleep")
     def test_fallback_on_missing_page(self, _mock_sleep, mock_get):
         """First title 404 → tries second naming convention."""
         mock_get.side_effect = [
@@ -139,8 +139,8 @@ class TestFetchSeasonPage:
             mock_get.call_args_list[1][1].get("params")
         assert second_call_params["page"] == "House_season_1"
 
-    @patch("tvplotlines.write_synopses.httpx.get")
-    @patch("tvplotlines.write_synopses.time.sleep")
+    @patch("tvplotlines.synopses_writer.httpx.get")
+    @patch("tvplotlines.synopses_writer.time.sleep")
     def test_all_titles_missing_raises(self, _mock_sleep, mock_get):
         """Both naming conventions fail → raise with helpful message."""
         mock_get.return_value = _make_error_response()

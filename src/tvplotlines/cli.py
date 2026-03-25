@@ -90,7 +90,7 @@ def _run(args: argparse.Namespace) -> None:
 def _write_synopses(args: argparse.Namespace) -> None:
     """Generate episode synopses from Wikipedia or raw files."""
     try:
-        from tvplotlines.write_synopses import write_synopses
+        from tvplotlines.synopses_writer import write_synopses
     except ImportError:
         print(
             "write-synopses requires additional dependencies.\n"
