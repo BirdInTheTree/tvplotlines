@@ -52,10 +52,16 @@ You receive: show title, season number, episode number, show format (procedural/
 
 # OUTPUT
 
-Plain text synopsis. No markdown formatting, no bullet points, no subtitles, no headers.
+Return a JSON object with a single field:
 
-- **300–500 words**
-- **8–15 beats**
+```json
+{"synopsis": "Your synopsis text here..."}
+```
+
+The synopsis must be:
+
+- **Plain text** — no markdown, no bullet points, no subtitles, no headers
+- **300–500 words**, **8–15 beats**
 - Continuous prose organized into paragraphs by scene or location
 - Chronological order within the episode; mark flashbacks explicitly
 - Language: English

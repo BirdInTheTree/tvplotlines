@@ -7,6 +7,7 @@ from __future__ import annotations
 import re
 import sys
 import time
+from pathlib import Path
 from typing import TypedDict
 
 
@@ -234,3 +235,194 @@ def _extract_description(row) -> str:
         hidden.decompose()
 
     return desc_cell.get_text(separator=" ", strip=True)
+
+
+# ---------------------------------------------------------------------------
+# LLM rewriting
+# ---------------------------------------------------------------------------
+
+
+def rewrite_synopses(
+    episodes: list[RawEpisode],
+    show: str,
+    season: int,
+    config: "LLMConfig",
+    *,
+    show_format: str | None = None,
+) -> list[str]:
+    """Rewrite raw episode descriptions into full synopses via LLM.
+
+    Args:
+        episodes: Raw episodes from Wikipedia or user files.
+        show: Show title.
+        season: Season number.
+        config: LLM configuration.
+        show_format: Optional format hint (procedural/serial/hybrid/limited).
+
+    Returns:
+        List of synopsis texts, one per episode, in order.
+    """
+    from tvplotlines.llm import call_llm_parallel
+    from tvplotlines.prompts import load_prompt
+
+    system_prompt = load_prompt("write_synopses")
+    format_hint = f"Format: {show_format}" if show_format else "Format: unknown (determine from context)"
+
+    user_messages = []
+    for ep in episodes:
+        msg = (
+            f"Show: {show}\n"
+            f"Season: {season}, Episode: {ep['number']}\n"
+            f"{format_hint}\n\n"
+            f"Raw description:\n{ep['description']}"
+        )
+        user_messages.append(msg)
+
+    results = call_llm_parallel(
+        system_prompt, user_messages, config, cache_system=True
+    )
+
+    return [r["synopsis"] for r in results]
+
+
+# ---------------------------------------------------------------------------
+# Save helpers
+# ---------------------------------------------------------------------------
+
+
+def _save_individual_files(
+    synopses: list[str],
+    episodes: list[RawEpisode],
+    season: int,
+    output_dir: Path,
+) -> list[Path]:
+    """Save each synopsis as S01E01.txt, S01E02.txt, etc."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for ep, text in zip(episodes, synopses):
+        filename = f"S{season:02d}E{ep['number']:02d}.txt"
+        path = output_dir / filename
+        path.write_text(text, encoding="utf-8")
+        paths.append(path)
+    return paths
+
+
+def _save_combined_file(
+    synopses: list[str],
+    episodes: list[RawEpisode],
+    show: str,
+    season: int,
+    output_path: Path,
+) -> Path:
+    """Save all synopses as one combined file compatible with input_parser."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    parts = [f"{show}, Season {season}", ""]
+    for ep, text in zip(episodes, synopses):
+        title_part = f" \u2014 {ep['title']}" if ep["title"] else ""
+        parts.append(f"Episode {ep['number']}{title_part}")
+        parts.append(text)
+        parts.append("")
+    output_path.write_text("\n".join(parts).rstrip() + "\n", encoding="utf-8")
+    return output_path
+
+
+# ---------------------------------------------------------------------------
+# Main entry point
+# ---------------------------------------------------------------------------
+
+
+def write_synopses(
+    show: str,
+    season: int,
+    output: str,
+    *,
+    from_files: list[str] | None = None,
+    lang: str = "en",
+    wiki_title: str | None = None,
+    show_format: str | None = None,
+    dry_run: bool = False,
+    provider: str = "anthropic",
+    model: str | None = None,
+    base_url: str | None = None,
+) -> None:
+    """Generate episode synopses and save to files.
+
+    Args:
+        show: Show title.
+        season: Season number.
+        output: Output path — directory for individual files, file for combined.
+        from_files: Optional list of raw description file paths (skip Wikipedia).
+        lang: Wikipedia language code.
+        wiki_title: Explicit Wikipedia page title.
+        show_format: Show format hint for LLM.
+        dry_run: Fetch and parse only, don't call LLM.
+        provider: LLM provider.
+        model: LLM model name.
+        base_url: Custom API endpoint.
+    """
+    # Determine episodes source
+    if from_files:
+        episodes = _load_from_files(from_files, season)
+    else:
+        html = fetch_season_page(show, season, lang=lang, wiki_title=wiki_title)
+        episodes = parse_episode_table(html)
+
+    if dry_run:
+        print(f"Found {len(episodes)} episodes:")
+        for ep in episodes:
+            desc_len = len(ep["description"])
+            print(f"  S{season:02d}E{ep['number']:02d} — {ep['title']} ({desc_len} chars)")
+        return
+
+    from tvplotlines.llm import LLMConfig
+
+    config = LLMConfig(provider=provider, model=model, base_url=base_url)
+    synopses = rewrite_synopses(
+        episodes, show, season, config, show_format=show_format
+    )
+
+    # Save: directory → individual files, file → combined
+    output_path = Path(output)
+    is_dir = output.endswith("/") or output.endswith("\\") or output_path.is_dir()
+
+    if is_dir:
+        paths = _save_individual_files(synopses, episodes, season, output_path)
+        print(f"Saved {len(paths)} synopsis files to {output_path}/")
+    else:
+        path = _save_combined_file(synopses, episodes, show, season, output_path)
+        print(f"Saved combined synopsis to {path}")
+
+
+def _load_from_files(file_paths: list[str], season: int) -> list[RawEpisode]:
+    """Load raw descriptions from user-provided files.
+
+    Files should contain one episode description each.
+    Episode number is extracted from filename (S01E03 pattern) or sequential order.
+    """
+    episodes = []
+    for idx, path_str in enumerate(sorted(file_paths), start=1):
+        path = Path(path_str)
+        if not path.exists():
+            raise FileNotFoundError(f"File not found: {path}")
+
+        text = path.read_text(encoding="utf-8").strip()
+        if not text:
+            print(f"Warning: empty file {path}, skipping", file=sys.stderr)
+            continue
+
+        # Try to extract episode number from filename
+        match = re.search(r"S\d{2}E(\d{2})", path.stem, re.IGNORECASE)
+        number = int(match.group(1)) if match else idx
+
+        # Use filename stem as title fallback
+        title = path.stem
+        if match:
+            # Remove the episode ID prefix to get a cleaner title
+            title = re.sub(r"S\d{2}E\d{2}[_\-\s]*", "", title, flags=re.IGNORECASE).strip()
+
+        episodes.append(RawEpisode(number=number, title=title, description=text))
+
+    if not episodes:
+        raise ValueError("No valid episode files found.")
+
+    return episodes
