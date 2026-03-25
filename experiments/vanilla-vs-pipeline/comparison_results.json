@@ -1,0 +1,65 @@
+{
+  "BB": {
+    "show": "Breaking Bad",
+    "vanilla_coverage": 0.11971830985915492,
+    "vanilla_events": 43,
+    "vanilla_sentences": 142,
+    "pipeline_coverage": 0.8802816901408451,
+    "pipeline_events": 141,
+    "pipeline_sentences": 142,
+    "vanilla_arc_mean": 0.619047619047619,
+    "vanilla_plotlines": 6,
+    "pipeline_arc_mean": 0.8,
+    "pipeline_plotlines": 5,
+    "vanilla_cohsep": 0.1277,
+    "vanilla_sil": 0.121,
+    "pipeline_cohsep": 0.0935,
+    "pipeline_sil": 0.0596,
+    "vanilla_usage": {
+      "input": 3508,
+      "output": 1898
+    }
+  },
+  "MADMEN": {
+    "show": "Mad Men",
+    "vanilla_coverage": 0.06718346253229975,
+    "vanilla_events": 48,
+    "vanilla_sentences": 387,
+    "pipeline_coverage": 0.7829457364341085,
+    "pipeline_events": 274,
+    "pipeline_sentences": 387,
+    "vanilla_arc_mean": 0.6938775510204083,
+    "vanilla_plotlines": 7,
+    "pipeline_arc_mean": 0.9047619047619047,
+    "pipeline_plotlines": 9,
+    "vanilla_cohsep": 0.1091,
+    "vanilla_sil": 0.0163,
+    "pipeline_cohsep": 0.0793,
+    "pipeline_sil": 0.0396,
+    "vanilla_usage": {
+      "input": 9271,
+      "output": 2143
+    }
+  },
+  "GOT": {
+    "show": "Game of Thrones",
+    "vanilla_coverage": 0.05405405405405406,
+    "vanilla_events": 56,
+    "vanilla_sentences": 185,
+    "pipeline_coverage": 0.9081081081081082,
+    "pipeline_events": 196,
+    "pipeline_sentences": 185,
+    "vanilla_arc_mean": 0.5476190476190476,
+    "vanilla_plotlines": 6,
+    "pipeline_arc_mean": 0.873015873015873,
+    "pipeline_plotlines": 9,
+    "vanilla_cohsep": 0.0829,
+    "vanilla_sil": 0.0719,
+    "pipeline_cohsep": 0.1055,
+    "pipeline_sil": 0.0869,
+    "vanilla_usage": {
+      "input": 5769,
+      "output": 2508
+    }
+  }
+}

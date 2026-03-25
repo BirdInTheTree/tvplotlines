@@ -1,0 +1,17 @@
+{
+  "events": 107,
+  "lines": 6,
+  "coverage": 0.711,
+  "arc_mean": 0.643,
+  "coh_sep": 0.0865,
+  "sil": 0.0616,
+  "cost": 0.15,
+  "plotlines": [
+    "Walt: Building Meth Empire",
+    "Walt: Cancer Battle",
+    "Skyler: Uncovering Truth",
+    "Hank: Blue Meth Case",
+    "Jesse: Surviving the Drug Trade",
+    "Marie: Kleptomania Issues"
+  ]
+}

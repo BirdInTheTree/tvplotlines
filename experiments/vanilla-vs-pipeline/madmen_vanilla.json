@@ -1,0 +1,346 @@
+{
+  "plotlines": [
+    {
+      "id": "don_identity",
+      "name": "Don's Hidden Identity",
+      "hero": "Don Draper"
+    },
+    {
+      "id": "don_betty_marriage",
+      "name": "Don and Betty's Marriage",
+      "hero": "Don Draper"
+    },
+    {
+      "id": "don_affairs",
+      "name": "Don's Extramarital Affairs",
+      "hero": "Don Draper"
+    },
+    {
+      "id": "peggy_career",
+      "name": "Peggy's Career Advancement",
+      "hero": "Peggy Olson"
+    },
+    {
+      "id": "pete_ambition",
+      "name": "Pete's Professional Ambition",
+      "hero": "Pete Campbell"
+    },
+    {
+      "id": "roger_crisis",
+      "name": "Roger's Health Crisis",
+      "hero": "Roger Sterling"
+    },
+    {
+      "id": "adam_tragedy",
+      "name": "Adam Whitman's Tragedy",
+      "hero": "Adam Whitman"
+    }
+  ],
+  "episodes": [
+    {
+      "episode": "S01E01",
+      "events": [
+        {
+          "event": "Don revealed as married father at episode end",
+          "plotline": "don_betty_marriage",
+          "function": "setup"
+        },
+        {
+          "event": "Don meets and flirts with Midge Daniels",
+          "plotline": "don_affairs",
+          "function": "setup"
+        },
+        {
+          "event": "Don meets Rachel Menken and walks out on her",
+          "plotline": "don_affairs",
+          "function": "setup"
+        },
+        {
+          "event": "Peggy starts as Don's secretary",
+          "plotline": "peggy_career",
+          "function": "setup"
+        },
+        {
+          "event": "Pete sleeps with Peggy night before his wedding",
+          "plotline": "pete_ambition",
+          "function": "setup"
+        }
+      ]
+    },
+    {
+      "episode": "S01E02",
+      "events": [
+        {
+          "event": "Betty experiences hand numbness and car crash",
+          "plotline": "don_betty_marriage",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Don takes Betty to psychiatrist who reports back to him",
+          "plotline": "don_betty_marriage",
+          "function": "escalation"
+        },
+        {
+          "event": "Peggy declines Paul's romantic advances",
+          "plotline": "peggy_career",
+          "function": "setup"
+        }
+      ]
+    },
+    {
+      "episode": "S01E03",
+      "events": [
+        {
+          "event": "Man on train recognizes Don as Dick Whitman",
+          "plotline": "don_identity",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Don drives past Sally's birthday party and returns with dog",
+          "plotline": "don_betty_marriage",
+          "function": "escalation"
+        },
+        {
+          "event": "Don connects with Rachel on department store roof",
+          "plotline": "don_affairs",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E04",
+      "events": [
+        {
+          "event": "Pete fired then rehired due to family connections",
+          "plotline": "pete_ambition",
+          "function": "escalation"
+        },
+        {
+          "event": "Betty babysits Glen and gives him lock of her hair",
+          "plotline": "don_betty_marriage",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E05",
+      "events": [
+        {
+          "event": "Adam Whitman confronts Don at Sterling Cooper",
+          "plotline": "don_identity",
+          "function": "escalation"
+        },
+        {
+          "event": "Adam Whitman confronts Don at Sterling Cooper",
+          "plotline": "adam_tragedy",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Don gives Adam money and tells him to leave",
+          "plotline": "don_identity",
+          "function": "escalation"
+        },
+        {
+          "event": "Don gives Adam money and tells him to leave",
+          "plotline": "adam_tragedy",
+          "function": "escalation"
+        },
+        {
+          "event": "Peggy overhears Don's call with Midge",
+          "plotline": "peggy_career",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E06",
+      "events": [
+        {
+          "event": "Don consults Rachel about Israel tourism campaign",
+          "plotline": "don_affairs",
+          "function": "escalation"
+        },
+        {
+          "event": "Peggy writes Belle Jolie copy and impresses Freddy",
+          "plotline": "peggy_career",
+          "function": "turning_point"
+        },
+        {
+          "event": "Roger gives Joan caged bird as gift",
+          "plotline": "roger_crisis",
+          "function": "setup"
+        }
+      ]
+    },
+    {
+      "episode": "S01E07",
+      "events": [
+        {
+          "event": "Roger gropes Betty at dinner",
+          "plotline": "don_betty_marriage",
+          "function": "crisis"
+        },
+        {
+          "event": "Don humiliates Roger with stair climb",
+          "plotline": "roger_crisis",
+          "function": "escalation"
+        },
+        {
+          "event": "Betty slaps Helen Bishop at supermarket",
+          "plotline": "don_betty_marriage",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E08",
+      "events": [
+        {
+          "event": "Pete and Peggy have sex in his office",
+          "plotline": "pete_ambition",
+          "function": "escalation"
+        },
+        {
+          "event": "Pete and Peggy have sex in his office",
+          "plotline": "peggy_career",
+          "function": "escalation"
+        },
+        {
+          "event": "Don realizes Midge loves Roy and ends relationship",
+          "plotline": "don_affairs",
+          "function": "turning_point"
+        }
+      ]
+    },
+    {
+      "episode": "S01E09",
+      "events": [
+        {
+          "event": "Betty models for Coca-Cola then gets dropped",
+          "plotline": "don_betty_marriage",
+          "function": "escalation"
+        },
+        {
+          "event": "Betty shoots at pigeons in negligee",
+          "plotline": "don_betty_marriage",
+          "function": "crisis"
+        }
+      ]
+    },
+    {
+      "episode": "S01E10",
+      "events": [
+        {
+          "event": "Roger suffers first heart attack with twins",
+          "plotline": "roger_crisis",
+          "function": "turning_point"
+        },
+        {
+          "event": "Don confesses his past to Rachel",
+          "plotline": "don_affairs",
+          "function": "turning_point"
+        },
+        {
+          "event": "Don confesses his past to Rachel",
+          "plotline": "don_identity",
+          "function": "turning_point"
+        }
+      ]
+    },
+    {
+      "episode": "S01E11",
+      "events": [
+        {
+          "event": "Adam Whitman commits suicide",
+          "plotline": "adam_tragedy",
+          "function": "climax"
+        },
+        {
+          "event": "Adam Whitman commits suicide",
+          "plotline": "don_identity",
+          "function": "crisis"
+        },
+        {
+          "event": "Roger suffers second heart attack",
+          "plotline": "roger_crisis",
+          "function": "crisis"
+        },
+        {
+          "event": "Don becomes partner",
+          "plotline": "pete_ambition",
+          "function": "escalation"
+        },
+        {
+          "event": "Peggy gets raise and own desk",
+          "plotline": "peggy_career",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E12",
+      "events": [
+        {
+          "event": "Pete discovers Don's identity and blackmails him",
+          "plotline": "don_identity",
+          "function": "climax"
+        },
+        {
+          "event": "Pete discovers Don's identity and blackmails him",
+          "plotline": "pete_ambition",
+          "function": "turning_point"
+        },
+        {
+          "event": "Don proposes escape to Rachel who refuses",
+          "plotline": "don_affairs",
+          "function": "climax"
+        },
+        {
+          "event": "Cooper dismisses Pete's blackmail attempt",
+          "plotline": "don_identity",
+          "function": "resolution"
+        },
+        {
+          "event": "Cooper dismisses Pete's blackmail attempt",
+          "plotline": "pete_ambition",
+          "function": "crisis"
+        }
+      ]
+    },
+    {
+      "episode": "S01E13",
+      "events": [
+        {
+          "event": "Don promotes Peggy to Junior Copywriter",
+          "plotline": "peggy_career",
+          "function": "climax"
+        },
+        {
+          "event": "Betty discovers Don has been talking to her psychiatrist",
+          "plotline": "don_betty_marriage",
+          "function": "climax"
+        },
+        {
+          "event": "Peggy gives birth and refuses to look at baby",
+          "plotline": "peggy_career",
+          "function": "resolution"
+        },
+        {
+          "event": "Don returns to empty house after Kodak pitch",
+          "plotline": "don_betty_marriage",
+          "function": "resolution"
+        },
+        {
+          "event": "Pete remains frustrated about promotion",
+          "plotline": "pete_ambition",
+          "function": "resolution"
+        },
+        {
+          "event": "Roger recovers enough to work",
+          "plotline": "roger_crisis",
+          "function": "resolution"
+        }
+      ]
+    }
+  ]
+}

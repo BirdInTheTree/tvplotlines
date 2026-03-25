@@ -1,0 +1,286 @@
+{
+  "plotlines": [
+    {
+      "id": "meth_business",
+      "name": "Walt's transformation into a meth cook",
+      "hero": "Walter White"
+    },
+    {
+      "id": "cancer_diagnosis",
+      "name": "Walt's cancer diagnosis and treatment",
+      "hero": "Walter White"
+    },
+    {
+      "id": "family_deception",
+      "name": "Walt's deception of his family",
+      "hero": "Walter White"
+    },
+    {
+      "id": "dea_investigation",
+      "name": "Hank's investigation of the blue meth",
+      "hero": "Hank Schrader"
+    },
+    {
+      "id": "distribution_network",
+      "name": "Jesse's struggle to build a distribution network",
+      "hero": "Jesse Pinkman"
+    },
+    {
+      "id": "tuco_relationship",
+      "name": "Walt and Jesse's dangerous partnership with Tuco",
+      "hero": "Walter White"
+    }
+  ],
+  "episodes": [
+    {
+      "episode": "S01E01",
+      "events": [
+        {
+          "event": "Walt works as chemistry teacher and car wash employee",
+          "plotline": "meth_business",
+          "function": "setup"
+        },
+        {
+          "event": "Walt goes on DEA ride-along with Hank",
+          "plotline": "meth_business",
+          "function": "setup"
+        },
+        {
+          "event": "Walt spots Jesse escaping meth lab bust",
+          "plotline": "meth_business",
+          "function": "setup"
+        },
+        {
+          "event": "Walt collapses and is diagnosed with Stage III lung cancer",
+          "plotline": "cancer_diagnosis",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Walt proposes meth cooking partnership to Jesse",
+          "plotline": "meth_business",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Walt and Jesse cook first batch with 99.1% purity",
+          "plotline": "meth_business",
+          "function": "escalation"
+        },
+        {
+          "event": "Krazy-8 and Emilio confront Walt and Jesse at cook site",
+          "plotline": "meth_business",
+          "function": "crisis"
+        },
+        {
+          "event": "Walt creates phosphine gas, killing Emilio and incapacitating Krazy-8",
+          "plotline": "meth_business",
+          "function": "climax"
+        }
+      ]
+    },
+    {
+      "episode": "S01E02",
+      "events": [
+        {
+          "event": "Jesse dissolves Emilio's body in acid, destroying bathroom",
+          "plotline": "meth_business",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt holds Krazy-8 prisoner in Jesse's basement",
+          "plotline": "meth_business",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt discovers Krazy-8 has concealed plate shard as weapon",
+          "plotline": "meth_business",
+          "function": "turning_point"
+        },
+        {
+          "event": "Walt strangles Krazy-8 to death",
+          "plotline": "meth_business",
+          "function": "climax"
+        },
+        {
+          "event": "Skyler grows suspicious of Walt's absences",
+          "plotline": "family_deception",
+          "function": "setup"
+        },
+        {
+          "event": "Hank mentions DEA investigating high-purity meth",
+          "plotline": "dea_investigation",
+          "function": "setup"
+        }
+      ]
+    },
+    {
+      "episode": "S01E03",
+      "events": [
+        {
+          "event": "Walt tells Skyler about cancer diagnosis",
+          "plotline": "cancer_diagnosis",
+          "function": "escalation"
+        },
+        {
+          "event": "Family intervention pressures Walt to pursue treatment",
+          "plotline": "cancer_diagnosis",
+          "function": "turning_point"
+        },
+        {
+          "event": "Walt agrees to chemotherapy",
+          "plotline": "cancer_diagnosis",
+          "function": "resolution"
+        },
+        {
+          "event": "Jesse struggles to sell meth without Krazy-8",
+          "plotline": "distribution_network",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Walt calculates treatment costs and financial burden",
+          "plotline": "meth_business",
+          "function": "escalation"
+        },
+        {
+          "event": "Skyler creates fundraising page, humiliating Walt",
+          "plotline": "family_deception",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E04",
+      "events": [
+        {
+          "event": "Walt begins chemotherapy and hides side effects",
+          "plotline": "cancer_diagnosis",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt shaves head, Walter Jr. shaves in solidarity",
+          "plotline": "cancer_diagnosis",
+          "function": "escalation"
+        },
+        {
+          "event": "Hank investigates blue meth with high purity",
+          "plotline": "dea_investigation",
+          "function": "escalation"
+        },
+        {
+          "event": "Jesse recruits Badger and claims street territory",
+          "plotline": "distribution_network",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt and Jesse cook second batch",
+          "plotline": "meth_business",
+          "function": "escalation"
+        },
+        {
+          "event": "Marie's shoplifting causes family tension",
+          "plotline": "family_deception",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E05",
+      "events": [
+        {
+          "event": "Walt forces Walter Jr. to drink, confronts Hank",
+          "plotline": "family_deception",
+          "function": "escalation"
+        },
+        {
+          "event": "Jesse learns about Tuco Salamanca from Skinny Pete",
+          "plotline": "tuco_relationship",
+          "function": "setup"
+        },
+        {
+          "event": "Jesse meets Tuco, gets beaten and robbed",
+          "plotline": "tuco_relationship",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Walt visits Jesse in hospital",
+          "plotline": "tuco_relationship",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt resolves to confront Tuco himself",
+          "plotline": "tuco_relationship",
+          "function": "turning_point"
+        }
+      ]
+    },
+    {
+      "episode": "S01E06",
+      "events": [
+        {
+          "event": "Walt synthesizes mercury fulminate explosive",
+          "plotline": "tuco_relationship",
+          "function": "escalation"
+        },
+        {
+          "event": "Walt confronts Tuco as 'Heisenberg', uses explosion",
+          "plotline": "tuco_relationship",
+          "function": "climax"
+        },
+        {
+          "event": "Tuco agrees to pay and buy future batches",
+          "plotline": "tuco_relationship",
+          "function": "resolution"
+        },
+        {
+          "event": "Walt has aggressive sex with Skyler",
+          "plotline": "family_deception",
+          "function": "escalation"
+        },
+        {
+          "event": "Hank identifies cook as having advanced chemistry training",
+          "plotline": "dea_investigation",
+          "function": "escalation"
+        },
+        {
+          "event": "Skyler questions Walt about extra cash",
+          "plotline": "family_deception",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E07",
+      "events": [
+        {
+          "event": "Walt and Jesse cook two-pound order for Tuco",
+          "plotline": "tuco_relationship",
+          "function": "escalation"
+        },
+        {
+          "event": "Tuco demands double quantity on tighter schedule",
+          "plotline": "tuco_relationship",
+          "function": "escalation"
+        },
+        {
+          "event": "Skyler discovers Walt's second cell phone",
+          "plotline": "family_deception",
+          "function": "crisis"
+        },
+        {
+          "event": "Hank describes blue meth case at family dinner",
+          "plotline": "dea_investigation",
+          "function": "turning_point"
+        },
+        {
+          "event": "Tuco beats associate in front of Walt and Jesse",
+          "plotline": "tuco_relationship",
+          "function": "crisis"
+        },
+        {
+          "event": "Walt realizes he's brought danger to his family",
+          "plotline": "family_deception",
+          "function": "turning_point"
+        }
+      ]
+    }
+  ]
+}

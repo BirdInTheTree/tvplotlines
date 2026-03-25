@@ -45,7 +45,7 @@ def get_plotlines(
     base_url: str | None = None,
     lang: str = "en",
     skip_review: bool = False,
-    pass2_mode: str = "parallel",
+    pass2_mode: str = "batch",
     batch_id: str | None = None,
     callback: PipelineCallback | None = None,
 ) -> TVPlotlinesResult:

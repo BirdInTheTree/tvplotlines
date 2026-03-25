@@ -1,0 +1,853 @@
+{
+  "context": {
+    "format": "serial",
+    "story_engine": "A chemistry teacher builds a drug empire, testing how far he'll go for family and survival",
+    "genre": "drama",
+    "is_ensemble": false,
+    "is_anthology": false
+  },
+  "cast": [
+    {
+      "id": "walt",
+      "name": "Walter White",
+      "aliases": [
+        "Walt",
+        "Walter"
+      ]
+    },
+    {
+      "id": "jesse",
+      "name": "Jesse Pinkman",
+      "aliases": [
+        "Jesse"
+      ]
+    },
+    {
+      "id": "skyler",
+      "name": "Skyler White",
+      "aliases": [
+        "Skyler"
+      ]
+    }
+  ],
+  "plotlines": [
+    {
+      "id": "empire",
+      "name": "Walt: Empire",
+      "hero": "walt",
+      "goal": "build a meth operation to secure his family's future",
+      "obstacle": "dangerous criminals, moral dilemmas, escalating risks",
+      "stakes": "death, loss of family, imprisonment",
+      "type": "serialized",
+      "rank": "A",
+      "nature": "character-led",
+      "confidence": "solid",
+      "span": [
+        "S01E01",
+        "S01E02",
+        "S01E03",
+        "S01E04",
+        "S01E06",
+        "S01E07"
+      ]
+    },
+    {
+      "id": "secrecy",
+      "name": "Walt: Secrecy",
+      "hero": "walt",
+      "goal": "keep his double life from Skyler and family",
+      "obstacle": "Skyler's growing suspicion, need to explain absences and behavior",
+      "stakes": "family breakdown, exposure of criminal activity",
+      "type": "serialized",
+      "rank": "B",
+      "nature": "character-led",
+      "confidence": "solid",
+      "span": [
+        "S01E01",
+        "S01E02",
+        "S01E03",
+        "S01E04",
+        "S01E07"
+      ]
+    },
+    {
+      "id": "survival",
+      "name": "Jesse: Survival",
+      "hero": "jesse",
+      "goal": "survive as Walt's partner in the meth business",
+      "obstacle": "dangerous customers, inexperience, pressure to expand",
+      "stakes": "death, imprisonment",
+      "type": "serialized",
+      "rank": "B",
+      "nature": "plot-led",
+      "confidence": "solid",
+      "span": [
+        "S01E01",
+        "S01E02",
+        "S01E04",
+        "S01E05",
+        "S01E06",
+        "S01E07"
+      ]
+    },
+    {
+      "id": "treatment",
+      "name": "Walt: Treatment",
+      "hero": "walt",
+      "goal": "decide about cancer treatment and how to pay for it",
+      "obstacle": "family intervention pressure, financial constraints, pride",
+      "stakes": "death from cancer, financial ruin",
+      "type": "serialized",
+      "rank": "C",
+      "nature": "character-led",
+      "confidence": "solid",
+      "span": [
+        "S01E01",
+        "S01E04",
+        "S01E05"
+      ]
+    }
+  ],
+  "episodes": [
+    {
+      "episode": "S01E01",
+      "events": [
+        {
+          "event": "Walt receives a terminal lung cancer diagnosis",
+          "plotline": "treatment",
+          "function": "inciting_incident",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt realizes he needs money to secure his family's future",
+          "plotline": "empire",
+          "function": "inciting_incident",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": [
+            "treatment"
+          ]
+        },
+        {
+          "event": "Walt encounters Jesse at a meth bust while on a ride-along with Hank",
+          "plotline": "empire",
+          "function": "setup",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt approaches Jesse about partnering to cook meth",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Jesse agrees to partner with Walt in the meth business",
+          "plotline": "survival",
+          "function": "inciting_incident",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt and Jesse begin cooking meth together",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt starts hiding his criminal activities from Skyler",
+          "plotline": "secrecy",
+          "function": "inciting_incident",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt lies to Skyler about his whereabouts and activities",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "skyler"
+          ],
+          "also_affects": null
+        }
+      ],
+      "theme": "desperate choices and moral compromise",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "empire",
+            "treatment",
+            "secrecy"
+          ],
+          "description": "all plotlines stem from Walt's cancer diagnosis forcing him to confront mortality and legacy"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "empire",
+            "survival"
+          ],
+          "description": "Walt and Jesse's partnership merges their individual goals into shared criminal enterprise"
+        }
+      ],
+      "patches": []
+    },
+    {
+      "episode": "S01E02",
+      "events": [
+        {
+          "event": "Walt and Jesse discover they must dispose of Emilio's body and deal with Krazy-8",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt instructs Jesse on using hydrofluoric acid to dissolve the body",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Jesse ignores Walt's instructions and uses his bathtub instead of a plastic container",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "The acid eats through Jesse's bathtub and floor, creating a horrific mess",
+          "plotline": "survival",
+          "function": "crisis",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt arrives to find the disaster and angrily berates Jesse",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt and Jesse work together to clean up the gruesome scene",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt realizes they still have Krazy-8 chained in Jesse's basement",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt and Jesse debate what to do with their captive",
+          "plotline": "empire",
+          "function": "turning_point",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Skyler notices Walt's prolonged absence and strange behavior",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "skyler"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt makes up lies about his whereabouts to cover his activities",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Skyler becomes increasingly suspicious and confronts Walt about his evasiveness",
+          "plotline": "secrecy",
+          "function": "crisis",
+          "characters": [
+            "skyler",
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt struggles to maintain his cover story under Skyler's questioning",
+          "plotline": "secrecy",
+          "function": "climax",
+          "characters": [
+            "walt",
+            "skyler"
+          ],
+          "also_affects": null
+        }
+      ],
+      "theme": "the weight of consequences",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "empire",
+            "survival",
+            "secrecy"
+          ],
+          "description": "all plotlines deal with characters trying to control damage from their choices but finding the consequences spiral beyond their control"
+        },
+        {
+          "type": "dramatic_irony",
+          "lines": [
+            "secrecy",
+            "empire"
+          ],
+          "description": "the audience knows Walt's criminal activities are the real reason for his behavior, while Skyler suspects something but doesn't know what"
+        }
+      ],
+      "patches": []
+    },
+    {
+      "episode": "S01E03",
+      "events": [
+        {
+          "event": "Walt and Jesse deal with their dangerous captive in Jesse's basement",
+          "plotline": "empire",
+          "function": "setup",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt faces a moral dilemma about what to do with the captive",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt scrambles to cover his tracks at home",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt and Jesse work to keep their fledgling meth operation alive",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        }
+      ],
+      "theme": "moral compromise under pressure",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "empire",
+            "secrecy"
+          ],
+          "description": "both plotlines explore the cost of deception and moral compromise"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "empire",
+            "survival"
+          ],
+          "description": "Walt and Jesse's partnership forces them to face shared dangers"
+        }
+      ],
+      "patches": [
+        {
+          "action": "CHECK_LINE",
+          "target": "treatment",
+          "reason": "no events assigned to treatment plotline in this episode",
+          "episodes": []
+        }
+      ]
+    },
+    {
+      "episode": "S01E04",
+      "events": [
+        {
+          "event": "Family holds an intervention to pressure Walt about cancer treatment",
+          "plotline": "treatment",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "skyler"
+          ],
+          "also_affects": [
+            "secrecy"
+          ]
+        },
+        {
+          "event": "Walt feels cornered by family pressure to accept treatment",
+          "plotline": "treatment",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt struggles with financial constraints for treatment",
+          "plotline": "treatment",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt and Jesse discuss their next move in the meth business",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt and Jesse recognize the growing risks of their operation",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Jesse faces pressure to expand their dangerous business",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt must navigate family expectations while hiding his criminal activity",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": [
+            "treatment"
+          ]
+        },
+        {
+          "event": "Walt makes a decision about treatment under family pressure",
+          "plotline": "treatment",
+          "function": "climax",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt and Jesse commit to continuing their meth operation despite risks",
+          "plotline": "empire",
+          "function": "turning_point",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        }
+      ],
+      "theme": "the weight of family expectations versus personal autonomy",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "treatment",
+            "empire",
+            "secrecy"
+          ],
+          "description": "all plotlines explore Walt being pushed into decisions by external pressure - family intervention, financial need, and need for deception"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "treatment",
+            "empire"
+          ],
+          "description": "financial pressure from treatment costs directly drives Walt's commitment to the meth business"
+        },
+        {
+          "type": "dramatic_irony",
+          "lines": [
+            "treatment",
+            "secrecy"
+          ],
+          "description": "family pushes Walt toward treatment to save his life, unaware he's risking it in criminal activity"
+        }
+      ],
+      "patches": []
+    },
+    {
+      "episode": "S01E05",
+      "events": [
+        {
+          "event": "Walt reconnects with his former business partners",
+          "plotline": "treatment",
+          "function": "setup",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Former partners offer to help Walt pay for cancer treatment",
+          "plotline": "treatment",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt considers accepting financial help from his former partners",
+          "plotline": "treatment",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": [
+            "secrecy"
+          ]
+        },
+        {
+          "event": "Jesse works to expand their customer base for meth sales",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Jesse tries to find new customers for their meth operation",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt weighs the pride cost of accepting charity against his family's needs",
+          "plotline": "treatment",
+          "function": "crisis",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        }
+      ],
+      "theme": "pride versus pragmatism",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "treatment",
+            "survival"
+          ],
+          "description": "both Walt and Jesse face choices between pride and practical survival needs"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "survival",
+            "empire"
+          ],
+          "description": "Jesse's customer expansion directly serves Walt's empire-building goals"
+        }
+      ],
+      "patches": []
+    },
+    {
+      "episode": "S01E06",
+      "events": [
+        {
+          "event": "Walt and Jesse discover they've been burned by a crooked deal",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt decides to confront the underworld directly",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Jesse scrambles to unload their existing stash",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt summons the nerve to approach potential distributors",
+          "plotline": "empire",
+          "function": "turning_point",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Jesse works to keep their operation under the radar",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": [
+            "secrecy"
+          ]
+        },
+        {
+          "event": "Walt successfully lines up a new distributor",
+          "plotline": "empire",
+          "function": "climax",
+          "characters": [
+            "walt"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Jesse manages to move their stash without detection",
+          "plotline": "survival",
+          "function": "resolution",
+          "characters": [
+            "jesse"
+          ],
+          "also_affects": null
+        }
+      ],
+      "theme": "taking control through confrontation",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "empire",
+            "survival"
+          ],
+          "description": "both Walt and Jesse must overcome fear and inexperience to take control of their situation"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "empire",
+            "survival"
+          ],
+          "description": "Walt's distributor search and Jesse's stash disposal are two sides of the same business problem"
+        }
+      ],
+      "patches": []
+    },
+    {
+      "episode": "S01E07",
+      "events": [
+        {
+          "event": "A dangerous new customer pressures Walt and Jesse to expand their meth operation",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse",
+            "guest:dangerous_customer"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt and Jesse scramble to meet the increased demand",
+          "plotline": "empire",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Walt and Jesse devise a risky plan to secure supplies",
+          "plotline": "empire",
+          "function": "turning_point",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        },
+        {
+          "event": "Jesse faces pressure from the dangerous customer",
+          "plotline": "survival",
+          "function": "escalation",
+          "characters": [
+            "jesse",
+            "guest:dangerous_customer"
+          ],
+          "also_affects": [
+            "empire"
+          ]
+        },
+        {
+          "event": "Walt tries to keep his double life hidden from Skyler",
+          "plotline": "secrecy",
+          "function": "escalation",
+          "characters": [
+            "walt",
+            "skyler"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt and Jesse execute their risky supply plan",
+          "plotline": "empire",
+          "function": "crisis",
+          "characters": [
+            "walt",
+            "jesse"
+          ],
+          "also_affects": [
+            "survival"
+          ]
+        }
+      ],
+      "theme": "escalating pressure and risk",
+      "interactions": [
+        {
+          "type": "thematic_rhyme",
+          "lines": [
+            "empire",
+            "survival",
+            "secrecy"
+          ],
+          "description": "all plotlines involve characters under increasing pressure with escalating stakes"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "empire",
+            "survival"
+          ],
+          "description": "Walt and Jesse's business expansion directly affects Jesse's survival as they face the same dangerous customer"
+        }
+      ],
+      "patches": []
+    }
+  ],
+  "usage": "5 requests, 19,802 input + 2,262 output tokens, ~$0.093"
+}
