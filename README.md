@@ -6,9 +6,39 @@
 
 Extract plotlines from TV synopses using LLM.
 
-One function call turns episode synopses into structured data: plotlines with cast, Story DNA (hero, goal,  obstacle, stakes), A/B/C ranking, and per-episode events.
+One function call turns episode synopses into structured data: plotlines with cast, Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode events.
 
-## Example output
+## Input
+
+Write one .txt file per episode. Include S01E01 in the filename — any prefix is fine:
+
+```
+S01E01.txt
+S01E02.txt
+BB_S01E01.txt        ← also works
+my_show_S01E03.txt     ← also works
+```
+
+Put all files in a folder named after the show:
+
+```
+breaking-bad/
+    S01E01.txt
+    S01E02.txt
+    ...
+    S01E07.txt
+```
+
+Install, set your API key, and run:
+
+```bash
+pip install tvplotlines
+export ANTHROPIC_API_KEY=sk-ant-...
+
+tvplotlines run breaking-bad/
+```
+
+## Output
 
 Breaking Bad, Season 1 (truncated):
 
@@ -55,26 +85,20 @@ Breaking Bad, Season 1 (truncated):
 - **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
 - **Story DNA** — who drives the plotline (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
 - **A/B/C ranking** — plotline weight: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
-- **Format**— procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
+- **Format** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
 - **Story engine** — one sentence capturing the show's core dramatic mechanism
 
 Full definitions are in the [prompts](src/tvplotlines/prompts_en/).
 
-## Installation
-
-```bash
-pip install tvplotlines
-```
-
-Requires an API key for at least one LLM provider:
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-# or
-export OPENAI_API_KEY=sk-...
-```
-
 ## Quick start
+
+The repo includes synopses for Breaking Bad and Game of Thrones in [`examples/synopses/`](examples/synopses/) and pre-computed results in [`examples/results/`](examples/results/).
+
+```bash
+tvplotlines run examples/synopses/breaking-bad/
+```
+
+Or in Python:
 
 ```python
 from tvplotlines import get_plotlines
@@ -90,14 +114,6 @@ result = get_plotlines("Breaking Bad", season=1, episodes=episodes)
 for plotline in result.plotlines:
     print(f"[{plotline.rank}] {plotline.name} — {plotline.goal}")
 ```
-
-Or from the command line:
-
-```bash
-tvplotlines run examples/synopses/BB_S01E*.txt --show "Breaking Bad" --season 1 -o bb.json
-```
-
-The repo includes pre-computed results in [`examples/results/`](examples/results/) and synopses for Breaking Bad S01 and Game of Thrones S01 in [`examples/synopses/`](examples/synopses/).
 
 ## How it works
 
@@ -117,9 +133,9 @@ Pass 2 runs in parallel for all episodes. Pass 3 reviews the full picture that n
 tvplotlines works with Anthropic (default) and any OpenAI-compatible API:
 
 ```bash
-tvplotlines run *.txt --show "House"                    # Anthropic (default)
-tvplotlines run *.txt --show "House" --provider openai   # OpenAI
-tvplotlines run *.txt --show "House" --provider ollama   # Ollama (local, free)
+tvplotlines run house/                                   # Anthropic (default)
+tvplotlines run house/ --provider openai                 # OpenAI
+tvplotlines run house/ --provider ollama                 # Ollama (local, free)
 ```
 
 See [docs/api.md](docs/api.md) for full API reference, provider options, and pass modes.

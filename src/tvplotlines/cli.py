@@ -1,8 +1,9 @@
 """CLI for tvplotlines: extract plotlines from TV series synopses.
 
 Usage:
-    tvplotlines run synopses/SP_S01E*.txt --show "Слово пацана" --season 1
-    tvplotlines run episodes/ --show "House" --season 1 --lang en --output house_s01.json
+    tvplotlines run breaking-bad/
+    tvplotlines run breaking-bad/ --show "Breaking Bad"
+    tvplotlines run S01E01.txt S01E02.txt --show "House" --season 1
 """
 
 from __future__ import annotations
@@ -25,34 +26,51 @@ def _run(args: argparse.Namespace) -> None:
         pass
 
     from tvplotlines import get_plotlines
+    from tvplotlines.input import load_synopses_dir
 
-    # Read synopsis files and extract episode IDs from filenames
-    paths = sorted(args.files, key=lambda p: p.name)
-    if not paths:
-        print("No synopsis files found.", file=sys.stderr)
-        sys.exit(1)
-
-    episodes: dict[str, str] = {}
-    for p in paths:
-        match = _EPISODE_ID_RE.search(p.stem)
-        if not match:
-            print(
-                f"Cannot extract episode ID (SddEdd) from filename: {p.name}",
-                file=sys.stderr,
+    # Directory mode: single arg that is a directory
+    if len(args.files) == 1 and args.files[0].is_dir():
+        try:
+            show, season, episodes = load_synopses_dir(
+                args.files[0],
+                show=args.show,
+                season=args.season,
             )
+        except (FileNotFoundError, ValueError) as e:
+            print(str(e), file=sys.stderr)
             sys.exit(1)
-        episode_id = match.group()
-        if episode_id in episodes:
-            print(f"Duplicate episode ID {episode_id} from {p.name}", file=sys.stderr)
+    else:
+        # File mode: explicit files, --show required
+        if not args.show:
+            print("--show is required when passing individual files.", file=sys.stderr)
             sys.exit(1)
-        episodes[episode_id] = p.read_text(encoding="utf-8")
+        show = args.show
+        season = args.season or 1
+        paths = sorted(args.files, key=lambda p: p.name)
+        if not paths:
+            print("No synopsis files found.", file=sys.stderr)
+            sys.exit(1)
+        episodes = {}
+        for p in paths:
+            match = _EPISODE_ID_RE.search(p.stem)
+            if not match:
+                print(
+                    f"Cannot extract episode ID (S01E01) from filename: {p.name}",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            episode_id = match.group()
+            if episode_id in episodes:
+                print(f"Duplicate episode ID {episode_id} from {p.name}", file=sys.stderr)
+                sys.exit(1)
+            episodes[episode_id] = p.read_text(encoding="utf-8")
 
-    print(f"Running pipeline: {args.show} S{args.season:02d}")
-    print(f"Episodes: {len(episodes)} synopses from {paths[0].name} to {paths[-1].name}")
+    print(f"Running pipeline: {show} S{season:02d}")
+    print(f"Episodes: {len(episodes)} synopses")
 
     result = get_plotlines(
-        show=args.show,
-        season=args.season,
+        show=show,
+        season=season,
         episodes=episodes,
         lang=args.lang,
         llm_provider=args.provider,
@@ -63,7 +81,7 @@ def _run(args: argparse.Namespace) -> None:
     )
 
     # Save result
-    output = args.output or Path(f"{args.show.lower().replace(' ', '_')}_s{args.season:02d}_result.json")
+    output = args.output or Path(f"{show.lower().replace(' ', '_')}_s{season:02d}_result.json")
     output.write_text(
         json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -131,10 +149,10 @@ def main() -> None:
     run_parser = sub.add_parser("run", help="Run pipeline on synopsis files")
     run_parser.add_argument(
         "files", nargs="+", type=Path,
-        help="Synopsis text files (one per episode)",
+        help="Synopsis directory or individual text files",
     )
-    run_parser.add_argument("--show", required=True, help="Series title")
-    run_parser.add_argument("--season", type=int, default=1, help="Season number (default: 1)")
+    run_parser.add_argument("--show", default=None, help="Series title (auto-detected from directory name)")
+    run_parser.add_argument("--season", type=int, default=None, help="Season number (auto-detected from filenames)")
     run_parser.add_argument("--lang", default="en", help="Language: en or ru (default: en)")
     run_parser.add_argument("--output", "-o", type=Path, help="Output JSON path")
     run_parser.add_argument("--provider", default="anthropic",
