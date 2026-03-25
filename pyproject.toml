@@ -9,7 +9,7 @@ description = "Extract storylines from TV series synopses using LLM"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
-authors = [{name = "BirdInTheTree"}]
+authors = [{name = "BirdInTheTree", email = "51715433+BirdInTheTree@users.noreply.github.com"}]
 keywords = [
     "storyline",
     "narrative",

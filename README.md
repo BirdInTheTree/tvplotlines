@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines)](LICENSE)
 [![Python](https://img.shields.io/pypi/pyversions/tvplotlines)](https://pypi.org/project/tvplotlines/)
 
-LLM-powered narrative breakdown for TV series. Feed it episode synopses — get plotlines with Story DNA (driver, goal, obstacle, stakes), A/B/C ranking, and per-episode event tracking. Built for development executives and writers who need to analyze shows fast.
+LLM-powered narrative breakdown for TV series. Feed it episode synopses — get plotlines with Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode event tracking. Built for development executives and writers who need to analyze shows fast.
 
 Works from synopses alone — no scripts or transcripts needed.
 ## Example output
@@ -20,7 +20,7 @@ Breaking Bad, Season 1 (truncated):
   "plotlines": [
     {
       "name": "Walt: Empire",
-      "driver": "walt",
+      "hero": "walt",
       "goal": "build a profitable drug business to secure his family's financial future",
       "obstacle": "inexperience in criminal world, violent dealers, maintaining secrecy",
       "stakes": "death, imprisonment, family destruction",
@@ -29,7 +29,7 @@ Breaking Bad, Season 1 (truncated):
     },
     {
       "name": "Jesse: Survival",
-      "driver": "jesse",
+      "hero": "jesse",
       "goal": "survive as Walt's partner in the dangerous drug trade",
       "obstacle": "violent dealers like Tuco, lack of street credibility, Walt's reckless decisions",
       "stakes": "death, severe injury, imprisonment",
@@ -86,17 +86,17 @@ tvplotlines run synopses/*.txt --show "Breaking Bad" --season 1 -o bb_s01.json
 ```python
 from tvplotlines import get_plotlines
 
-episodes = [
-    "In the pilot, Walter White is diagnosed with cancer...",
-    "Walt and Jesse attempt their first cook in the desert...",
+episodes = {
+    "S01E01": "In the pilot, Walter White is diagnosed with cancer...",
+    "S01E02": "Walt and Jesse attempt their first cook in the desert...",
     # ... all season synopses
-]
+}
 
 result = get_plotlines("Breaking Bad", season=1, episodes=episodes)
 
 for plotline in result.plotlines:
     print(f"[{plotline.rank}] {plotline.name} — {plotline.goal}")
-    print(f"    Driver: {plotline.driver}, Span: {plotline.span}")
+    print(f"    Hero: {plotline.hero}, Span: {plotline.span}")
 
 for ep in result.episodes:
     print(f"\n{ep.episode}: {ep.theme}")
@@ -107,7 +107,7 @@ for ep in result.episodes:
 ## Key concepts
 
 - **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
-- **Story DNA** — the core conflict structure of a plotline: who drives it (*driver*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
+- **Story DNA** — the core conflict structure of a plotline: who drives it (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
 - **A/B/C ranking** — plotline weight within the season: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
 - **Franchise type** — structural classification of the show: procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
 - **Story engine** — one-sentence description of the show's core dramatic mechanism

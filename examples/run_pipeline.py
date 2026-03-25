@@ -13,10 +13,11 @@ SYNOPSES_DIR = Path("synopses")
 
 
 def run(show: str, prefix: str, num_episodes: int, lang: str = "en") -> None:
-    episodes = []
+    episodes = {}
     for i in range(1, num_episodes + 1):
-        path = SYNOPSES_DIR / f"{prefix}_S01E{i:02d}.txt"
-        episodes.append(path.read_text(encoding="utf-8"))
+        episode_id = f"S01E{i:02d}"
+        path = SYNOPSES_DIR / f"{prefix}_{episode_id}.txt"
+        episodes[episode_id] = path.read_text(encoding="utf-8")
 
     result = get_plotlines(show=show, season=1, episodes=episodes, lang=lang)
 
@@ -26,9 +27,9 @@ def run(show: str, prefix: str, num_episodes: int, lang: str = "en") -> None:
         encoding="utf-8",
     )
 
-    print(f"{show}: {len(result.plotlines)} storylines, {len(result.cast)} cast → {output}")
+    print(f"{show}: {len(result.plotlines)} plotlines, {len(result.cast)} cast → {output}")
     for s in result.plotlines:
-        print(f"  [{s.rank}] {s.name} (driver={s.driver})")
+        print(f"  [{s.rank}] {s.name} (hero={s.hero})")
 
 
 if __name__ == "__main__":

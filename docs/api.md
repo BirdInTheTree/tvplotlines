@@ -64,7 +64,7 @@ A narrative thread with Story DNA:
 |-------|------|-------------|
 | `id` | `str` | Unique identifier |
 | `name` | `str` | e.g. "Walt: Empire" |
-| `driver` | `str` | Character who drives the plotline |
+| `hero` | `str` | Character who drives the plotline |
 | `goal` | `str` | What the driver wants |
 | `obstacle` | `str` | What stands in the way |
 | `stakes` | `str` | What happens if the driver fails |

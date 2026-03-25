@@ -14,11 +14,11 @@ from tvplotlines import get_plotlines
 result = get_plotlines(
     show="Breaking Bad",
     season=1,
-    episodes=["Synopsis of S01E01...", "Synopsis of S01E02...", ...],
+    episodes={"S01E01": "Synopsis of S01E01...", "S01E02": "Synopsis of S01E02..."},
 )
 
-for storyline in result.plotlines:
-    print(f"{storyline.rank} | {storyline.name} ({storyline.driver})")
+for plotline in result.plotlines:
+    print(f"{plotline.rank} | {plotline.name} ({plotline.hero})")
 ```
 
 ## Configuration
