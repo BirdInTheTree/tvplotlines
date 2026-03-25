@@ -1,0 +1,366 @@
+{
+  "plotlines": [
+    {
+      "id": "stark_honor",
+      "name": "Ned Stark's Investigation and Downfall",
+      "hero": "Ned Stark"
+    },
+    {
+      "id": "targaryen_rise",
+      "name": "Daenerys's Transformation and Dragon Birth",
+      "hero": "Daenerys Targaryen"
+    },
+    {
+      "id": "jon_watch",
+      "name": "Jon Snow and the Night's Watch",
+      "hero": "Jon Snow"
+    },
+    {
+      "id": "war_kings",
+      "name": "The War of Five Kings",
+      "hero": "Robb Stark"
+    },
+    {
+      "id": "lannister_power",
+      "name": "Lannister Political Maneuvering",
+      "hero": "Tyrion Lannister"
+    },
+    {
+      "id": "supernatural",
+      "name": "The Return of Magic and White Walkers",
+      "hero": "Collective"
+    }
+  ],
+  "episodes": [
+    {
+      "episode": "S01E01",
+      "events": [
+        {
+          "event": "White Walker kills Night's Watch rangers",
+          "plotline": "supernatural",
+          "function": "setup"
+        },
+        {
+          "event": "Ned executes deserter Will",
+          "plotline": "stark_honor",
+          "function": "setup"
+        },
+        {
+          "event": "Stark children find direwolf pups",
+          "plotline": "stark_honor",
+          "function": "setup"
+        },
+        {
+          "event": "Robert arrives at Winterfell and asks Ned to be Hand",
+          "plotline": "stark_honor",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Viserys arranges Daenerys's marriage to Drogo",
+          "plotline": "targaryen_rise",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Catelyn receives letter accusing Lannisters of murder",
+          "plotline": "stark_honor",
+          "function": "setup"
+        },
+        {
+          "event": "Bran discovers Cersei and Jaime's incest, Jaime pushes him",
+          "plotline": "stark_honor",
+          "function": "inciting_incident"
+        }
+      ]
+    },
+    {
+      "episode": "S01E02",
+      "events": [
+        {
+          "event": "Bran lies in coma, may never walk again",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Jon decides to join Night's Watch",
+          "plotline": "jon_watch",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Ned departs for King's Landing with daughters",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Joffrey threatens butcher's boy, Lady is executed",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Daenerys learns to assert herself with Drogo",
+          "plotline": "targaryen_rise",
+          "function": "escalation"
+        },
+        {
+          "event": "Assassin attempts to kill Bran, Catelyn fights him off",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E03",
+      "events": [
+        {
+          "event": "Jon arrives at Castle Black and struggles with fellow recruits",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        },
+        {
+          "event": "Ned joins Small Council and learns of Crown's debts",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Catelyn shows Ned the Valyrian steel dagger",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Arya overhears mysterious conversation in Red Keep",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Daenerys defies Viserys and gains Dothraki respect",
+          "plotline": "targaryen_rise",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E04",
+      "events": [
+        {
+          "event": "Ned investigates Jon Arryn's death and finds Gendry",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Tyrion gives Bran saddle designs at Winterfell",
+          "plotline": "lannister_power",
+          "function": "setup"
+        },
+        {
+          "event": "Daenerys discovers she's pregnant",
+          "plotline": "targaryen_rise",
+          "function": "escalation"
+        },
+        {
+          "event": "Ser Hugh dies in tournament, eliminating witness",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Catelyn arrests Tyrion at Crossroads Inn",
+          "plotline": "lannister_power",
+          "function": "inciting_incident"
+        }
+      ]
+    },
+    {
+      "episode": "S01E05",
+      "events": [
+        {
+          "event": "Robert orders Daenerys's assassination, Ned resigns as Hand",
+          "plotline": "stark_honor",
+          "function": "turning_point"
+        },
+        {
+          "event": "Catelyn's party ambushed by hill tribes",
+          "plotline": "lannister_power",
+          "function": "escalation"
+        },
+        {
+          "event": "Tyrion imprisoned in Eyrie sky cells",
+          "plotline": "lannister_power",
+          "function": "escalation"
+        },
+        {
+          "event": "Jon assigned to stewards, prepares to take vows",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        },
+        {
+          "event": "Ned realizes Cersei's children are Jaime's",
+          "plotline": "stark_honor",
+          "function": "turning_point"
+        },
+        {
+          "event": "Jaime confronts Ned in streets, wounds him",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E06",
+      "events": [
+        {
+          "event": "Ned resumes Hand duties, sends force after Gregor",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Tyrion wins trial by combat through Bronn",
+          "plotline": "lannister_power",
+          "function": "resolution"
+        },
+        {
+          "event": "Viserys killed by molten gold crown",
+          "plotline": "targaryen_rise",
+          "function": "turning_point"
+        },
+        {
+          "event": "Jon takes Night's Watch vows, Ghost finds severed hand",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        },
+        {
+          "event": "Jon takes Night's Watch vows, Ghost finds severed hand",
+          "plotline": "supernatural",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E07",
+      "events": [
+        {
+          "event": "Ned confronts Cersei about her children's parentage",
+          "plotline": "stark_honor",
+          "function": "crisis"
+        },
+        {
+          "event": "Robert dies from boar wound, Ned alters will",
+          "plotline": "stark_honor",
+          "function": "crisis"
+        },
+        {
+          "event": "Assassination attempt on Daenerys fails, Drogo vows invasion",
+          "plotline": "targaryen_rise",
+          "function": "escalation"
+        },
+        {
+          "event": "Dead rangers reanimate as wights at Castle Black",
+          "plotline": "supernatural",
+          "function": "escalation"
+        },
+        {
+          "event": "Dead rangers reanimate as wights at Castle Black",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E08",
+      "events": [
+        {
+          "event": "Littlefinger betrays Ned, who is arrested for treason",
+          "plotline": "stark_honor",
+          "function": "climax"
+        },
+        {
+          "event": "Arya escapes Red Keep after Syrio's sacrifice",
+          "plotline": "stark_honor",
+          "function": "escalation"
+        },
+        {
+          "event": "Daenerys stops rape of captives, Drogo fights Mago",
+          "plotline": "targaryen_rise",
+          "function": "escalation"
+        },
+        {
+          "event": "Jon receives Longclaw, attempts to desert but returns",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        },
+        {
+          "event": "Tyrion recruits hill tribes and reaches Tywin's camp",
+          "plotline": "lannister_power",
+          "function": "escalation"
+        }
+      ]
+    },
+    {
+      "episode": "S01E09",
+      "events": [
+        {
+          "event": "Robb marches south, negotiates with Walder Frey",
+          "plotline": "war_kings",
+          "function": "inciting_incident"
+        },
+        {
+          "event": "Battle of Green Fork and Whispering Wood, Jaime captured",
+          "plotline": "war_kings",
+          "function": "escalation"
+        },
+        {
+          "event": "Ned confesses treason but Joffrey orders execution",
+          "plotline": "stark_honor",
+          "function": "climax"
+        },
+        {
+          "event": "Drogo's wound festers, Daenerys uses blood magic",
+          "plotline": "targaryen_rise",
+          "function": "crisis"
+        }
+      ]
+    },
+    {
+      "episode": "S01E10",
+      "events": [
+        {
+          "event": "Daenerys learns Drogo is brain-dead, son stillborn",
+          "plotline": "targaryen_rise",
+          "function": "crisis"
+        },
+        {
+          "event": "Joffrey forces Sansa to see Ned's head",
+          "plotline": "stark_honor",
+          "function": "resolution"
+        },
+        {
+          "event": "Arya travels north disguised with Night's Watch",
+          "plotline": "stark_honor",
+          "function": "resolution"
+        },
+        {
+          "event": "Northern lords declare Robb King in the North",
+          "plotline": "war_kings",
+          "function": "escalation"
+        },
+        {
+          "event": "Night's Watch prepares great ranging beyond Wall",
+          "plotline": "jon_watch",
+          "function": "escalation"
+        },
+        {
+          "event": "Night's Watch prepares great ranging beyond Wall",
+          "plotline": "supernatural",
+          "function": "escalation"
+        },
+        {
+          "event": "Daenerys walks into fire and emerges with dragons",
+          "plotline": "targaryen_rise",
+          "function": "climax"
+        },
+        {
+          "event": "Daenerys walks into fire and emerges with dragons",
+          "plotline": "supernatural",
+          "function": "turning_point"
+        }
+      ]
+    }
+  ]
+}
