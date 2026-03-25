@@ -24,7 +24,7 @@ def compute_coverage(episodes: list[EpisodeBreakdown]) -> float:
     for ep in episodes:
         for event in ep.events:
             total += 1
-            if event.plotline is not None:
+            if event.plotline_id is not None:
                 assigned += 1
 
     if total == 0:
@@ -62,13 +62,13 @@ def compute_consistency_ari(
             # Map character → most frequent plotline in this episode
             char_counts: dict[str, Counter[str]] = {}
             for event in ep.events:
-                if not event.plotline:
+                if not event.plotline_id:
                     continue
                 for char in event.characters:
                     if char in cast_ids:
                         if char not in char_counts:
                             char_counts[char] = Counter()
-                        char_counts[char][event.plotline] += 1
+                        char_counts[char][event.plotline_id] += 1
             char_plotlines: dict[str, str] = {
                 char: counts.most_common(1)[0][0]
                 for char, counts in char_counts.items()

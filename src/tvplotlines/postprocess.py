@@ -22,7 +22,7 @@ def compute_span(
         present_episodes = []
         for ep in episodes:
             has_event = any(
-                e.plotline == plotline.id for e in ep.events
+                e.plotline_id == plotline.id for e in ep.events
             )
             if has_event:
                 present_episodes.append(ep.episode)
@@ -42,19 +42,19 @@ def assign_orphan_events(
     char_plotline_counts: dict[str, Counter[str]] = {}
     for ep in episodes:
         for event in ep.events:
-            if event.plotline is None:
+            if event.plotline_id is None:
                 continue
             for char in event.characters:
                 if char not in char_plotline_counts:
                     char_plotline_counts[char] = Counter()
-                char_plotline_counts[char][event.plotline] += 1
+                char_plotline_counts[char][event.plotline_id] += 1
 
     plotline_ids = {p.id for p in plotlines}
 
     # Assign orphan events
     for ep in episodes:
         for event in ep.events:
-            if event.plotline is not None:
+            if event.plotline_id is not None:
                 continue
             if not event.characters:
                 continue
@@ -69,15 +69,15 @@ def assign_orphan_events(
                 # Fallback: use the most common plotline in this episode
                 ep_counts: Counter[str] = Counter()
                 for other in ep.events:
-                    if other.plotline:
-                        ep_counts[other.plotline] += 1
+                    if other.plotline_id:
+                        ep_counts[other.plotline_id] += 1
                 if ep_counts:
                     votes = ep_counts
 
             if votes:
                 best = votes.most_common(1)[0][0]
                 if best in plotline_ids:
-                    event.plotline = best
+                    event.plotline_id = best
 
 
 def compute_weight(
@@ -91,8 +91,8 @@ def compute_weight(
     """
     counts: Counter[str] = Counter()
     for event in episode.events:
-        if event.plotline:
-            counts[event.plotline] += 1
+        if event.plotline_id:
+            counts[event.plotline_id] += 1
 
     if not counts:
         return {}
@@ -136,8 +136,8 @@ def validate_ranks(
     for ep in episodes:
         for event in ep.events:
             total_events += 1
-            if event.plotline:
-                counts[event.plotline] += 1
+            if event.plotline_id:
+                counts[event.plotline_id] += 1
 
     # Collect all flags first, then apply mutations — avoids Rule 1 demotions
     # affecting Rule 2 dominance checks on the same pass

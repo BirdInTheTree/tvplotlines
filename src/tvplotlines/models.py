@@ -51,7 +51,7 @@ class Event:
     """A single event within an episode, assigned to a plotline by Pass 2."""
 
     event: str  # one sentence
-    plotline: str | None  # Plotline.id, or None for unassigned (-> ADD_LINE patch)
+    plotline_id: str | None  # Plotline.id, or None for unassigned (-> ADD_LINE patch)
     function: str  # "setup" | "inciting_incident" | "escalation" | "turning_point" | "crisis" | "climax" | "resolution"
     characters: list[str]  # CastMember.id; guests use "guest:short_name"
     also_affects: list[str] | None = None  # Plotline.id list

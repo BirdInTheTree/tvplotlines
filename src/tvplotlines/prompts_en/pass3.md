@@ -94,7 +94,7 @@ Use `rank_mismatch` diagnostics if provided.
 
 ### Step 6: Check orphaned events
 
-Events with `plotline: null`—the analyst couldn't assign them. For each:
+Events with `plotline_id: null`—the analyst couldn't assign them. For each:
 
 - Event belongs to an existing plotline (assignment error) → REASSIGN
 - Multiple orphaned events form a pattern (one hero, one goal) → CREATE a new plotline

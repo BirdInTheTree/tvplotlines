@@ -77,8 +77,8 @@ def _apply_merge(
 
     for ep in episodes:
         for event in ep.events:
-            if event.plotline == source_id:
-                event.plotline = target_id
+            if event.plotline_id == source_id:
+                event.plotline_id = target_id
             if event.also_affects:
                 event.also_affects = [
                     target_id if sid == source_id else sid
@@ -102,7 +102,7 @@ def _apply_reassign(d: dict, episodes: list[EpisodeBreakdown]) -> None:
         if ep.episode == episode_id:
             for event in ep.events:
                 if event.event == event_text:
-                    event.plotline = new_line
+                    event.plotline_id = new_line
                     logger.info("REASSIGN '%s' → %s", event_text[:50], new_line)
                     return
 
@@ -186,12 +186,12 @@ def _apply_drop(
 
     for ep in episodes:
         for event in ep.events:
-            if event.plotline == target_id:
+            if event.plotline_id == target_id:
                 logger.warning(
                     "DROP %s: event '%s' not redistributed, setting to null",
                     target_id, event.event[:50],
                 )
-                event.plotline = None
+                event.plotline_id = None
 
     dropped = index.pop(target_id, None)
     if dropped and dropped in plotlines:

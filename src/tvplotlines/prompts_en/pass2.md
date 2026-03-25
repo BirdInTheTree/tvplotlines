@@ -46,7 +46,7 @@ A suggestion for changing the plotline list. Patches are collected across all ep
 
 | problem | what to do in the episode | patch |
 |---------|--------------------------|-------|
-| Event doesn't attach to any plotline | `plotline: null` | `ADD_LINE` |
+| Event doesn't attach to any plotline | `plotline_id: null` | `ADD_LINE` |
 | Plotline has no events in this episode | Nothing | `CHECK_LINE` |
 | Plotline covers disparate things | Assign to current plotline | `SPLIT_LINE` |
 | C-plotline is heavier than A | Note it | `RERANK` |
@@ -90,84 +90,84 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
   "events": [
     {
       "event": "Walt and Jesse clean up Emilio's remains",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "escalation",
       "characters": ["walt", "jesse"],
       "also_affects": null
     },
     {
       "event": "Krazy-8 talks about his childhood, Walt about cancer",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "escalation",
       "characters": ["walt"],
       "also_affects": ["family"]
     },
     {
       "event": "Walt makes a pros and cons list for killing",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "turning_point",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Skyler organizes a family intervention",
-      "plotline": "family",
+      "plotline_id": "family",
       "function": "setup",
       "characters": ["skyler", "walt"],
       "also_affects": null
     },
     {
       "event": "Family votes for chemo, Walt wants to refuse",
-      "plotline": "family",
+      "plotline_id": "family",
       "function": "escalation",
       "characters": ["walt", "skyler"],
       "also_affects": null
     },
     {
       "event": "Hank finds the desert cooking site",
-      "plotline": "investigation",
+      "plotline_id": "investigation",
       "function": "escalation",
       "characters": ["hank"],
       "also_affects": null
     },
     {
       "event": "DEA finds Krazy-8's car with meth",
-      "plotline": "investigation",
+      "plotline_id": "investigation",
       "function": "escalation",
       "characters": ["hank"],
       "also_affects": null
     },
     {
       "event": "Native girl brings a mask to the DEA office",
-      "plotline": "investigation",
+      "plotline_id": "investigation",
       "function": "setup",
       "characters": ["guest:native_girl"],
       "also_affects": null
     },
     {
       "event": "Walt decides to release Krazy-8",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "turning_point",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt notices the missing plate shard",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "crisis",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt strangles Krazy-8",
-      "plotline": "empire",
+      "plotline_id": "empire",
       "function": "climax",
       "characters": ["walt"],
       "also_affects": null
     },
     {
       "event": "Walt decides to tell Skyler about the cancer",
-      "plotline": "family",
+      "plotline_id": "family",
       "function": "turning_point",
       "characters": ["walt"],
       "also_affects": null
@@ -194,7 +194,7 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
 
 **events[]:**
 - `event`: string—one sentence
-- `plotline`: string | null—`id` of a plotline from the previous step, or `null` if the event can't be assigned (→ `ADD_LINE` patch)
+- `plotline_id`: string | null—`id` of a plotline from the previous step, or `null` if the event can't be assigned (→ `ADD_LINE` patch)
 - `function`: enum—`"setup"` | `"inciting_incident"` | `"escalation"` | `"turning_point"` | `"crisis"` | `"climax"` | `"resolution"`
 - `characters`: array of strings—`id` of characters from cast. For guest characters use `"guest:short_name"` (e.g. `"guest:native_girl"`)
 - `also_affects`: array of strings | null—`id` of secondarily affected plotlines
@@ -213,7 +213,7 @@ Weight (`primary` / `background` / `glimpse`) is computed by code from event cou
 
 Code will check:
 - JSON schema: all required fields, enum values
-- Each `plotline` references an existing `id` from the previous step or is `null`
+- Each `plotline_id` references an existing `id` from the previous step or is `null`
 - Each `characters` element references an existing `id` from cast or has the `guest:` prefix
 - `theme` is not empty
 

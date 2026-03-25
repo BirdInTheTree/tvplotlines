@@ -79,7 +79,7 @@ A single narrative beat within an episode:
 | Field | Type | Description |
 |-------|------|-------------|
 | `event` | `str` | What happens |
-| `plotline` | `str` | Which plotline it belongs to |
+| `plotline_id` | `str` | Which plotline it belongs to |
 | `function` | `str` | setup, escalation, turning_point, climax, resolution, cliffhanger, seed |
 | `characters` | `list[str]` | Who is involved |
 | `also_affects` | `str \| None` | Secondary plotline connection |

@@ -223,7 +223,7 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
             events.append(
                 Event(
                     event=e["event"],
-                    plotline=e.get("plotline"),
+                    plotline_id=e.get("plotline_id"),
                     function=e["function"],
                     characters=e.get("characters", []),
                     also_affects=e.get("also_affects"),
@@ -283,9 +283,9 @@ def _validate(
                 f"Event {event.event!r}: invalid function {event.function!r}"
             )
 
-        if event.plotline is not None and event.plotline not in plotline_ids:
+        if event.plotline_id is not None and event.plotline_id not in plotline_ids:
             raise ValueError(
-                f"Event {event.event!r}: plotline {event.plotline!r} "
+                f"Event {event.event!r}: plotline_id {event.plotline_id!r} "
                 f"not found in plotlines: {plotline_ids}"
             )
 

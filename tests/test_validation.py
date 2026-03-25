@@ -150,11 +150,11 @@ def _make_breakdown():
         episode="S01E01",
         events=[
             Event(
-                event="Walt cooks", plotline="empire",
+                event="Walt cooks", plotline_id="empire",
                 function="setup", characters=["walt", "jesse"],
             ),
             Event(
-                event="Jesse runs", plotline="partnership",
+                event="Jesse runs", plotline_id="partnership",
                 function="escalation", characters=["jesse"],
             ),
         ],
@@ -181,7 +181,7 @@ class TestPass2Validation:
 
     def test_unknown_plotline(self):
         bd = _make_breakdown()
-        bd.events[0].plotline = "nonexistent"
+        bd.events[0].plotline_id = "nonexistent"
         with pytest.raises(ValueError, match="not found in plotlines"):
             validate_pass2(bd, _make_plotlines(), _make_cast())
 
@@ -202,10 +202,10 @@ class TestPass2Validation:
         # Add enough events so that 1 null is under the 10% threshold
         for i in range(10):
             bd.events.append(Event(
-                event=f"filler {i}", plotline="empire",
+                event=f"filler {i}", plotline_id="empire",
                 function="escalation", characters=["walt"],
             ))
-        bd.events[0].plotline = None
+        bd.events[0].plotline_id = None
         validate_pass2(bd, _make_plotlines(), _make_cast())
 
     def test_invalid_interaction_type(self):

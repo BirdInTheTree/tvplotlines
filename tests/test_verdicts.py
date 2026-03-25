@@ -39,13 +39,13 @@ def _make_episodes() -> list[EpisodeBreakdown]:
         EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="Andrey joins the gang", plotline="belonging",
+                Event(event="Andrey joins the gang", plotline_id="belonging",
                       function="setup", characters=["andrey"]),
-                Event(event="Marat fights for honor", plotline="brotherhood",
+                Event(event="Marat fights for honor", plotline_id="brotherhood",
                       function="escalation", characters=["marat"]),
-                Event(event="Ira visits the school", plotline="redemption",
+                Event(event="Ira visits the school", plotline_id="redemption",
                       function="setup", characters=["ira"]),
-                Event(event="Unknown event", plotline=None,
+                Event(event="Unknown event", plotline_id=None,
                       function="setup", characters=["andrey"]),
             ],
             theme="belonging",
@@ -53,9 +53,9 @@ def _make_episodes() -> list[EpisodeBreakdown]:
         EpisodeBreakdown(
             episode="S01E02",
             events=[
-                Event(event="Andrey proves himself", plotline="belonging",
+                Event(event="Andrey proves himself", plotline_id="belonging",
                       function="escalation", characters=["andrey"]),
-                Event(event="Marat meets Aygul", plotline="brotherhood",
+                Event(event="Marat meets Aygul", plotline_id="brotherhood",
                       function="setup", characters=["marat"]),
             ],
             theme="loyalty",
@@ -84,14 +84,14 @@ class TestMerge:
         # Events reassigned
         ep1_events = episodes[0].events
         ira_event = next(e for e in ep1_events if e.event == "Ira visits the school")
-        assert ira_event.plotline == "belonging"
+        assert ira_event.plotline_id == "belonging"
 
     def test_merge_updates_also_affects(self):
         plotlines = _make_plotlines()
         episodes = [EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="Cross event", plotline="belonging",
+                Event(event="Cross event", plotline_id="belonging",
                       function="setup", characters=["andrey"],
                       also_affects=["redemption"]),
             ],
@@ -122,7 +122,7 @@ class TestReassign:
         apply_verdicts(verdicts, plotlines, episodes)
 
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline == "belonging"
+        assert event.plotline_id == "belonging"
 
 
 class TestPromoteDemote:
@@ -188,7 +188,7 @@ class TestCreate:
 
         # Event reassigned
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline == "investigation"
+        assert event.plotline_id == "investigation"
 
         # New plotline has inferred confidence
         investigation = next(p for p in result if p.id == "investigation")
@@ -216,7 +216,7 @@ class TestDrop:
 
         # Event redistributed
         event = next(e for e in episodes[0].events if e.event == "Ira visits the school")
-        assert event.plotline == "belonging"
+        assert event.plotline_id == "belonging"
 
 
 class TestOriginalNotMutated:
@@ -277,4 +277,4 @@ class TestMultipleVerdicts:
 
         assert "new_line" in [p.id for p in result]
         event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline == "new_line"
+        assert event.plotline_id == "new_line"

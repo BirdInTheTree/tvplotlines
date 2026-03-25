@@ -99,7 +99,7 @@ def review_plotlines(
                 "events": [
                     {
                         "event": e.event,
-                        "plotline": e.plotline,
+                        "plotline_id": e.plotline_id,
                         "function": e.function,
                         "characters": e.characters,
                         "also_affects": e.also_affects,

@@ -39,10 +39,10 @@ Breaking Bad, Season 1 (truncated):
       "episode": "S01E01",
       "events": [
         {
-          "event": "At Walt's 50th birthday party, Hank shows off his gun and invites Walt on a DEA ride-along",
-          "plotline": "investigation",
-          "function": "setup",
-          "characters": ["hank", "walt"]
+          "event": "During the meth lab raid, Walt spots his former student Jesse escaping through a window",
+          "plotline_id": "empire",
+          "function": "inciting_incident",
+          "characters": ["walt", "jesse"]
         }
       ]
     }
@@ -55,23 +55,26 @@ Breaking Bad, Season 1 (truncated):
 - **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
 - **Story DNA** — who drives the plotline (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
 - **A/B/C ranking** — plotline weight: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
-- **Franchise type** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
+- **Format**— procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
 - **Story engine** — one sentence capturing the show's core dramatic mechanism
 
-Более подроьные определения есть в промптах. 
+Full definitions are in the [prompts](src/tvplotlines/prompts_en/).
 
-## Try it
-
-The repo includes synopses for Breaking Bad S01 and Game of Thrones S01. Clone and run:
+## Installation
 
 ```bash
 pip install tvplotlines
-export ANTHROPIC_API_KEY=sk-ant-...  # or OPENAI_API_KEY
-
-tvplotlines run examples/synopses/BB_S01E*.txt --show "Breaking Bad" --season 1 -o bb.json
 ```
 
-Or in Python:
+Requires an API key for at least one LLM provider:
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+# or
+export OPENAI_API_KEY=sk-...
+```
+
+## Quick start
 
 ```python
 from tvplotlines import get_plotlines
@@ -86,10 +89,15 @@ result = get_plotlines("Breaking Bad", season=1, episodes=episodes)
 
 for plotline in result.plotlines:
     print(f"[{plotline.rank}] {plotline.name} — {plotline.goal}")
-    print(f"    Hero: {plotline.hero}, Span: {plotline.span}")
 ```
 
-Pre-computed results are in `examples/results/` if you want to explore the output without spending API credits.
+Or from the command line:
+
+```bash
+tvplotlines run examples/synopses/BB_S01E*.txt --show "Breaking Bad" --season 1 -o bb.json
+```
+
+The repo includes pre-computed results in [`examples/results/`](examples/results/) and synopses for Breaking Bad S01 and Game of Thrones S01 in [`examples/synopses/`](examples/synopses/).
 
 ## How it works
 

@@ -16,7 +16,7 @@ def _make_episode(episode: str, plotline_ids: list[str]) -> EpisodeBreakdown:
     return EpisodeBreakdown(
         episode=episode,
         events=[
-            Event(event=f"event for {sid}", plotline=sid,
+            Event(event=f"event for {sid}", plotline_id=sid,
                   function="escalation", characters=["x"])
             for sid in plotline_ids
         ],
@@ -49,11 +49,11 @@ class TestComputeWeight:
         ep = EpisodeBreakdown(
             episode="S01E01",
             events=[
-                Event(event="e1", plotline="a", function="setup", characters=["x"]),
-                Event(event="e2", plotline="a", function="escalation", characters=["x"]),
-                Event(event="e3", plotline="a", function="climax", characters=["x"]),
-                Event(event="e4", plotline="a", function="resolution", characters=["x"]),
-                Event(event="e5", plotline="b", function="setup", characters=["x"]),
+                Event(event="e1", plotline_id="a", function="setup", characters=["x"]),
+                Event(event="e2", plotline_id="a", function="escalation", characters=["x"]),
+                Event(event="e3", plotline_id="a", function="climax", characters=["x"]),
+                Event(event="e4", plotline_id="a", function="resolution", characters=["x"]),
+                Event(event="e5", plotline_id="b", function="setup", characters=["x"]),
             ],
             theme="test",
         )
@@ -108,11 +108,11 @@ class TestValidateRanks:
 
         # 8 events for big, 2 for small → big = 80%
         events_big = [
-            Event(event=f"e{i}", plotline="big", function="escalation", characters=["x"])
+            Event(event=f"e{i}", plotline_id="big", function="escalation", characters=["x"])
             for i in range(8)
         ]
         events_small = [
-            Event(event=f"e{i}", plotline="small", function="setup", characters=["x"])
+            Event(event=f"e{i}", plotline_id="small", function="setup", characters=["x"])
             for i in range(2)
         ]
         episodes = [
