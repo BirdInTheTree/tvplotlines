@@ -1,4 +1,4 @@
-"""CLI for tvplotlines: extract storylines from TV series synopses.
+"""CLI for tvplotlines: extract plotlines from TV series synopses.
 
 Usage:
     tvplotlines run synopses/SP_S01E*.txt --show "Слово пацана" --season 1
@@ -123,7 +123,7 @@ def _write_synopses(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="tvplotlines",
-        description="Extract storylines from TV series synopses using LLM.",
+        description="Extract plotlines from TV series synopses using LLM.",
     )
     sub = parser.add_subparsers(dest="command")
 

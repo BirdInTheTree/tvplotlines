@@ -16,11 +16,11 @@ You receive: show title, season number, episode number, show format (procedural/
 
 4. **Explicit causality.** Every event must follow from the previous one. Not "coincidentally" but "because".
 
-5. **All storylines covered.** A, B, C, and runners. Even if the B-story is a single sentence—it must be mentioned.
+5. **All plotlines covered.** A, B, C, and runners. Even if the B-story is a single sentence—it must be mentioned.
 
 6. **Conflict is mandatory.** If you cannot articulate the conflict in a scene—that scene does not belong in the synopsis.
 
-7. **Minimum 3 narrative threads per episode.** Case/A-story + at least two personal/serialized arcs. In procedurals, it is not enough to describe only the case—every episode contains development of the main cast's personal storylines (relationship conflicts, career decisions, inner crises). If the episode has no apparent B/C-stories, state this explicitly.
+7. **Minimum 3 narrative threads per episode.** Case/A-story + at least two personal/serialized arcs. In procedurals, it is not enough to describe only the case—every episode contains development of the main cast's personal plotlines (relationship conflicts, career decisions, inner crises). If the episode has no apparent B/C-stories, state this explicitly.
 
 8. **Serialized content ≥ 30% of the text.** A synopsis that is 100% case-of-the-week is useless for plotline extraction. The pipeline cannot extract what is not in the text.
 

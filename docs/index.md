@@ -1,10 +1,10 @@
 # tvplotlines
 
-Automatic storyline extraction from TV series synopses.
+Automatic plotline extraction from TV series synopses.
 
 ## What it does
 
-Feed episode synopses → get structured storylines, character arcs, and per-episode event breakdowns.
+Feed episode synopses → get structured plotlines, character arcs, and per-episode event breakdowns.
 
 ## Quick links
 

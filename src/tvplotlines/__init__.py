@@ -1,4 +1,4 @@
-"""tvplotlines — extract storylines from TV series synopses using LLM."""
+"""tvplotlines — extract plotlines from TV series synopses using LLM."""
 
 from tvplotlines.callbacks import PipelineCallback
 from tvplotlines.models import (

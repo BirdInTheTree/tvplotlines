@@ -94,7 +94,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines explore how confronting evil changes people - the case corrupts, partnership fractures, redemption becomes necessary (investigation, partnership, redemption)
+- *thematic_rhyme*: all plotlines explore how confronting evil changes people - the case corrupts, partnership fractures, redemption becomes necessary (investigation, partnership, redemption)
 - *meta*: dual timeline structure reveals consequences before causes (investigation, partnership)
 - *dramatic_irony*: audience knows the partnership will fail catastrophically, but sees its hopeful beginning (investigation, partnership)
 
@@ -151,7 +151,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines explore how hidden truths destroy relationships and corrupt those who carry them (investigation, partnership, marriage, redemption)
+- *thematic_rhyme*: all plotlines explore how hidden truths destroy relationships and corrupt those who carry them (investigation, partnership, marriage, redemption)
 - *dramatic_irony*: Rust knows about Marty's affair but Maggie doesn't, creating tension in both relationships (partnership, marriage)
 - *convergence*: the disturbing doll scene suggests the occult conspiracy may be affecting Marty's family directly (investigation, marriage)
 
@@ -192,7 +192,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines explore the disconnect between what characters believe is right and what they actually do (investigation, marriage, redemption)
+- *thematic_rhyme*: all plotlines explore the disconnect between what characters believe is right and what they actually do (investigation, marriage, redemption)
 - *dramatic_irony*: Hart judges others' morality while being blind to his own hypocrisy, and Maggie's interest in Cohle creates tension Hart doesn't fully recognize (marriage, partnership)
 - *convergence*: the pressure to hand over the case tests both their detective work and their ability to work together (investigation, partnership)
 
@@ -243,7 +243,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: both storylines explore characters crossing moral boundaries - Rust breaking the law to pursue justice, Marty betraying his marriage vows (investigation, marriage)
+- *thematic_rhyme*: both plotlines explore characters crossing moral boundaries - Rust breaking the law to pursue justice, Marty betraying his marriage vows (investigation, marriage)
 - *dramatic_irony*: the 2012 interrogators suspect Rust and Marty are lying about the two weeks' leave, while the audience sees the dangerous undercover operation (investigation, partnership)
 
 ### S01E05
@@ -307,9 +307,9 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines explore how pursuing truth and justice corrupts relationships and moral boundaries (investigation, partnership, marriage)
+- *thematic_rhyme*: all plotlines explore how pursuing truth and justice corrupts relationships and moral boundaries (investigation, partnership, marriage)
 - *dramatic_irony*: the audience knows Cohle is investigating independently while Hart believes they solved the case (investigation, partnership)
-- *convergence*: the investigation storyline directly threatens the partnership when Hart learns of suspicions about Cohle (investigation, partnership)
+- *convergence*: the investigation plotline directly threatens the partnership when Hart learns of suspicions about Cohle (investigation, partnership)
 
 ### S01E06
 **Theme**: the destructive cost of obsession
@@ -362,7 +362,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines explore how obsessive pursuit of truth, control, or meaning destroys relationships and moral boundaries (investigation, partnership, marriage, redemption)
+- *thematic_rhyme*: all plotlines explore how obsessive pursuit of truth, control, or meaning destroys relationships and moral boundaries (investigation, partnership, marriage, redemption)
 - *convergence*: Maggie's seduction of Rust directly destroys the partnership between the detectives (marriage, partnership)
 - *dramatic_irony*: the audience knows Rust is pursuing the truth while the 2012 investigators suspect him of being involved (investigation, partnership)
 
@@ -427,7 +427,7 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all storylines deal with confronting the past and seeking closure (investigation, redemption, marriage)
+- *thematic_rhyme*: all plotlines deal with confronting the past and seeking closure (investigation, redemption, marriage)
 - *dramatic_irony*: the audience sees Errol is the scarred man while Papania and Gilbough miss him completely (investigation)
 - *convergence*: Marty's decision to rejoin Rust merges their personal relationship with the case (investigation, partnership)
 
@@ -490,5 +490,5 @@
 
 **Interactions**
 
-- *thematic_rhyme*: both storylines involve confronting ultimate darkness - literal evil in Carcosa and existential void in Rust's psyche - and finding light (investigation, redemption)
-- *convergence*: all storylines converge in Carcosa where the case is solved, partnership is tested and reaffirmed, and Rust finds spiritual transformation (investigation, partnership, redemption)
+- *thematic_rhyme*: both plotlines involve confronting ultimate darkness - literal evil in Carcosa and existential void in Rust's psyche - and finding light (investigation, redemption)
+- *convergence*: all plotlines converge in Carcosa where the case is solved, partnership is tested and reaffirmed, and Rust finds spiritual transformation (investigation, partnership, redemption)

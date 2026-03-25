@@ -49,7 +49,7 @@ def get_plotlines(
     batch_id: str | None = None,
     callback: PipelineCallback | None = None,
 ) -> TVPlotlinesResult:
-    """Extract storylines from TV series synopses.
+    """Extract plotlines from TV series synopses.
 
     Args:
         show: Series title.

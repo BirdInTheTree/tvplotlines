@@ -33,7 +33,7 @@ class PipelineCallback:
     def on_pass1_complete(
         self, cast: list[CastMember], plotlines: list[Plotline],
     ) -> None:
-        """Called after storyline extraction (Pass 1)."""
+        """Called after plotline extraction (Pass 1)."""
 
     def on_episode_complete(
         self, index: int, breakdown: EpisodeBreakdown,

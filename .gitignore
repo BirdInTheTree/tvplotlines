@@ -41,6 +41,9 @@ htmlcov/
 # Internal — not part of the library
 tasks/
 CLAUDE.md
+experiments/
+program.md
+results.tsv
 
 # Worktrees
 .worktrees/

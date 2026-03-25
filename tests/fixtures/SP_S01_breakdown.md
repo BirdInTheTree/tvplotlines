@@ -560,6 +560,6 @@
 
 **Interactions**
 
-- *thematic_rhyme*: all three storylines show characters facing the irreversible consequences of their choices — Andrey loses his freedom, Marat loses his innocence, Vova loses his life (belonging, love, leadership)
+- *thematic_rhyme*: all three plotlines show characters facing the irreversible consequences of their choices — Andrey loses his freedom, Marat loses his innocence, Vova loses his life (belonging, love, leadership)
 - *convergence*: Ildar's pursuit directly leads to Vova's death (justice, leadership)
 - *dramatic_irony*: Ira tries to save Andrey just as he's about to be caught (redemption, belonging)

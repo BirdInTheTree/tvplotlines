@@ -5,13 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "tvplotlines"
 version = "0.1.0"
-description = "Extract storylines from TV series synopses using LLM"
+description = "Extract plotlines from TV series synopses using LLM"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [{name = "BirdInTheTree", email = "51715433+BirdInTheTree@users.noreply.github.com"}]
 keywords = [
-    "storyline",
+    "plotline",
     "narrative",
     "tv-series",
     "plot-extraction",

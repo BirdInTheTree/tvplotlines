@@ -107,7 +107,7 @@ class TestMerge:
 
 
 class TestReassign:
-    def test_reassign_changes_storyline(self):
+    def test_reassign_changes_plotline(self):
         plotlines = _make_plotlines()
         episodes = _make_episodes()
 
@@ -205,7 +205,7 @@ class TestDrop:
             "redistribute": [
                 {"event": "Ira visits the school", "episode": "S01E01", "to": "belonging"},
             ],
-            "reason": "not a real storyline",
+            "reason": "not a real plotline",
         })]
 
         result = apply_verdicts(verdicts, plotlines, episodes)

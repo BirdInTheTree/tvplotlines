@@ -30,7 +30,7 @@ result = get_plotlines(
 
 ### Multi-season processing
 
-Pass the result of the previous season to maintain character and storyline ID continuity:
+Pass the result of the previous season to maintain character and plotline ID continuity:
 
 ```python
 r1 = get_plotlines("Breaking Bad", 1, {"S01E01": "...", "S01E02": "...", ...})
@@ -40,7 +40,7 @@ r3 = get_plotlines("Breaking Bad", 3, {"S03E01": "...", "S03E02": "...", ...}, p
 
 When `prior` is provided:
 - Pass 0 is skipped (reuses `prior.context`)
-- Pass 1 receives prior cast and plotlines, reusing IDs for continuing characters and storylines
+- Pass 1 receives prior cast and plotlines, reusing IDs for continuing characters and plotlines
 - Not supported for anthology format (raises `ValueError`)
 
 ## TVPlotlinesResult
@@ -79,7 +79,7 @@ A single narrative beat within an episode:
 | Field | Type | Description |
 |-------|------|-------------|
 | `event` | `str` | What happens |
-| `storyline` | `str` | Which plotline it belongs to |
+| `plotline` | `str` | Which plotline it belongs to |
 | `function` | `str` | setup, escalation, turning_point, climax, resolution, cliffhanger, seed |
 | `characters` | `list[str]` | Who is involved |
 | `also_affects` | `str \| None` | Secondary plotline connection |

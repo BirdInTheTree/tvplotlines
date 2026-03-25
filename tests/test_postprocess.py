@@ -12,13 +12,13 @@ def _make_plotline(id: str) -> Plotline:
     )
 
 
-def _make_episode(episode: str, storyline_ids: list[str]) -> EpisodeBreakdown:
+def _make_episode(episode: str, plotline_ids: list[str]) -> EpisodeBreakdown:
     return EpisodeBreakdown(
         episode=episode,
         events=[
             Event(event=f"event for {sid}", plotline=sid,
                   function="escalation", characters=["x"])
-            for sid in storyline_ids
+            for sid in plotline_ids
         ],
         theme="test",
     )

@@ -242,7 +242,7 @@
       "events": [
         {
           "event": "Хулиган в автобусе отбирает деньги у Андрея и Искандера",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "setup",
           "characters": [
             "andrey"
@@ -251,7 +251,7 @@
         },
         {
           "event": "Учительница просит Андрея подтянуть Марата по английскому",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "setup",
           "characters": [
             "andrey",
@@ -261,7 +261,7 @@
         },
         {
           "event": "Искандер вступает в «Разъезд» и требует деньги у Андрея",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey"
@@ -270,7 +270,7 @@
         },
         {
           "event": "Андрей решает вступить в «Универсам» за защитой",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey"
@@ -279,7 +279,7 @@
         },
         {
           "event": "Андрей проходит испытание — дерётся с Маратом",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "climax",
           "characters": [
             "andrey",
@@ -289,7 +289,7 @@
         },
         {
           "event": "Андрей получает прозвище «Пальто» и становится универсамовским",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "resolution",
           "characters": [
             "andrey"
@@ -298,7 +298,7 @@
         },
         {
           "event": "Марат знакомится с Айгуль в музыкальной школе",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "setup",
           "characters": [
             "marat",
@@ -310,7 +310,7 @@
         },
         {
           "event": "Андрей соглашается достать номер телефона Айгуль для Марата",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "setup",
           "characters": [
             "andrey",
@@ -323,7 +323,7 @@
         },
         {
           "event": "Группировка едет «на гастроли» в Москву",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "setup",
           "characters": [
             "andrey",
@@ -334,7 +334,7 @@
         },
         {
           "event": "Ребята избивают панка в Москве",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -347,7 +347,7 @@
         },
         {
           "event": "Андрея ловит милиция после избиения панка",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "setup",
           "characters": [
             "andrey",
@@ -359,7 +359,7 @@
         },
         {
           "event": "Андрей влюбляется в сотрудницу по делам несовершеннолетних Ирину",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "setup",
           "characters": [
             "andrey",
@@ -369,7 +369,7 @@
         },
         {
           "event": "Мама Андрея узнаёт о его проблемах с милицией",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "setup",
           "characters": [
             "iulia",
@@ -416,7 +416,7 @@
       "events": [
         {
           "event": "Появляется отец Марата — состоятельный инженер оборонного завода",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "setup",
           "characters": [
             "marat"
@@ -425,7 +425,7 @@
         },
         {
           "event": "Андрей бреется налысо как визуальный маркер вступления в группировку",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey"
@@ -436,7 +436,7 @@
         },
         {
           "event": "Ира приглашает Андрея в кино, пытается заставить рассказать о группировке",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "escalation",
           "characters": [
             "ira",
@@ -448,7 +448,7 @@
         },
         {
           "event": "Кащей обманывает людей игрой в напёрстки, Марат изображает счастливого победителя",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat"
@@ -457,7 +457,7 @@
         },
         {
           "event": "Мама Андрея попадается на наперстки и проигрывает деньги и шапку",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "iulia"
@@ -468,7 +468,7 @@
         },
         {
           "event": "Марат кричит «милиция!» и спасает маму Андрея от потери шубы",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "turning_point",
           "characters": [
             "marat"
@@ -479,7 +479,7 @@
         },
         {
           "event": "Кащей избивает Марата за срыв операции",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat"
@@ -488,7 +488,7 @@
         },
         {
           "event": "Из Афганистана возвращается Вова Адидас",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "setup",
           "characters": [
             "vova"
@@ -497,7 +497,7 @@
         },
         {
           "event": "Адидас недоволен тем, что отняли деньги у мамы участника группировки",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova"
@@ -508,7 +508,7 @@
         },
         {
           "event": "Адидас предлагает крышевать дороги — останавливать машины и требовать плату",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova"
@@ -519,7 +519,7 @@
         },
         {
           "event": "Ребята делят награбленное, Ералаш покупает бабушке утюг",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "yeralash",
@@ -529,7 +529,7 @@
         },
         {
           "event": "Андрей приносит деньги маме, та отказывается их брать",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -541,7 +541,7 @@
         },
         {
           "event": "Мама Андрея начинает встречаться с оперуполномоченным Ильдаром",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "setup",
           "characters": [
             "iulia",
@@ -553,7 +553,7 @@
         },
         {
           "event": "Ильдар приводит Андрея в отделение и просит сдать членов группировки",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "ildar",
@@ -565,7 +565,7 @@
         },
         {
           "event": "Андрей пишет фальшивые имена участников группировки",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey"
@@ -576,7 +576,7 @@
         },
         {
           "event": "На дискотеке Андрей бьёт Искандера",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey"
@@ -585,7 +585,7 @@
         },
         {
           "event": "Андрея задерживает милиция после драки",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey"
@@ -596,7 +596,7 @@
         },
         {
           "event": "Ильдар понимает обман и жестоко избивает Андрея",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "ildar",
@@ -608,7 +608,7 @@
         },
         {
           "event": "Неизвестные нападают на Ералаша",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "yeralash"
@@ -619,7 +619,7 @@
         },
         {
           "event": "Кирилл трусливо уезжает, наблюдая нападение на Ералаша",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "guest:kirill"
@@ -628,7 +628,7 @@
         },
         {
           "event": "Ералаш погибает",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "yeralash"
@@ -677,7 +677,7 @@
       "events": [
         {
           "event": "Марат ворует шапку у учительницы английского",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "setup",
           "characters": [
             "marat"
@@ -686,7 +686,7 @@
         },
         {
           "event": "Марат дарит украденную шапку маме Андрея",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat",
@@ -698,7 +698,7 @@
         },
         {
           "event": "Кирилл рассказывает, что Ералаша убили разъездовские",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "setup",
           "characters": [
             "guest:kirill"
@@ -707,7 +707,7 @@
         },
         {
           "event": "Универсамовские устраивают драку с разъездовскими и побеждают",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova",
@@ -720,7 +720,7 @@
         },
         {
           "event": "Выясняется, что Кирилл солгал — убийцы из «Хади Такташ»",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "guest:kirill"
@@ -729,7 +729,7 @@
         },
         {
           "event": "Кирилла «отшивают» — избивают и оплёвывают за враньё",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova",
@@ -741,7 +741,7 @@
         },
         {
           "event": "Отец Марата узнаёт о краже шапки",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "turning_point",
           "characters": [
             "guest:marat_father"
@@ -750,7 +750,7 @@
         },
         {
           "event": "Отец пытается увезти Марата к тёте в Набережные Челны",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "climax",
           "characters": [
             "marat",
@@ -760,7 +760,7 @@
         },
         {
           "event": "Универсамовские выходят против хадишевских без Марата",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova",
@@ -773,7 +773,7 @@
         },
         {
           "event": "Во время драки Вову ранят доской с гвоздями",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova"
@@ -782,7 +782,7 @@
         },
         {
           "event": "Андрей теряет сознание во время драки",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "climax",
           "characters": [
             "andrey"
@@ -791,7 +791,7 @@
         },
         {
           "event": "Андрей приходит в себя в больнице",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "resolution",
           "characters": [
             "andrey"
@@ -800,7 +800,7 @@
         },
         {
           "event": "Андрей узнаёт, что убийца Ералаша в соседней палате",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "seed",
           "characters": [
             "andrey"
@@ -809,7 +809,7 @@
         },
         {
           "event": "Андрей ночью пробирается в палату и жестоко избивает убийцу",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey"
@@ -818,7 +818,7 @@
         },
         {
           "event": "Андрей приходит домой к Ирине и видит её нового друга-музыканта",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "setup",
           "characters": [
             "andrey",
@@ -828,7 +828,7 @@
         },
         {
           "event": "Андрей грозит музыканту расправой",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -875,7 +875,7 @@
       "events": [
         {
           "event": "Хадишевские штурмуют больницу, чтобы отомстить за своего",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "guest:khadishevskie"
@@ -884,7 +884,7 @@
         },
         {
           "event": "Марат, Андрей и Турбо экстренно эвакуируют Вову на угнанной машине скорой помощи",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "marat",
@@ -899,7 +899,7 @@
         },
         {
           "event": "Хирург Наташа зашивает рану Адидасу прямо в лифте",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "natasha",
@@ -909,7 +909,7 @@
         },
         {
           "event": "Марат сбегает из дома и живёт у Андрея",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat",
@@ -922,7 +922,7 @@
         },
         {
           "event": "Вова выходит против Кащея и отшивает его",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -932,7 +932,7 @@
         },
         {
           "event": "В вещах Кащея находят деньги и пистолет",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova"
@@ -941,7 +941,7 @@
         },
         {
           "event": "Универсамовские ходят в видеосалон",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "setup",
           "characters": [
             "andrey",
@@ -952,7 +952,7 @@
         },
         {
           "event": "Адидас видит перспективу открыть свой видеосалон",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "setup",
           "characters": [
             "vova"
@@ -961,7 +961,7 @@
         },
         {
           "event": "Ребята воруют видеомагнитофон",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -974,7 +974,7 @@
         },
         {
           "event": "Айгуль обижена на Марата за то, что он пропал на два дня",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "aygul",
@@ -986,7 +986,7 @@
         },
         {
           "event": "Юлия Александровна приходит в школу и видит на учительнице свою украденную шапку",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "turning_point",
           "characters": [
             "iulia",
@@ -996,7 +996,7 @@
         },
         {
           "event": "Юлия Александровна понимает, что сын ей лгал",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "turning_point",
           "characters": [
             "iulia"
@@ -1005,7 +1005,7 @@
         },
         {
           "event": "Юлия Александровна переживает нервный срыв и поджигает себе волосы",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "climax",
           "characters": [
             "iulia"
@@ -1014,7 +1014,7 @@
         },
         {
           "event": "Андрея хотят отправить в Суворовское училище",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "iulia",
@@ -1026,7 +1026,7 @@
         },
         {
           "event": "Андрей спорит с комиссией и срывает поступление",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey",
@@ -1075,7 +1075,7 @@
       "events": [
         {
           "event": "Юлию Александровну кладут в психбольницу",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "iulia"
@@ -1086,7 +1086,7 @@
         },
         {
           "event": "Органы опеки грозятся забрать Андрея и сестру в детдом",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "andrey"
@@ -1097,7 +1097,7 @@
         },
         {
           "event": "Ильдар помогает вернуть маму домой",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "ildar"
@@ -1108,7 +1108,7 @@
         },
         {
           "event": "Странный мужчина на зелёной восьмёрке следит за Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "aygul",
@@ -1118,7 +1118,7 @@
         },
         {
           "event": "Айгуль возобновляет отношения с Маратом для защиты",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "turning_point",
           "characters": [
             "aygul",
@@ -1130,7 +1130,7 @@
         },
         {
           "event": "Универсамовские открывают видеосалон",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova"
@@ -1139,7 +1139,7 @@
         },
         {
           "event": "Айгуль рисует афиши для салона",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "aygul"
@@ -1148,7 +1148,7 @@
         },
         {
           "event": "Бандиты из «Дома быта» врываются в салон",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "guest:dom_byta_gang"
@@ -1157,7 +1157,7 @@
         },
         {
           "event": "Домбытовские забирают магнитофон и избивают Турбо",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "turbo",
@@ -1167,7 +1167,7 @@
         },
         {
           "event": "Домбытовские похищают Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "climax",
           "characters": [
             "aygul",
@@ -1179,7 +1179,7 @@
         },
         {
           "event": "Вова договаривается о встрече с Желтым",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova"
@@ -1188,7 +1188,7 @@
         },
         {
           "event": "Встреча оказывается ловушкой, Вову, Марата и Зиму избивают",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova",
@@ -1202,7 +1202,7 @@
         },
         {
           "event": "Вова отказывается встать на колени и извиниться",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova"
@@ -1211,7 +1211,7 @@
         },
         {
           "event": "Вова извиняется когда брату начинают отрезать ухо",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -1223,7 +1223,7 @@
         },
         {
           "event": "Преследователь совершает насилие над Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "climax",
           "characters": [
             "aygul",
@@ -1235,7 +1235,7 @@
         },
         {
           "event": "Вова берёт пистолет Кащея и едет к «Дому быта»",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "resolution",
           "characters": [
             "vova",
@@ -1245,7 +1245,7 @@
         },
         {
           "event": "Вова ранит домбытовских, убивает Желтого и спасает Айгуль",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "resolution",
           "characters": [
             "vova",
@@ -1297,7 +1297,7 @@
       "events": [
         {
           "event": "Родители Айгуль отказываются писать заявление против насильника",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "guest:aygul_parents"
@@ -1306,7 +1306,7 @@
         },
         {
           "event": "Вова начинает сближаться с медсестрой Наташей",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "setup",
           "characters": [
             "vova",
@@ -1316,7 +1316,7 @@
         },
         {
           "event": "Адидас запрещает Марату встречаться с Айгуль",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -1328,7 +1328,7 @@
         },
         {
           "event": "Марат заставляет Айгуль сказать, что ничего не было",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat",
@@ -1340,7 +1340,7 @@
         },
         {
           "event": "Турбо выясняет правду об Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "turning_point",
           "characters": [
             "turbo"
@@ -1349,7 +1349,7 @@
         },
         {
           "event": "Турбо распространяет информацию об Айгуль на дискотеке",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "turbo"
@@ -1358,7 +1358,7 @@
         },
         {
           "event": "Все отворачиваются от Айгуль, включая подруг",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "escalation",
           "characters": [
             "aygul"
@@ -1367,7 +1367,7 @@
         },
         {
           "event": "Андрей подслушивает разговор Ильдара о розыске Вовы",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -1379,7 +1379,7 @@
         },
         {
           "event": "Андрей предупреждает Вову об объявлении в розыск",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -1391,7 +1391,7 @@
         },
         {
           "event": "Вова скрывается в общежитии у Наташи",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova",
@@ -1401,7 +1401,7 @@
         },
         {
           "event": "Айгуль выходит на балкон и готовится к самоубийству",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "climax",
           "characters": [
             "aygul"
@@ -1412,7 +1412,7 @@
         },
         {
           "event": "Показывают некрологи будущих жертв среди универсамовцев",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "seed",
           "characters": [],
           "also_affects": null
@@ -1466,7 +1466,7 @@
       "events": [
         {
           "event": "Андрей сообщает Вове о гибели Айгуль",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "climax",
           "characters": [
             "andrey",
@@ -1478,7 +1478,7 @@
         },
         {
           "event": "Вова отвозит Марата на кладбище к могиле сослуживца",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "vova",
@@ -1488,7 +1488,7 @@
         },
         {
           "event": "Вова не может рассказать Марату о трагедии, только обнимает",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -1498,7 +1498,7 @@
         },
         {
           "event": "Вова приезжает с Наташей к её тёте",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova",
@@ -1508,7 +1508,7 @@
         },
         {
           "event": "Выясняется что тётя — мать убитого Желтого",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -1518,7 +1518,7 @@
         },
         {
           "event": "Подельник Желтого узнаёт и избивает Вову",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova",
@@ -1528,7 +1528,7 @@
         },
         {
           "event": "Наташа узнаёт правду и убегает в слезах",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "resolution",
           "characters": [
             "natasha",
@@ -1538,7 +1538,7 @@
         },
         {
           "event": "Марату в школе сообщают о смерти Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "climax",
           "characters": [
             "marat"
@@ -1549,7 +1549,7 @@
         },
         {
           "event": "Марат в шоке убегает из школы",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "resolution",
           "characters": [
             "marat"
@@ -1558,7 +1558,7 @@
         },
         {
           "event": "Юлия Александровна приходит домой без дочери",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "iulia"
@@ -1567,7 +1567,7 @@
         },
         {
           "event": "Универсамовские ищут девочку, Турбо находит её",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "escalation",
           "characters": [
             "turbo"
@@ -1578,7 +1578,7 @@
         },
         {
           "event": "Приезжает милиция, маму увозят в больницу",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "climax",
           "characters": [
             "iulia",
@@ -1588,7 +1588,7 @@
         },
         {
           "event": "Органы опеки забирают сестру, Андрей сбегает",
-          "storyline": "family_destruction",
+          "plotline": "family_destruction",
           "function": "resolution",
           "characters": [
             "andrey",
@@ -1600,7 +1600,7 @@
         },
         {
           "event": "Андрей поселяется в подвальном штабе группировки",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey"
@@ -1609,7 +1609,7 @@
         },
         {
           "event": "Вова объявляет банде что уезжает из города",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "resolution",
           "characters": [
             "vova"
@@ -1621,7 +1621,7 @@
         },
         {
           "event": "Главным в Универсаме становится Зима",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "seed",
           "characters": [
             "zima"
@@ -1632,7 +1632,7 @@
         },
         {
           "event": "Турбо поднимает вопрос о Марате и его связи с Айгуль",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "turbo"
@@ -1641,7 +1641,7 @@
         },
         {
           "event": "Марата отшивают за нарушение пацанских принципов",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "resolution",
           "characters": [
             "marat",
@@ -1652,7 +1652,7 @@
         },
         {
           "event": "Марат идёт в милицию к Ильдару",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "turning_point",
           "characters": [
             "marat",
@@ -1664,7 +1664,7 @@
         },
         {
           "event": "Марат сдаёт бывших подельников",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "marat",
@@ -1677,7 +1677,7 @@
         },
         {
           "event": "Марат дерётся с Турбо и подкладывает ему пистолет",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "climax",
           "characters": [
             "marat",
@@ -1689,7 +1689,7 @@
         },
         {
           "event": "Милиция задерживает универсамовских",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "resolution",
           "characters": [
             "ildar",
@@ -1741,7 +1741,7 @@
       "events": [
         {
           "event": "Ильдар устраивает очную ставку с Кириллом, тот обвиняет Вову в оружии",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "ildar"
@@ -1752,7 +1752,7 @@
         },
         {
           "event": "Драка между Маратом и Кириллом в милиции",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "escalation",
           "characters": [
             "marat"
@@ -1761,7 +1761,7 @@
         },
         {
           "event": "Ильдар отпускает Марата",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "turning_point",
           "characters": [
             "ildar"
@@ -1772,7 +1772,7 @@
         },
         {
           "event": "Андрея выпускают из камеры",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "setup",
           "characters": [
             "andrey"
@@ -1781,7 +1781,7 @@
         },
         {
           "event": "Кащей издевается над Андреем, отнимает пальто, говорит что Универсама нет",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "turning_point",
           "characters": [
             "andrey",
@@ -1791,7 +1791,7 @@
         },
         {
           "event": "Ирина оформляет опеку над Юлей и предлагает Андрею уйти из группировки",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "escalation",
           "characters": [
             "ira",
@@ -1803,7 +1803,7 @@
         },
         {
           "event": "Марат находит Вову и обвиняет его в смерти Айгуль",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "climax",
           "characters": [
             "marat",
@@ -1815,7 +1815,7 @@
         },
         {
           "event": "Марат швыряет деньги в лицо Вове и уходит",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "resolution",
           "characters": [
             "marat"
@@ -1826,7 +1826,7 @@
         },
         {
           "event": "Комсомолец Денис вручает Марату грамоту за задержание Турбо",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "setup",
           "characters": [
             "marat",
@@ -1836,7 +1836,7 @@
         },
         {
           "event": "Марат вступает в комсомол",
-          "storyline": "brotherhood",
+          "plotline": "brotherhood",
           "function": "turning_point",
           "characters": [
             "marat"
@@ -1847,7 +1847,7 @@
         },
         {
           "event": "Андрей нападает на Марата за предательство и побеждает",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "escalation",
           "characters": [
             "andrey",
@@ -1859,7 +1859,7 @@
         },
         {
           "event": "Ильдар приходит к Наташе и видит там Вову",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "escalation",
           "characters": [
             "ildar",
@@ -1872,7 +1872,7 @@
         },
         {
           "event": "Вова и Наташа сбегают, угоняют машину",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova",
@@ -1884,7 +1884,7 @@
         },
         {
           "event": "Вова узнаёт о сердечном приступе отца",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "escalation",
           "characters": [
             "vova"
@@ -1893,7 +1893,7 @@
         },
         {
           "event": "Вова приезжает на юбилей отца",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "turning_point",
           "characters": [
             "vova"
@@ -1902,7 +1902,7 @@
         },
         {
           "event": "Отец отказывается от Вовы, называет убийцей",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "climax",
           "characters": [
             "vova",
@@ -1912,7 +1912,7 @@
         },
         {
           "event": "Ильдар стреляет в Вову",
-          "storyline": "investigation",
+          "plotline": "investigation",
           "function": "climax",
           "characters": [
             "ildar",
@@ -1924,7 +1924,7 @@
         },
         {
           "event": "Вова умирает на руках Наташи",
-          "storyline": "leadership",
+          "plotline": "leadership",
           "function": "resolution",
           "characters": [
             "vova",
@@ -1936,7 +1936,7 @@
         },
         {
           "event": "Ирина везёт Андрея и Юлю к маме в больницу",
-          "storyline": "redemption",
+          "plotline": "redemption",
           "function": "turning_point",
           "characters": [
             "ira",
@@ -1948,7 +1948,7 @@
         },
         {
           "event": "Мужчина узнаёт Андрея и сдаёт в милицию",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "climax",
           "characters": [
             "andrey",
@@ -1960,7 +1960,7 @@
         },
         {
           "event": "Комсомолец приводит Марата к насильнику Айгуль",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "resolution",
           "characters": [
             "marat",
@@ -1970,7 +1970,7 @@
         },
         {
           "event": "Марат жестоко избивает насильника",
-          "storyline": "innocence",
+          "plotline": "innocence",
           "function": "resolution",
           "characters": [
             "marat"
@@ -1979,7 +1979,7 @@
         },
         {
           "event": "Андрей в детской колонии играет на пианино",
-          "storyline": "belonging",
+          "plotline": "belonging",
           "function": "resolution",
           "characters": [
             "andrey"

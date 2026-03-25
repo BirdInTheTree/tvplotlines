@@ -54,7 +54,7 @@ class TestConsistencyARI:
         assert ari == 1.0
 
     def test_different_names_same_structure(self):
-        """Runs with different storyline names but same grouping = high ARI."""
+        """Runs with different plotline names but same grouping = high ARI."""
         ep_run1 = EpisodeBreakdown(
             episode="S01E01",
             events=[

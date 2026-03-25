@@ -4,9 +4,10 @@
 [![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines)](LICENSE)
 [![Python](https://img.shields.io/pypi/pyversions/tvplotlines)](https://pypi.org/project/tvplotlines/)
 
-LLM-powered narrative breakdown for TV series. Feed it episode synopses — get plotlines with Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode event tracking. Built for development executives and writers who need to analyze shows fast.
+Extract plotlines from TV synopses using LLM.
 
-Works from synopses alone — no scripts or transcripts needed.
+One function call turns episode synopses into structured data: plotlines with cast, Story DNA (hero, goal,  obstacle, stakes), A/B/C ranking, and per-episode events.
+
 ## Example output
 
 Breaking Bad, Season 1 (truncated):
@@ -14,27 +15,23 @@ Breaking Bad, Season 1 (truncated):
 ```json
 {
   "context": {
-    "franchise_type": "serial",
-    "story_engine": "A high school teacher builds a drug empire, testing how far he'll go for family and control"
+    "format": "serial",
+    "story_engine": "A high school teacher builds a drug empire, testing how far he'll go for family and survival"
   },
+  "cast": [
+    {"id": "walt", "name": "Walter White", "aliases": ["Walt", "Heisenberg", "Mr. White"]},
+    {"id": "jesse", "name": "Jesse Pinkman", "aliases": ["Jesse"]}
+  ],
   "plotlines": [
     {
+      "id": "empire",
       "name": "Walt: Empire",
       "hero": "walt",
-      "goal": "build a profitable drug business to secure his family's financial future",
-      "obstacle": "inexperience in criminal world, violent dealers, maintaining secrecy",
-      "stakes": "death, imprisonment, family destruction",
+      "goal": "build a drug business to secure his family's financial future",
+      "obstacle": "inexperience with criminal world, violent dealers like Tuco, moral boundaries",
+      "stakes": "death, loss of family, imprisonment",
       "rank": "A",
-      "span": ["S01E01", "S01E02", "S01E03", "S01E04", "S01E05", "S01E06", "S01E07"]
-    },
-    {
-      "name": "Jesse: Survival",
-      "hero": "jesse",
-      "goal": "survive as Walt's partner in the dangerous drug trade",
-      "obstacle": "violent dealers like Tuco, lack of street credibility, Walt's reckless decisions",
-      "stakes": "death, severe injury, imprisonment",
-      "rank": "A",
-      "span": ["S01E01", "S01E02", "S01E03", "S01E04", "S01E05", "S01E06", "S01E07"]
+      "span": ["S01E01", "S01E02", "...", "S01E07"]
     }
   ],
   "episodes": [
@@ -42,8 +39,8 @@ Breaking Bad, Season 1 (truncated):
       "episode": "S01E01",
       "events": [
         {
-          "event": "Hank shows off his gun at Walt's 50th birthday party and invites him on a DEA ride-along",
-          "storyline": "investigation",
+          "event": "At Walt's 50th birthday party, Hank shows off his gun and invites Walt on a DEA ride-along",
+          "plotline": "investigation",
           "function": "setup",
           "characters": ["hank", "walt"]
         }
@@ -53,35 +50,28 @@ Breaking Bad, Season 1 (truncated):
 }
 ```
 
-## Installation
+## Key concepts
+
+- **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
+- **Story DNA** — who drives the plotline (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
+- **A/B/C ranking** — plotline weight: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
+- **Franchise type** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
+- **Story engine** — one sentence capturing the show's core dramatic mechanism
+
+Более подроьные определения есть в промптах. 
+
+## Try it
+
+The repo includes synopses for Breaking Bad S01 and Game of Thrones S01. Clone and run:
 
 ```bash
 pip install tvplotlines
+export ANTHROPIC_API_KEY=sk-ant-...  # or OPENAI_API_KEY
+
+tvplotlines run examples/synopses/BB_S01E*.txt --show "Breaking Bad" --season 1 -o bb.json
 ```
 
-Requires an API key for at least one LLM provider:
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-# or
-export OPENAI_API_KEY=sk-...
-```
-
-Or put them in a `.env` file (requires `pip install tvplotlines[dotenv]`):
-
-```
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-## Quick start
-
-### CLI
-
-```bash
-tvplotlines run synopses/*.txt --show "Breaking Bad" --season 1 -o bb_s01.json
-```
-
-### Python
+Or in Python:
 
 ```python
 from tvplotlines import get_plotlines
@@ -97,20 +87,9 @@ result = get_plotlines("Breaking Bad", season=1, episodes=episodes)
 for plotline in result.plotlines:
     print(f"[{plotline.rank}] {plotline.name} — {plotline.goal}")
     print(f"    Hero: {plotline.hero}, Span: {plotline.span}")
-
-for ep in result.episodes:
-    print(f"\n{ep.episode}: {ep.theme}")
-    for event in ep.events:
-        print(f"  [{event.function}] {event.event} -> {event.storyline}")
 ```
 
-## Key concepts
-
-- **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
-- **Story DNA** — the core conflict structure of a plotline: who drives it (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
-- **A/B/C ranking** — plotline weight within the season: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
-- **Franchise type** — structural classification of the show: procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
-- **Story engine** — one-sentence description of the show's core dramatic mechanism
+Pre-computed results are in `examples/results/` if you want to explore the output without spending API credits.
 
 ## How it works
 
