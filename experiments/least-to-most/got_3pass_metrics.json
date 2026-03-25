@@ -1,0 +1,17 @@
+{
+  "events": 193,
+  "lines": 8,
+  "coverage": 0.989,
+  "arc_mean": 0.839,
+  "coh_sep": 0.071,
+  "plotlines": [
+    "Ned: Honor",
+    "Cersei: Power",
+    "Jon: Belonging",
+    "Daenerys: Transformation",
+    "Tyrion: Survival",
+    "Catelyn: Protection",
+    "Robb: War",
+    "Viserys: Crown"
+  ]
+}

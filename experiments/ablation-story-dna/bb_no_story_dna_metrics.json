@@ -1,0 +1,14 @@
+{
+  "events": 140,
+  "lines": 4,
+  "coverage": 0.88,
+  "arc_mean": 0.893,
+  "coh_sep": 0.0939,
+  "sil": 0.0781,
+  "plotlines": [
+    "Walt: Empire",
+    "Walt: Family",
+    "Hank: Investigation",
+    "Jesse: Survival"
+  ]
+}
