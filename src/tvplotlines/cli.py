@@ -87,6 +87,39 @@ def _run(args: argparse.Namespace) -> None:
         print(f"\nUsage: {result.usage}")
 
 
+def _write_synopses(args: argparse.Namespace) -> None:
+    """Generate episode synopses from Wikipedia or raw files."""
+    try:
+        from tvplotlines.write_synopses import write_synopses
+    except ImportError:
+        print(
+            "write-synopses requires additional dependencies.\n"
+            "Install with: pip install tvplotlines[writer]",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+
+    write_synopses(
+        show=args.show,
+        season=args.season,
+        output=args.output,
+        from_files=args.from_files,
+        lang=args.lang,
+        wiki_title=args.wiki_title,
+        show_format=args.show_format,
+        dry_run=args.dry_run,
+        provider=args.provider,
+        model=args.model,
+        base_url=args.base_url,
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="tvplotlines",
@@ -111,6 +144,30 @@ def main() -> None:
     run_parser.add_argument("--skip-review", action="store_true", help="Skip Pass 3 structural review")
     run_parser.add_argument("--pass2-mode", default="parallel", choices=["parallel", "batch", "sequential"])
 
+    # tvplotlines write-synopses
+    ws_parser = sub.add_parser(
+        "write-synopses",
+        help="Generate episode synopses from Wikipedia",
+    )
+    ws_parser.add_argument("show", help="Show title (e.g. 'House', 'Breaking Bad')")
+    ws_parser.add_argument("--season", type=int, default=1, help="Season number (default: 1)")
+    ws_parser.add_argument("-o", "--output", default="synopses/",
+                           help="Output path: directory for individual files, file for combined (default: synopses/)")
+    ws_parser.add_argument("--from-files", nargs="+",
+                           help="Raw description files to rewrite (skip Wikipedia fetch)")
+    ws_parser.add_argument("--wiki-title",
+                           help="Exact Wikipedia page title (override auto-detection)")
+    ws_parser.add_argument("--format", dest="show_format",
+                           choices=["procedural", "serial", "hybrid", "limited"],
+                           help="Show format hint for beat counts (auto-detected if omitted)")
+    ws_parser.add_argument("--lang", default="en", help="Wikipedia language (default: en)")
+    ws_parser.add_argument("--dry-run", action="store_true",
+                           help="Fetch and parse only, show episodes without calling LLM")
+    ws_parser.add_argument("--provider", default="anthropic",
+                           help="LLM provider (default: anthropic)")
+    ws_parser.add_argument("--model", default=None, help="Specific model name")
+    ws_parser.add_argument("--base-url", default=None, help="Custom API endpoint")
+
     args = parser.parse_args()
     if args.command is None:
         parser.print_help()
@@ -118,6 +175,8 @@ def main() -> None:
 
     if args.command == "run":
         _run(args)
+    elif args.command == "write-synopses":
+        _write_synopses(args)
 
 
 if __name__ == "__main__":
