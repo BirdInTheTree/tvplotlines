@@ -4,7 +4,9 @@
 
 ```bash
 pip install tvplotlines
-export ANTHROPIC_API_KEY=sk-ant-...  # or OPENAI_API_KEY
+export ANTHROPIC_API_KEY=sk-ant-...   # Anthropic (default)
+# or
+export OPENAI_API_KEY=sk-...          # OpenAI, DeepSeek, Groq, any OpenAI-compatible
 ```
 
 ## Prepare synopses

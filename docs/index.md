@@ -1,6 +1,6 @@
 # tvplotlines
 
-Automatic plotline extraction from TV series synopses.
+A Python library to extract plotlines from a season of TV synopses using LLMs.
 
 ## What it does
 

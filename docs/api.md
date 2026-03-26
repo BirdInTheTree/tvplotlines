@@ -60,17 +60,17 @@ Returned by `get_plotlines()`.
 
 A narrative thread with Story DNA:
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | `str` | Unique identifier |
-| `name` | `str` | e.g. "Walt: Empire" |
-| `hero` | `str` | Character who drives the plotline |
-| `goal` | `str` | What the driver wants |
-| `obstacle` | `str` | What stands in the way |
-| `stakes` | `str` | What happens if the driver fails |
-| `rank` | `str` | A (main), B (secondary), C (tertiary), runner |
-| `type` | `str` | case_of_the_week, serialized, runner |
-| `span` | `list[str]` | Which episodes it appears in (computed from events) |
+| Field      | Type        | Description                                         |
+| ---------- | ----------- | --------------------------------------------------- |
+| `id`       | `str`       | Unique plotline identifier                          |
+| `name`     | `str`       | e.g. "Walt: Empire"                                 |
+| `hero`     | `str`       | Character who drives the plotline                   |
+| `goal`     | `str`       | What the driver wants                               |
+| `obstacle` | `str`       | What stands in the way                              |
+| `stakes`   | `str`       | What happens if the driver fails                    |
+| `rank`     | `str`       | A (main), B (secondary), C (tertiary), runner       |
+| `type`     | `str`       | case_of_the_week, serialized, runner                |
+| `span`     | `list[str]` | Which episodes it appears in (computed from events) |
 
 ### Event
 
@@ -86,11 +86,11 @@ A single narrative beat within an episode:
 
 ## Pass 2 modes
 
-| Mode | Speed | Cost | Use case |
-|------|-------|------|----------|
-| `parallel` | Fast | Full price | All episodes at once via async |
-| `batch` | Slow | 50% off | Default — Anthropic batch API, cheaper for large seasons |
-| `sequential` | Slow | Full price | One episode at a time — for debugging |
+| Mode         | Speed | Cost       | Use case                                                 |
+| ------------ | ----- | ---------- | -------------------------------------------------------- |
+| `batch`      | Slow  | 50% off    | Default — Anthropic batch API, cheaper for large seasons |
+| `parallel`   | Fast  | Full price | All episodes at once via async                           |
+| `sequential` | Slow  | Full price | One episode at a time — for debugging                    |
 
 ## LLM providers
 
