@@ -17,6 +17,22 @@ from pathlib import Path
 _EPISODE_ID_RE = re.compile(r"S\d{2}E\d{2}")
 
 
+class _CLICallback:
+    """Print one line per pipeline stage."""
+
+    def on_pass0_complete(self, context):
+        print(f"  Pass 0 done: {context.format} | {context.story_engine}")
+
+    def on_pass1_complete(self, cast, plotlines):
+        print(f"  Pass 1 done: {len(plotlines)} plotlines, {len(cast)} cast")
+
+    def on_pass2_complete(self, breakdowns):
+        print(f"  Pass 2 done: {len(breakdowns)} episodes")
+
+    def on_pass3_complete(self, verdicts):
+        print(f"  Pass 3 done: {len(verdicts)} verdicts applied")
+
+
 def _run(args: argparse.Namespace) -> None:
     """Run the full pipeline on synopsis files."""
     try:
@@ -65,9 +81,11 @@ def _run(args: argparse.Namespace) -> None:
                 sys.exit(1)
             episodes[episode_id] = p.read_text(encoding="utf-8")
 
+    import time
     print(f"Running pipeline: {show} S{season:02d}")
     print(f"Episodes: {len(episodes)} synopses")
 
+    t0 = time.monotonic()
     result = get_plotlines(
         show=show,
         season=season,
@@ -78,10 +96,11 @@ def _run(args: argparse.Namespace) -> None:
         base_url=args.base_url,
         skip_review=args.skip_review,
         pass2_mode=args.pass2_mode,
+        callback=_CLICallback(),
     )
 
     # Save result
-    output = args.output or Path(f"{show.lower().replace(' ', '_')}_s{season:02d}_result.json")
+    output = args.output or Path(f"{show.lower().replace(' ', '-')}_s{season:02d}.json")
     output.write_text(
         json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -101,8 +120,12 @@ def _run(args: argparse.Namespace) -> None:
     print(f"Episodes: {len(result.episodes)}")
     for ep in result.episodes:
         print(f"  {ep.episode}: {len(ep.events)} events")
+    elapsed = time.monotonic() - t0
+    minutes, seconds = divmod(int(elapsed), 60)
+    time_str = f"{minutes}m {seconds}s" if minutes else f"{seconds}s"
+    print(f"\nModel: {args.provider}:{args.model or 'default'}, time: {time_str}")
     if hasattr(result, "usage"):
-        print(f"\nUsage: {result.usage}")
+        print(f"Usage: {result.usage}")
 
 
 def _write_synopses(args: argparse.Namespace) -> None:
@@ -123,10 +146,12 @@ def _write_synopses(args: argparse.Namespace) -> None:
     except ImportError:
         pass
 
+    output = args.output or args.show.lower().replace(" ", "-") + "/"
+
     write_synopses(
         show=args.show,
         season=args.season,
-        output=args.output,
+        output=output,
         from_files=args.from_files,
         lang=args.lang,
         wiki_title=args.wiki_title,
@@ -169,8 +194,8 @@ def main() -> None:
     )
     ws_parser.add_argument("show", help="Show title (e.g. 'House', 'Breaking Bad')")
     ws_parser.add_argument("--season", type=int, default=1, help="Season number (default: 1)")
-    ws_parser.add_argument("-o", "--output", default="synopses/",
-                           help="Output path: directory for individual files, file for combined (default: synopses/)")
+    ws_parser.add_argument("-o", "--output", default=None,
+                           help="Output directory (default: show name as folder, e.g. 'mad-men/')")
     ws_parser.add_argument("--from-files", nargs="+",
                            help="Raw description files to rewrite (skip Wikipedia fetch)")
     ws_parser.add_argument("--wiki-title",

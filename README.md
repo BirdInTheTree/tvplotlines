@@ -46,6 +46,14 @@ Use `--show` to set the title manually:
 ```bash
 tvplotlines run got/ --show "Game of Thrones"
 ```
+
+Don't have synopses? Generate them from Wikipedia:
+
+```bash
+pip install 'tvplotlines[writer]'
+tvplotlines write-synopses "Mad Men" --season 1
+```
+
 ## Output
 
 The result is a single JSON file per season. Breaking Bad, Season 1 (truncated):
