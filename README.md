@@ -1,8 +1,8 @@
 # tvplotlines
 
-[![PyPI](https://img.shields.io/pypi/v/tvplotlines)](https://pypi.org/project/tvplotlines/)
-[![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines)](LICENSE)
-[![Python](https://img.shields.io/pypi/pyversions/tvplotlines)](https://pypi.org/project/tvplotlines/)
+[![PyPI](https://img.shields.io/pypi/v/tvplotlines?cacheSeconds=3600)](https://pypi.org/project/tvplotlines/)
+[![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines?cacheSeconds=3600)](LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/tvplotlines?cacheSeconds=3600)](https://pypi.org/project/tvplotlines/)
 
 a Python library to extract plotlines from a season of TV synopses using LLMs.
 
