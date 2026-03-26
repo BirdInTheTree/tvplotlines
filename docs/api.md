@@ -47,12 +47,12 @@ When `prior` is provided:
 
 Returned by `get_plotlines()`.
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `context` | `SeriesContext` | Detected series context |
-| `cast` | `list[CastMember]` | Main cast members |
-| `plotlines` | `list[Plotline]` | Discovered plotlines |
-| `episodes` | `list[EpisodeBreakdown]` | Per-episode breakdowns |
+| Field       | Type                     | Description                                               |
+| ----------- | ------------------------ | --------------------------------------------------------- |
+| `context`   | `SeriesContext`          | Detected series context (format, story engine)            |
+| `cast`      | `list[CastMember]`       | Main cast members assigned to plotlines                   |
+| `plotlines` | `list[Plotline]`         | Discovered plotlines                                      |
+| `episodes`  | `list[EpisodeBreakdown]` | Per-episode breakdowns with events assigned to plotlines  |
 
 ## Data models
 
