@@ -33,7 +33,9 @@ htmlcov/
 
 # Data files
 *.pdf
+# Allow docs/images/ PNGs but ignore others
 *.png
+!docs/images/*.png
 
 # Playwright MCP
 .playwright-mcp/
