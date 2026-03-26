@@ -18,11 +18,11 @@ result = get_plotlines(
     prior=None,                  # TVPlotlinesResult from previous season
     llm_provider="anthropic",    # "anthropic" | "openai" | "ollama" | "deepseek" | "groq" | any OpenAI-compatible
     model=None,                  # specific model or provider default
-    pass2_mode="batch",          # "parallel" | "batch" | "sequential"
+    pass2_mode="batch",          #  "batch" | "parallel" | "sequential"
     batch_id=None,               # resume batch by ID
     context=None,                # SeriesContext or auto-detect
-    cast=None,                   # resume: skip Pass 1
-    plotlines=None,              # resume: skip Pass 1
+    cast=None,                   # provide both cast + plotlines to skip Pass 1
+    plotlines=None,              # provide both cast + plotlines to skip Pass 1
     breakdowns=None,             # resume: skip Pass 2
     callback=None,               # PipelineCallback subclass
 )
