@@ -16,7 +16,7 @@ result = get_plotlines(
         # ...
     },
     prior=None,                  # TVPlotlinesResult from previous season
-    llm_provider="anthropic",    # "anthropic" | "openai"
+    llm_provider="anthropic",    # "anthropic" | "openai" | "ollama" | "deepseek" | "groq" | any OpenAI-compatible
     model=None,                  # specific model or provider default
     pass2_mode="batch",          # "parallel" | "batch" | "sequential"
     batch_id=None,               # resume batch by ID
