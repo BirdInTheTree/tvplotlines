@@ -7,7 +7,11 @@
 a Python library to extract plotlines from a season of TV synopses using LLMs.
 
 <p align="center">
-  <img src="docs/images/app-grid.png" alt="tvplotlines output — plotline×episode grid for Breaking Bad S01">
+  <a href="https://birdinthetree.github.io/tvplotlines-app/">
+    <img src="docs/images/app-grid.png" alt="tvplotlines output — plotline×episode grid for Breaking Bad S01">
+  </a>
+  <br>
+  <em>tvplotlines output for Breaking Bad S01 in <a href="https://birdinthetree.github.io/tvplotlines-app/">tvplot app</a></em>
 </p>
 
 In our benchmarks, a naive LLM prompt covers 5–12% of a season's source material. tvplotlines covers 78–91% — by separating what the model looks for (narrative theory in prompts) from how the result is organized (code).
