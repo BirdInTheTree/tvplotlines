@@ -6,11 +6,12 @@ Prompts are stored as .md files and loaded at runtime as system prompts.
 from importlib import resources
 
 
-def load_prompt(pass_name: str) -> str:
-    """Load an English prompt template by pass name.
+def load_prompt(pass_name: str, lang: str = "en") -> str:
+    """Load a prompt template by pass name.
 
     Args:
         pass_name: "pass0", "pass1", "pass2", or "pass3".
+        lang: Language code. Only "en" is supported currently.
 
     Returns:
         Prompt text (markdown).

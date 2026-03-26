@@ -18,7 +18,7 @@ result = get_plotlines(
     prior=None,                  # TVPlotlinesResult from previous season
     llm_provider="anthropic",    # "anthropic" | "openai"
     model=None,                  # specific model or provider default
-    pass2_mode="parallel",       # "parallel" | "batch" | "sequential"
+    pass2_mode="batch",          # "parallel" | "batch" | "sequential"
     batch_id=None,               # resume batch by ID
     context=None,                # SeriesContext or auto-detect
     cast=None,                   # resume: skip Pass 1
@@ -69,7 +69,7 @@ A narrative thread with Story DNA:
 | `obstacle` | `str` | What stands in the way |
 | `stakes` | `str` | What happens if the driver fails |
 | `rank` | `str` | A (main), B (secondary), C (tertiary), runner |
-| `type` | `str` | episodic, serialized, runner |
+| `type` | `str` | case_of_the_week, serialized, runner |
 | `span` | `list[str]` | Which episodes it appears in (computed from events) |
 
 ### Event
@@ -82,14 +82,14 @@ A single narrative beat within an episode:
 | `plotline_id` | `str` | Which plotline it belongs to |
 | `function` | `str` | setup, inciting_incident, escalation, turning_point, crisis, climax, resolution |
 | `characters` | `list[str]` | Who is involved |
-| `also_affects` | `str \| None` | Secondary plotline connection |
+| `also_affects` | `list[str] \| None` | Secondary plotline connections |
 
 ## Pass 2 modes
 
 | Mode | Speed | Cost | Use case |
 |------|-------|------|----------|
-| `parallel` | Fast | Full price | Default — all episodes at once via async |
-| `batch` | Slow | 50% off | Anthropic batch API — cheaper for large seasons |
+| `parallel` | Fast | Full price | All episodes at once via async |
+| `batch` | Slow | 50% off | Default — Anthropic batch API, cheaper for large seasons |
 | `sequential` | Slow | Full price | One episode at a time — for debugging |
 
 ## LLM providers
@@ -99,22 +99,22 @@ tvplotlines works with Anthropic (default) and any OpenAI-compatible API.
 ```bash
 # Anthropic (default)
 export ANTHROPIC_API_KEY=sk-ant-...
-tvplotlines run *.txt --show "House"
+tvplotlines run house/
 
 # OpenAI
 export OPENAI_API_KEY=sk-...
-tvplotlines run *.txt --show "House" --provider openai
+tvplotlines run house/ --provider openai
 
 # Ollama (local, free)
 ollama pull qwen2.5:14b
-tvplotlines run *.txt --show "House" --provider ollama
+tvplotlines run house/ --provider ollama
 
 # DeepSeek
 export DEEPSEEK_API_KEY=sk-...
-tvplotlines run *.txt --show "House" --provider deepseek
+tvplotlines run house/ --provider deepseek
 
 # Any OpenAI-compatible endpoint
-tvplotlines run *.txt --show "House" --provider openai \
+tvplotlines run house/ --provider openai \
     --base-url https://api.together.xyz/v1 \
     --model meta-llama/Llama-3-70b
 ```
@@ -131,9 +131,9 @@ result = get_plotlines(
 )
 ```
 
-## Franchise types
+## Format
 
-tvplotlines classifies shows into four structural types that determine how plotlines are extracted:
+tvplotlines classifies shows into four structural formats that determine how plotlines are extracted:
 
 - **Procedural** — self-contained episode stories (House, CSI)
 - **Serial** — continuous arcs across episodes (Breaking Bad, The Wire)
