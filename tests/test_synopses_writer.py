@@ -160,7 +160,7 @@ _SAMPLE_EPISODES = [
 
 class TestRewriteSynopses:
     @patch("tvplotlines.llm.call_llm_parallel")
-    @patch("tvplotlines.prompts.load_prompt", return_value="system prompt")
+    @patch("tvplotlines.prompts_en.load_prompt", return_value="system prompt")
     def test_rewrite_returns_synopsis_texts(self, _mock_prompt, mock_parallel):
         """Returns list of synopsis strings from LLM JSON responses."""
         mock_parallel.return_value = [
@@ -178,7 +178,7 @@ class TestRewriteSynopses:
         assert result[1] == "Full synopsis for episode 2..."
 
     @patch("tvplotlines.llm.call_llm_parallel")
-    @patch("tvplotlines.prompts.load_prompt", return_value="system prompt")
+    @patch("tvplotlines.prompts_en.load_prompt", return_value="system prompt")
     def test_rewrite_user_messages_contain_episode_info(self, _mock_prompt, mock_parallel):
         """User messages include show, season, episode number, description."""
         mock_parallel.return_value = [{"synopsis": "x"}, {"synopsis": "y"}]
@@ -195,7 +195,7 @@ class TestRewriteSynopses:
         assert "procedural" in user_messages[0]
 
     @patch("tvplotlines.llm.call_llm_parallel")
-    @patch("tvplotlines.prompts.load_prompt", return_value="system prompt")
+    @patch("tvplotlines.prompts_en.load_prompt", return_value="system prompt")
     def test_rewrite_caches_system_prompt(self, _mock_prompt, mock_parallel):
         """System prompt is cached for efficiency."""
         mock_parallel.return_value = [{"synopsis": "x"}]
