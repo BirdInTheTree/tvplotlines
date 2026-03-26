@@ -2,7 +2,7 @@
 
 ## get_plotlines()
 
-Main entry point. Extracts plotlines from a season of TV synopses.
+Main entry point. Extracts plotlines from a season of TV synopses using LLM.
 
 ```python
 from tvplotlines import get_plotlines
