@@ -18,7 +18,7 @@ from tvplotlines.models import (
     Plotline,
     SeriesContext,
 )
-from tvplotlines.prompts import load_prompt
+from tvplotlines.prompts_en import load_prompt
 
 _VALID_FUNCTIONS = {
     "setup", "inciting_incident", "escalation", "turning_point",

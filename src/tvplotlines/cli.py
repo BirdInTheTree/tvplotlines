@@ -160,7 +160,7 @@ def main() -> None:
     run_parser.add_argument("--model", default=None, help="Specific model name")
     run_parser.add_argument("--base-url", default=None, help="Custom API endpoint (for OpenAI-compatible providers)")
     run_parser.add_argument("--skip-review", action="store_true", help="Skip Pass 3 structural review")
-    run_parser.add_argument("--pass2-mode", default="parallel", choices=["parallel", "batch", "sequential"])
+    run_parser.add_argument("--pass2-mode", default="batch", choices=["parallel", "batch", "sequential"])
 
     # tvplotlines write-synopses
     ws_parser = sub.add_parser(

@@ -17,7 +17,7 @@ from tvplotlines.models import (
     Verdict,
 )
 from tvplotlines.postprocess import compute_weight
-from tvplotlines.prompts import load_prompt
+from tvplotlines.prompts_en import load_prompt
 
 _VALID_ACTIONS = {"MERGE", "REASSIGN", "PROMOTE", "DEMOTE", "CREATE", "DROP", "REFUNCTION"}
 _VALID_RANKS = {"A", "B", "C"}

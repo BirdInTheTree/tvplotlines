@@ -263,7 +263,7 @@ def rewrite_synopses(
         List of synopsis texts, one per episode, in order.
     """
     from tvplotlines.llm import call_llm_parallel
-    from tvplotlines.prompts import load_prompt
+    from tvplotlines.prompts_en import load_prompt
 
     system_prompt = load_prompt("synopses_writer")
     format_hint = f"Format: {show_format}" if show_format else "Format: unknown (determine from context)"

@@ -10,7 +10,7 @@ import json
 
 from tvplotlines.llm import LLMConfig, call_llm
 from tvplotlines.models import SeriesContext
-from tvplotlines.prompts import load_prompt
+from tvplotlines.prompts_en import load_prompt
 
 _VALID_FORMATS = {"procedural", "serial", "hybrid", "limited"}
 

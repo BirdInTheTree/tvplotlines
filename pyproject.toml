@@ -58,6 +58,7 @@ tvplotlines = "tvplotlines.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tvplotlines"]
+artifacts = ["src/tvplotlines/prompts_en/*.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -4,43 +4,51 @@
 [![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines)](LICENSE)
 [![Python](https://img.shields.io/pypi/pyversions/tvplotlines)](https://pypi.org/project/tvplotlines/)
 
-Extract plotlines from TV synopses using LLM.
+a Python library to extract plotlines from a season of TV synopses using LLMs.
 
-One function call turns episode synopses into structured data: plotlines with cast, Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode events.
+<p align="center">
+  <a href="https://birdinthetree.github.io/tvplotlines-app/">
+    <img src="docs/images/app-grid.png" alt="tvplotlines output viewed in tvplot app — plotline×episode grid for Breaking Bad S01">
+  </a>
+  <br>
+  <em>tvplotlines output for Breaking Bad S01 in <a href="https://birdinthetree.github.io/tvplotlines-app/">tvplot app</a></em>
+</p>
+
+In our benchmarks, a naive LLM prompt extracts 12% usable narrative structure from a TV season. tvplotlines reaches 87% — by separating what the model looks for (narrative theory in prompts) from how the result is organized (code).
+
+One function call takes a season of episode synopses and returns structured data: plotlines with cast, Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode events.
 
 ## Input
 
-Write one .txt file per episode. Include S01E01 in the filename — any prefix is fine:
+One `.txt` file per episode. Include the season and episode number in the filename as `S01E01`, `S01E02`, etc. — any prefix works. 
 
-```
-S01E01.txt
-S01E02.txt
-BB_S01E01.txt        ← also works
-my_show_S01E03.txt     ← also works
-```
+Each file is a plain-text synopsis of one episode — a few paragraphs covering the main events. See `examples/synopses/breaking-bad/` for  reference.
 
-Put all files in a folder named after the show:
-
+Put all files in one folder. The folder name becomes the show title (`breaking-bad` → "Breaking Bad"):
 ```
 breaking-bad/
-    S01E01.txt
-    S01E02.txt
-    ...
-    S01E07.txt
+├── S01E01.txt
+├── S01E02.txt
+├── ...
+└── S01E07.txt
 ```
 
 Install, set your API key, and run:
-
 ```bash
 pip install tvplotlines
-export ANTHROPIC_API_KEY=sk-ant-...
+export ANTHROPIC_API_KEY=sk-ant-…
 
 tvplotlines run breaking-bad/
 ```
 
+Use `--show` to set the title manually:
+
+```bash
+tvplotlines run got/ --show "Game of Thrones"
+```
 ## Output
 
-Breaking Bad, Season 1 (truncated):
+The result is a single JSON file per season. Breaking Bad, Season 1 (truncated):
 
 ```json
 {
@@ -67,6 +75,7 @@ Breaking Bad, Season 1 (truncated):
   "episodes": [
     {
       "episode": "S01E01",
+      "theme": "transformation through desperation",
       "events": [
         {
           "event": "During the meth lab raid, Walt spots his former student Jesse escaping through a window",
@@ -80,6 +89,8 @@ Breaking Bad, Season 1 (truncated):
 }
 ```
 
+The output is structured JSON — plug it into your own tools or browse it in the [interactive demo](https://birdinthetree.github.io/tvplotlines-app/).
+
 ## Key concepts
 
 - **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
@@ -88,54 +99,61 @@ Breaking Bad, Season 1 (truncated):
 - **Format** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
 - **Story engine** — one sentence capturing the show's core dramatic mechanism
 
-Full definitions are in the [prompts](src/tvplotlines/prompts_en/).
-
-## Quick start
-
-The repo includes synopses for Breaking Bad and Game of Thrones in [`examples/synopses/`](examples/synopses/) and pre-computed results in [`examples/results/`](examples/results/).
-
-```bash
-tvplotlines run examples/synopses/breaking-bad/
-```
-
-Or in Python:
-
-```python
-from tvplotlines import get_plotlines
-
-episodes = {
-    "S01E01": "In the pilot, Walter White is diagnosed with cancer...",
-    "S01E02": "Walt and Jesse attempt their first cook in the desert...",
-    # ... all season synopses
-}
-
-result = get_plotlines("Breaking Bad", season=1, episodes=episodes)
-
-for plotline in result.plotlines:
-    print(f"[{plotline.rank}] {plotline.name} — {plotline.goal}")
-```
+More detail in the [prompts](src/tvplotlines/prompts_en/).
 
 ## How it works
 
-The pipeline has four passes, each a separate LLM call with a specialized prompt:
+Four passes, each a separate LLM call with a specialized prompt:
 
 | Pass       | Role                | Input                       | Output                                   |
 | ---------- | ------------------- | --------------------------- | ---------------------------------------- |
-| **Pass 0** | Context detection   | Show title + first synopses | Franchise type, story engine             |
+| **Pass 0** | Context detection   | Show title + first synopses | Format, story engine                     |
 | **Pass 1** | Plotline extraction | All synopses + context      | Cast + plotlines with Story DNA          |
 | **Pass 2** | Event assignment    | One synopsis + plotlines    | Events assigned to plotlines             |
 | **Pass 3** | Quality review      | Full result                 | Verdicts (merge, reassign, create, drop) |
 
-Pass 2 runs in parallel for all episodes. Pass 3 reviews the full picture that no earlier pass could see and corrects the result (merge redundant plotlines, reassign misplaced events, etc.).
+Pass 1 uses majority voting (3 calls). Pass 2 adds one call per episode. Total: 5 fixed calls + one per episode.
+
+Pass 3 reviews the full picture that no earlier pass could see and corrects the result (merge redundant plotlines, reassign misplaced events, etc.).
+
+Tested with Claude Sonnet (default). OpenAI and Ollama are supported but less tested.
+
+## Quick start
+
+```bash
+pip install tvplotlines
+export ANTHROPIC_API_KEY=sk-ant-...  # or OPENAI_API_KEY for any OpenAI-compatible provider
+```
+
+The repo includes example synopses for Breaking Bad and Game of Thrones:
+
+```bash
+git clone https://github.com/BirdInTheTree/tvplotlines.git
+cd tvplotlines
+tvplotlines run examples/synopses/breaking-bad/
+```
+
+Pre-computed results are in [`examples/results/`](examples/results/) if you want to explore the output without spending API credits.
+
+### Python API
+
+Seasons can be chained — pass the previous result as `prior` so the model tracks plotline continuity:
+
+```python
+from tvplotlines import get_plotlines
+
+s01 = get_plotlines("Breaking Bad", season=1, episodes=season_1_synopses)
+s02 = get_plotlines("Breaking Bad", season=2, episodes=season_2_synopses, prior=s01)
+```
 
 ## LLM providers
 
-tvplotlines works with Anthropic (default) and any OpenAI-compatible API:
+Anthropic (default) and any OpenAI-compatible API:
 
 ```bash
-tvplotlines run house/                                   # Anthropic (default)
-tvplotlines run house/ --provider openai                 # OpenAI
-tvplotlines run house/ --provider ollama                 # Ollama (local, free)
+tvplotlines run breaking-bad/                            # Anthropic (default)
+tvplotlines run breaking-bad/ --provider openai          # OpenAI
+tvplotlines run breaking-bad/ --provider ollama          # Ollama (local, free)
 ```
 
 See [docs/api.md](docs/api.md) for full API reference, provider options, and pass modes.
@@ -147,7 +165,7 @@ If you use tvplotlines in your research, please cite:
 ```bibtex
 @software{tvplotlines2026,
   author = {Vashko, N.},
-  title = {tvplotlines: Automated Narrative Breakdown for TV Series},
+  title = {tvplotlines: LLM-Driven Plotline Extraction from Episode Synopses},
   year = {2026},
   url = {https://github.com/BirdInTheTree/tvplotlines}
 }

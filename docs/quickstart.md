@@ -33,13 +33,10 @@ tvplotlines run got/ --show "Game of Thrones"
 ## Python
 
 ```python
-from tvplotlines import get_plotlines
+from tvplotlines import load_synopses_dir, get_plotlines
 
-result = get_plotlines(
-    show="Breaking Bad",
-    season=1,
-    episodes={"S01E01": "Synopsis of S01E01...", "S01E02": "Synopsis of S01E02..."},
-)
+show, season, episodes = load_synopses_dir("breaking-bad/")
+result = get_plotlines(show, season, episodes)
 
 for plotline in result.plotlines:
     print(f"{plotline.rank} | {plotline.name} ({plotline.hero})")
