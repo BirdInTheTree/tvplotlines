@@ -41,7 +41,7 @@ r3 = get_plotlines("Breaking Bad", 3, {"S03E01": "...", "S03E02": "...", ...}, p
 When `prior` is provided:
 - Pass 0 is skipped (reuses `prior.context`)
 - Pass 1 receives prior cast and plotlines, reusing IDs for continuing characters and plotlines
-- Not supported for anthology format (raises `ValueError`)
+- Not supported for anthology format (anthology seasons are independent by definition)
 
 ## TVPlotlinesResult
 
