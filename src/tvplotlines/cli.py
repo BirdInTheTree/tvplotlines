@@ -17,7 +17,10 @@ from pathlib import Path
 _EPISODE_ID_RE = re.compile(r"S\d{2}E\d{2}")
 
 
-class _CLICallback:
+from tvplotlines.callbacks import PipelineCallback
+
+
+class _CLICallback(PipelineCallback):
     """Print one line per pipeline stage."""
 
     def on_pass0_complete(self, context):
@@ -25,6 +28,9 @@ class _CLICallback:
 
     def on_pass1_complete(self, cast, plotlines):
         print(f"  Pass 1 done: {len(plotlines)} plotlines, {len(cast)} cast")
+
+    def on_batch_submitted(self, batch_id):
+        print(f"  Pass 2 batch submitted: {batch_id}")
 
     def on_pass2_complete(self, breakdowns):
         print(f"  Pass 2 done: {len(breakdowns)} episodes")
