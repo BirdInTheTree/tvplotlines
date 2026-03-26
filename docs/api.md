@@ -23,7 +23,7 @@ result = get_plotlines(
     context=None,                # SeriesContext or auto-detect
     cast=None,                   # provide both cast + plotlines to skip Pass 1
     plotlines=None,              # provide both cast + plotlines to skip Pass 1
-    breakdowns=None,             # resume: skip Pass 2
+    breakdowns=None,             # pre-computed episode breakdowns to skip Pass 2
     callback=None,               # PipelineCallback subclass
 )
 ```
