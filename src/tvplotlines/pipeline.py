@@ -20,6 +20,34 @@ logger = logging.getLogger(__name__)
 _EPISODE_ID_RE = re.compile(r"^S\d{2}E\d{2}$")
 
 
+def _warn_rank_limits(
+    plotlines: list[Plotline], is_ensemble: bool,
+) -> list[Plotline]:
+    """Log warnings if plotline counts exceed expected limits. No mutations."""
+    counts: dict[str, int] = {}
+    for p in plotlines:
+        if p.rank:
+            counts[p.rank] = counts.get(p.rank, 0) + 1
+
+    max_total = 6 if is_ensemble else 5
+    max_a = 4 if is_ensemble else 1
+    max_b = 2
+    max_c = 2
+
+    if counts.get("A", 0) > max_a:
+        logger.warning("Rank warning: %d A-plotlines (expected max %d)", counts["A"], max_a)
+    if counts.get("B", 0) > max_b:
+        logger.warning("Rank warning: %d B-plotlines (expected max %d)", counts["B"], max_b)
+    if counts.get("C", 0) > max_c:
+        logger.warning("Rank warning: %d C-plotlines (expected max %d)", counts["C"], max_c)
+
+    total = len([p for p in plotlines if p.rank])
+    if total > max_total:
+        logger.warning("Plotline count %d exceeds expected max %d", total, max_total)
+
+    return plotlines
+
+
 def _fire(callback: PipelineCallback | None, method: str, *args) -> None:
     """Call a callback method, swallowing exceptions."""
     if callback is None:
@@ -137,6 +165,9 @@ def get_plotlines(
             prior_plotlines=prior.plotlines if prior else None,
             config=config,
         )
+    # Warn if rank counts exceed expected limits (no auto-fix)
+    _warn_rank_limits(plotlines, context.is_ensemble)
+
     _fire(callback, "on_pass1_complete", cast, plotlines)
 
     # Pass 2: assign events for each episode

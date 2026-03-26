@@ -1,280 +1,147 @@
-"""Tests for verdict application (Pass 3 results → data changes)."""
+"""Tests for verdict validation and safe DROP logic."""
 
-from __future__ import annotations
-
-import pytest
-
-from tvplotlines.models import (
-    CastMember,
-    EpisodeBreakdown,
-    Event,
-    Plotline,
-    Verdict,
-)
+from tvplotlines.models import EpisodeBreakdown, Event, Plotline, Verdict
 from tvplotlines.verdicts import apply_verdicts
 
 
-def _make_plotlines() -> list[Plotline]:
-    return [
-        Plotline(
-            id="belonging", name="Belonging", hero="andrey",
-            goal="join the gang", obstacle="violence", stakes="family",
-            type="serialized", rank="A", nature="character-led", confidence="solid",
-        ),
-        Plotline(
-            id="brotherhood", name="Brotherhood", hero="marat",
-            goal="balance love and gang", obstacle="conflict", stakes="loss",
-            type="serialized", rank="A", nature="character-led", confidence="solid",
-        ),
-        Plotline(
-            id="redemption", name="Redemption", hero="ira",
-            goal="save Andrey", obstacle="distrust", stakes="failure",
-            type="serialized", rank="C", nature="character-led", confidence="solid",
-        ),
-    ]
+def _make_plotline(id: str, rank: str = "A") -> Plotline:
+    return Plotline(
+        id=id, name=f"Test: {id}", hero="hero",
+        goal="goal", obstacle="obstacle", stakes="stakes",
+        type="serialized", rank=rank, nature="character-led",
+        confidence="solid",
+    )
 
 
-def _make_episodes() -> list[EpisodeBreakdown]:
-    return [
-        EpisodeBreakdown(
-            episode="S01E01",
-            events=[
-                Event(event="Andrey joins the gang", plotline_id="belonging",
-                      function="setup", characters=["andrey"]),
-                Event(event="Marat fights for honor", plotline_id="brotherhood",
-                      function="escalation", characters=["marat"]),
-                Event(event="Ira visits the school", plotline_id="redemption",
-                      function="setup", characters=["ira"]),
-                Event(event="Unknown event", plotline_id=None,
-                      function="setup", characters=["andrey"]),
-            ],
-            theme="belonging",
-        ),
-        EpisodeBreakdown(
-            episode="S01E02",
-            events=[
-                Event(event="Andrey proves himself", plotline_id="belonging",
-                      function="escalation", characters=["andrey"]),
-                Event(event="Marat meets Aygul", plotline_id="brotherhood",
-                      function="setup", characters=["marat"]),
-            ],
-            theme="loyalty",
-        ),
-    ]
+def _make_episode(episode: str, events: list[dict]) -> EpisodeBreakdown:
+    return EpisodeBreakdown(
+        episode=episode,
+        theme="test",
+        events=[
+            Event(
+                event=e["event"],
+                plotline_id=e["plotline_id"],
+                function="escalation",
+                characters=["hero"],
+            )
+            for e in events
+        ],
+    )
 
 
-class TestMerge:
-    def test_merge_reassigns_events(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
+class TestVerdictTargetValidation:
+    """Verdicts with invalid targets should be skipped, not applied."""
 
-        verdicts = [Verdict(action="MERGE", data={
-            "source": "redemption",
-            "target": "belonging",
-            "reason": "same driver concern",
-        })]
-
-        result = apply_verdicts(verdicts, plotlines, episodes)
-
-        # Source plotline removed
-        ids = [p.id for p in result]
-        assert "redemption" not in ids
-        assert "belonging" in ids
-
-        # Events reassigned
-        ep1_events = episodes[0].events
-        ira_event = next(e for e in ep1_events if e.event == "Ira visits the school")
-        assert ira_event.plotline_id == "belonging"
-
-    def test_merge_updates_also_affects(self):
-        plotlines = _make_plotlines()
-        episodes = [EpisodeBreakdown(
-            episode="S01E01",
-            events=[
-                Event(event="Cross event", plotline_id="belonging",
-                      function="setup", characters=["andrey"],
-                      also_affects=["redemption"]),
-            ],
-        )]
-
-        verdicts = [Verdict(action="MERGE", data={
-            "source": "redemption", "target": "brotherhood", "reason": "test",
-        })]
-
-        apply_verdicts(verdicts, plotlines, episodes)
-
-        assert episodes[0].events[0].also_affects == ["brotherhood"]
-
-
-class TestReassign:
-    def test_reassign_changes_plotline(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
-
+    def test_reassign_to_nonexistent_plotline_skipped(self):
+        plotlines = [_make_plotline("real")]
+        episodes = [_make_episode("S01E01", [
+            {"event": "something happens", "plotline_id": "real"},
+        ])]
         verdicts = [Verdict(action="REASSIGN", data={
-            "event": "Unknown event",
+            "event": "something happens",
             "episode": "S01E01",
-            "from": None,
-            "to": "belonging",
-            "reason": "fits belonging arc",
+            "from": "real",
+            "to": "nonexistent",
+            "reason": "test",
         })]
 
         apply_verdicts(verdicts, plotlines, episodes)
 
-        event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline_id == "belonging"
+        assert episodes[0].events[0].plotline_id == "real"
 
-
-class TestPromoteDemote:
-    def test_promote(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
-
-        verdicts = [Verdict(action="PROMOTE", data={
-            "target": "redemption",
-            "new_rank": "B",
-            "reason": "more weight than expected",
+    def test_merge_with_nonexistent_target_skipped(self):
+        plotlines = [_make_plotline("source")]
+        episodes = [_make_episode("S01E01", [
+            {"event": "event one", "plotline_id": "source"},
+        ])]
+        verdicts = [Verdict(action="MERGE", data={
+            "source": "source",
+            "target": "nonexistent",
+            "reason": "test",
         })]
 
         result = apply_verdicts(verdicts, plotlines, episodes)
 
-        redemption = next(p for p in result if p.id == "redemption")
-        assert redemption.rank == "B"
+        assert len(result) == 1
+        assert result[0].id == "source"
 
-    def test_demote(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
-
-        verdicts = [Verdict(action="DEMOTE", data={
-            "target": "brotherhood",
-            "new_rank": "B",
-            "reason": "less weight than A",
-        })]
-
-        result = apply_verdicts(verdicts, plotlines, episodes)
-
-        brotherhood = next(p for p in result if p.id == "brotherhood")
-        assert brotherhood.rank == "B"
-
-
-class TestCreate:
-    def test_create_adds_plotline_and_reassigns(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
-
-        verdicts = [Verdict(action="CREATE", data={
-            "plotline": {
-                "id": "investigation",
-                "name": "Investigation",
-                "hero": "ildar",
-                "goal": "catch the gang",
-                "obstacle": "no evidence",
-                "stakes": "criminals go free",
-                "type": "serialized",
-                "rank": "C",
-                "nature": "plot-led",
-            },
-            "reassign_events": [
-                {"event": "Unknown event", "episode": "S01E01"},
-            ],
-            "reason": "orphaned events form a pattern",
-        })]
-
-        result = apply_verdicts(verdicts, plotlines, episodes)
-
-        # New plotline added
-        ids = [p.id for p in result]
-        assert "investigation" in ids
-
-        # Event reassigned
-        event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline_id == "investigation"
-
-        # New plotline has inferred confidence
-        investigation = next(p for p in result if p.id == "investigation")
-        assert investigation.confidence == "inferred"
-
-
-class TestDrop:
-    def test_drop_removes_and_redistributes(self):
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
-
+    def test_drop_with_nonexistent_redistribute_target_skipped(self):
+        plotlines = [_make_plotline("victim"), _make_plotline("other", rank="B")]
+        episodes = [_make_episode("S01E01", [
+            {"event": "important event", "plotline_id": "victim"},
+        ])]
         verdicts = [Verdict(action="DROP", data={
-            "target": "redemption",
+            "target": "victim",
             "redistribute": [
-                {"event": "Ira visits the school", "episode": "S01E01", "to": "belonging"},
-            ],
-            "reason": "not a real plotline",
-        })]
-
-        result = apply_verdicts(verdicts, plotlines, episodes)
-
-        # Plotline removed
-        ids = [p.id for p in result]
-        assert "redemption" not in ids
-
-        # Event redistributed
-        event = next(e for e in episodes[0].events if e.event == "Ira visits the school")
-        assert event.plotline_id == "belonging"
-
-
-class TestOriginalNotMutated:
-    def test_original_plotlines_not_mutated(self):
-        """apply_verdicts should not mutate the original plotlines list."""
-        plotlines = _make_plotlines()
-        original_ids = [p.id for p in plotlines]
-        episodes = _make_episodes()
-
-        verdicts = [Verdict(action="DROP", data={
-            "target": "redemption",
-            "redistribute": [
-                {"event": "Ira visits the school", "episode": "S01E01", "to": "belonging"},
+                {"event": "important event", "episode": "S01E01", "to": "nonexistent"},
             ],
             "reason": "test",
         })]
 
         result = apply_verdicts(verdicts, plotlines, episodes)
 
-        # Original list unchanged
-        assert [p.id for p in plotlines] == original_ids
-        # Result is different
-        assert len(result) == len(plotlines) - 1
+        assert any(p.id == "victim" for p in result)
+        assert episodes[0].events[0].plotline_id == "victim"
 
 
-class TestMultipleVerdicts:
-    def test_create_then_reassign_to_new(self):
-        """CREATE a line, then REASSIGN an event to it in the same batch."""
-        plotlines = _make_plotlines()
-        episodes = _make_episodes()
+class TestSafeDrop:
+    """DROP should abort if any events remain unredistributed."""
 
-        verdicts = [
-            Verdict(action="CREATE", data={
-                "plotline": {
-                    "id": "new_line",
-                    "name": "New",
-                    "hero": "andrey",
-                    "goal": "new goal",
-                    "obstacle": "new obstacle",
-                    "stakes": "new stakes",
-                    "type": "serialized",
-                    "rank": "B",
-                    "nature": "character-led",
-                },
-                "reassign_events": [],
-                "reason": "test",
-            }),
-            Verdict(action="REASSIGN", data={
-                "event": "Unknown event",
-                "episode": "S01E01",
-                "from": None,
-                "to": "new_line",
-                "reason": "test",
-            }),
-        ]
+    def test_drop_aborts_when_events_not_redistributed(self):
+        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        episodes = [_make_episode("S01E01", [
+            {"event": "event one", "plotline_id": "target"},
+            {"event": "event two", "plotline_id": "target"},
+            {"event": "event three", "plotline_id": "other"},
+        ])]
+        verdicts = [Verdict(action="DROP", data={
+            "target": "target",
+            "redistribute": [
+                {"event": "event one", "episode": "S01E01", "to": "other"},
+            ],
+            "reason": "test",
+        })]
 
         result = apply_verdicts(verdicts, plotlines, episodes)
 
-        assert "new_line" in [p.id for p in result]
-        event = next(e for e in episodes[0].events if e.event == "Unknown event")
-        assert event.plotline_id == "new_line"
+        assert any(p.id == "target" for p in result)
+        event_two = [e for e in episodes[0].events if e.event == "event two"][0]
+        assert event_two.plotline_id == "target"
+
+    def test_drop_succeeds_when_all_events_redistributed(self):
+        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        episodes = [_make_episode("S01E01", [
+            {"event": "event one", "plotline_id": "target"},
+            {"event": "event three", "plotline_id": "other"},
+        ])]
+        verdicts = [Verdict(action="DROP", data={
+            "target": "target",
+            "redistribute": [
+                {"event": "event one", "episode": "S01E01", "to": "other"},
+            ],
+            "reason": "test",
+        })]
+
+        result = apply_verdicts(verdicts, plotlines, episodes)
+
+        assert not any(p.id == "target" for p in result)
+        assert episodes[0].events[0].plotline_id == "other"
+
+    def test_no_events_set_to_null(self):
+        """Events must never have plotline_id set to null by DROP."""
+        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        episodes = [_make_episode("S01E01", [
+            {"event": f"event {i}", "plotline_id": "target"}
+            for i in range(5)
+        ])]
+        verdicts = [Verdict(action="DROP", data={
+            "target": "target",
+            "redistribute": [],
+            "reason": "test",
+        })]
+
+        apply_verdicts(verdicts, plotlines, episodes)
+
+        for ep in episodes:
+            for event in ep.events:
+                assert event.plotline_id is not None

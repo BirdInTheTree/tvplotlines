@@ -112,10 +112,10 @@ Patches from the previous step—hints, not assignments. For each patch decide w
 
 The plotline structure should match the format:
 
-- **Procedural**: exactly one case_of_the_week plotline
-- **Serial**: all plotlines serialized, 3–8 per season
-- **Hybrid**: one case_of_the_week + the rest serialized
-- **Ensemble** (is_ensemble=true): 2+ A-rank plotlines, roughly equal weight
+- **Procedural**: exactly one case_of_the_week plotline. Max 5 total.
+- **Serial**: max 5 plotlines. 1 A, 1–2 B, 1–2 C. Runners must span 3+ episodes.
+- **Hybrid**: one case_of_the_week + the rest serialized. Max 5 total.
+- **Ensemble** (is_ensemble=true): 2–4 A plotlines, 1–2 B. Max 5–6 total.
 
 If the structure doesn't match—either the format was determined incorrectly, or the plotlines.
 
@@ -125,7 +125,7 @@ If the structure doesn't match—either the format was determined incorrectly, o
 2. **Each verdict must be justified by theory** (Story DNA, format, arc) or data (weight, span, diagnostics).
 3. **REASSIGN references the exact event text** from input data. Do not rephrase.
 4. **MERGE: source events are automatically moved to target.** No need to list each one.
-5. **DROP: must specify where to move events.** Cannot remove a plotline leaving its events unassigned.
+5. **DROP: must specify where to move ALL events.** Code rejects DROP if any event remains unredistributed. Events are never removed or set to null.
 6. **CREATE: must specify complete Story DNA** (hero, goal, obstacle, stakes) and which events belong to it.
 7. **REFUNCTION: specify event text, episode, old function, new function.**
 8. **Don't flag inferred plotlines** for missing functions or low event count—incomplete structure is expected for them. Flag solid plotlines with incomplete structure.

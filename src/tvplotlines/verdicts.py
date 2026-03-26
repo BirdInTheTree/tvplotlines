@@ -12,6 +12,43 @@ from tvplotlines.models import EpisodeBreakdown, Plotline, Verdict
 
 logger = logging.getLogger(__name__)
 
+def _validate_targets(
+    action: str, d: dict, index: dict[str, Plotline], create_ids: set[str],
+) -> bool:
+    """Check that verdict references valid plotline IDs. Return False to skip."""
+    valid_ids = set(index.keys()) | create_ids
+
+    if action in ("MERGE", "PROMOTE", "DEMOTE"):
+        target = d.get("target")
+        if target not in valid_ids:
+            logger.warning("Skipping %s: target %r not in plotlines", action, target)
+            return False
+    if action == "MERGE":
+        source = d.get("source")
+        if source not in valid_ids:
+            logger.warning("Skipping MERGE: source %r not in plotlines", source)
+            return False
+    if action == "REASSIGN":
+        to = d.get("to")
+        if to not in valid_ids:
+            logger.warning("Skipping REASSIGN: target %r not in plotlines", to)
+            return False
+    if action == "DROP":
+        target = d.get("target")
+        if target not in valid_ids:
+            logger.warning("Skipping DROP: target %r not in plotlines", target)
+            return False
+        for re_item in d.get("redistribute", []):
+            if re_item.get("to") not in valid_ids:
+                logger.warning(
+                    "Skipping DROP %s: redistribute target %r not in plotlines",
+                    target, re_item.get("to"),
+                )
+                return False
+
+    return True
+
+
 _VALID_FUNCTIONS = {
     "setup", "inciting_incident", "escalation", "turning_point",
     "crisis", "climax", "resolution",
@@ -41,9 +78,19 @@ def apply_verdicts(
     plotlines = list(plotlines)
     plotline_index = {p.id: p for p in plotlines}
 
+    # Collect CREATE ids so REASSIGN can reference not-yet-created plotlines
+    create_ids = {
+        v.data["plotline"]["id"]
+        for v in verdicts
+        if v.action == "CREATE" and "plotline" in v.data
+    }
+
     for verdict in verdicts:
         action = verdict.action
         d = verdict.data
+
+        if not _validate_targets(action, d, plotline_index, create_ids):
+            continue
 
         if action == "MERGE":
             _apply_merge(d, plotlines, plotline_index, episodes)
@@ -175,7 +222,7 @@ def _apply_drop(
     index: dict[str, Plotline],
     episodes: list[EpisodeBreakdown],
 ) -> None:
-    """DROP: redistribute events and remove plotline."""
+    """DROP: redistribute events, then remove plotline only if all events moved."""
     target_id = d["target"]
 
     for re in d.get("redistribute", []):
@@ -184,14 +231,17 @@ def _apply_drop(
             episodes,
         )
 
-    for ep in episodes:
-        for event in ep.events:
-            if event.plotline_id == target_id:
-                logger.warning(
-                    "DROP %s: event '%s' not redistributed, setting to null",
-                    target_id, event.event[:50],
-                )
-                event.plotline_id = None
+    # Check if any events still belong to this plotline
+    remaining = sum(
+        1 for ep in episodes for event in ep.events
+        if event.plotline_id == target_id
+    )
+    if remaining > 0:
+        logger.warning(
+            "DROP %s aborted: %d events not redistributed, keeping plotline",
+            target_id, remaining,
+        )
+        return
 
     dropped = index.pop(target_id, None)
     if dropped and dropped in plotlines:
