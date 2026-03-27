@@ -158,6 +158,17 @@ def _run(args: argparse.Namespace) -> None:
               f"{len(resume_kwargs['plotlines'])} plotlines, "
               f"{len(resume_kwargs['cast'])} cast")
 
+    # Load suggested plotlines if available (from write-synopses single mode)
+    suggested_plotlines = None
+    if len(args.files) == 1 and args.files[0].is_dir():
+        sp_path = args.files[0] / "suggested_plotlines.json"
+        if sp_path.exists():
+            suggested_plotlines = json.loads(sp_path.read_text(encoding="utf-8"))
+            # Flatten if nested lists (per-episode format)
+            if suggested_plotlines and isinstance(suggested_plotlines[0], list):
+                suggested_plotlines = [p for ep in suggested_plotlines for p in ep]
+            print(f"  Using {len(suggested_plotlines)} suggested plotlines from synopsis writer")
+
     t0 = time.monotonic()
     result = get_plotlines(
         show=show,
@@ -169,6 +180,7 @@ def _run(args: argparse.Namespace) -> None:
         base_url=args.base_url,
         skip_review=args.skip_review,
         pass2_mode=args.pass2_mode,
+        suggested_plotlines=suggested_plotlines,
         callback=_CLICallback(),
         **resume_kwargs,
     )

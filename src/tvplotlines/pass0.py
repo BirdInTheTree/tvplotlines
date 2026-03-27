@@ -21,6 +21,7 @@ def detect_context(
     episodes: list[tuple[str, str]],
     *,
     config: LLMConfig | None = None,
+    suggested_plotlines: list[dict] | None = None,
 ) -> SeriesContext:
     """Auto-detect series context from first synopses.
 
@@ -37,17 +38,17 @@ def detect_context(
         config = LLMConfig()
 
     sample = episodes[:3]
-    user_message = json.dumps(
-        {
-            "show": show,
-            "season": season,
-            "sample_synopses": [
-                {"episode": eid, "text": text}
-                for eid, text in sample
-            ],
-        },
-        ensure_ascii=False,
-    )
+    data = {
+        "show": show,
+        "season": season,
+        "sample_synopses": [
+            {"episode": eid, "text": text}
+            for eid, text in sample
+        ],
+    }
+    if suggested_plotlines:
+        data["suggested_plotlines"] = suggested_plotlines
+    user_message = json.dumps(data, ensure_ascii=False)
 
     system_prompt = load_prompt("pass0", lang=config.lang)
     data = call_llm(system_prompt, user_message, config, validator=_validate)

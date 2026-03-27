@@ -29,8 +29,8 @@ For each character in `prior_season.cast`:
 
 Only after processing all prior plotlines, identify NEW plotlines not present before.
 
-### Step 2: Read all synopses
-Read ALL season synopses. Story DNA is reconstructed from the aggregate of mentions across the season. Don't invent—mark confidence.
+### Step 2: Read all synopses and suggested plotlines
+Read ALL season synopses. If `suggested_plotlines` is present in the input, use them as a starting point — they come from an earlier analysis of the same synopses. Verify each suggestion against the text: keep what you find evidence for, drop what you don't, add what was missed. Story DNA is reconstructed from the aggregate of mentions across the season. Don't invent—mark confidence.
 
 ### Step 3: Identify the main cast
 Recurring characters who drive plotlines. One character per cast entry. Guests are not cast.

@@ -31,6 +31,7 @@ def _build_user_message(
     *,
     prior_cast: list[CastMember] | None = None,
     prior_plotlines: list[Plotline] | None = None,
+    suggested_plotlines: list[dict] | None = None,
 ) -> str:
     """Build the JSON user message for Pass 1."""
     data = {
@@ -44,6 +45,8 @@ def _build_user_message(
             for eid, text in episodes
         ],
     }
+    if suggested_plotlines:
+        data["suggested_plotlines"] = suggested_plotlines
     if prior_cast and prior_plotlines:
         data["prior_season"] = {
             "cast": [
@@ -95,6 +98,7 @@ def extract_plotlines(
     *,
     prior_cast: list[CastMember] | None = None,
     prior_plotlines: list[Plotline] | None = None,
+    suggested_plotlines: list[dict] | None = None,
     config: LLMConfig | None = None,
 ) -> tuple[list[CastMember], list[Plotline]]:
     """Extract cast and plotlines from all season synopses.
@@ -117,6 +121,7 @@ def extract_plotlines(
     user_message = _build_user_message(
         show, season, context, episodes,
         prior_cast=prior_cast, prior_plotlines=prior_plotlines,
+        suggested_plotlines=suggested_plotlines,
     )
 
     system_prompt = load_prompt("pass1", lang=config.lang)

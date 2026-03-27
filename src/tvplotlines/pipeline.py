@@ -56,6 +56,7 @@ def get_plotlines(
     cast: list[CastMember] | None = None,
     plotlines: list[Plotline] | None = None,
     breakdowns: list[EpisodeBreakdown] | None = None,
+    suggested_plotlines: list[dict] | None = None,
     llm_provider: str = "anthropic",
     model: str | None = None,
     base_url: str | None = None,
@@ -142,7 +143,10 @@ def get_plotlines(
 
     # Pass 0: detect context (skip if provided)
     if context is None:
-        context = detect_context(show, season, episode_pairs[:3], config=config)
+        context = detect_context(
+            show, season, episode_pairs[:3], config=config,
+            suggested_plotlines=suggested_plotlines,
+        )
     _fire(callback, "on_pass0_complete", context)
 
     # Pass 1: extract cast and plotlines from all synopses
@@ -151,6 +155,7 @@ def get_plotlines(
             show, season, context, episode_pairs,
             prior_cast=prior.cast if prior else None,
             prior_plotlines=prior.plotlines if prior else None,
+            suggested_plotlines=suggested_plotlines,
             config=config,
         )
     _fire(callback, "on_pass1_complete", cast, plotlines)

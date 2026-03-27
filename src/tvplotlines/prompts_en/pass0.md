@@ -9,6 +9,9 @@ You receive: show title, season number, and up to 3 first synopses. Your output 
 {GLOSSARY}
 
 # TASK
+
+If `suggested_plotlines` is present in the input, use it as additional context — it contains preliminary plotline suggestions from the synopsis writer. These can help with format and ensemble detection, but verify against the synopses.
+
 Read the synopses and determine, in this order:
 ### Step 1: Determine format
 What's the episode structure? Use the definitions and diagnostic in Glossary.
