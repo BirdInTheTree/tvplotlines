@@ -306,9 +306,9 @@ def main() -> None:
                            help="LLM provider (default: anthropic)")
     ws_parser.add_argument("--model", default=None, help="Specific model name")
     ws_parser.add_argument("--base-url", default=None, help="Custom API endpoint")
-    ws_parser.add_argument("--mode", default="parallel",
+    ws_parser.add_argument("--mode", default="single",
                            choices=["parallel", "batch", "sequential", "single"],
-                           help="Execution mode (default: parallel)")
+                           help="Execution mode (default: single)")
     ws_parser.add_argument("--no-glossary", action="store_true",
                            help="Skip glossary injection into system prompt")
 

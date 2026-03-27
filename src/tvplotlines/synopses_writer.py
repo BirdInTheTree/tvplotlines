@@ -372,7 +372,7 @@ def rewrite_synopses(
     config: "LLMConfig",
     *,
     show_format: str | None = None,
-    mode: Mode = "parallel",
+    mode: Mode = "single",
     use_glossary: bool = True,
     suggest_plotlines: bool = False,
 ) -> list[str] | dict:
@@ -604,7 +604,7 @@ def write_synopses(
     provider: str = "anthropic",
     model: str | None = None,
     base_url: str | None = None,
-    mode: Mode = "parallel",
+    mode: Mode = "single",
     use_glossary: bool = True,
 ) -> None:
     """Generate episode synopses and save to files.
