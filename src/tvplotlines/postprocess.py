@@ -5,7 +5,10 @@ These fields are derived from Pass 2 results, not from LLM.
 
 from __future__ import annotations
 
+import logging
 from collections import Counter
+
+logger = logging.getLogger(__name__)
 
 from tvplotlines.models import EpisodeBreakdown, Plotline, SeriesContext
 
@@ -116,21 +119,27 @@ def compute_ranks(
     episodes: list[EpisodeBreakdown],
     context: SeriesContext,
 ) -> None:
-    """Assign computed_rank to each plotline based on primary event counts (in-place).
+    """Assign computed_rank to each plotline based on event counts (in-place).
+
+    Counts both primary events (plotline_id) and also_affects mentions equally.
+    The LLM's choice of primary vs also_affects is often arbitrary — the event
+    advances both plotlines. Equal weight avoids amplifying that arbitrariness.
 
     Rules:
     1. Runners get no rank (None).
     2. Procedural format: case_of_the_week → A.
     3. Hybrid format: case_of_the_week → B.
-    4. Remaining plotlines sorted by descending primary event count:
+    4. Remaining plotlines sorted by descending event count:
        first → highest available rank, second → next, rest → C.
     """
-    # Count primary events per plotline (only plotline_id, not also_affects)
-    primary_counts: Counter[str] = Counter()
+    # Count events per plotline: primary + also_affects, equal weight
+    event_counts: Counter[str] = Counter()
     for ep in episodes:
         for event in ep.events:
             if event.plotline_id:
-                primary_counts[event.plotline_id] += 1
+                event_counts[event.plotline_id] += 1
+            for aa in event.also_affects or []:
+                event_counts[aa] += 1
 
     # Phase 1: fixed assignments
     fixed_ids: set[str] = set()
@@ -150,7 +159,12 @@ def compute_ranks(
 
     # Phase 2: remaining plotlines sorted by event count
     remaining = [p for p in plotlines if p.id not in fixed_ids]
-    remaining.sort(key=lambda p: primary_counts.get(p.id, 0), reverse=True)
+    remaining.sort(key=lambda p: (-event_counts.get(p.id, 0), p.id))
+
+    logger.info(
+        "Rank assignment order: %s",
+        [(p.id, event_counts.get(p.id, 0)) for p in remaining],
+    )
 
     for i, plotline in enumerate(remaining):
         if i == 0 and not is_a_taken:
@@ -161,6 +175,7 @@ def compute_ranks(
             plotline.computed_rank = "B"
         else:
             plotline.computed_rank = "C"
+        logger.info("  %s → %s (events=%d)", plotline.id, plotline.computed_rank, event_counts.get(plotline.id, 0))
 
 
 def validate_ranks(

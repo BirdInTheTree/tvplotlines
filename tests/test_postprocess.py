@@ -186,8 +186,8 @@ class TestComputeRanks:
         assert cotw.computed_rank == "B"
         assert arc.computed_rank == "A"
 
-    def test_also_affects_not_counted(self):
-        """Only primary plotline_id counts, not also_affects."""
+    def test_also_affects_counted_equally(self):
+        """Both primary and also_affects count equally toward rank."""
         ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
         main = _make_plotline_no_rank("main")
         side = _make_plotline_no_rank("side")
@@ -204,7 +204,8 @@ class TestComputeRanks:
             theme="t",
         )
         compute_ranks([main, side], [ep], ctx)
-        assert main.computed_rank == "A"
-        assert side.computed_rank == "B"
+        # main: 2 primary + 0 AA = 2. side: 1 primary + 2 AA = 3. side wins.
+        assert side.computed_rank == "A"
+        assert main.computed_rank == "B"
 
 

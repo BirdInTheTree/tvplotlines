@@ -1,0 +1,52 @@
+[
+  [
+    {
+      "name": "Case of the Week",
+      "hero": "Gregory House",
+      "goal": "diagnose and treat mysterious medical cases",
+      "nature": "plot-led"
+    },
+    {
+      "name": "House: Authority",
+      "hero": "Gregory House",
+      "goal": "maintain autonomy in his medical practice",
+      "nature": "character-led"
+    },
+    {
+      "name": "House: Addiction",
+      "hero": "Gregory House",
+      "goal": "manage his Vicodin dependency while functioning as a doctor",
+      "nature": "character-led"
+    },
+    {
+      "name": "Vogler: Control",
+      "hero": "Edward Vogler",
+      "goal": "transform the hospital into a profitable biotech venture",
+      "nature": "plot-led"
+    },
+    {
+      "name": "Cameron: Idealism",
+      "hero": "Allison Cameron",
+      "goal": "practice medicine according to her ethical principles",
+      "nature": "character-led"
+    },
+    {
+      "name": "House-Stacy: Past",
+      "hero": "Gregory House",
+      "goal": "navigate his unresolved feelings for his ex-girlfriend",
+      "nature": "character-led"
+    },
+    {
+      "name": "Team: Loyalty",
+      "hero": "House's team",
+      "goal": "maintain their positions while navigating institutional pressure",
+      "nature": "theme-led"
+    },
+    {
+      "name": "Hospital: Politics",
+      "hero": "Lisa Cuddy",
+      "goal": "balance medical excellence with administrative demands",
+      "nature": "theme-led"
+    }
+  ]
+]
