@@ -21,25 +21,13 @@ _EPISODE_ID_RE = re.compile(r"^S\d{2}E\d{2}$")
 
 
 def _warn_rank_limits(
-    plotlines: list[Plotline], is_ensemble: bool,
+    plotlines: list[Plotline], is_ensemble: bool, n_episodes: int,
 ) -> list[Plotline]:
-    """Log warnings if computed_rank counts exceed expected limits. No mutations."""
-    counts: dict[str, int] = {}
-    for p in plotlines:
-        if p.computed_rank:
-            counts[p.computed_rank] = counts.get(p.computed_rank, 0) + 1
-
-    max_total = 6 if is_ensemble else 5
-    max_a = 4 if is_ensemble else 1
-    max_b = 2
-    max_c = 2
-
-    if counts.get("A", 0) > max_a:
-        logger.warning("Rank warning: %d A-plotlines (expected max %d)", counts["A"], max_a)
-    if counts.get("B", 0) > max_b:
-        logger.warning("Rank warning: %d B-plotlines (expected max %d)", counts["B"], max_b)
-    if counts.get("C", 0) > max_c:
-        logger.warning("Rank warning: %d C-plotlines (expected max %d)", counts["C"], max_c)
+    """Log warnings if plotline counts exceed expected limits. No mutations."""
+    if is_ensemble:
+        max_total = 9 if n_episodes >= 9 else 7
+    else:
+        max_total = 7 if n_episodes >= 9 else 5
 
     total = len([p for p in plotlines if p.computed_rank])
     if total > max_total:
@@ -200,7 +188,7 @@ def get_plotlines(
     compute_span(plotlines, breakdowns)
     compute_ranks(plotlines, breakdowns, context)
     flags = validate_ranks(plotlines, breakdowns)
-    _warn_rank_limits(plotlines, context.is_ensemble)
+    _warn_rank_limits(plotlines, context.is_ensemble, len(episode_ids))
 
     # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:

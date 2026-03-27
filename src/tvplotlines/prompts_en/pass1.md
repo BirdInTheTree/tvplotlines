@@ -65,8 +65,8 @@ Seed—an event function at the next step. Wraparound—a narrative device at th
 
 - Procedural: 1 case_of_the_week + 1–3 serialized arcs. Max 5 total.
 - Hybrid: 1 case_of_the_week + 2–4 serialized. Max 5 total.
-- Serial: max 5 plotlines. Runners must span 3+ episodes.
-- Ensemble: max 8 plotlines. Runners must span 3+ episodes.
+- Serial (≤8 episodes): max 5 plotlines. Serial (9+ episodes): max 7. Runners must span 3+ episodes.
+- Ensemble (≤8 episodes): max 7 plotlines. Ensemble (9+ episodes): max 9. Runners must span 3+ episodes.
 
 ### General
 
