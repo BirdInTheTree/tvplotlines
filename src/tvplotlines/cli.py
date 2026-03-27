@@ -242,6 +242,8 @@ def _write_synopses(args: argparse.Namespace) -> None:
         provider=args.provider,
         model=args.model,
         base_url=args.base_url,
+        mode=args.mode,
+        use_glossary=not args.no_glossary,
     )
 
 
@@ -304,6 +306,11 @@ def main() -> None:
                            help="LLM provider (default: anthropic)")
     ws_parser.add_argument("--model", default=None, help="Specific model name")
     ws_parser.add_argument("--base-url", default=None, help="Custom API endpoint")
+    ws_parser.add_argument("--mode", default="parallel",
+                           choices=["parallel", "batch", "sequential", "single"],
+                           help="Execution mode (default: parallel)")
+    ws_parser.add_argument("--no-glossary", action="store_true",
+                           help="Skip glossary injection into system prompt")
 
     args = parser.parse_args()
     if args.command is None:

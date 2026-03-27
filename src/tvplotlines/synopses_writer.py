@@ -4,11 +4,14 @@ Not part of the public library API — not exported from __init__.py.
 """
 from __future__ import annotations
 
+import logging
 import re
 import sys
 import time
 from pathlib import Path
-from typing import TypedDict
+from typing import Literal, TypedDict
+
+logger = logging.getLogger(__name__)
 
 
 class RawEpisode(TypedDict):
@@ -291,6 +294,76 @@ def _extract_description(row) -> str:
 # ---------------------------------------------------------------------------
 
 
+_PLOTLINE_FIELDS = {"name", "hero", "goal", "nature"}
+_VALID_NATURES = {"plot-led", "character-led", "theme-led"}
+
+Mode = Literal["parallel", "batch", "sequential", "single"]
+
+
+def _validate_plotlines(plotlines: list) -> list[dict]:
+    """Validate and filter plotline suggestions, logging invalid entries."""
+    valid = []
+    for pl in plotlines:
+        if not isinstance(pl, dict):
+            logger.warning("Plotline is not a dict: %s", pl)
+            continue
+        missing = _PLOTLINE_FIELDS - pl.keys()
+        if missing:
+            logger.warning("Plotline missing fields %s: %s", missing, pl)
+            continue
+        if pl["nature"] not in _VALID_NATURES:
+            logger.warning("Invalid nature '%s' in plotline: %s", pl["nature"], pl)
+            continue
+        valid.append(pl)
+    return valid
+
+
+def _build_system_prompt(*, use_glossary: bool) -> str:
+    """Load the synopses_writer prompt, optionally with glossary injected."""
+    from tvplotlines.prompts_en import load_prompt
+
+    if use_glossary:
+        # load_prompt already replaces {GLOSSARY} with glossary content
+        return load_prompt("synopses_writer")
+
+    # Load raw prompt and strip the {GLOSSARY} placeholder
+    from importlib import resources
+    text = resources.files("tvplotlines.prompts_en").joinpath(
+        "synopses_writer.md"
+    ).read_text(encoding="utf-8")
+    return text.replace("{GLOSSARY}", "")
+
+
+def _build_user_message(
+    ep: RawEpisode,
+    show: str,
+    season: int,
+    format_hint: str,
+) -> str:
+    """Build per-episode user message for the LLM."""
+    return (
+        f"Show: {show}\n"
+        f"Season: {season}, Episode: {ep['number']}\n"
+        f"{format_hint}\n\n"
+        f"Raw description:\n{ep['description']}"
+    )
+
+
+def _episode_id(season: int, number: int) -> str:
+    return f"S{season:02d}E{number:02d}"
+
+
+def _extract_results(results: list[dict]) -> tuple[list[str], list[list[dict]]]:
+    """Extract synopses and plotlines from per-episode LLM results."""
+    synopses = []
+    all_plotlines = []
+    for r in results:
+        synopses.append(r["synopsis"])
+        raw_plotlines = r.get("suggested_plotlines", [])
+        all_plotlines.append(_validate_plotlines(raw_plotlines))
+    return synopses, all_plotlines
+
+
 def rewrite_synopses(
     episodes: list[RawEpisode],
     show: str,
@@ -298,7 +371,10 @@ def rewrite_synopses(
     config: "LLMConfig",
     *,
     show_format: str | None = None,
-) -> list[str]:
+    mode: Mode = "parallel",
+    use_glossary: bool = True,
+    suggest_plotlines: bool = False,
+) -> list[str] | dict:
     """Rewrite raw episode descriptions into full synopses via LLM.
 
     Args:
@@ -307,31 +383,165 @@ def rewrite_synopses(
         season: Season number.
         config: LLM configuration.
         show_format: Optional format hint (procedural/serial/hybrid/ensemble).
+        mode: Execution mode — parallel, batch, sequential, or single.
+        use_glossary: Prepend glossary to system prompt.
+        suggest_plotlines: If True, return dict with synopses and plotlines.
 
     Returns:
-        List of synopsis texts, one per episode, in order.
+        list[str] when suggest_plotlines=False (backward compat).
+        dict with "synopses" and "suggested_plotlines" when suggest_plotlines=True.
     """
-    from tvplotlines.llm import call_llm_parallel
-    from tvplotlines.prompts_en import load_prompt
-
-    system_prompt = load_prompt("synopses_writer")
-    format_hint = f"Format: {show_format}" if show_format else "Format: unknown (determine from context)"
-
-    user_messages = []
-    for ep in episodes:
-        msg = (
-            f"Show: {show}\n"
-            f"Season: {season}, Episode: {ep['number']}\n"
-            f"{format_hint}\n\n"
-            f"Raw description:\n{ep['description']}"
-        )
-        user_messages.append(msg)
-
-    results = call_llm_parallel(
-        system_prompt, user_messages, config, cache_system=True
+    system_prompt = _build_system_prompt(use_glossary=use_glossary)
+    format_hint = (
+        f"Format: {show_format}"
+        if show_format
+        else "Format: unknown (determine from context)"
     )
 
-    return [r["synopsis"] for r in results]
+    if mode == "single":
+        synopses, plotlines = _rewrite_single(
+            episodes, show, season, config, system_prompt, format_hint,
+        )
+    elif mode == "sequential":
+        synopses, plotlines = _rewrite_sequential(
+            episodes, show, season, config, system_prompt, format_hint,
+        )
+    elif mode == "batch":
+        synopses, plotlines = _rewrite_batch(
+            episodes, show, season, config, system_prompt, format_hint,
+        )
+    else:
+        synopses, plotlines = _rewrite_parallel(
+            episodes, show, season, config, system_prompt, format_hint,
+        )
+
+    if suggest_plotlines:
+        return {
+            "synopses": synopses,
+            "suggested_plotlines": plotlines,
+        }
+    return synopses
+
+
+def _rewrite_parallel(
+    episodes, show, season, config, system_prompt, format_hint,
+) -> tuple[list[str], list[list[dict]]]:
+    """Each episode in a separate parallel LLM call."""
+    from tvplotlines.llm import call_llm_parallel
+
+    user_messages = [
+        _build_user_message(ep, show, season, format_hint) for ep in episodes
+    ]
+    results = call_llm_parallel(
+        system_prompt, user_messages, config, cache_system=True,
+    )
+    return _extract_results(results)
+
+
+def _rewrite_batch(
+    episodes, show, season, config, system_prompt, format_hint,
+) -> tuple[list[str], list[list[dict]]]:
+    """Each episode in a separate call, sent as Anthropic batch."""
+    from tvplotlines.llm import call_llm_batch
+
+    user_messages = [
+        _build_user_message(ep, show, season, format_hint) for ep in episodes
+    ]
+    results = call_llm_batch(
+        system_prompt, user_messages, config, cache_system=True,
+    )
+    return _extract_results(results)
+
+
+def _rewrite_sequential(
+    episodes, show, season, config, system_prompt, format_hint,
+) -> tuple[list[str], list[list[dict]]]:
+    """Episodes one by one; each call includes all previous synopses as context."""
+    from tvplotlines.llm import call_llm
+
+    synopses: list[str] = []
+    all_plotlines: list[list[dict]] = []
+
+    for ep in episodes:
+        base_msg = _build_user_message(ep, show, season, format_hint)
+
+        if synopses:
+            # Build context from all previously generated synopses
+            prev_lines = []
+            for prev_ep, prev_synopsis in zip(episodes, synopses):
+                eid = _episode_id(season, prev_ep["number"])
+                prev_lines.append(f"[{eid}] {prev_synopsis}")
+            context = "\n\n".join(prev_lines)
+            base_msg = (
+                f"Previous synopses (for continuity reference):\n{context}\n\n"
+                f"---\n\n{base_msg}"
+            )
+
+        result = call_llm(
+            system_prompt, base_msg, config, cache_system=True,
+        )
+        synopses.append(result["synopsis"])
+        raw_plotlines = result.get("suggested_plotlines", [])
+        all_plotlines.append(_validate_plotlines(raw_plotlines))
+
+    return synopses, all_plotlines
+
+
+def _rewrite_single(
+    episodes, show, season, config, system_prompt, format_hint,
+) -> tuple[list[str], list[list[dict]]]:
+    """All episodes in one LLM call. Different output schema."""
+    from tvplotlines.llm import call_llm
+
+    episode_blocks = []
+    for ep in episodes:
+        eid = _episode_id(season, ep["number"])
+        episode_blocks.append(
+            f"[{eid}] {ep['title']}\n{ep['description']}"
+        )
+    all_descriptions = "\n\n".join(episode_blocks)
+
+    msg = (
+        f"Show: {show}\n"
+        f"Season: {season}\n"
+        f"{format_hint}\n\n"
+        f"Write synopses for ALL episodes below. "
+        f"Return a JSON object with:\n"
+        f'- "synopses": array of objects, each with "episode" (e.g. "S01E01") and "synopsis"\n'
+        f'- "suggested_plotlines": array of plotline objects for the whole season\n\n'
+        f"Raw descriptions:\n{all_descriptions}"
+    )
+
+    result = call_llm(
+        system_prompt, msg, config, cache_system=True,
+    )
+
+    # Parse single-mode schema: synopses array + one plotline list
+    raw_synopses = result.get("synopses", [])
+    raw_plotlines = result.get("suggested_plotlines", [])
+
+    # Build ordered synopsis list matching input episodes
+    episode_map = {}
+    for item in raw_synopses:
+        if isinstance(item, dict) and "episode" in item and "synopsis" in item:
+            episode_map[item["episode"]] = item["synopsis"]
+
+    synopses = []
+    for ep in episodes:
+        eid = _episode_id(season, ep["number"])
+        if eid not in episode_map:
+            logger.warning("Single mode: missing synopsis for %s", eid)
+            synopses.append("")
+        else:
+            synopses.append(episode_map[eid])
+
+    # Single mode returns one plotline list for the whole season
+    validated = _validate_plotlines(raw_plotlines)
+    # Wrap in a single-element list so the return type is consistent
+    # (callers check mode to interpret)
+    all_plotlines: list[list[dict]] = [validated]
+
+    return synopses, all_plotlines
 
 
 # ---------------------------------------------------------------------------
@@ -393,6 +603,8 @@ def write_synopses(
     provider: str = "anthropic",
     model: str | None = None,
     base_url: str | None = None,
+    mode: Mode = "parallel",
+    use_glossary: bool = True,
 ) -> None:
     """Generate episode synopses and save to files.
 
@@ -408,6 +620,8 @@ def write_synopses(
         provider: LLM provider.
         model: LLM model name.
         base_url: Custom API endpoint.
+        mode: Execution mode — parallel, batch, sequential, or single.
+        use_glossary: Prepend glossary to system prompt.
     """
     # Determine episodes source
     if from_files:
@@ -427,7 +641,10 @@ def write_synopses(
 
     config = LLMConfig(provider=provider, model=model, base_url=base_url)
     synopses = rewrite_synopses(
-        episodes, show, season, config, show_format=show_format
+        episodes, show, season, config,
+        show_format=show_format,
+        mode=mode,
+        use_glossary=use_glossary,
     )
 
     # Save: directory → individual files, file → combined
