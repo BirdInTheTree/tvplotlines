@@ -110,12 +110,26 @@ def _run(args: argparse.Namespace) -> None:
         )
         episode_pairs = [(eid, episodes[eid]) for eid in sorted(episodes)]
 
+        # Load suggested plotlines if available
+        sp_plotlines = None
+        if len(args.files) == 1 and args.files[0].is_dir():
+            sp_path = args.files[0] / "suggested_plotlines.json"
+            if sp_path.exists():
+                sp_plotlines = json.loads(sp_path.read_text(encoding="utf-8"))
+                if sp_plotlines and isinstance(sp_plotlines[0], list):
+                    sp_plotlines = [p for ep in sp_plotlines for p in ep]
+                print(f"  Using {len(sp_plotlines)} suggested plotlines")
+
         t0 = time.monotonic()
-        context = detect_context(show, season, episode_pairs[:3], config=config)
+        context = detect_context(
+            show, season, episode_pairs[:3], config=config,
+            suggested_plotlines=sp_plotlines,
+        )
         print(f"  Pass 0 done: {context.format} | {context.story_engine}")
 
         cast, plotlines = extract_plotlines(
-            show, season, context, episode_pairs, config=config,
+            show, season, context, episode_pairs,
+            suggested_plotlines=sp_plotlines, config=config,
         )
         print(f"  Pass 1 done: {len(plotlines)} plotlines, {len(cast)} cast")
 
