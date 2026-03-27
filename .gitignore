@@ -43,7 +43,8 @@ htmlcov/
 # Internal — not part of the library
 tasks/
 CLAUDE.md
-experiments/
+# Old experiments folder (not docs/experiments/)
+/experiments/
 program.md
 results.tsv
 
