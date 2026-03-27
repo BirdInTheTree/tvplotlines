@@ -85,7 +85,7 @@
       "type": "serialized",
       "nature": "character-led",
       "confidence": "solid",
-      "computed_rank": "B",
+      "computed_rank": "C",
       "reviewed_rank": null,
       "span": [
         "S01E01",
@@ -96,7 +96,7 @@
         "S01E06",
         "S01E07"
       ],
-      "rank": "B"
+      "rank": "C"
     },
     {
       "id": "investigation",
@@ -129,7 +129,7 @@
       "type": "serialized",
       "nature": "plot-led",
       "confidence": "solid",
-      "computed_rank": "C",
+      "computed_rank": "B",
       "reviewed_rank": null,
       "span": [
         "S01E01",
@@ -139,7 +139,7 @@
         "S01E06",
         "S01E07"
       ],
-      "rank": "C"
+      "rank": "B"
     }
   ],
   "episodes": [
@@ -502,8 +502,8 @@
         },
         {
           "event": "Walt reveals his lung cancer diagnosis to Krazy-8—the first person he's told—and they discover unexpected commonalities",
-          "plotline_id": "empire",
-          "function": "turning_point",
+          "plotline_id": "family",
+          "function": "escalation",
           "characters": [
             "walt"
           ],
@@ -561,7 +561,7 @@
         {
           "event": "Walt lies to Skyler about working late at the car wash, but she reveals she already knows he quit weeks ago",
           "plotline_id": "family",
-          "function": "crisis",
+          "function": "escalation",
           "characters": [
             "walt",
             "skyler"
@@ -581,15 +581,16 @@
           ]
         }
       ],
-      "theme": "the moment of no return",
+      "theme": "the moment when moral compromise becomes irreversible",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
             "empire",
-            "family"
+            "family",
+            "treatment"
           ],
-          "description": "both plotlines force Walt to confront the consequences of his deceptions and make irreversible choices"
+          "description": "all three plotlines explore Walt's struggle with truth and deception—killing Krazy-8, lying to Skyler, hiding his cancer"
         },
         {
           "type": "convergence",
@@ -597,7 +598,7 @@
             "empire",
             "treatment"
           ],
-          "description": "Walt's cancer diagnosis becomes a tool for manipulation in his criminal world"
+          "description": "Walt's cancer collapse directly leads to the broken plate that saves his life by revealing Krazy-8's weapon"
         }
       ]
     },
@@ -716,7 +717,7 @@
         },
         {
           "event": "Skyler feels hopeful about the prognosis",
-          "plotline_id": "empire",
+          "plotline_id": "family",
           "function": "escalation",
           "characters": [
             "skyler"
@@ -760,7 +761,7 @@
             "empire",
             "treatment"
           ],
-          "description": "Walt's concern about treatment costs directly connects to his motivation for the meth operation"
+          "description": "Walt's concern about treatment costs directly connects to his motivation for cooking meth, as financial burden drives him toward resuming criminal activity"
         }
       ]
     },
@@ -816,7 +817,7 @@
           "also_affects": null
         },
         {
-          "event": "Jesse unsuccessfully attempts to replicate Walt's meth recipe with Badger",
+          "event": "Jesse and Badger unsuccessfully attempt to replicate Walt's meth recipe",
           "plotline_id": "survival",
           "function": "escalation",
           "characters": [
@@ -825,10 +826,20 @@
           "also_affects": null
         },
         {
-          "event": "Walt Jr. is caught trying to buy beer underage and calls Hank instead of Walt",
+          "event": "Walt Jr. is caught trying to buy beer underage",
           "plotline_id": "family",
           "function": "escalation",
           "characters": [
+            "guest:walt_jr"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Walt Jr. calls Hank instead of Walt to pick him up from police",
+          "plotline_id": "family",
+          "function": "escalation",
+          "characters": [
+            "guest:walt_jr",
             "hank"
           ],
           "also_affects": null
@@ -848,7 +859,9 @@
           "function": "crisis",
           "characters": [
             "walt",
-            "skyler"
+            "skyler",
+            "marie",
+            "hank"
           ],
           "also_affects": [
             "family"
@@ -866,7 +879,7 @@
         {
           "event": "Walt tells Skyler he will accept Elliott and Gretchen's financial assistance",
           "plotline_id": "empire",
-          "function": "climax",
+          "function": "turning_point",
           "characters": [
             "walt"
           ],
@@ -877,16 +890,18 @@
         {
           "event": "Walt lies to Gretchen that insurance will cover everything and their help isn't needed",
           "plotline_id": "empire",
-          "function": "resolution",
+          "function": "climax",
           "characters": [
             "walt"
           ],
-          "also_affects": null
+          "also_affects": [
+            "family"
+          ]
         },
         {
           "event": "Walt visits Jesse and asks to resume their meth-cooking partnership",
           "plotline_id": "empire",
-          "function": "escalation",
+          "function": "inciting_incident",
           "characters": [
             "walt",
             "jesse"
@@ -896,7 +911,7 @@
           ]
         }
       ],
-      "theme": "pride versus pragmatism in the face of mortality",
+      "theme": "pride versus pragmatism",
       "interactions": [
         {
           "type": "thematic_rhyme",
@@ -921,7 +936,7 @@
             "family",
             "survival"
           ],
-          "description": "both Walt Jr. and Jesse turn away from their father figures when in trouble"
+          "description": "both Walt Jr. and Jesse seek father figures outside their immediate family relationships"
         }
       ]
     },
@@ -1095,7 +1110,7 @@
             "investigation",
             "empire"
           ],
-          "description": "Hank arrests the wrong suspect while Walt, the real culprit, remains free"
+          "description": "Hank arrests the wrong suspect while Walt, the real cook, remains free"
         },
         {
           "type": "convergence",
@@ -1192,32 +1207,42 @@
           ]
         },
         {
-          "event": "Tuco flies into a violent rage and brutally beats No-Doze over a casual comment",
-          "plotline_id": "survival",
+          "event": "No-Doze makes a casual comment during the transaction",
+          "plotline_id": "empire",
+          "function": "escalation",
+          "characters": [
+            "guest:no_doze"
+          ],
+          "also_affects": null
+        },
+        {
+          "event": "Tuco flies into a violent rage and brutally beats No-Doze in front of Walt and Jesse",
+          "plotline_id": "empire",
           "function": "crisis",
           "characters": [
             "tuco",
-            "guest:no_doze"
+            "walt",
+            "jesse"
           ],
           "also_affects": [
-            "empire"
+            "survival"
           ]
         },
         {
           "event": "Tuco drives away, leaving Walt and Jesse shaken by his unpredictable violence",
-          "plotline_id": "survival",
+          "plotline_id": "empire",
           "function": "resolution",
           "characters": [
+            "tuco",
             "walt",
-            "jesse",
-            "tuco"
+            "jesse"
           ],
           "also_affects": [
-            "empire"
+            "survival"
           ]
         }
       ],
-      "theme": "the hidden costs of deception",
+      "theme": "the dangerous unpredictability of criminal partnerships",
       "interactions": [
         {
           "type": "thematic_rhyme",
@@ -1225,7 +1250,7 @@
             "empire",
             "family"
           ],
-          "description": "both plotlines involve deception and theft—Walt stealing chemicals while Skyler discovers Marie's theft"
+          "description": "both plotlines explore deception and the consequences of dishonesty—Walt's criminal lies parallel Marie's theft denial"
         },
         {
           "type": "convergence",
@@ -1233,10 +1258,10 @@
             "empire",
             "survival"
           ],
-          "description": "the drug deal with Tuco directly threatens both Walt's business goals and Jesse's physical safety"
+          "description": "Tuco's violence directly threatens both Walt's business goals and Jesse's physical survival"
         }
       ]
     }
   ],
-  "usage": "12 requests, 39,708 input + 10,715 output tokens, ~$0.300"
+  "usage": "12 requests, 39,826 input + 11,038 output tokens, ~$0.305"
 }
