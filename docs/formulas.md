@@ -1,199 +1,86 @@
 # Rules and Formulas
 
-Every rule, formula, and threshold in tvplotlines — whether executed by the LLM or by code. Ordered by pipeline stage. Each entry is marked:
+If you're reading a rule in the code or a prompt and wondering why it's there, this is where to look. Every rule, threshold, and computation — whether the LLM follows it from a prompt or the code computes it — ordered by pipeline stage.
 
-- **LLM** — the LLM follows this rule based on the prompt
-- **Code** — deterministic computation, no LLM involved
+**LLM** = the LLM follows this rule from the prompt.
+**Code** = deterministic computation.
 
-Code paths are relative to `src/tvplotlines/`.
+Code paths relative to `src/tvplotlines/`.
 
 ---
 
 ## Pass 0: Format Detection
 
-**LLM** classifies the show based on the first 3 synopses.
+**LLM** reads the first 3 synopses and classifies the show.
 
-### Format classification
+### Format
 
-| Format | Diagnostic |
-|--------|-----------|
-| procedural | Each episode has a standalone case that opens and closes within the episode |
-| hybrid | Each episode has case-of-the-week AND serialized arcs, and they intertwine |
-| serial | Episodes continue each other; conflicts don't close within an episode |
-| limited | Same as serial, but the story is designed to end this season |
+Four formats, each telling the pipeline what kind of plotlines to expect:
 
-Quick test: if E01 and E02 have different cases → procedural or hybrid. If E02 continues E01's conflict without closing it → serial.
+| Format | What it means |
+|--------|--------------|
+| procedural | Each episode has a standalone case that opens and closes. CSI, House. |
+| hybrid | Case-of-the-week AND serialized arcs intertwine. Good Wife, Buffy. |
+| serial | Episodes continue each other. One protagonist. Breaking Bad, Sopranos. |
+| ensemble | Like serial, but no single protagonist — multiple characters carry equal weight. Game of Thrones, Succession. |
 
-### Ensemble and anthology flags
+Ensemble is always serial by nature — there are no procedural or hybrid ensembles. A case-of-the-week structure creates hierarchy (someone leads the case), which is incompatible with ensemble's equal weight.
 
-- **is_ensemble:** if you can't name THE main character → ensemble. Independent of format.
-- **is_anthology:** seasons/episodes independent, new cast, no continuity. Independent of format.
-- Both flags can combine with any format (e.g. limited + anthology = True Detective S1).
+**Diagnostic:** different cases in E01 and E02 → procedural or hybrid. E02 continues E01's conflict → serial or ensemble. Can you name THE main character? No → ensemble.
 
-### Story engine templates
+### Anthology
 
-| Format | Template |
-|--------|----------|
-| procedural | "Every week [profession] [verb] [challenge type], testing [hero's quality]" |
-| hybrid | "Every week [profession] [verb] [case] while [ongoing character plotline]" |
-| serial | "[Hero] [transformation], testing how far they'll go for [goal]" |
-| limited | "[Characters] [verb] [one problem] over one season" |
+A boolean flag, independent of format. Seasons are independent — new cast, new story, no continuity. Prior season data is not passed forward. True Detective, Fargo.
 
-### Constraints
+### Story engine
 
-- Classify from the synopses, not from prior knowledge of the show. The same show can change format between seasons.
-- Don't default to serial just because character arcs are present. Hybrid means both case-of-the-week and serialized arcs are significant.
+One-sentence logline describing the show's repeating dramatic mechanism. Two reference structures:
+
+- "[Who] [does what] in order to [goal], but [obstacle]."
+- "When [situation], [who] must [do what], or else [stakes]."
+
+Neither is mandatory. Real loglines vary freely — the structures are a starting point, not a template.
+
+### Code: validation
+
+`pass0.py:_validate` — rejects output where `format` is not one of the four values, or `is_anthology` is not boolean. LLM retries automatically.
 
 ---
 
 ## Pass 1: Plotline Extraction
 
-**LLM** extracts cast and plotlines. **Code** validates and votes.
+**LLM** identifies cast and plotlines from all synopses. **Code** validates structure and runs majority voting.
 
-### Story DNA
+### What the LLM extracts
 
-Every plotline has four parts: **hero** (who drives it), **goal** (what they want), **obstacle** (what blocks them), **stakes** (what happens if they fail). Missing any component → not a plotline, just an event within another.
+For each plotline: Story DNA (hero, goal, obstacle, stakes), type (case_of_the_week / serialized / runner), nature (plot-led / character-led / theme-led), confidence (solid / partial / inferred).
 
-For theme-led plotlines (problem comes from an institution or system), there may be no obvious single hero. Assign the most fitting character — the one most affected, driving the dynamic, or whose POV dominates.
-
-### Granularity
-
-The key is GOAL, not character. One character can drive multiple plotlines with different goals. One plotline = one hero + one goal + causal connection between events.
-
-**Logline test:** "[hero] wants [goal], but [obstacle], and if they fail [stakes]." For theme-led: "[institution/system] creates [problem], [hero] is caught in it, stakes: [stakes]."
-
-Can't write the logline → not a plotline.
-
-### What is not a plotline
-
-| Example | Why not |
-|---------|---------|
-| "John has lunch" | Background — no goal/conflict |
-| "Everyone goes to a party" | Setting — no hero/stakes |
-| "John is sad" | State — no goal/obstacle |
-| "John and Mike's friendship" | Context — no conflict |
-| "Investigation" (procedural, ep. 5) | Part of case_of_the_week, not separate |
-
-### Plotline types
-
-| Type | Duration | Story DNA |
-|------|----------|-----------|
-| case_of_the_week | Opens and closes within one episode | Templated (repeating goal/obstacle/stakes) |
-| serialized | Spans multiple episodes or the season | Full |
-| runner | Minor recurring thread, 3+ episodes | Incomplete — no obstacle or resolution |
-
-### Rank
-
-How central the plotline is to what the show is about. Resonance, not event count.
-
-| Rank | Meaning |
-|------|---------|
-| A | The plotline the series is about |
-| B | Second in importance, often character-led |
-| C | Third, lighter in tone |
-| null | Runner only |
-
-**Assignment by format:**
-- Procedural: case_of_the_week = A
-- Hybrid: character plotline = A, case = B (case may have more events, but character story matters more)
-- Serial/ensemble: rank may shift episode to episode; report typical rank across the season
-
-### Nature
-
-Where the problem comes from:
-
-| Nature | Source of problem | Examples |
-|--------|------------------|----------|
-| plot-led | Outside the hero — external goal vs antagonist | Stranger Things, CSI |
-| character-led | Inside the hero — hero IS the problem | Breaking Bad, Fleabag |
-| theme-led | From society — systemic, no single solution | The Wire, Succession |
-
-Nature of a plotline and nature of individual events can differ — plot-led action serving a character-led plotline is normal.
-
-### Confidence
-
-| Level | Meaning |
-|-------|---------|
-| solid | Hero, goal, obstacle, stakes all clear |
-| partial | Hero and goal clear, obstacle or stakes unclear |
-| inferred | Plotline implied, structure incomplete |
-
-Inferred plotlines won't be flagged for missing functions or low event count. Solid plotlines will.
-
-### Naming rules
-
-- ID = one abstract word by GOAL: "belonging", "leadership", "love". No compounds ("gang_survival" → "survival").
-- Name format: `Hero: Theme` (e.g. "House: Authority", "Walt: Empire").
-- Case_of_the_week: name by franchise formula ("Case of the Week", "Crime of the Week", "Mission").
-- Theme-led: name by the dynamic ("MI5 vs Slough House", "Lab Politics", "Professional Life at Sterling Cooper").
-- Goal language matches synopsis language.
+The LLM does not assign rank — rank is computed by code after Pass 2.
 
 ### Quantity expectations
 
-| Format | Composition | Max total |
-|--------|------------|-----------|
-| Procedural | 1 case_of_the_week + 1–3 serialized | 5 |
-| Hybrid | 1 case_of_the_week + 2–4 serialized | 5 |
-| Serial | 1 A, 1–2 B, 1–2 C. Runners must span 3+ episodes | 5 |
-| Ensemble | 2–4 A, 1–2 B | 5–6 |
+The number of episodes in the season affects how many plotlines to expect.
 
-When in doubt — do NOT create a plotline.
+| Format | ≤8 episodes | 9+ episodes |
+|--------|-------------|-------------|
+| Procedural | max 5 | max 5 |
+| Hybrid | max 5 | max 5 |
+| Serial | max 5 | max 7 |
+| Ensemble | max 7 | max 9 |
 
-### Prior season continuity
-
-For each prior plotline, decide based on new synopses:
-
-| Decision | Action |
-|----------|--------|
-| CONTINUES | Keep `id`, update goal/obstacle/stakes |
-| TRANSFORMED | Keep `id`, rewrite Story DNA |
-| ENDED | Don't include |
-
-Reuse character `id` and `name` if the character appears. Process all prior plotlines before identifying new ones.
-
-### Other constraints
-
-- Do not create plotlines of type seed or wraparound — those are event functions, not plotlines.
-- Serial: plotlines may extend beyond the season; cliffhanger is acceptable.
-- Limited: all plotlines must resolve within the season.
-- Anthology: each season is independent; don't reference other seasons.
-- Procedural/hybrid: exactly 1 case_of_the_week plotline.
-- Don't invent missing Story DNA — mark confidence as partial or inferred.
+Procedural and hybrid stay at 5 because the case-of-the-week structure limits how many serialized arcs can run alongside it. Serial and ensemble grow with episode count — more episodes give more space for plotlines to develop.
 
 ### Code: majority voting
 
-`pass1.py:extract_plotlines`
+`pass1.py:extract_plotlines` · `_VOTING_ROUNDS = 3`
 
-Pass 1 runs three times with identical input. Code keeps the result whose plotline ID set the majority agrees on. When all three disagree, the first result wins.
+The same Pass 1 call runs three times with identical input. Code picks the result whose plotline ID set appears most often. If all three disagree, the first wins.
 
-**Why:** a single LLM run may miss or hallucinate a plotline. Three runs with voting reduce variance.
-
-`_VOTING_ROUNDS = 3`
-
-### Code: rank count warnings
-
-`pipeline.py:_warn_rank_limits`
-
-Logs a warning (no auto-fix) when counts exceed:
-
-| Format | Max A | Max B | Max C | Max total |
-|--------|-------|-------|-------|-----------|
-| Non-ensemble | 1 | 2 | 2 | 5 |
-| Ensemble | 4 | 2 | 2 | 6 |
+A single LLM run can miss a plotline or hallucinate one. Majority voting catches one-off errors without adding prompt complexity. Three runs is the minimum for a majority; more would improve reliability but cost 2× more.
 
 ### Code: validation
 
-`pass1.py:_validate`
-
-Rejects LLM output that violates structural rules (LLM retries automatically):
-
-- Cast and plotlines non-empty
-- `type` ∈ {case_of_the_week, serialized, runner}
-- Runner → rank null; others → rank ∈ {A, B, C}
-- `nature` ∈ {plot-led, character-led, theme-led}
-- `confidence` ∈ {solid, partial, inferred}
-- Procedural/hybrid: exactly 1 case_of_the_week
-- Non-ensemble: exactly 1 A-rank. Ensemble: 2+ A-rank
+`pass1.py:_validate` — rejects output with missing fields, invalid enum values, or missing case_of_the_week in procedural/hybrid. LLM retries.
 
 ---
 
@@ -201,159 +88,84 @@ Rejects LLM output that violates structural rules (LLM retries automatically):
 
 **LLM** breaks each episode into events and assigns them to plotlines. **Code** validates.
 
-### Event definition
+### Functions are episode-scoped
 
-One action by one character (or group) that changes the situation. Two actions by different characters = two events. Two actions at the same moment where the second is an immediate consequence of the first = one event.
+Each event gets a dramatic function (setup, escalation, climax, etc.) based on its role **within the episode**, not across the season. An event that is the climax of episode 3 might turn out to be an escalation in the season-long arc — but Pass 2 only sees one episode, so it assigns based on what it sees.
 
-Event descriptions must be specific: include character names, what happens, dramatic consequence. Not "The team works on the case" but "House orders a lumbar puncture over Cameron's objection, risking paralysis to test his sarcoidosis theory."
+This distinction matters because the same function vocabulary appears in two contexts. Pass 2 uses it for episodes. Post-processing and Pass 3 interpret it across the season. The two readings may differ.
 
-### Event functions
+### Event assignment
 
-| Function | Meaning | Repeats? |
-|----------|---------|----------|
-| setup | Introduces the plotline, status quo | No |
-| inciting_incident | The event that starts the plotline | No — one per plotline |
-| escalation | Raises the stakes | Yes |
-| turning_point | Changes direction; false peak or collapse | Yes |
-| crisis | Lowest point; hero faces what they feared | No |
-| climax | Peak of conflict; outcome irreversible | No |
-| resolution | Conflict resolved; aftermath | No |
-
-Functions are checked downstream for arc completeness and monotonicity.
-
-### Assignment rules
-
-1. **By hero:** event → plotline of the character whose goal it advances
-2. **Guests → cast:** guest in a scene → plotline belongs to the cast member
-3. **By goal, not character:** multiple characters → whose GOAL does this scene advance?
-4. **Double bump:** event touches two plotlines → assign to primary goal, note secondary in `also_affects`
-5. **Frequency hint:** B-story = 1–2 scenes per act. More events than the A → re-check hierarchy
-6. **Emotional counterpoint:** if all plotlines are rising or all falling → something is missed
-7. **Complete coverage:** every synopsis sentence must map to at least one event
-8. **Limited, final episode:** expect resolution/climax, not setup/escalation
-
-### Interactions between plotlines
-
-| Type | Meaning |
-|------|---------|
-| thematic_rhyme | Plotlines explore the same theme from different angles |
-| dramatic_irony | Audience knows what a character in another plotline doesn't |
-| convergence | Plotlines merge — characters or conflicts intersect |
-
-### Patches
-
-Hints from episode breakdowns that something in Pass 1 may need fixing:
-
-| Patch | When |
-|-------|------|
-| ADD_LINE | Event doesn't attach to any plotline (plotline_id: null) |
-| CHECK_LINE | Plotline has no events in this episode |
-| SPLIT_LINE | Plotline covers disparate things |
-| RERANK | C-plotline is heavier than A in this episode |
+Each event belongs to the plotline whose goal it advances. When one event advances two plotlines, the primary goal gets `plotline_id` and the secondary goes into `also_affects`. Events that don't fit any plotline get `plotline_id: null` — code resolves them in post-processing.
 
 ### Code: validation
 
-`pass2.py:_validate`
-
-- `function` ∈ {setup, inciting_incident, escalation, turning_point, crisis, climax, resolution}
-- `plotline_id` references existing plotline or is null
-- Characters are cast IDs or `guest:*`
-- Every `also_affects` ID exists in plotlines
-- `interaction.type` ∈ {thematic_rhyme, dramatic_irony, convergence}
-- `patch.action` ∈ {ADD_LINE, CHECK_LINE, SPLIT_LINE, RERANK}
+`pass2.py:_validate` — checks function enums, plotline ID references, character ID format (`cast_id` or `guest:name`), interaction types.
 
 ---
 
-## Post-processing (between Pass 2 and Pass 3)
+## Post-processing
 
-All steps are **Code** — deterministic, no LLM.
+All **Code**, no LLM. Runs between Pass 2 and Pass 3.
 
 ### Orphan event assignment
 
 `postprocess.py:assign_orphan_events`
 
-Events with `plotline_id = null` get resolved by character voting:
+Events with `plotline_id = null` get assigned by character voting: for each character across the season, which plotline do they appear in most? The orphan event inherits the plotline most associated with its characters. Fallback: most common plotline in the same episode.
 
-1. For each character across the season, count which plotline they appear in most
-2. For each orphan, aggregate votes from its characters
-3. Assign to the plotline with most votes
-4. **Fallback:** if no character data, use most common plotline in the same episode
-5. Events with empty character list stay null
-
-**Why:** orphan events are rare but create gaps in span and weight calculations.
+Orphan events are rare (typically 1-7 per season in our tests). Resolving them fills gaps in span and weight calculations.
 
 ### Span
 
 `postprocess.py:compute_span`
 
-A plotline's span = list of episodes where it has ≥1 event. Recomputed after Pass 3 verdicts.
+A plotline's span = the list of episodes where it has at least one event. Recomputed after Pass 3 verdicts.
 
-**Why:** span drives the A-rank demotion rule and helps Pass 3 judge whether a plotline is real.
+### Computed rank
+
+`postprocess.py:compute_ranks`
+
+Rank is computed from event counts, not assigned by the LLM. This changed in the rank refactor — the LLM used to assign rank in Pass 1, but event count proved to be a more reliable starting point (see `docs/experiments/counting-events-for-ABC-rank.md`).
+
+**Counting:** both primary events (`plotline_id`) and `also_affects` mentions count equally toward a plotline's total. The LLM's decision to make an event "primary" vs "also_affects" is often arbitrary — the event advances both plotlines. Weighting `also_affects` lower would amplify that arbitrariness.
+
+**Assignment:**
+
+1. Runners → null (no rank)
+2. Procedural: case_of_the_week → A. The case is what a procedural show is about.
+3. Hybrid: case_of_the_week → B. The character arc matters more than the case, even when the case generates more events. Douglas: "A-story = the most resonant story, not necessarily the largest proportion of pages."
+4. Remaining plotlines sorted by descending event count → A, B, C, C, C...
+
+Pass 3 receives `computed_rank` and can propose a different rank through its review (stored as `reviewed_rank`). When they disagree, the user sees both.
 
 ### Weight per episode
 
-`postprocess.py:compute_weight`
+`postprocess.py:compute_weight` · `threshold = 0.5`
 
-Each plotline gets a weight label per episode:
-
-| Weight | Rule |
-|--------|------|
-| primary | event count ≥ 50% of max in this episode |
-| background | event count ≥ 2, but < 50% of max |
-| glimpse | event count = 1 |
-
-`threshold = 0.5`
-
-**Why:** Pass 3 needs a quick read of plotline presence without counting raw events.
+Each plotline gets a weight label per episode based on event count relative to the episode's busiest plotline: `primary` (≥50% of max), `background` (≥2 events but <50%), `glimpse` (1 event). Pass 3 uses these labels to assess plotline presence without counting events.
 
 ### Diagnostic flags
 
 `postprocess.py:validate_ranks`
 
-**A-rank span check:** A-rank plotline in fewer than 25% of episodes → auto-demote to B.
-`min_span_frac = 0.25`
+**A-rank span check:** `min_span_frac = 0.25` — A-rank plotline in fewer than 25% of episodes → auto-demote to B. A plotline concentrated in three episodes out of thirteen is not the season's spine.
 
-**Dominance check:** plotline with > 50% of all season events → flag `dominant` (no auto-fix).
-`dominance_threshold = 0.50`
+**Dominance check:** `dominance_threshold = 0.50` — plotline with >50% of all season events → flag `dominant`. No auto-fix — Pass 3 decides whether this means two plotlines were collapsed into one (→ CREATE + REASSIGN) or the show genuinely revolves around one story.
 
 ---
 
 ## Pass 3: Structural Review
 
-**LLM** reviews the full season structure and issues verdicts. **Code** applies them.
+**LLM** reviews the full season and issues verdicts. **Code** applies them mechanically.
 
-### What Pass 3 checks
+### What Pass 3 does
 
-**Story DNA:** does every solid plotline have a logline with hero → goal → obstacle → stakes?
+Checks Story DNA completeness, spot-checks event assignments, looks for duplicate plotlines (same hero, adjacent goals), checks orphaned events, verifies format consistency.
 
-**Event assignment spot-check:** does each event advance the plotline it's assigned to? Common errors:
-- Event assigned to hero's A-plotline but advances B-plotline (wrong goal)
-- Event describes reaction to another plotline's conflict (should be `also_affects`)
-- Multiple events in a row with same plotline but describing different conflicts
+Event functions from Pass 2 reflect episode-level roles. Pass 3 reads them across the season but keeps this distinction in mind — a "climax" in episode 3 may be an escalation in the season arc.
 
-**Arc progression:** healthy arc goes setup → inciting_incident → escalation → turning_point → crisis → climax → resolution. Problems:
-- Only setup → stillborn plotline
-- Only escalation → plotline is stuck
-- No climax/resolution in final episode (limited format) → unclosed plotline
-- Function goes backwards past a milestone (crisis after climax) → monotonicity violation
-
-**Duplication detection:** two plotlines with same hero and adjacent goals → likely one plotline with phases. Signs: goals causally linked, events alternate in same episodes, no conflict between the two plotlines.
-
-**Rank vs data:** rank=C but weight=primary in most episodes → PROMOTE. Rank=A but weight=glimpse in half the season → DEMOTE. Two A-rank plotlines with equal weight in non-ensemble → DEMOTE one.
-
-**Orphaned events:** plotline_id null after post-processing. If they belong to an existing plotline → REASSIGN. If they form a pattern → CREATE new plotline.
-
-### Verdict constraints
-
-- If everything is fine → empty verdicts array. Don't invent problems.
-- Each verdict justified by theory (Story DNA, format, arc) or data (weight, span, diagnostics).
-- REASSIGN references exact event text — do not rephrase.
-- MERGE moves all events automatically — no need to list each one.
-- DROP must specify where ALL events go. Code rejects DROP if events remain unredistributed.
-- CREATE requires complete Story DNA and a list of events to reassign to it.
-- Don't flag inferred plotlines for missing functions — incomplete structure is expected.
-- DROP only phantoms (plotlines with no events), not weak plotlines in bad scripts.
-- Never PROMOTE to A if A-rank already exists in non-ensemble format.
+When diagnostics flag a problem (`low_completeness`, `monotonicity_violation`, `dominant`), Pass 3 decides the response: REASSIGN misplaced events, REFUNCTION incorrectly labeled events, MERGE duplicate plotlines, CREATE new plotlines from patterns in orphaned events, or DROP phantom plotlines with no events.
 
 ### Code: verdict application
 
@@ -362,49 +174,36 @@ Each plotline gets a weight label per episode:
 | Action | Effect |
 |--------|--------|
 | MERGE | Moves all events from source to target; removes source |
-| REASSIGN | Moves one event (exact text match) to different plotline |
-| PROMOTE | Raises rank. Blocked when non-ensemble and A exists |
-| DEMOTE | Lowers rank |
-| CREATE | Adds plotline with `confidence: "inferred"`; reassigns specified events |
-| DROP | Redistributes events; removes plotline only when zero events remain |
+| REASSIGN | Moves one event (exact text match) to a different plotline |
+| CREATE | Adds a new plotline with `confidence: "inferred"`; reassigns specified events |
+| DROP | Redistributes events to specified targets; removes plotline only when zero remain |
 | REFUNCTION | Changes an event's function |
 
-### Code: post-verdict recomputation
-
-Span and rank validation run again after verdicts — the plotline list may have changed.
+After verdicts, span recomputes to reflect the changed plotline list.
 
 ---
 
 ## Pipeline orchestration
 
-All **Code**.
-
-### Pass skip logic
+### Execution order
 
 `pipeline.py:get_plotlines`
 
-| Parameter provided | Effect |
-|-------------------|--------|
-| `context` | Skip Pass 0 |
-| `cast` + `plotlines` | Skip Pass 1 |
-| `breakdowns` | Skip Pass 2 |
-| `skip_review=True` | Skip Pass 3 |
-| `prior` | Reuse prior.context (unless explicit context given); pass prior cast/plotlines to Pass 1 |
-
-`prior` raises ValueError for anthology format.
-
-### Episode ID validation
-
-- Must match `S{dd}E{dd}` (regex `^S\d{2}E\d{2}$`)
-- Season prefix must match `season` parameter
-- Sorted alphabetically before processing
+1. Pass 0 (skip if `context` provided)
+2. Pass 1 (skip if `cast` + `plotlines` provided)
+3. Pass 2 — parallel, batch, or sequential (skip if `breakdowns` provided)
+4. Post-processing: orphan assignment → span → rank → diagnostics
+5. Pass 3 (skip if `skip_review=True`)
+6. Post-verdict: span recomputes. Rank does not — `computed_rank` is fixed.
 
 ### Pass 2 execution modes
 
-| Mode | Mechanism | Cost | Speed |
-|------|-----------|------|-------|
-| parallel | Async, all episodes at once | Full | Fast |
-| batch | Anthropic batch API | 50% discount | Slow |
-| sequential | One episode at a time | Full | Slowest |
+| Mode | How | Cost |
+|------|-----|------|
+| parallel | All episodes async | Full price, fast |
+| batch | Anthropic batch API | 50% discount, slow (polling) |
+| sequential | One at a time | Full price, slowest |
 
-`batch_id` resumes a previously submitted batch (batch mode only).
+### Episode ID format
+
+`S{dd}E{dd}` (regex `^S\d{2}E\d{2}$`). Season prefix must match the `season` parameter. Sorted alphabetically before processing.
