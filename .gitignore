@@ -47,5 +47,8 @@ experiments/
 program.md
 results.tsv
 
+# Pipeline run history
+runs/
+
 # Worktrees
 .worktrees/

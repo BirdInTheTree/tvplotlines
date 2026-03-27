@@ -24,7 +24,8 @@ def _make_prior() -> TVPlotlinesResult:
         Plotline(
             id="empire", name="Walt: Empire", hero="walt",
             goal="build a drug business", obstacle="morality", stakes="death",
-            type="serialized", rank="A", nature="plot-led", confidence="solid",
+            type="serialized", nature="plot-led", confidence="solid",
+            computed_rank="A",
         ),
     ]
     return TVPlotlinesResult(context=ctx, cast=cast, plotlines=plotlines)
@@ -65,7 +66,8 @@ class TestPriorContextReuse:
             Plotline(
                 id="custom_line", name="Custom", hero="custom",
                 goal="g", obstacle="o", stakes="s",
-                type="serialized", rank="A", nature="plot-led", confidence="solid",
+                type="serialized", nature="plot-led", confidence="solid",
+                computed_rank="A",
             ),
         ]
         mock_extract = MagicMock()

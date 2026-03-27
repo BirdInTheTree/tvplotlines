@@ -12,7 +12,7 @@ from tvplotlines.pass0 import detect_context
 from tvplotlines.pass1 import extract_plotlines
 from tvplotlines.pass2 import assign_events, assign_events_batch, assign_events_parallel
 from tvplotlines.pass3 import review_plotlines
-from tvplotlines.postprocess import assign_orphan_events, compute_span, validate_ranks
+from tvplotlines.postprocess import assign_orphan_events, compute_ranks, compute_span, validate_ranks
 from tvplotlines.verdicts import apply_verdicts
 
 logger = logging.getLogger(__name__)
@@ -23,11 +23,11 @@ _EPISODE_ID_RE = re.compile(r"^S\d{2}E\d{2}$")
 def _warn_rank_limits(
     plotlines: list[Plotline], is_ensemble: bool,
 ) -> list[Plotline]:
-    """Log warnings if plotline counts exceed expected limits. No mutations."""
+    """Log warnings if computed_rank counts exceed expected limits. No mutations."""
     counts: dict[str, int] = {}
     for p in plotlines:
-        if p.rank:
-            counts[p.rank] = counts.get(p.rank, 0) + 1
+        if p.computed_rank:
+            counts[p.computed_rank] = counts.get(p.computed_rank, 0) + 1
 
     max_total = 6 if is_ensemble else 5
     max_a = 4 if is_ensemble else 1
@@ -41,7 +41,7 @@ def _warn_rank_limits(
     if counts.get("C", 0) > max_c:
         logger.warning("Rank warning: %d C-plotlines (expected max %d)", counts["C"], max_c)
 
-    total = len([p for p in plotlines if p.rank])
+    total = len([p for p in plotlines if p.computed_rank])
     if total > max_total:
         logger.warning("Plotline count %d exceeds expected max %d", total, max_total)
 
@@ -165,9 +165,6 @@ def get_plotlines(
             prior_plotlines=prior.plotlines if prior else None,
             config=config,
         )
-    # Warn if rank counts exceed expected limits (no auto-fix)
-    _warn_rank_limits(plotlines, context.is_ensemble)
-
     _fire(callback, "on_pass1_complete", cast, plotlines)
 
     # Pass 2: assign events for each episode
@@ -198,10 +195,12 @@ def get_plotlines(
 
     _fire(callback, "on_pass2_complete", breakdowns)
 
-    # Post-processing: assign orphan events, compute span, validate ranks
+    # Post-processing: assign orphan events, compute span/rank, validate
     assign_orphan_events(plotlines, breakdowns)
     compute_span(plotlines, breakdowns)
+    compute_ranks(plotlines, breakdowns, context)
     flags = validate_ranks(plotlines, breakdowns)
+    _warn_rank_limits(plotlines, context.is_ensemble)
 
     # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:
@@ -217,9 +216,9 @@ def get_plotlines(
                 series_format=context.format,
                 is_ensemble=context.is_ensemble,
             )
-            # Recompute span and re-validate after verdicts
+            # Recompute span after verdicts (ranks are not recomputed —
+            # Pass 3 changes go into reviewed_rank, computed_rank stays)
             compute_span(plotlines, breakdowns)
-            validate_ranks(plotlines, breakdowns)
 
     result = TVPlotlinesResult(
         context=context,

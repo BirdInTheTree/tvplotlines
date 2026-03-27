@@ -87,9 +87,76 @@ def _run(args: argparse.Namespace) -> None:
                 sys.exit(1)
             episodes[episode_id] = p.read_text(encoding="utf-8")
 
+    # Validate mutually exclusive flags
+    if args.stop_after and args.resume_from:
+        print("--stop-after and --resume-from are mutually exclusive.", file=sys.stderr)
+        sys.exit(1)
+
     import time
     print(f"Running pipeline: {show} S{season:02d}")
     print(f"Episodes: {len(episodes)} synopses")
+
+    # --stop-after pass1: run Pass 0 + Pass 1 only, save intermediate JSON
+    if args.stop_after == "pass1":
+        from dataclasses import asdict
+
+        from tvplotlines.llm import LLMConfig
+        from tvplotlines.pass0 import detect_context
+        from tvplotlines.pass1 import extract_plotlines
+
+        config = LLMConfig(
+            provider=args.provider, model=args.model,
+            base_url=args.base_url, lang=args.lang,
+        )
+        episode_pairs = [(eid, episodes[eid]) for eid in sorted(episodes)]
+
+        t0 = time.monotonic()
+        context = detect_context(show, season, episode_pairs[:3], config=config)
+        print(f"  Pass 0 done: {context.format} | {context.story_engine}")
+
+        cast, plotlines = extract_plotlines(
+            show, season, context, episode_pairs, config=config,
+        )
+        print(f"  Pass 1 done: {len(plotlines)} plotlines, {len(cast)} cast")
+
+        intermediate = {
+            "show": show,
+            "season": season,
+            "context": asdict(context),
+            "cast": [asdict(c) for c in cast],
+            "plotlines": [asdict(p) for p in plotlines],
+        }
+        out = args.output or Path(f"{show.lower().replace(' ', '-')}_s{season:02d}_pass1.json")
+        out.write_text(
+            json.dumps(intermediate, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        elapsed = time.monotonic() - t0
+        minutes, seconds = divmod(int(elapsed), 60)
+        time_str = f"{minutes}m {seconds}s" if minutes else f"{seconds}s"
+        print(f"\nIntermediate result saved to {out} ({time_str})")
+        return
+
+    # --resume-from: load intermediate JSON, skip Pass 0 + Pass 1
+    resume_kwargs = {}
+    if args.resume_from:
+        from tvplotlines.models import CastMember, Plotline, SeriesContext
+
+        if not args.resume_from.exists():
+            print(f"File not found: {args.resume_from}", file=sys.stderr)
+            sys.exit(1)
+        data = json.loads(args.resume_from.read_text(encoding="utf-8"))
+        resume_kwargs["context"] = SeriesContext(**data["context"])
+        resume_kwargs["cast"] = [CastMember(**c) for c in data["cast"]]
+        # Strip 'rank' key if present — rank is now a property, not a field.
+        # Old intermediate JSONs may contain it; new ones use computed_rank/reviewed_rank.
+        resume_kwargs["plotlines"] = [
+            Plotline(**{k: v for k, v in p.items() if k != "rank"})
+            for p in data["plotlines"]
+        ]
+        print(f"  Resumed from {args.resume_from}: "
+              f"{len(resume_kwargs['plotlines'])} plotlines, "
+              f"{len(resume_kwargs['cast'])} cast")
 
     t0 = time.monotonic()
     result = get_plotlines(
@@ -103,15 +170,24 @@ def _run(args: argparse.Namespace) -> None:
         skip_review=args.skip_review,
         pass2_mode=args.pass2_mode,
         callback=_CLICallback(),
+        **resume_kwargs,
     )
 
     # Save result
+    from datetime import datetime
+    result_json = json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
     output = args.output or Path(f"{show.lower().replace(' ', '-')}_s{season:02d}.json")
-    output.write_text(
-        json.dumps(result.to_dict(), ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
+    output.write_text(result_json, encoding="utf-8")
     print(f"\nSaved to {output}")
+
+    # Save timestamped copy if --output-dir
+    if args.output_dir:
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        slug = show.lower().replace(" ", "-")
+        ts_path = args.output_dir / f"{slug}_s{season:02d}_{ts}.json"
+        ts_path.write_text(result_json, encoding="utf-8")
+        print(f"Copy saved to {ts_path}")
 
     # Print summary
     print(f"Context: {result.context.format} | {result.context.story_engine}")
@@ -192,6 +268,18 @@ def main() -> None:
     run_parser.add_argument("--base-url", default=None, help="Custom API endpoint (for OpenAI-compatible providers)")
     run_parser.add_argument("--skip-review", action="store_true", help="Skip Pass 3 structural review")
     run_parser.add_argument("--pass2-mode", default="batch", choices=["parallel", "batch", "sequential"])
+    run_parser.add_argument(
+        "--stop-after", choices=["pass1"],
+        help="Stop after the given pass and save intermediate result to JSON",
+    )
+    run_parser.add_argument(
+        "--resume-from", type=Path, metavar="JSON",
+        help="Resume from intermediate JSON (skip Pass 0 and Pass 1)",
+    )
+    run_parser.add_argument(
+        "--output-dir", type=Path, metavar="DIR",
+        help="Save timestamped result to this directory (e.g. runs/)",
+    )
 
     # tvplotlines write-synopses
     ws_parser = sub.add_parser(
@@ -207,7 +295,7 @@ def main() -> None:
     ws_parser.add_argument("--wiki-title",
                            help="Exact Wikipedia page title (override auto-detection)")
     ws_parser.add_argument("--format", dest="show_format",
-                           choices=["procedural", "serial", "hybrid", "limited"],
+                           choices=["procedural", "serial", "hybrid", "ensemble"],
                            help="Show format hint for beat counts (auto-detected if omitted)")
     ws_parser.add_argument("--lang", default="en", help="Wikipedia language (default: en)")
     ws_parser.add_argument("--dry-run", action="store_true",

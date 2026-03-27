@@ -12,7 +12,7 @@ from tvplotlines.llm import LLMConfig, call_llm
 from tvplotlines.models import SeriesContext
 from tvplotlines.prompts_en import load_prompt
 
-_VALID_FORMATS = {"procedural", "serial", "hybrid", "limited"}
+_VALID_FORMATS = {"procedural", "serial", "hybrid", "ensemble"}
 
 
 def detect_context(
@@ -31,7 +31,7 @@ def detect_context(
         config: LLM settings.
 
     Returns:
-        SeriesContext with format, is_ensemble, is_anthology, story_engine, genre.
+        SeriesContext with format, is_anthology, story_engine, genre.
     """
     if config is None:
         config = LLMConfig()
@@ -52,11 +52,15 @@ def detect_context(
     system_prompt = load_prompt("pass0", lang=config.lang)
     data = call_llm(system_prompt, user_message, config, validator=_validate)
 
+    # Backward compat: old LLM output may have is_ensemble as separate flag
+    fmt = data["format"]
+    if fmt != "ensemble" and data.get("is_ensemble"):
+        fmt = "ensemble"
+
     return SeriesContext(
-        format=data["format"],
+        format=fmt,
         story_engine=data["story_engine"],
         genre=data.get("genre", ""),
-        is_ensemble=bool(data.get("is_ensemble", False)),
         is_anthology=bool(data.get("is_anthology", False)),
     )
 
@@ -71,9 +75,6 @@ def _validate(data: dict) -> None:
 
     if not data.get("story_engine"):
         raise ValueError("story_engine is empty")
-
-    if not isinstance(data.get("is_ensemble"), bool):
-        raise ValueError("is_ensemble must be a boolean")
 
     if not isinstance(data.get("is_anthology"), bool):
         raise ValueError("is_anthology must be a boolean")

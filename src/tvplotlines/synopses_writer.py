@@ -57,19 +57,16 @@ def fetch_season_page(
             "Install with: pip install tvplotlines[writer]"
         )
 
+    endpoint = f"https://{lang}.wikipedia.org/w/api.php"
+    headers = {"User-Agent": _USER_AGENT}
+
     if wiki_title:
         titles_to_try = [wiki_title]
     else:
-        # Normalize show name: spaces → underscores
-        slug = show.replace(" ", "_")
-        titles_to_try = [
-            f"{slug}_(season_{season})",
-            f"{slug}_season_{season}",
-        ]
-
-    endpoint = f"https://{lang}.wikipedia.org/w/api.php"
-    headers = {"User-Agent": _USER_AGENT}
-    last_error = None
+        # Search Wikipedia to find the right page name
+        titles_to_try = _search_wikipedia(
+            show, season, endpoint, headers,
+        )
 
     for title in titles_to_try:
         params = {
@@ -82,13 +79,65 @@ def fetch_season_page(
         html = _fetch_with_retry(endpoint, params, headers)
         if html is not None:
             return html
-        last_error = title
 
     raise ValueError(
         f"Wikipedia page not found for '{show}' season {season}. "
         f"Tried: {', '.join(titles_to_try)}. "
         f"Use --wiki-title to specify the exact Wikipedia page title."
     )
+
+
+def _search_wikipedia(
+    show: str,
+    season: int,
+    endpoint: str,
+    headers: dict,
+) -> list[str]:
+    """Search Wikipedia for season page candidates.
+
+    Uses the Wikipedia Search API to find pages, then falls back
+    to constructed names if search returns nothing.
+    """
+    slug = show.replace(" ", "_")
+    fallback = [
+        f"{slug}_(season_{season})",
+        f"{slug}_season_{season}",
+    ]
+
+    try:
+        response = httpx.get(
+            endpoint,
+            params={
+                "action": "query",
+                "list": "search",
+                "srsearch": f"{show} season {season}",
+                "srlimit": "5",
+                "format": "json",
+            },
+            headers=headers,
+            timeout=30.0,
+        )
+        response.raise_for_status()
+        results = response.json().get("query", {}).get("search", [])
+    except (httpx.HTTPError, KeyError):
+        return fallback
+
+    if not results:
+        return fallback
+
+    # Keep only results whose title contains the show name
+    show_lower = show.lower()
+    results = [r for r in results if show_lower in r["title"].lower()]
+    if not results:
+        return fallback
+
+    # Put search results first, then fallback names (deduplicated)
+    titles = [r["title"].replace(" ", "_") for r in results]
+    seen = set(titles)
+    for fb in fallback:
+        if fb not in seen:
+            titles.append(fb)
+    return titles
 
 
 def _fetch_with_retry(
@@ -257,7 +306,7 @@ def rewrite_synopses(
         show: Show title.
         season: Season number.
         config: LLM configuration.
-        show_format: Optional format hint (procedural/serial/hybrid/limited).
+        show_format: Optional format hint (procedural/serial/hybrid/ensemble).
 
     Returns:
         List of synopsis texts, one per episode, in order.

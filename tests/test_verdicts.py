@@ -4,12 +4,12 @@ from tvplotlines.models import EpisodeBreakdown, Event, Plotline, Verdict
 from tvplotlines.verdicts import apply_verdicts
 
 
-def _make_plotline(id: str, rank: str = "A") -> Plotline:
+def _make_plotline(id: str, computed_rank: str = "A") -> Plotline:
     return Plotline(
         id=id, name=f"Test: {id}", hero="hero",
         goal="goal", obstacle="obstacle", stakes="stakes",
-        type="serialized", rank=rank, nature="character-led",
-        confidence="solid",
+        type="serialized", nature="character-led",
+        confidence="solid", computed_rank=computed_rank,
     )
 
 
@@ -66,7 +66,7 @@ class TestVerdictTargetValidation:
         assert result[0].id == "source"
 
     def test_drop_with_nonexistent_redistribute_target_skipped(self):
-        plotlines = [_make_plotline("victim"), _make_plotline("other", rank="B")]
+        plotlines = [_make_plotline("victim"), _make_plotline("other", computed_rank="B")]
         episodes = [_make_episode("S01E01", [
             {"event": "important event", "plotline_id": "victim"},
         ])]
@@ -88,7 +88,7 @@ class TestSafeDrop:
     """DROP should abort if any events remain unredistributed."""
 
     def test_drop_aborts_when_events_not_redistributed(self):
-        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        plotlines = [_make_plotline("target"), _make_plotline("other", computed_rank="B")]
         episodes = [_make_episode("S01E01", [
             {"event": "event one", "plotline_id": "target"},
             {"event": "event two", "plotline_id": "target"},
@@ -109,7 +109,7 @@ class TestSafeDrop:
         assert event_two.plotline_id == "target"
 
     def test_drop_succeeds_when_all_events_redistributed(self):
-        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        plotlines = [_make_plotline("target"), _make_plotline("other", computed_rank="B")]
         episodes = [_make_episode("S01E01", [
             {"event": "event one", "plotline_id": "target"},
             {"event": "event three", "plotline_id": "other"},
@@ -129,7 +129,7 @@ class TestSafeDrop:
 
     def test_no_events_set_to_null(self):
         """Events must never have plotline_id set to null by DROP."""
-        plotlines = [_make_plotline("target"), _make_plotline("other", rank="B")]
+        plotlines = [_make_plotline("target"), _make_plotline("other", computed_rank="B")]
         episodes = [_make_episode("S01E01", [
             {"event": f"event {i}", "plotline_id": "target"}
             for i in range(5)

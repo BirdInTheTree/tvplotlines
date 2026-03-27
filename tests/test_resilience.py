@@ -181,8 +181,9 @@ class TestResumeValidation:
                 cast=None,
                 plotlines=[Plotline(
                     id="s1", name="S1", hero="a", goal="g",
-                    obstacle="o", stakes="s", type="serialized", rank="A",
+                    obstacle="o", stakes="s", type="serialized",
                     nature="plot-led", confidence="solid",
+                    computed_rank="A",
                 )],
             )
 

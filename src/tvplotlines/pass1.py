@@ -19,7 +19,6 @@ logger = logging.getLogger(__name__)
 _VOTING_ROUNDS = 3
 
 _VALID_TYPES = {"case_of_the_week", "serialized", "runner"}
-_VALID_RANKS = {"A", "B", "C"}
 _VALID_NATURES = {"plot-led", "character-led", "theme-led"}
 _VALID_CONFIDENCE = {"solid", "partial", "inferred"}
 
@@ -194,7 +193,6 @@ def _parse_plotlines(data: dict, cast: list[CastMember]) -> list[Plotline]:
                     obstacle=s["obstacle"],
                     stakes=s["stakes"],
                     type=s["type"],
-                    rank=s["rank"],
                     nature=s["nature"],
                     confidence=s["confidence"],
                 )
@@ -219,13 +217,6 @@ def _validate(
     for p in plotlines:
         if p.type not in _VALID_TYPES:
             raise ValueError(f"Plotline {p.id!r}: invalid type {p.type!r}")
-        # Runner → rank must be None; non-runner → rank must be A/B/C
-        if p.type == "runner":
-            if p.rank is not None:
-                raise ValueError(f"Plotline {p.id!r}: runner must have rank=None, got {p.rank!r}")
-        else:
-            if p.rank not in _VALID_RANKS:
-                raise ValueError(f"Plotline {p.id!r}: invalid rank {p.rank!r}")
         if p.nature not in _VALID_NATURES:
             raise ValueError(f"Plotline {p.id!r}: invalid nature {p.nature!r}")
         if p.confidence not in _VALID_CONFIDENCE:
@@ -238,18 +229,4 @@ def _validate(
             raise ValueError(
                 f"format={context.format!r} expects exactly 1 case_of_the_week "
                 f"plotline, got {cotw_count}"
-            )
-
-    # A-rank count: 1 for non-ensemble, 2+ for ensemble
-    a_count = sum(1 for p in plotlines if p.rank == "A")
-    if not context.is_ensemble:
-        if a_count != 1:
-            raise ValueError(
-                f"Non-ensemble format expects exactly 1 A-rank "
-                f"plotline, got {a_count}"
-            )
-    else:
-        if a_count < 2:
-            raise ValueError(
-                f"Ensemble expects 2+ A-rank plotlines, got {a_count}"
             )

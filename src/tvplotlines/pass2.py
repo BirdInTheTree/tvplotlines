@@ -14,7 +14,6 @@ from tvplotlines.models import (
     EpisodeBreakdown,
     Event,
     Interaction,
-    Patch,
     Plotline,
     SeriesContext,
 )
@@ -27,9 +26,6 @@ _VALID_FUNCTIONS = {
 _VALID_INTERACTION_TYPES = {
     "thematic_rhyme", "dramatic_irony", "convergence",
 }
-_VALID_PATCH_ACTIONS = {"ADD_LINE", "CHECK_LINE", "SPLIT_LINE", "RERANK"}
-
-
 def assign_events(
     show: str,
     season: int,
@@ -245,26 +241,11 @@ def _parse_breakdown(data: dict, episode_id: str) -> EpisodeBreakdown:
         except KeyError as exc:
             raise ValueError(f"Interaction missing required field: {exc}") from exc
 
-    patches = []
-    for p in data.get("patches", []):
-        try:
-            patches.append(
-                Patch(
-                    action=p["action"],
-                    target=p["target"],
-                    reason=p["reason"],
-                    episodes=p.get("episodes", []),
-                )
-            )
-        except KeyError as exc:
-            raise ValueError(f"Patch missing required field: {exc}") from exc
-
     return EpisodeBreakdown(
         episode=data.get("episode", episode_id),
         events=events,
         theme=data.get("theme", ""),
         interactions=interactions,
-        patches=patches,
     )
 
 
@@ -308,10 +289,4 @@ def _validate(
         if interaction.type not in _VALID_INTERACTION_TYPES:
             raise ValueError(
                 f"Interaction: invalid type {interaction.type!r}"
-            )
-
-    for patch in breakdown.patches:
-        if patch.action not in _VALID_PATCH_ACTIONS:
-            raise ValueError(
-                f"Patch: invalid action {patch.action!r}"
             )

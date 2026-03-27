@@ -162,7 +162,7 @@ def _apply_rank_change(
     all_plotlines: list[Plotline],
     is_ensemble: bool,
 ) -> None:
-    """PROMOTE or DEMOTE: change plotline rank."""
+    """PROMOTE or DEMOTE: write reviewed_rank (does not mutate computed_rank)."""
     target_id = d["target"]
     new_rank = d["new_rank"]
 
@@ -179,8 +179,8 @@ def _apply_rank_change(
     plotline = index.get(target_id)
     if plotline:
         old_rank = plotline.rank
-        plotline.rank = new_rank
-        logger.info("RANK %s: %s → %s", target_id, old_rank, new_rank)
+        plotline.reviewed_rank = new_rank
+        logger.info("RANK %s: %s → %s (reviewed)", target_id, old_rank, new_rank)
 
 
 def _apply_create(
@@ -199,9 +199,10 @@ def _apply_create(
         obstacle=pl_data["obstacle"],
         stakes=pl_data["stakes"],
         type=pl_data["type"],
-        rank=pl_data["rank"],
         nature=pl_data["nature"],
         confidence="inferred",
+        # Pass 3 assigns rank to created plotlines via reviewed_rank
+        reviewed_rank=pl_data.get("rank"),
     )
 
     plotlines.append(new_plotline)

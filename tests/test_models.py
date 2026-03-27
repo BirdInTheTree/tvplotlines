@@ -24,8 +24,9 @@ def _make_result() -> TVPlotlinesResult:
             Plotline(
                 id="empire", name="Walt: Empire", hero="walt",
                 goal="build a drug business", obstacle="violent dealers",
-                stakes="death", type="serialized", rank="A",
-                nature="plot-led", confidence="solid", span=["S01E01"],
+                stakes="death", type="serialized",
+                nature="plot-led", confidence="solid",
+                computed_rank="A", span=["S01E01"],
             ),
         ],
         episodes=[

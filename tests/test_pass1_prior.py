@@ -27,7 +27,8 @@ def _make_prior_plotlines():
         Plotline(
             id="empire", name="Walt: Empire", hero="walt",
             goal="build a drug business", obstacle="morality", stakes="death",
-            type="serialized", rank="A", nature="plot-led", confidence="solid",
+            type="serialized", nature="plot-led", confidence="solid",
+            computed_rank="A",
             span=["S01E01", "S01E07"],  # should be excluded from prior
         ),
     ]
@@ -76,7 +77,8 @@ class TestPriorOverlapWarning:
             Plotline(
                 id="drug_business", name="Walt: Drug Business", hero="walt",
                 goal="expand meth operation", obstacle="rivals", stakes="death",
-                type="serialized", rank="A", nature="plot-led", confidence="solid",
+                type="serialized", nature="plot-led", confidence="solid",
+                computed_rank="A",
             ),
         ]
         with caplog.at_level(logging.WARNING):
@@ -90,7 +92,8 @@ class TestPriorOverlapWarning:
             Plotline(
                 id="empire", name="Walt: Empire", hero="walt",
                 goal="expand empire", obstacle="DEA", stakes="prison",
-                type="serialized", rank="A", nature="plot-led", confidence="solid",
+                type="serialized", nature="plot-led", confidence="solid",
+                computed_rank="A",
             ),
         ]
         with caplog.at_level(logging.WARNING):

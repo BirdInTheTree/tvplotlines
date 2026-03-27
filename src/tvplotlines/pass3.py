@@ -106,14 +106,6 @@ def review_plotlines(
                     }
                     for e in ep.events
                 ],
-                "patches": [
-                    {
-                        "action": p.action,
-                        "target": p.target,
-                        "reason": p.reason,
-                    }
-                    for p in ep.patches
-                ],
             }
             for ep in episodes
         ],

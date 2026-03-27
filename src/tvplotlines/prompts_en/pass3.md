@@ -19,29 +19,7 @@ Your output—verdicts (structural corrections)—is applied by code to produce 
 
 # GLOSSARY
 
-## Verdict Actions
-
-| action | what it does |
-|--------|-------------|
-| `MERGE` | Merge two plotlines into one |
-| `REASSIGN` | Move an event to a different plotline |
-| `PROMOTE` | Raise a plotline's rank |
-| `DEMOTE` | Lower a plotline's rank |
-| `CREATE` | Create a new plotline from orphaned events |
-| `DROP` | Remove a plotline, redistribute its events |
-| `REFUNCTION` | Change an event's function (e.g. escalation → crisis) |
-
-This matters because verdicts are the only way to fix problems found across the full season—previous steps couldn't see the whole picture.
-
-## Confidence
-
-How complete is the conflict structure (assigned at the previous step):
-
-- **solid**—complete Story DNA (hero, goal, obstacle, stakes all clear)
-- **partial**—has hero and goal, but obstacle/stakes unclear
-- **inferred**—plotline implied, Story DNA incomplete
-
-This matters because confidence calibrates your expectations: inferred plotlines are expected to have incomplete structure, solid plotlines are not.
+{GLOSSARY}
 
 # TASK
 
@@ -99,16 +77,7 @@ Events with `plotline_id: null`—the analyst couldn't assign them. For each:
 - Event belongs to an existing plotline (assignment error) → REASSIGN
 - Multiple orphaned events form a pattern (one hero, one goal) → CREATE a new plotline
 
-### Step 7: Check patches
-
-Patches from the previous step—hints, not assignments. For each patch decide whether it's justified:
-
-- ADD_LINE: is a new plotline really needed, or is it an assignment error?
-- CHECK_LINE: is the plotline truly questionable, or just rare (runner)?
-- SPLIT_LINE: truly two different plotlines, or one plotline with phases?
-- RERANK: does data support a different rank?
-
-### Step 8: Check format consistency
+### Step 7: Check format consistency
 
 The plotline structure should match the format:
 
@@ -132,6 +101,8 @@ If the structure doesn't match—either the format was determined incorrectly, o
 9. **DROP only phantoms.** DROP a plotline only if it has no events and doesn't exist in the series. A weak plotline in a bad script—that's data, not an error.
 
 # OUTPUT
+
+Think through each verdict before writing the JSON. Each verdict must be justified by data or theory — your review is checked by a human.
 
 Response—strictly JSON, no markdown wrapping, no comments outside JSON.
 

@@ -23,7 +23,14 @@ class TestPass0Validation:
             "format": "serial",
             "story_engine": "test engine",
             "genre": "drama",
-            "is_ensemble": False,
+            "is_anthology": False,
+        })
+
+    def test_ensemble_format_valid(self):
+        validate_pass0({
+            "format": "ensemble",
+            "story_engine": "test engine",
+            "genre": "drama",
             "is_anthology": False,
         })
 
@@ -32,7 +39,14 @@ class TestPass0Validation:
             validate_pass0({
                 "format": "miniseries",
                 "story_engine": "x",
-                "is_ensemble": False,
+                "is_anthology": False,
+            })
+
+    def test_limited_format_rejected(self):
+        with pytest.raises(ValueError, match="format"):
+            validate_pass0({
+                "format": "limited",
+                "story_engine": "x",
                 "is_anthology": False,
             })
 
@@ -41,16 +55,6 @@ class TestPass0Validation:
             validate_pass0({
                 "format": "serial",
                 "story_engine": "",
-                "is_ensemble": False,
-                "is_anthology": False,
-            })
-
-    def test_is_ensemble_must_be_bool(self):
-        with pytest.raises(ValueError, match="is_ensemble"):
-            validate_pass0({
-                "format": "serial",
-                "story_engine": "x",
-                "is_ensemble": "yes",
                 "is_anthology": False,
             })
 
@@ -59,7 +63,6 @@ class TestPass0Validation:
             validate_pass0({
                 "format": "serial",
                 "story_engine": "x",
-                "is_ensemble": False,
                 "is_anthology": "yes",
             })
 
@@ -78,12 +81,12 @@ def _make_plotlines():
         Plotline(
             id="empire", name="Empire", hero="walt",
             goal="build empire", obstacle="morality", stakes="death",
-            type="serialized", rank="A", nature="plot-led", confidence="solid",
+            type="serialized", nature="plot-led", confidence="solid",
         ),
         Plotline(
             id="partnership", name="Partnership", hero="jesse",
             goal="survive", obstacle="fear", stakes="prison",
-            type="serialized", rank="B", nature="character-led", confidence="solid",
+            type="serialized", nature="character-led", confidence="solid",
         ),
     ]
 
@@ -115,32 +118,10 @@ class TestPass1Validation:
         with pytest.raises(ValueError, match="case_of_the_week"):
             validate_pass1(_make_plotlines(), _make_cast(), ctx)
 
-    def test_serial_rejects_multiple_a_rank(self):
+    def test_serial_no_rank_validation(self):
+        """Pass 1 no longer validates ranks — rank is computed after Pass 2."""
         ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
-        lines = _make_plotlines()
-        lines[1].rank = "A"  # now both are A
-        with pytest.raises(ValueError, match="1 A-rank"):
-            validate_pass1(lines, _make_cast(), ctx)
-
-    def test_serial_accepts_one_a_rank(self):
-        ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
-        validate_pass1(_make_plotlines(), _make_cast(), ctx)  # 1 A + 1 B
-
-    def test_ensemble_needs_multiple_a_rank(self):
-        ctx = SeriesContext(
-            format="serial", story_engine="x", genre="drama", is_ensemble=True,
-        )
-        lines = _make_plotlines()  # 1 A + 1 B
-        with pytest.raises(ValueError, match="2\\+ A-rank"):
-            validate_pass1(lines, _make_cast(), ctx)
-
-    def test_ensemble_accepts_multiple_a_rank(self):
-        ctx = SeriesContext(
-            format="serial", story_engine="x", genre="drama", is_ensemble=True,
-        )
-        lines = _make_plotlines()
-        lines[1].rank = "A"  # both A
-        validate_pass1(lines, _make_cast(), ctx)
+        validate_pass1(_make_plotlines(), _make_cast(), ctx)
 
 
 # --- Pass 2 ---
@@ -197,7 +178,7 @@ class TestPass2Validation:
         validate_pass2(bd, _make_plotlines(), _make_cast())
 
     def test_null_plotline_ok(self):
-        """A few unassigned events (-> ADD_LINE patch) should pass validation."""
+        """A few unassigned events should pass validation."""
         bd = _make_breakdown()
         # Add enough events so that 1 null is under the 10% threshold
         for i in range(10):

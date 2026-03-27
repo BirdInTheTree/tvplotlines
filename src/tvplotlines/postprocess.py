@@ -1,4 +1,4 @@
-"""Post-processing: compute span, weight, aggregate patches.
+"""Post-processing: compute span, weight, rank.
 
 These fields are derived from Pass 2 results, not from LLM.
 """
@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from tvplotlines.models import EpisodeBreakdown, Patch, Plotline
+from tvplotlines.models import EpisodeBreakdown, Plotline, SeriesContext
 
 
 def compute_span(
@@ -111,6 +111,58 @@ def compute_weight(
     return weights
 
 
+def compute_ranks(
+    plotlines: list[Plotline],
+    episodes: list[EpisodeBreakdown],
+    context: SeriesContext,
+) -> None:
+    """Assign computed_rank to each plotline based on primary event counts (in-place).
+
+    Rules:
+    1. Runners get no rank (None).
+    2. Procedural format: case_of_the_week → A.
+    3. Hybrid format: case_of_the_week → B.
+    4. Remaining plotlines sorted by descending primary event count:
+       first → highest available rank, second → next, rest → C.
+    """
+    # Count primary events per plotline (only plotline_id, not also_affects)
+    primary_counts: Counter[str] = Counter()
+    for ep in episodes:
+        for event in ep.events:
+            if event.plotline_id:
+                primary_counts[event.plotline_id] += 1
+
+    # Phase 1: fixed assignments
+    fixed_ids: set[str] = set()
+    is_a_taken = False
+
+    for plotline in plotlines:
+        if plotline.type == "runner":
+            plotline.computed_rank = None
+            fixed_ids.add(plotline.id)
+        elif plotline.type == "case_of_the_week":
+            if context.format == "procedural":
+                plotline.computed_rank = "A"
+                is_a_taken = True
+            elif context.format == "hybrid":
+                plotline.computed_rank = "B"
+            fixed_ids.add(plotline.id)
+
+    # Phase 2: remaining plotlines sorted by event count
+    remaining = [p for p in plotlines if p.id not in fixed_ids]
+    remaining.sort(key=lambda p: primary_counts.get(p.id, 0), reverse=True)
+
+    for i, plotline in enumerate(remaining):
+        if i == 0 and not is_a_taken:
+            plotline.computed_rank = "A"
+            is_a_taken = True
+        elif i <= 1:
+            # Second plotline (or first when A is taken by case_of_the_week)
+            plotline.computed_rank = "B"
+        else:
+            plotline.computed_rank = "C"
+
+
 def validate_ranks(
     plotlines: list[Plotline],
     episodes: list[EpisodeBreakdown],
@@ -148,13 +200,13 @@ def validate_ranks(
         span_len = len(plotline.span) if isinstance(plotline.span, list) else 0
         span_frac = span_len / n_episodes
 
-        # Rule 1: A-rank + short span → mark for demotion
-        if plotline.rank == "A" and span_frac < min_span_frac:
+        # Rule 1: A computed_rank + short span → demote to B
+        if plotline.computed_rank == "A" and span_frac < min_span_frac:
             demotions.append(plotline)
             flags.append({
                 "plotline": plotline.id,
                 "flag": "demoted",
-                "reason": f"rank A but span {span_len}/{n_episodes} ({span_frac:.0%})",
+                "reason": f"computed_rank A but span {span_len}/{n_episodes} ({span_frac:.0%})",
             })
 
         # Rule 2: dominates event share → flag
@@ -169,14 +221,6 @@ def validate_ranks(
 
     # Apply demotions after all rules evaluated
     for plotline in demotions:
-        plotline.rank = "B"
+        plotline.computed_rank = "B"
 
     return flags
-
-
-def aggregate_patches(episodes: list[EpisodeBreakdown]) -> list[Patch]:
-    """Collect all patches from all episodes into one list."""
-    all_patches = []
-    for ep in episodes:
-        all_patches.extend(ep.patches)
-    return all_patches
