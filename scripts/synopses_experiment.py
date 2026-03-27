@@ -99,9 +99,27 @@ def _run_one_config(
     print(f"{'='*60}")
 
     t0 = time.monotonic()
-    result = subprocess.run(
-        cmd, capture_output=True, text=True, timeout=600,
-    )
+    timeout = 3600 if mode == "batch" else 600
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as e:
+        elapsed = time.monotonic() - t0
+        print(f"  TIMEOUT after {elapsed:.0f}s")
+        (out_dir / "stdout.txt").write_text(e.stdout or "", encoding="utf-8")
+        (out_dir / "stderr.txt").write_text(e.stderr or "", encoding="utf-8")
+        meta = {
+            "label": label, "mode": mode, "glossary": glossary,
+            "experiment_id": experiment_id, "git_commit": _get_git_commit(),
+            "elapsed_seconds": round(elapsed, 1), "exit_code": -1,
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "error": f"timeout after {timeout}s",
+        }
+        (out_dir / "meta.json").write_text(
+            json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8",
+        )
+        return meta
     elapsed = time.monotonic() - t0
 
     # Save stdout/stderr

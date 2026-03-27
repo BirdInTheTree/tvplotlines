@@ -4,6 +4,7 @@ Not part of the public library API — not exported from __init__.py.
 """
 from __future__ import annotations
 
+import json
 import logging
 import re
 import sys
@@ -640,12 +641,15 @@ def write_synopses(
     from tvplotlines.llm import LLMConfig
 
     config = LLMConfig(provider=provider, model=model, base_url=base_url)
-    synopses = rewrite_synopses(
+    result = rewrite_synopses(
         episodes, show, season, config,
         show_format=show_format,
         mode=mode,
         use_glossary=use_glossary,
+        suggest_plotlines=True,
     )
+    synopses = result["synopses"]
+    suggested_plotlines = result["suggested_plotlines"]
 
     # Save: directory → individual files, file → combined
     output_path = Path(output)
@@ -654,6 +658,13 @@ def write_synopses(
     if is_dir:
         paths = _save_individual_files(synopses, episodes, season, output_path)
         print(f"Saved {len(paths)} synopsis files to {output_path}/")
+        # Save plotline suggestions alongside synopses
+        plotlines_path = output_path / "suggested_plotlines.json"
+        plotlines_path.write_text(
+            json.dumps(suggested_plotlines, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        print(f"Plotline suggestions saved to {plotlines_path}")
     else:
         path = _save_combined_file(synopses, episodes, show, season, output_path)
         print(f"Saved combined synopsis to {path}")
