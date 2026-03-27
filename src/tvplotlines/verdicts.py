@@ -18,12 +18,11 @@ def _validate_targets(
     """Check that verdict references valid plotline IDs. Return False to skip."""
     valid_ids = set(index.keys()) | create_ids
 
-    if action in ("MERGE", "PROMOTE", "DEMOTE"):
+    if action == "MERGE":
         target = d.get("target")
         if target not in valid_ids:
-            logger.warning("Skipping %s: target %r not in plotlines", action, target)
+            logger.warning("Skipping MERGE: target %r not in plotlines", target)
             return False
-    if action == "MERGE":
         source = d.get("source")
         if source not in valid_ids:
             logger.warning("Skipping MERGE: source %r not in plotlines", source)
@@ -61,7 +60,6 @@ def apply_verdicts(
     episodes: list[EpisodeBreakdown],
     *,
     series_format: str = "serial",
-    is_ensemble: bool = False,
 ) -> list[Plotline]:
     """Apply verdicts to plotlines and episodes (in-place for episodes).
 
@@ -70,7 +68,6 @@ def apply_verdicts(
         plotlines: Current plotlines (will be copied, not mutated).
         episodes: Episode breakdowns (events mutated in-place).
         series_format: Series format for rank validation.
-        is_ensemble: Whether the show is ensemble.
 
     Returns:
         Updated list of plotlines.
@@ -96,10 +93,6 @@ def apply_verdicts(
             _apply_merge(d, plotlines, plotline_index, episodes)
         elif action == "REASSIGN":
             _apply_reassign(d, episodes)
-        elif action == "PROMOTE":
-            _apply_rank_change(d, plotline_index, plotlines, is_ensemble)
-        elif action == "DEMOTE":
-            _apply_rank_change(d, plotline_index, plotlines, is_ensemble)
         elif action == "CREATE":
             _apply_create(d, plotlines, plotline_index, episodes)
         elif action == "DROP":
@@ -154,33 +147,6 @@ def _apply_reassign(d: dict, episodes: list[EpisodeBreakdown]) -> None:
                     return
 
     logger.warning("REASSIGN: event not found in %s: '%s'", episode_id, event_text[:50])
-
-
-def _apply_rank_change(
-    d: dict,
-    index: dict[str, Plotline],
-    all_plotlines: list[Plotline],
-    is_ensemble: bool,
-) -> None:
-    """PROMOTE or DEMOTE: write reviewed_rank (does not mutate computed_rank)."""
-    target_id = d["target"]
-    new_rank = d["new_rank"]
-
-    # Block PROMOTE to A if there's already an A-rank plotline (non-ensemble)
-    if new_rank == "A" and not is_ensemble:
-        has_a = any(p.rank == "A" for p in all_plotlines)
-        if has_a:
-            logger.warning(
-                "Blocked PROMOTE %s to A: non-ensemble format already has an A-rank plotline",
-                target_id,
-            )
-            return
-
-    plotline = index.get(target_id)
-    if plotline:
-        old_rank = plotline.rank
-        plotline.reviewed_rank = new_rank
-        logger.info("RANK %s: %s → %s (reviewed)", target_id, old_rank, new_rank)
 
 
 def _apply_create(

@@ -214,7 +214,6 @@ def get_plotlines(
             plotlines = apply_verdicts(
                 verdicts, plotlines, breakdowns,
                 series_format=context.format,
-                is_ensemble=context.is_ensemble,
             )
             # Recompute span after verdicts (ranks are not recomputed —
             # Pass 3 changes go into reviewed_rank, computed_rank stays)

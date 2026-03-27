@@ -41,9 +41,7 @@ When one event advances two plotlines, assign it to the primary one and list the
 
 Every sentence of the synopsis must produce at least one event. If you can't map a sentence to an event, you missed something.
 
-If all plotlines in the episode have only escalation functions, or all have only crisis/resolution — you probably misassigned some functions. 
-
-
+If all plotlines in the episode have only escalation functions, or all have only crisis/resolution — you probably misassigned some functions. A well-written episode takes its main plotline through a full arc: setup → escalation → turning point → climax → resolution. Other plotlines may cover fewer stages, but the A-story typically has all of them.
 
 # OUTPUT
 
@@ -155,7 +153,7 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
       "lines": ["empire", "investigation"],
       "description": "the audience knows Walt = Heisenberg, Hank doesn't"
     }
-  ],
+  ]
 }
 ```
 

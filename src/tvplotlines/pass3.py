@@ -19,8 +19,7 @@ from tvplotlines.models import (
 from tvplotlines.postprocess import compute_weight
 from tvplotlines.prompts_en import load_prompt
 
-_VALID_ACTIONS = {"MERGE", "REASSIGN", "PROMOTE", "DEMOTE", "CREATE", "DROP", "REFUNCTION"}
-_VALID_RANKS = {"A", "B", "C"}
+_VALID_ACTIONS = {"MERGE", "REASSIGN", "CREATE", "DROP", "REFUNCTION"}
 _VALID_FUNCTIONS = {
     "setup", "inciting_incident", "escalation", "turning_point",
     "crisis", "climax", "resolution",
@@ -169,13 +168,6 @@ def _parse_verdicts(
                 raise ValueError(f"REASSIGN event not found: {v['event']!r}")
             if v["to"] not in all_ids:
                 raise ValueError(f"REASSIGN target {v['to']!r} not in plotlines")
-
-        elif action in ("PROMOTE", "DEMOTE"):
-            _require_keys(v, ["target", "new_rank", "reason"])
-            if v["target"] not in plotline_ids:
-                raise ValueError(f"{action} target {v['target']!r} not in plotlines")
-            if v["new_rank"] not in _VALID_RANKS:
-                raise ValueError(f"{action} invalid rank: {v['new_rank']!r}")
 
         elif action == "CREATE":
             _require_keys(v, ["plotline", "reassign_events", "reason"])

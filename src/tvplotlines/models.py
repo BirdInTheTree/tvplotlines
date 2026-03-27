@@ -48,7 +48,7 @@ class Plotline:
     nature: str  # "plot-led" | "character-led" | "theme-led"
     confidence: str  # "solid" | "partial" | "inferred"
     computed_rank: str | None = None  # "A" | "B" | "C" | None — set by compute_ranks()
-    reviewed_rank: str | None = None  # "A" | "B" | "C" | None — set by Pass 3 PROMOTE/DEMOTE
+    reviewed_rank: str | None = None  # "A" | "B" | "C" | None — set by Pass 3 CREATE
     span: list[str] = field(default_factory=list)  # computed from Pass 2
 
     @property
@@ -91,7 +91,7 @@ class EpisodeBreakdown:
 class Verdict:
     """A structural decision from Pass 3 (structural review)."""
 
-    action: str  # "MERGE" | "REASSIGN" | "PROMOTE" | "DEMOTE" | "CREATE" | "DROP" | "REFUNCTION"
+    action: str  # "MERGE" | "REASSIGN" | "CREATE" | "DROP" | "REFUNCTION"
     data: dict  # full verdict payload — structure depends on action
 
 

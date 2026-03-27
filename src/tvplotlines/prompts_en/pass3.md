@@ -5,14 +5,14 @@ You are a story editor with all episodes laid out in front of you. Check the ful
 # CONTEXT
 
 You receive:
-- **show**, **season**, **format**, **is_ensemble**, **story_engine** (series context)
+- **show**, **season**, **format**, **story_engine** (series context)
 - **cast**: character list with `id`, `name`
-- **plotlines**: plotline list with `id`, `name`, `hero`, `goal`, `obstacle`, `stakes`, `type`, `rank`, `nature`, `confidence`, `span`, `weight_per_episode`
-- **episodes**: for each episode—`events` (with plotline assignments), `theme`, `interactions`, `patches`
+- **plotlines**: plotline list with `id`, `name`, `hero`, `goal`, `obstacle`, `stakes`, `type`, `computed_rank`, `nature`, `confidence`, `span`
+- **episodes**: for each episode—`events` (with plotline assignments), `theme`, `interactions`
 - **diagnostics** (optional): automated flags from post-processing. Each flag has `plotline`, `flag`, and `reason`. Possible flags:
-  - `low_completeness`—plotline has fewer arc functions than expected for its rank (e.g. A-rank with 3/7)
+  - `low_completeness`—plotline has fewer arc functions than expected for its confidence (e.g. solid plotline with 3/7)
   - `monotonicity_violation`—function sequence goes backwards past a milestone (e.g. crisis after climax)
-  - `rank_mismatch`—weight data contradicts assigned rank (e.g. C-rank plotline is primary in most episodes)
+  - `dominant`—plotline has more than 50% of all season events
   These are computed facts—use them in your analysis.
 
 Your output—verdicts (structural corrections)—is applied by code to produce the final result.
@@ -43,14 +43,9 @@ If you find misassigned events → REASSIGN.
 
 ### Step 3: Check plotline arcs
 
-For each plotline, look at event functions across the entire season. A healthy plotline has a progression: setup → inciting_incident → escalation → turning_point → crisis → climax → resolution. Problems:
+Note: event functions from the previous step reflect each event's role within its episode, not within the season-long arc. Keep this in mind when checking arc progression — a "climax" in episode 3 may be an escalation in the season arc.
 
-- Only setup without inciting_incident—stillborn plotline
-- Only escalation without turning_point—plotline is stuck
-- No climax/resolution in the final episode (for limited format)—unclosed plotline
-- Function goes backwards past a milestone (crisis after climax)—monotonicity violation → REFUNCTION
-
-Use `low_completeness` and `monotonicity_violation` diagnostics if provided.
+If diagnostics include `low_completeness` — check if events of this plotline are misassigned to other plotlines (→ REASSIGN them back), or if the plotline is genuinely weak (→ note in your review, don't invent events).
 
 ### Step 4: Look for duplication
 
@@ -60,38 +55,32 @@ Two plotlines with the same hero and adjacent goals—most likely one plotline w
 - Events of two plotlines alternate in the same episodes
 - No conflict between the two plotlines—they don't contradict each other
 
-### Step 5: Check ranks against data
+If confirmed → MERGE.
 
-Computed weight (primary/background/glimpse)—objective data. Rank (A/B/C)—the analyst's subjective assessment. If data contradicts the assessment:
+If diagnostics include `dominant` — a plotline has more than half of all season events. Check if it's actually two plotlines collapsed into one (→ CREATE a second plotline + REASSIGN events to it).
 
-- Plotline rank=C, but weight=primary in most episodes → PROMOTE (but never to A if there is already an A-rank plotline in non-ensemble format—only ensemble allows multiple A)
-- Plotline rank=A, but weight=glimpse or absent in half the season → DEMOTE
-- Two plotlines rank=A with equal weight in non-ensemble → DEMOTE one to B
+### Step 5: Check orphaned events
 
-Use `rank_mismatch` diagnostics if provided.
-
-### Step 6: Check orphaned events
-
-Events with `plotline_id: null`—the analyst couldn't assign them. For each:
+Events with `plotline_id: null`—the previous step couldn't assign them. For each:
 
 - Event belongs to an existing plotline (assignment error) → REASSIGN
 - Multiple orphaned events form a pattern (one hero, one goal) → CREATE a new plotline
 
-### Step 7: Check format consistency
+### Step 6: Check format consistency
 
 The plotline structure should match the format:
 
 - **Procedural**: exactly one case_of_the_week plotline. Max 5 total.
-- **Serial**: max 5 plotlines. 1 A, 1–2 B, 1–2 C. Runners must span 3+ episodes.
 - **Hybrid**: one case_of_the_week + the rest serialized. Max 5 total.
-- **Ensemble** (is_ensemble=true): 2–4 A plotlines, 1–2 B. Max 5–6 total.
+- **Serial**: max 5 plotlines. Runners must span 3+ episodes.
+- **Ensemble**: max 8 plotlines. Runners must span 3+ episodes.
 
-If the structure doesn't match—either the format was determined incorrectly, or the plotlines.
+If the structure doesn't match—either the format was determined incorrectly, or the plotlines need adjustment.
 
 # RULES
 
 1. **If everything is fine—empty `verdicts` array.** Don't invent problems.
-2. **Each verdict must be justified by theory** (Story DNA, format, arc) or data (weight, span, diagnostics).
+2. **Each verdict must be justified by theory** (Story DNA, format, arc) or data (span, diagnostics).
 3. **REASSIGN references the exact event text** from input data. Do not rephrase.
 4. **MERGE: source events are automatically moved to target.** No need to list each one.
 5. **DROP: must specify where to move ALL events.** Code rejects DROP if any event remains unredistributed. Events are never removed or set to null.
@@ -124,18 +113,6 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
       "reason": "one sentence"
     },
     {
-      "action": "PROMOTE",
-      "target": "plotline_id",
-      "new_rank": "B",
-      "reason": "one sentence"
-    },
-    {
-      "action": "DEMOTE",
-      "target": "plotline_id",
-      "new_rank": "C",
-      "reason": "one sentence"
-    },
-    {
       "action": "CREATE",
       "plotline": {
         "id": "new_plotline_id",
@@ -145,7 +122,6 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
         "obstacle": "...",
         "stakes": "...",
         "type": "serialized",
-        "rank": "B",
         "nature": "character-led"
       },
       "reassign_events": [
@@ -181,8 +157,6 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
 |--------|-----------------|
 | `MERGE` | `source`, `target`, `reason` |
 | `REASSIGN` | `event`, `episode`, `from`, `to`, `reason` |
-| `PROMOTE` | `target`, `new_rank`, `reason` |
-| `DEMOTE` | `target`, `new_rank`, `reason` |
 | `CREATE` | `plotline`, `reassign_events`, `reason` |
 | `DROP` | `target`, `redistribute`, `reason` |
 | `REFUNCTION` | `event`, `episode`, `old_function`, `new_function`, `reason` |
@@ -194,7 +168,6 @@ Code will check:
 - `target`/`source` reference existing plotline ids
 - `to` in REASSIGN references an existing id (or an id from CREATE in the same verdict set)
 - `event` in REASSIGN/DROP/CREATE/REFUNCTION exactly matches event text in input data
-- `new_rank`—valid rank ("A", "B", "C")
 - `new_function`—valid function enum
 - `plotline` in CREATE contains all required fields
 
