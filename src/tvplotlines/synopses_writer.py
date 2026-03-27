@@ -638,9 +638,10 @@ def write_synopses(
             print(f"  S{season:02d}E{ep['number']:02d} — {ep['title']} ({desc_len} chars)")
         return
 
-    from tvplotlines.llm import LLMConfig
+    from tvplotlines.llm import LLMConfig, usage
 
     config = LLMConfig(provider=provider, model=model, base_url=base_url)
+    usage.__init__()  # Reset usage tracker
     result = rewrite_synopses(
         episodes, show, season, config,
         show_format=show_format,
@@ -668,6 +669,8 @@ def write_synopses(
     else:
         path = _save_combined_file(synopses, episodes, show, season, output_path)
         print(f"Saved combined synopsis to {path}")
+
+    print(f"Usage: {usage.summary(config.resolved_model)}")
 
 
 def _load_from_files(file_paths: list[str], season: int) -> list[RawEpisode]:

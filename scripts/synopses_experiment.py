@@ -30,7 +30,6 @@ MODES = ["parallel", "batch", "sequential", "single"]
 GLOSSARY_CONFIGS = [
     {"mode": "parallel", "glossary": False, "label": "parallel_no_glossary"},
     {"mode": "parallel", "glossary": True, "label": "parallel_glossary"},
-    {"mode": "batch", "glossary": True, "label": "batch_glossary"},
     {"mode": "sequential", "glossary": True, "label": "sequential_glossary"},
     {"mode": "single", "glossary": True, "label": "single_glossary"},
 ]
