@@ -45,8 +45,10 @@ tasks/
 CLAUDE.md
 house-s01/
 house_s01.json
-# Old experiments folder (not docs/experiments/)
+# Experiments and scripts (internal, not part of library)
 /experiments/
+/scripts/
+docs/experiments/
 program.md
 results.tsv
 
