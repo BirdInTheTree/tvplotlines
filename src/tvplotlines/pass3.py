@@ -224,11 +224,14 @@ def _parse_arc_functions(
         plot_fn = af.get("plot_fn")
 
         if plot_fn not in _VALID_FUNCTIONS:
-            raise ValueError(f"Invalid arc function: {plot_fn!r}")
+            logger.warning("Skipping arc function with invalid value: %s", plot_fn)
+            continue
         if ep_id not in events_by_ep:
-            raise ValueError(f"Arc function references unknown episode: {ep_id!r}")
+            logger.warning("Skipping arc function for unknown episode: %s", ep_id)
+            continue
         if event_text not in events_by_ep.get(ep_id, set()):
-            raise ValueError(f"Arc function event not found in {ep_id}: {event_text!r}")
+            logger.warning("Skipping arc function — event not found in %s: %s", ep_id, event_text[:60])
+            continue
 
         result.append({"episode": ep_id, "event": event_text, "plot_fn": plot_fn})
     return result

@@ -74,7 +74,7 @@ The arc function may differ from the episode function. A climax of episode 3 mig
 
 `inciting_incident` occurs once per plotline across the season.
 
-Return arc functions in the `arc_functions` field of your response — a list of objects, each with `episode`, `event` (exact text), and `plot_fn`.
+Assign `plot_fn` to EVERY event, not just key moments. Return arc functions in the `arc_functions` field — one entry per event, each with `episode`, `event` (exact text from input, do not rephrase), and `plot_fn`.
 
 ### Step 7: Check format consistency
 

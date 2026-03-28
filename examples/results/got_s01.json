@@ -1,7 +1,7 @@
 {
   "context": {
     "format": "ensemble",
-    "story_engine": "Noble families of Westeros compete for the Iron Throne through political maneuvering and warfare while ancient supernatural threats return to threaten the realm",
+    "story_engine": "Noble families of Westeros maneuver for power and survival as political alliances shift and ancient threats return from beyond the Wall",
     "genre": "fantasy drama",
     "is_anthology": false
   },
@@ -30,6 +30,13 @@
       ]
     },
     {
+      "id": "robb",
+      "name": "Robb Stark",
+      "aliases": [
+        "Robb"
+      ]
+    },
+    {
       "id": "tyrion",
       "name": "Tyrion Lannister",
       "aliases": [
@@ -40,15 +47,7 @@
       "id": "catelyn",
       "name": "Catelyn Stark",
       "aliases": [
-        "Catelyn",
-        "Cat"
-      ]
-    },
-    {
-      "id": "robb",
-      "name": "Robb Stark",
-      "aliases": [
-        "Robb"
+        "Catelyn"
       ]
     },
     {
@@ -56,6 +55,13 @@
       "name": "Cersei Lannister",
       "aliases": [
         "Cersei"
+      ]
+    },
+    {
+      "id": "bran",
+      "name": "Bran Stark",
+      "aliases": [
+        "Bran"
       ]
     },
     {
@@ -70,13 +76,6 @@
       "name": "Sansa Stark",
       "aliases": [
         "Sansa"
-      ]
-    },
-    {
-      "id": "bran",
-      "name": "Bran Stark",
-      "aliases": [
-        "Bran"
       ]
     },
     {
@@ -97,7 +96,8 @@
       "id": "robert",
       "name": "Robert Baratheon",
       "aliases": [
-        "Robert"
+        "Robert",
+        "King Robert"
       ]
     },
     {
@@ -111,7 +111,8 @@
       "id": "drogo",
       "name": "Khal Drogo",
       "aliases": [
-        "Drogo"
+        "Drogo",
+        "Khal Drogo"
       ]
     }
   ],
@@ -121,7 +122,7 @@
       "name": "Ned: Honor",
       "hero": "ned",
       "goal": "serve as Hand while maintaining his moral principles",
-      "obstacle": "corrupt court politics, Lannister schemes, impossible moral choices",
+      "obstacle": "corrupt court politics, Lannister schemes, pressure to compromise values",
       "stakes": "death, family destruction, realm's stability",
       "type": "serialized",
       "nature": "character-led",
@@ -142,16 +143,16 @@
       "rank": "A"
     },
     {
-      "id": "awakening",
-      "name": "Daenerys: Awakening",
+      "id": "power",
+      "name": "Daenerys: Power",
       "hero": "daenerys",
       "goal": "transform from pawn to queen and reclaim her birthright",
       "obstacle": "abusive brother, foreign culture, magical betrayal",
-      "stakes": "death, permanent subjugation, loss of Targaryen legacy",
+      "stakes": "death, permanent exile, loss of dragons",
       "type": "serialized",
       "nature": "character-led",
       "confidence": "solid",
-      "computed_rank": "C",
+      "computed_rank": "B",
       "reviewed_rank": null,
       "span": [
         "S01E01",
@@ -164,7 +165,7 @@
         "S01E09",
         "S01E10"
       ],
-      "rank": "C"
+      "rank": "B"
     },
     {
       "id": "purpose",
@@ -172,7 +173,7 @@
       "hero": "jon",
       "goal": "find his place and purpose as a bastard",
       "obstacle": "bastard status, Night's Watch hierarchy, supernatural threats",
-      "stakes": "meaningless existence, dishonor, death beyond the Wall",
+      "stakes": "meaningless existence, death beyond the Wall",
       "type": "serialized",
       "nature": "character-led",
       "confidence": "solid",
@@ -196,7 +197,7 @@
       "hero": "robb",
       "goal": "rescue his father and protect the North",
       "obstacle": "Lannister military power, political alliances, inexperience",
-      "stakes": "father's death, Northern defeat, family extinction",
+      "stakes": "father's death, Northern defeat, family destruction",
       "type": "serialized",
       "nature": "plot-led",
       "confidence": "solid",
@@ -214,10 +215,10 @@
       "name": "Tyrion: Survival",
       "hero": "tyrion",
       "goal": "survive accusations and family politics through wit",
-      "obstacle": "false accusations, family indifference, physical vulnerability",
-      "stakes": "execution, permanent exile, loss of family position",
+      "obstacle": "false accusations, hostile captors, family expectations",
+      "stakes": "execution, loss of freedom",
       "type": "serialized",
-      "nature": "character-led",
+      "nature": "plot-led",
       "confidence": "solid",
       "computed_rank": "C",
       "reviewed_rank": null,
@@ -236,7 +237,7 @@
       "name": "Catelyn: Protection",
       "hero": "catelyn",
       "goal": "protect her children from Lannister threats",
-      "obstacle": "distance from children, political complexity, limited power",
+      "obstacle": "distance from children, political complexity, limited resources",
       "stakes": "children's death, family destruction",
       "type": "serialized",
       "nature": "plot-led",
@@ -251,31 +252,49 @@
         "S01E05",
         "S01E06",
         "S01E08",
-        "S01E09",
+        "S01E09"
+      ],
+      "rank": "C"
+    },
+    {
+      "id": "secrets",
+      "name": "Cersei: Secrets",
+      "hero": "cersei",
+      "goal": "protect her children and maintain power",
+      "obstacle": "Ned's investigation, Robert's suspicions, political exposure",
+      "stakes": "children's death, loss of power, execution",
+      "type": "serialized",
+      "nature": "plot-led",
+      "confidence": "solid",
+      "computed_rank": "C",
+      "reviewed_rank": null,
+      "span": [
+        "S01E01",
+        "S01E02",
+        "S01E08",
         "S01E10"
       ],
       "rank": "C"
     },
     {
-      "id": "power",
-      "name": "Cersei: Power",
-      "hero": "cersei",
-      "goal": "protect her children and maintain power",
-      "obstacle": "Ned's investigation, Robert's suspicions, political exposure",
-      "stakes": "children's death, loss of throne, execution for treason",
+      "id": "identity",
+      "name": "Arya: Identity",
+      "hero": "arya",
+      "goal": "survive and maintain her identity while in danger",
+      "obstacle": "court expectations, political violence, forced disguise",
+      "stakes": "death, loss of self, permanent captivity",
       "type": "serialized",
-      "nature": "plot-led",
+      "nature": "character-led",
       "confidence": "solid",
-      "computed_rank": "B",
+      "computed_rank": "C",
       "reviewed_rank": null,
       "span": [
-        "S01E01",
         "S01E02",
-        "S01E05",
+        "S01E03",
         "S01E08",
         "S01E10"
       ],
-      "rank": "B"
+      "rank": "C"
     }
   ],
   "episodes": [
@@ -289,7 +308,8 @@
           "characters": [
             "guest:nights_watch_soldiers"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "setup"
         },
         {
           "event": "Ned executes the Night's Watch deserter for abandoning his post",
@@ -298,41 +318,45 @@
           "characters": [
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Stark children discover orphaned direwolf pups and adopt them, including Jon",
+          "event": "Stark children discover orphaned direwolf pups and adopt them",
           "plotline_id": "purpose",
           "function": "setup",
           "characters": [
             "jon",
-            "arya",
-            "sansa",
+            "robb",
             "bran",
-            "robb"
+            "arya",
+            "sansa"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Hand of the King Jon Arryn dies suddenly in King's Landing",
-          "plotline_id": "honor",
-          "function": "inciting_incident",
+          "plotline_id": "secrets",
+          "function": "setup",
           "characters": [
             "guest:jon_arryn"
           ],
           "also_affects": [
-            "power"
-          ]
+            "honor"
+          ],
+          "plot_fn": null
         },
         {
           "event": "King Robert travels to Winterfell to name Ned as his new Hand",
           "plotline_id": "honor",
-          "function": "escalation",
+          "function": "inciting_incident",
           "characters": [
             "robert",
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "inciting_incident"
         },
         {
           "event": "Robert proposes marrying Joffrey to Sansa Stark",
@@ -346,7 +370,8 @@
           ],
           "also_affects": [
             "protection"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn receives secret letter from Lysa claiming Lannisters murdered Jon Arryn",
@@ -356,25 +381,25 @@
             "catelyn"
           ],
           "also_affects": [
-            "honor"
-          ]
+            "secrets"
+          ],
+          "plot_fn": "inciting_incident"
         },
         {
           "event": "Bran climbs tower and witnesses Cersei having sex with Jaime",
-          "plotline_id": "power",
+          "plotline_id": "secrets",
           "function": "crisis",
           "characters": [
             "bran",
             "cersei",
             "jaime"
           ],
-          "also_affects": [
-            "protection"
-          ]
+          "also_affects": null,
+          "plot_fn": "inciting_incident"
         },
         {
           "event": "Jaime pushes Bran from the window to protect their secret",
-          "plotline_id": "power",
+          "plotline_id": "secrets",
           "function": "climax",
           "characters": [
             "jaime",
@@ -382,27 +407,30 @@
           ],
           "also_affects": [
             "protection"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Viserys forces Daenerys to marry Khal Drogo for an army",
-          "plotline_id": "awakening",
-          "function": "inciting_incident",
+          "plotline_id": "power",
+          "function": "setup",
           "characters": [
             "viserys",
             "daenerys",
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "setup"
         },
         {
           "event": "Daenerys receives three fossilized dragon eggs as wedding gifts",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "setup",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         }
       ],
       "theme": "the price of power and the corruption of innocence",
@@ -411,27 +439,27 @@
           "type": "thematic_rhyme",
           "lines": [
             "honor",
+            "secrets",
             "power",
-            "awakening"
+            "protection"
           ],
-          "description": "all three plotlines explore how power corrupts and demands moral compromise"
+          "description": "all plotlines explore how power corrupts and forces moral compromises"
         },
         {
           "type": "convergence",
           "lines": [
-            "honor",
-            "protection",
-            "power"
+            "secrets",
+            "protection"
           ],
-          "description": "the Lannister threat connects Ned's political position, Catelyn's fears, and Cersei's desperation"
+          "description": "Bran's discovery of the Lannister secret directly threatens Catelyn's children"
         },
         {
-          "type": "dramatic_irony",
+          "type": "thematic_rhyme",
           "lines": [
-            "honor",
-            "power"
+            "power",
+            "honor"
           ],
-          "description": "the audience knows about Cersei and Jaime's incest while Ned remains unaware of the true threat"
+          "description": "both Daenerys and Ned are forced into positions of power they didn't seek"
         }
       ]
     },
@@ -447,7 +475,10 @@
             "sansa",
             "arya"
           ],
-          "also_affects": null
+          "also_affects": [
+            "identity"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn remains at Winterfell to care for comatose Bran",
@@ -457,7 +488,8 @@
             "catelyn",
             "bran"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "An assassin attempts to kill Bran",
@@ -467,7 +499,10 @@
             "guest:assassin",
             "bran"
           ],
-          "also_affects": null
+          "also_affects": [
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn fights off the assassin and Bran's direwolf Summer kills the attacker",
@@ -477,131 +512,145 @@
             "catelyn",
             "bran"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "escalation"
         },
         {
           "event": "Jon Snow travels north to join the Night's Watch, accompanied by Tyrion Lannister",
           "plotline_id": "purpose",
-          "function": "setup",
+          "function": "escalation",
           "characters": [
             "jon",
             "tyrion"
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": "inciting_incident"
         },
         {
           "event": "Prince Joffrey threatens Arya's commoner friend",
-          "plotline_id": "honor",
-          "function": "escalation",
+          "plotline_id": "identity",
+          "function": "inciting_incident",
           "characters": [
             "joffrey",
             "arya",
             "guest:mycah"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "inciting_incident"
         },
         {
           "event": "Joffrey has the boy killed",
-          "plotline_id": "honor",
+          "plotline_id": "identity",
           "function": "escalation",
           "characters": [
             "joffrey"
           ],
-          "also_affects": null
+          "also_affects": [
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Arya's direwolf Nymeria bites Joffrey in defense",
-          "plotline_id": "honor",
+          "plotline_id": "identity",
           "function": "turning_point",
           "characters": [
-            "arya",
-            "joffrey"
+            "arya"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Queen Cersei demands the wolf's death",
-          "plotline_id": "power",
+          "plotline_id": "secrets",
           "function": "escalation",
           "characters": [
             "cersei"
           ],
           "also_affects": [
+            "identity",
             "honor"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Arya releases Nymeria into the wild",
-          "plotline_id": "honor",
+          "plotline_id": "identity",
           "function": "crisis",
           "characters": [
             "arya"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "escalation"
         },
         {
           "event": "Cersei orders Sansa's direwolf Lady killed instead",
-          "plotline_id": "power",
+          "plotline_id": "secrets",
           "function": "climax",
           "characters": [
             "cersei",
             "sansa"
           ],
           "also_affects": [
-            "honor"
-          ]
+            "honor",
+            "identity"
+          ],
+          "plot_fn": "escalation"
         },
         {
           "event": "Ser Jorah Mormont befriends Daenerys",
-          "plotline_id": "awakening",
-          "function": "setup",
+          "plotline_id": "power",
+          "function": "escalation",
           "characters": [
             "daenerys",
             "guest:jorah"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Daenerys focuses on learning to please her new husband Drogo",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "escalation",
           "characters": [
             "daenerys",
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         }
       ],
-      "theme": "the cost of honor in a corrupt world",
+      "theme": "the cost of power and the vulnerability of innocence",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
-            "honor",
             "protection",
-            "power"
+            "identity",
+            "secrets"
           ],
-          "description": "all three plotlines explore the conflict between doing what's right and surviving in a brutal world"
+          "description": "all three plotlines explore how violence against children serves adult political purposes"
         },
         {
           "type": "convergence",
           "lines": [
             "honor",
-            "power"
+            "secrets",
+            "identity"
           ],
-          "description": "the direwolf incident brings Ned's moral principles into direct conflict with Cersei's ruthless politics"
+          "description": "the Kingsroad incident forces Ned to choose between justice and political necessity while Cersei protects her son"
         },
         {
           "type": "thematic_rhyme",
           "lines": [
-            "purpose",
-            "awakening"
+            "power",
+            "identity"
           ],
-          "description": "both Jon and Daenerys are finding their place in new, challenging environments"
+          "description": "both Daenerys and Arya must adapt to survive in hostile environments that threaten their sense of self"
         }
       ]
     },
@@ -615,27 +664,33 @@
           "characters": [
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "setup"
         },
         {
           "event": "Ned learns Arya received a sword from Jon and aspires to fight",
-          "plotline_id": "honor",
+          "plotline_id": "identity",
           "function": "setup",
           "characters": [
             "ned",
             "arya"
           ],
-          "also_affects": null
+          "also_affects": [
+            "identity"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Ned arranges swordsmanship lessons for Arya",
-          "plotline_id": "honor",
+          "plotline_id": "identity",
           "function": "escalation",
           "characters": [
-            "ned",
-            "arya"
+            "ned"
           ],
-          "also_affects": null
+          "also_affects": [
+            "identity"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn secretly travels to King's Landing to warn Ned about the assassination attempt",
@@ -646,16 +701,19 @@
           ],
           "also_affects": [
             "honor"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn is intercepted by childhood friend Petyr Baelish",
           "plotline_id": "protection",
           "function": "turning_point",
           "characters": [
-            "catelyn"
+            "catelyn",
+            "guest:petyr"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Bran learns he will never walk again and cannot remember his fall",
@@ -664,7 +722,8 @@
           "characters": [
             "bran"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Jon proves superior to the low-born Night's Watch recruits",
@@ -673,26 +732,30 @@
           "characters": [
             "jon"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Lord Commander Jeor Mormont asks departing Tyrion to request more recruits from the King",
           "plotline_id": "survival",
           "function": "setup",
           "characters": [
-            "tyrion"
+            "tyrion",
+            "guest:jeor"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Pregnant Daenerys stands up to her abusive brother Viserys, threatening him if he harms her again",
-          "plotline_id": "awakening",
-          "function": "turning_point",
+          "plotline_id": "power",
+          "function": "inciting_incident",
           "characters": [
             "daenerys",
             "viserys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "inciting_incident"
         }
       ],
       "theme": "the burden of responsibility and the cost of protecting those we love",
@@ -702,9 +765,9 @@
           "lines": [
             "honor",
             "protection",
-            "awakening"
+            "power"
           ],
-          "description": "all three plotlines explore characters taking on greater responsibility to protect others—Ned protecting the realm and Arya, Catelyn protecting her family, Daenerys protecting herself and her unborn child"
+          "description": "all three plotlines explore characters taking on greater responsibility to protect others—Ned as Hand, Catelyn protecting her children, Daenerys protecting her unborn child"
         },
         {
           "type": "convergence",
@@ -726,7 +789,8 @@
           "characters": [
             "tyrion"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Tyrion gives Bran a saddle design allowing him to ride despite his paralysis",
@@ -738,7 +802,8 @@
           ],
           "also_affects": [
             "protection"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn encounters Tyrion at a roadside inn",
@@ -750,7 +815,8 @@
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn rallies her father's bannermen to arrest Tyrion for allegedly conspiring to murder Bran",
@@ -762,7 +828,8 @@
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": "turning_point"
         },
         {
           "event": "Ned secretly investigates Jon Arryn's death",
@@ -771,7 +838,10 @@
           "characters": [
             "ned"
           ],
-          "also_affects": null
+          "also_affects": [
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Ned discovers Gendry, one of King Robert's bastard children",
@@ -782,8 +852,9 @@
             "guest:gendry"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": "escalation"
         },
         {
           "event": "Jon protects awkward recruit Samwell Tarly from abuse by other Night's Watchmen",
@@ -793,39 +864,42 @@
             "jon",
             "guest:samwell"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "escalation"
         },
         {
           "event": "Viserys grows increasingly frustrated with his newly empowered sister Daenerys",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "escalation",
           "characters": [
             "viserys",
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Viserys clashes with Daenerys",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "turning_point",
           "characters": [
             "viserys",
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         }
       ],
-      "theme": "the consequences of taking action",
+      "theme": "the consequences of taking action to protect what matters most",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
             "protection",
-            "survival",
-            "honor"
+            "honor",
+            "purpose"
           ],
-          "description": "all three plotlines involve characters making dangerous moves to protect others or uncover truth"
+          "description": "all three plotlines involve characters taking protective action—Catelyn protecting Bran, Ned protecting the realm through investigation, Jon protecting Sam"
         },
         {
           "type": "convergence",
@@ -833,15 +907,15 @@
             "protection",
             "survival"
           ],
-          "description": "Catelyn's arrest of Tyrion directly merges their plotlines"
+          "description": "Catelyn's arrest of Tyrion directly merges their plotlines as her protective action becomes his survival crisis"
         },
         {
-          "type": "thematic_rhyme",
+          "type": "dramatic_irony",
           "lines": [
-            "purpose",
-            "awakening"
+            "honor",
+            "secrets"
           ],
-          "description": "both Jon and Daenerys are finding their strength and identity through protecting others"
+          "description": "Ned's investigation threatens Cersei's secrets, but neither fully understands the other's position yet"
         }
       ]
     },
@@ -850,128 +924,139 @@
       "events": [
         {
           "event": "Varys informs the Small Council that Daenerys Targaryen is pregnant",
-          "plotline_id": "power",
-          "function": "escalation",
+          "plotline_id": "honor",
+          "function": "inciting_incident",
           "characters": [
             "guest:varys"
           ],
           "also_affects": [
-            "awakening",
-            "power"
-          ]
+            "power",
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "King Robert proposes assassinating the pregnant Daenerys",
-          "plotline_id": "power",
+          "plotline_id": "honor",
           "function": "escalation",
           "characters": [
             "robert"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Ned opposes the assassination plan, considering Daenerys no threat",
           "plotline_id": "honor",
-          "function": "crisis",
-          "characters": [
-            "ned"
-          ],
-          "also_affects": [
-            "awakening"
-          ]
-        },
-        {
-          "event": "Ned resigns as Hand of the King in protest",
-          "plotline_id": "honor",
-          "function": "crisis",
+          "function": "turning_point",
           "characters": [
             "ned"
           ],
           "also_affects": [
             "power"
-          ]
+          ],
+          "plot_fn": "turning_point"
+        },
+        {
+          "event": "Ned resigns as Hand of the King in protest",
+          "plotline_id": "honor",
+          "function": "climax",
+          "characters": [
+            "ned"
+          ],
+          "also_affects": [
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn takes Tyrion prisoner",
           "plotline_id": "protection",
           "function": "escalation",
           "characters": [
-            "catelyn"
+            "catelyn",
+            "tyrion"
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn brings Tyrion to her sister Lysa Arryn's fortress in the Vale",
           "plotline_id": "protection",
           "function": "escalation",
           "characters": [
-            "catelyn"
+            "catelyn",
+            "tyrion"
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": "escalation"
         },
         {
           "event": "News of Tyrion's capture reaches King's Landing",
           "plotline_id": "survival",
           "function": "escalation",
           "characters": [
-            "guest:messenger"
-          ],
-          "also_affects": [
-            "protection",
-            "honor"
-          ]
-        },
-        {
-          "event": "Jaime confronts Ned demanding answers about Tyrion's capture",
-          "plotline_id": "survival",
-          "function": "escalation",
-          "characters": [
-            "jaime",
-            "ned"
+            "tyrion"
           ],
           "also_affects": [
             "honor",
-            "protection"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
-          "event": "The confrontation escalates into a fight between Jaime and Ned",
+          "event": "Jaime confronts Ned demanding answers about his brother's capture",
           "plotline_id": "honor",
-          "function": "climax",
+          "function": "escalation",
           "characters": [
             "jaime",
             "ned"
           ],
           "also_affects": [
             "survival"
-          ]
+          ],
+          "plot_fn": null
+        },
+        {
+          "event": "The confrontation escalates into a fight between Jaime and Ned",
+          "plotline_id": "honor",
+          "function": "crisis",
+          "characters": [
+            "jaime",
+            "ned"
+          ],
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "One of Jaime's men stabs Ned in the leg from behind",
           "plotline_id": "honor",
-          "function": "resolution",
+          "function": "crisis",
           "characters": [
             "guest:lannister_soldier",
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Jaime departs to rescue his brother, leaving Ned wounded",
-          "plotline_id": "survival",
-          "function": "escalation",
+          "plotline_id": "honor",
+          "function": "resolution",
           "characters": [
-            "jaime"
+            "jaime",
+            "ned"
           ],
           "also_affects": [
-            "honor"
-          ]
+            "survival"
+          ],
+          "plot_fn": null
         }
       ],
       "theme": "the cost of moral principles in a corrupt world",
@@ -983,7 +1068,7 @@
             "protection",
             "survival"
           ],
-          "description": "all three plotlines explore the lengths characters will go to protect what they value most"
+          "description": "all three plotlines explore the tension between doing what's right and protecting those you love"
         },
         {
           "type": "convergence",
@@ -991,16 +1076,15 @@
             "honor",
             "survival"
           ],
-          "description": "Ned's moral stand against assassination directly leads to Jaime's violent confrontation over Tyrion"
+          "description": "Tyrion's capture directly leads to Jaime confronting Ned, merging their conflicts"
         },
         {
-          "type": "convergence",
+          "type": "dramatic_irony",
           "lines": [
-            "protection",
-            "survival",
-            "honor"
+            "honor",
+            "power"
           ],
-          "description": "Catelyn's capture of Tyrion triggers the chain of events that wounds Ned and escalates the conflict"
+          "description": "Ned's moral stance on Daenerys affects her storyline though she remains unaware of the assassination plot"
         }
       ]
     },
@@ -1015,7 +1099,8 @@
             "robert",
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Ned learns that Ser Gregor Clegane has committed atrocities in the Riverlands",
@@ -1024,7 +1109,8 @@
           "characters": [
             "ned"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Ned sentences the Mountain to death and summons Tywin Lannister to trial",
@@ -1034,41 +1120,43 @@
             "ned"
           ],
           "also_affects": [
-            "power"
-          ]
+            "war"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Fearing war, Ned orders Arya and Sansa to return to Winterfell for safety",
           "plotline_id": "honor",
-          "function": "turning_point",
-          "characters": [
-            "ned",
-            "arya",
-            "sansa"
-          ],
-          "also_affects": [
-            "protection"
-          ]
-        },
-        {
-          "event": "Ned discovers that Joffrey and his siblings are not Robert's children but were fathered by Jaime Lannister",
-          "plotline_id": "honor",
-          "function": "crisis",
+          "function": "escalation",
           "characters": [
             "ned"
           ],
           "also_affects": [
-            "power"
-          ]
+            "identity"
+          ],
+          "plot_fn": null
+        },
+        {
+          "event": "Ned discovers that Joffrey and his siblings are not Robert's children but were fathered by Jaime Lannister",
+          "plotline_id": "honor",
+          "function": "turning_point",
+          "characters": [
+            "ned"
+          ],
+          "also_affects": [
+            "secrets"
+          ],
+          "plot_fn": "crisis"
         },
         {
           "event": "Bran tests his new saddle but is attacked by wildlings",
           "plotline_id": "protection",
-          "function": "escalation",
+          "function": "crisis",
           "characters": [
             "bran"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Robb Stark and Theon Greyjoy rescue Bran and capture the wildling woman Osha",
@@ -1080,74 +1168,82 @@
           ],
           "also_affects": [
             "war"
-          ]
+          ],
+          "plot_fn": "crisis"
         },
         {
-          "event": "Tyrion demands trial by combat in the Vale",
+          "event": "Tyrion demands trial by combat",
           "plotline_id": "survival",
           "function": "turning_point",
           "characters": [
             "tyrion"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Sellsword Bronn volunteers as Tyrion's champion",
           "plotline_id": "survival",
           "function": "escalation",
           "characters": [
-            "tyrion"
+            "tyrion",
+            "guest:bronn"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Bronn defeats Lysa's champion Ser Vardis Egen, winning Tyrion's freedom",
+          "event": "Bronn defeats Ser Vardis Egen, winning Tyrion's freedom",
           "plotline_id": "survival",
           "function": "climax",
           "characters": [
+            "guest:bronn",
             "tyrion"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "turning_point"
         },
         {
           "event": "Impatient Viserys threatens to kill Daenerys's unborn child",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "crisis",
           "characters": [
             "viserys",
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Khal Drogo executes Viserys by pouring molten gold on his head",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "climax",
           "characters": [
             "drogo",
             "viserys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "turning_point"
         }
       ],
-      "theme": "the price of honor and the consequences of crossing lines",
+      "theme": "the price of justice and the consequences of crossing lines",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
             "honor",
-            "awakening",
+            "power",
             "survival"
           ],
-          "description": "all three plotlines involve characters facing moral tests and life-or-death consequences for their choices"
+          "description": "all three plotlines involve characters making decisive moves that will have irreversible consequences"
         },
         {
-          "type": "convergence",
+          "type": "dramatic_irony",
           "lines": [
             "honor",
-            "power"
+            "secrets"
           ],
-          "description": "Ned's discovery of the royal children's parentage directly threatens Cersei's power and position"
+          "description": "Ned discovers the truth about Joffrey's parentage while Cersei remains unaware of his knowledge"
         },
         {
           "type": "thematic_rhyme",
@@ -1155,7 +1251,7 @@
             "protection",
             "war"
           ],
-          "description": "both involve the Stark family defending against external threats through violence"
+          "description": "both involve the Stark family preparing for and responding to threats against their children"
         }
       ]
     },
@@ -1171,8 +1267,9 @@
             "cersei"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "King Robert is mortally wounded by a boar while hunting",
@@ -1182,8 +1279,9 @@
             "robert"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "On his deathbed, Robert names Ned regent until Joffrey comes of age",
@@ -1193,20 +1291,20 @@
             "robert",
             "ned"
           ],
-          "also_affects": [
-            "power"
-          ]
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Ned writes 'my rightful heir' instead of Joffrey's name",
+          "event": "Ned writes 'my rightful heir' instead of Joffrey's name in Robert's will",
           "plotline_id": "honor",
           "function": "escalation",
           "characters": [
             "ned"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Ned sends word to Stannis Baratheon, Robert's brother and legal heir",
@@ -1215,9 +1313,8 @@
           "characters": [
             "ned"
           ],
-          "also_affects": [
-            "power"
-          ]
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "After Robert's death, Ned confronts Cersei and Joffrey in the throne room",
@@ -1229,8 +1326,9 @@
             "joffrey"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Littlefinger and the City Watch betray Ned and attack his men",
@@ -1241,8 +1339,9 @@
             "guest:littlefinger"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": "climax"
         },
         {
           "event": "Benjen Stark disappears during a ranging beyond the Wall",
@@ -1251,7 +1350,8 @@
           "characters": [
             "guest:benjen"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Jon and Sam are assigned as stewards",
@@ -1261,46 +1361,51 @@
             "jon",
             "guest:sam"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Jon serves Lord Commander Mormont personally",
+          "event": "Jon is assigned to serve Lord Commander Mormont personally",
           "plotline_id": "purpose",
-          "function": "escalation",
+          "function": "resolution",
           "characters": [
             "jon",
             "guest:mormont"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "turning_point"
         },
         {
           "event": "Ser Jorah exposes Robert's hired assassin before he can poison Daenerys",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "escalation",
           "characters": [
             "daenerys",
             "guest:jorah"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Drogo vows to conquer Westeros for his unborn son",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "turning_point",
           "characters": [
             "drogo",
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Drogo begins marching toward the coast",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "escalation",
           "characters": [
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         }
       ],
       "theme": "the price of honor in a corrupt world",
@@ -1309,26 +1414,26 @@
           "type": "thematic_rhyme",
           "lines": [
             "honor",
-            "awakening",
+            "power",
             "purpose"
           ],
-          "description": "all three plotlines explore characters discovering their true nature through crisis—Ned's moral rigidity, Daenerys's emerging power, Jon's noble purpose"
+          "description": "all three plotlines explore characters choosing between duty and survival"
         },
         {
           "type": "convergence",
           "lines": [
             "honor",
-            "power"
+            "secrets"
           ],
-          "description": "Ned's moral stand directly confronts Cersei's power schemes in the throne room"
+          "description": "Ned's moral stand directly threatens Cersei's secret, forcing both into crisis"
         },
         {
           "type": "dramatic_irony",
           "lines": [
             "honor",
-            "awakening"
+            "power"
           ],
-          "description": "while Ned faces betrayal for his honor, Daenerys gains protection through loyalty—contrasting fates of noble behavior"
+          "description": "the audience knows Robert's assassination attempt on Daenerys while Ned tries to honor Robert's wishes"
         }
       ]
     },
@@ -1336,59 +1441,83 @@
       "episode": "S01E08",
       "events": [
         {
-          "event": "Syrio Forel fights guards sent to arrest Arya, allowing her to escape the Red Keep",
-          "plotline_id": "honor",
-          "function": "escalation",
+          "event": "Syrio Forel fights guards sent to arrest Arya",
+          "plotline_id": "identity",
+          "function": "crisis",
           "characters": [
             "arya",
-            "guest:syrio_forel"
+            "guest:syrio"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Sansa is captured in the Red Keep",
-          "plotline_id": "honor",
+          "event": "Arya escapes the Red Keep",
+          "plotline_id": "identity",
+          "function": "climax",
+          "characters": [
+            "arya"
+          ],
+          "also_affects": null,
+          "plot_fn": "climax"
+        },
+        {
+          "event": "Sansa is captured",
+          "plotline_id": "secrets",
           "function": "escalation",
           "characters": [
             "sansa"
           ],
           "also_affects": [
-            "power"
-          ]
+            "identity"
+          ],
+          "plot_fn": null
         },
         {
-          "event": "Robb receives news of his father's arrest and mobilizes the Northern armies",
+          "event": "Robb receives news of his father's arrest",
           "plotline_id": "war",
           "function": "inciting_incident",
           "characters": [
             "robb"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "inciting_incident"
         },
         {
-          "event": "Robb leaves Bran to rule Winterfell while he goes to war",
+          "event": "Robb mobilizes the Northern armies",
+          "plotline_id": "war",
+          "function": "escalation",
+          "characters": [
+            "robb"
+          ],
+          "also_affects": null,
+          "plot_fn": "escalation"
+        },
+        {
+          "event": "Robb leaves Bran to rule Winterfell",
           "plotline_id": "war",
           "function": "escalation",
           "characters": [
             "robb",
             "bran"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Lysa Arryn refuses to join the fight against the Lannisters",
           "plotline_id": "protection",
           "function": "escalation",
           "characters": [
-            "catelyn",
-            "guest:lysa_arryn"
+            "catelyn"
           ],
           "also_affects": [
             "war"
-          ]
+          ],
+          "plot_fn": null
         },
         {
-          "event": "Catelyn leaves the Vale to join Robb's war camp",
+          "event": "Catelyn leaves to join Robb's war camp",
           "plotline_id": "protection",
           "function": "turning_point",
           "characters": [
@@ -1396,7 +1525,8 @@
           ],
           "also_affects": [
             "war"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Tyrion and Bronn are captured by mountain tribesmen",
@@ -1406,139 +1536,151 @@
             "tyrion",
             "guest:bronn"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Tyrion convinces the mountain tribesmen to escort him to Tywin's camp",
+          "event": "Tyrion convinces the tribesmen to escort him to Tywin's camp",
           "plotline_id": "survival",
-          "function": "turning_point",
+          "function": "climax",
           "characters": [
             "tyrion"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "climax"
         },
         {
-          "event": "Tywin recruits the tribesmen to fight the Starks in exchange for greater payment",
+          "event": "Tywin recruits the tribesmen to fight the Starks",
           "plotline_id": "survival",
           "function": "resolution",
           "characters": [
-            "tyrion",
-            "guest:tywin_lannister"
+            "guest:tywin",
+            "tyrion"
           ],
           "also_affects": [
             "war"
-          ]
+          ],
+          "plot_fn": null
         },
         {
-          "event": "Jon and Sam encounter a reanimated corpse that attacks Lord Commander Mormont",
+          "event": "Jon and Sam encounter a reanimated corpse",
           "plotline_id": "purpose",
           "function": "escalation",
           "characters": [
             "jon",
-            "guest:sam",
-            "guest:mormont"
+            "guest:sam"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Jon destroys the reanimated corpse with fire",
+          "event": "The corpse attacks Lord Commander Mormont",
           "plotline_id": "purpose",
-          "function": "turning_point",
+          "function": "crisis",
+          "characters": [
+            "jon",
+            "guest:mormont"
+          ],
+          "also_affects": null,
+          "plot_fn": null
+        },
+        {
+          "event": "Jon destroys the corpse with fire",
+          "plotline_id": "purpose",
+          "function": "climax",
           "characters": [
             "jon"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "crisis"
         },
         {
-          "event": "Drogo's khalasar raids settlements to capture slaves for selling",
-          "plotline_id": "awakening",
+          "event": "Drogo's khalasar raids settlements to capture slaves",
+          "plotline_id": "power",
           "function": "escalation",
           "characters": [
             "daenerys",
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Drogo is wounded in combat during the raid",
-          "plotline_id": "awakening",
+          "event": "Drogo is wounded in combat",
+          "plotline_id": "power",
           "function": "turning_point",
           "characters": [
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Joffrey names his grandfather Tywin as Hand of the King",
-          "plotline_id": "power",
+          "event": "Joffrey names Tywin as Hand of the King",
+          "plotline_id": "secrets",
           "function": "escalation",
           "characters": [
-            "joffrey",
-            "guest:tywin_lannister"
+            "joffrey"
           ],
           "also_affects": [
             "honor"
-          ]
+          ],
+          "plot_fn": null
         },
         {
           "event": "Sansa begs Joffrey to spare Ned's life",
-          "plotline_id": "honor",
-          "function": "crisis",
+          "plotline_id": "secrets",
+          "function": "turning_point",
           "characters": [
             "sansa",
             "joffrey"
           ],
           "also_affects": [
-            "power"
-          ]
+            "honor"
+          ],
+          "plot_fn": null
         },
         {
-          "event": "Joffrey agrees to spare Ned if he publicly confesses treason and acknowledges Joffrey's claim",
+          "event": "Joffrey agrees to spare Ned if he confesses treason",
           "plotline_id": "honor",
-          "function": "turning_point",
+          "function": "crisis",
           "characters": [
             "joffrey"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": "turning_point"
         }
       ],
-      "theme": "the price of honor in a world that rewards betrayal",
+      "theme": "the price of survival",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
             "honor",
+            "identity",
             "survival",
-            "protection"
-          ],
-          "description": "all three plotlines explore characters forced to compromise their principles to protect what they value most"
-        },
-        {
-          "type": "convergence",
-          "lines": [
-            "honor",
-            "war",
-            "protection"
-          ],
-          "description": "Ned's arrest triggers Robb's war and forces Catelyn to choose between family members"
-        },
-        {
-          "type": "convergence",
-          "lines": [
-            "survival",
-            "war"
-          ],
-          "description": "Tyrion's survival strategy directly strengthens Lannister forces against the Starks"
-        },
-        {
-          "type": "thematic_rhyme",
-          "lines": [
-            "awakening",
             "purpose"
           ],
-          "description": "both Jon and Daenerys face supernatural challenges that test their emerging identities"
+          "description": "all characters face choices between survival and principles"
+        },
+        {
+          "type": "convergence",
+          "lines": [
+            "war",
+            "protection",
+            "survival"
+          ],
+          "description": "Catelyn joins Robb's war effort while Tyrion brings reinforcements to the opposing side"
+        },
+        {
+          "type": "dramatic_irony",
+          "lines": [
+            "secrets",
+            "honor"
+          ],
+          "description": "Sansa believes she's saving Ned by appealing to Joffrey, but she's actually giving Cersei leverage"
         }
       ]
     },
@@ -1553,7 +1695,10 @@
             "robb",
             "catelyn"
           ],
-          "also_affects": null
+          "also_affects": [
+            "protection"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Catelyn negotiates with Lord Walder Frey for passage and military support in exchange for future marriages",
@@ -1564,114 +1709,130 @@
           ],
           "also_affects": [
             "war"
-          ]
+          ],
+          "plot_fn": "climax"
         },
         {
           "event": "Lord Commander Mormont gives Jon his family's Valyrian steel sword Longclaw",
           "plotline_id": "purpose",
           "function": "turning_point",
           "characters": [
-            "jon"
+            "jon",
+            "guest:mormont"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "climax"
         },
         {
           "event": "Drogo's wound becomes infected and he nears death",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "crisis",
           "characters": [
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Daenerys asks enslaved witch Mirri Maz Duur to use blood magic to save Drogo",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "turning_point",
           "characters": [
-            "daenerys"
+            "daenerys",
+            "guest:mirri"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "crisis"
         },
         {
-          "event": "Daenerys goes into labor and Jorah brings her into the forbidden tent seeking help",
-          "plotline_id": "awakening",
-          "function": "crisis",
+          "event": "Daenerys goes into labor",
+          "plotline_id": "power",
+          "function": "escalation",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
+        },
+        {
+          "event": "Jorah brings Daenerys into the forbidden tent seeking help",
+          "plotline_id": "power",
+          "function": "escalation",
+          "characters": [
+            "guest:jorah",
+            "daenerys"
+          ],
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Robb sacrifices 2,000 soldiers as a diversion while his main force captures Jaime Lannister",
           "plotline_id": "war",
           "function": "climax",
           "characters": [
-            "robb"
+            "robb",
+            "jaime"
           ],
-          "also_affects": [
-            "power"
-          ]
+          "also_affects": null,
+          "plot_fn": "climax"
         },
         {
           "event": "Ned publicly confesses to treason and acknowledges Joffrey as rightful king",
           "plotline_id": "honor",
           "function": "crisis",
           "characters": [
-            "ned"
+            "ned",
+            "joffrey"
           ],
           "also_affects": [
-            "power"
-          ]
+            "secrets"
+          ],
+          "plot_fn": null
         },
         {
           "event": "Joffrey orders Ned's execution over the objections of Sansa, Cersei, and his advisors",
           "plotline_id": "honor",
           "function": "climax",
           "characters": [
-            "joffrey"
+            "joffrey",
+            "ned",
+            "sansa",
+            "cersei"
           ],
           "also_affects": [
-            "power",
-            "war",
-            "protection"
-          ]
+            "secrets",
+            "identity",
+            "war"
+          ],
+          "plot_fn": "resolution"
         }
       ],
-      "theme": "the price of honor and the consequences of power",
+      "theme": "the price of honor in a world without mercy",
       "interactions": [
         {
           "type": "thematic_rhyme",
           "lines": [
             "honor",
-            "awakening",
+            "power",
             "war"
           ],
-          "description": "all three plotlines involve characters making desperate sacrifices to save those they love"
-        },
-        {
-          "type": "convergence",
-          "lines": [
-            "honor",
-            "power"
-          ],
-          "description": "Ned's execution directly serves Cersei's goal of protecting her children and maintaining power"
+          "description": "all three plotlines explore sacrifice and the cost of doing what you believe is right"
         },
         {
           "type": "convergence",
           "lines": [
             "war",
-            "honor"
+            "protection"
           ],
-          "description": "Robb's military victory is immediately overshadowed by his father's execution"
+          "description": "Catelyn's negotiations directly enable Robb's military strategy"
         },
         {
           "type": "dramatic_irony",
           "lines": [
-            "war",
-            "honor"
+            "honor",
+            "war"
           ],
-          "description": "Robb achieves his military objective just as his father is executed, making the victory hollow"
+          "description": "Ned's execution happens just as Robb achieves military victory that might have saved him"
         }
       ]
     },
@@ -1679,22 +1840,36 @@
       "episode": "S01E10",
       "events": [
         {
-          "event": "The Northern lords declare independence from the Seven Kingdoms and crown Robb Stark as King in the North",
+          "event": "The Northern lords declare independence from the Seven Kingdoms",
           "plotline_id": "war",
           "function": "climax",
           "characters": [
-            "robb"
+            "guest:northern_lords"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
+        },
+        {
+          "event": "The Northern lords crown Robb Stark as King in the North",
+          "plotline_id": "war",
+          "function": "resolution",
+          "characters": [
+            "robb",
+            "guest:northern_lords"
+          ],
+          "also_affects": null,
+          "plot_fn": "resolution"
         },
         {
           "event": "Tywin appoints Tyrion as acting Hand while he commands the Lannister armies",
           "plotline_id": "survival",
           "function": "resolution",
           "characters": [
-            "tyrion"
+            "tyrion",
+            "guest:tywin"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "resolution"
         },
         {
           "event": "Jon attempts to desert the Night's Watch to avenge Ned",
@@ -1703,101 +1878,138 @@
           "characters": [
             "jon"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Jon's brothers convince him to honor his oath",
           "plotline_id": "purpose",
           "function": "turning_point",
           "characters": [
-            "jon"
+            "jon",
+            "guest:nights_watch_brothers"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Mormont assigns Jon to an expedition beyond the Wall to search for Benjen",
           "plotline_id": "purpose",
           "function": "resolution",
           "characters": [
-            "jon"
+            "jon",
+            "guest:mormont"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "resolution"
         },
         {
-          "event": "Night's Watch recruiter Yoren smuggles Arya out of King's Landing disguised as a boy",
-          "plotline_id": "protection",
+          "event": "Yoren smuggles Arya out of King's Landing disguised as a boy",
+          "plotline_id": "identity",
           "function": "resolution",
           "characters": [
-            "arya"
+            "arya",
+            "guest:yoren"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "resolution"
         },
         {
           "event": "Joffrey announces his intention to marry Sansa despite executing her father",
-          "plotline_id": "power",
-          "function": "resolution",
+          "plotline_id": "secrets",
+          "function": "escalation",
           "characters": [
             "joffrey",
             "sansa"
           ],
           "also_affects": [
-            "protection"
-          ]
+            "identity"
+          ],
+          "plot_fn": "resolution"
         },
         {
           "event": "Daenerys's baby is born dead and deformed",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "crisis",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Drogo remains in a vegetative state from Mirri's treacherous magic",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "crisis",
           "characters": [
             "daenerys",
             "drogo"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Daenerys ends Drogo's suffering",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "turning_point",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Daenerys places her three dragon eggs on Drogo's funeral pyre along with Mirri, whom she burns alive",
-          "plotline_id": "awakening",
+          "event": "Daenerys places her three dragon eggs on Drogo's funeral pyre along with Mirri",
+          "plotline_id": "power",
           "function": "climax",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "climax"
+        },
+        {
+          "event": "Daenerys burns Mirri alive on the pyre",
+          "plotline_id": "power",
+          "function": "climax",
+          "characters": [
+            "daenerys",
+            "guest:mirri"
+          ],
+          "also_affects": null,
+          "plot_fn": null
         },
         {
           "event": "Daenerys walks into the flames ignoring Jorah's pleas",
-          "plotline_id": "awakening",
+          "plotline_id": "power",
           "function": "climax",
           "characters": [
-            "daenerys"
+            "daenerys",
+            "guest:jorah"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": null
         },
         {
-          "event": "Daenerys emerges unharmed from the ashes with three newly hatched dragons as her followers kneel before her",
-          "plotline_id": "awakening",
+          "event": "Daenerys emerges unharmed from the ashes with three newly hatched dragons",
+          "plotline_id": "power",
           "function": "resolution",
           "characters": [
             "daenerys"
           ],
-          "also_affects": null
+          "also_affects": null,
+          "plot_fn": "resolution"
+        },
+        {
+          "event": "Daenerys's followers kneel before her as the Mother of Dragons",
+          "plotline_id": "power",
+          "function": "resolution",
+          "characters": [
+            "daenerys",
+            "guest:dothraki_followers"
+          ],
+          "also_affects": null,
+          "plot_fn": null
         }
       ],
       "theme": "transformation through fire and loss",
@@ -1806,30 +2018,29 @@
           "type": "thematic_rhyme",
           "lines": [
             "war",
-            "awakening",
+            "power",
             "purpose"
           ],
-          "description": "all three plotlines involve characters accepting their true destiny through decisive action"
+          "description": "all three plotlines show characters accepting their destiny and transforming into leaders through sacrifice"
         },
         {
           "type": "thematic_rhyme",
           "lines": [
-            "awakening",
-            "purpose",
-            "protection"
+            "identity",
+            "purpose"
           ],
-          "description": "characters must sacrifice personal desires for greater responsibilities"
+          "description": "both Arya and Jon must disguise or suppress their true selves to survive and find their path"
         },
         {
           "type": "convergence",
           "lines": [
-            "protection",
-            "power"
+            "secrets",
+            "identity"
           ],
-          "description": "Sansa becomes a political pawn trapped between Cersei's power plays and her family's protection"
+          "description": "Joffrey's announcement directly threatens Sansa's survival and forces her deeper into captivity"
         }
       ]
     }
   ],
-  "usage": "16 requests, 65,566 input + 16,151 output tokens, ~$0.334"
+  "usage": "17 requests, 88,469 input + 23,430 output tokens, ~$0.512"
 }
