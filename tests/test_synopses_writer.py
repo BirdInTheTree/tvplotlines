@@ -121,9 +121,11 @@ class TestFetchSeasonPage:
         params = call_args.kwargs.get("params") or call_args[1].get("params")
         assert params["page"] == "House_season_1"
 
+    @patch("tvplotlines.synopses_writer._search_wikipedia",
+           return_value=["House_(season_1)", "House_season_1"])
     @patch("tvplotlines.synopses_writer.httpx.get")
     @patch("tvplotlines.synopses_writer.time.sleep")
-    def test_fallback_on_missing_page(self, _mock_sleep, mock_get):
+    def test_fallback_on_missing_page(self, _mock_sleep, mock_get, _mock_search):
         """First title 404 → tries second naming convention."""
         mock_get.side_effect = [
             _make_error_response(),
@@ -139,9 +141,11 @@ class TestFetchSeasonPage:
             mock_get.call_args_list[1][1].get("params")
         assert second_call_params["page"] == "House_season_1"
 
+    @patch("tvplotlines.synopses_writer._search_wikipedia",
+           return_value=["House_(season_1)", "House_season_1"])
     @patch("tvplotlines.synopses_writer.httpx.get")
     @patch("tvplotlines.synopses_writer.time.sleep")
-    def test_all_titles_missing_raises(self, _mock_sleep, mock_get):
+    def test_all_titles_missing_raises(self, _mock_sleep, mock_get, _mock_search):
         """Both naming conventions fail → raise with helpful message."""
         mock_get.return_value = _make_error_response()
 
@@ -171,7 +175,7 @@ class TestRewriteSynopses:
         from tvplotlines.llm import LLMConfig
         config = LLMConfig()
 
-        result = rewrite_synopses(_SAMPLE_EPISODES, "House", 1, config)
+        result = rewrite_synopses(_SAMPLE_EPISODES, "House", 1, config, mode="parallel")
 
         assert len(result) == 2
         assert result[0] == "Full synopsis for episode 1..."
@@ -186,7 +190,10 @@ class TestRewriteSynopses:
         from tvplotlines.llm import LLMConfig
         config = LLMConfig()
 
-        rewrite_synopses(_SAMPLE_EPISODES, "House", 1, config, show_format="procedural")
+        rewrite_synopses(
+            _SAMPLE_EPISODES, "House", 1, config,
+            show_format="procedural", mode="parallel",
+        )
 
         user_messages = mock_parallel.call_args[0][1]
         assert "House" in user_messages[0]
@@ -202,7 +209,7 @@ class TestRewriteSynopses:
 
         from tvplotlines.llm import LLMConfig
         result = rewrite_synopses(
-            [_SAMPLE_EPISODES[0]], "House", 1, LLMConfig()
+            [_SAMPLE_EPISODES[0]], "House", 1, LLMConfig(), mode="parallel",
         )
 
         assert mock_parallel.call_args.kwargs.get("cache_system") is True
