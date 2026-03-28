@@ -66,7 +66,17 @@ Events with `plotline_id: null`—the previous step couldn't assign them. For ea
 - Event belongs to an existing plotline (assignment error) → REASSIGN
 - Multiple orphaned events form a pattern (one hero, one goal) → CREATE a new plotline
 
-### Step 6: Check format consistency
+### Step 6: Assign arc functions
+
+For each plotline, read all its events across the season in episode order. Each event already has a `function` — its role within its episode. Now assign `plot_fn` — its role in the plotline's season-long arc. Use the same vocabulary: setup, inciting_incident, escalation, turning_point, crisis, climax, resolution.
+
+The arc function may differ from the episode function. A climax of episode 3 might be an escalation in the season arc.
+
+`inciting_incident` occurs once per plotline across the season.
+
+Return arc functions in the `arc_functions` field of your response — a list of objects, each with `episode`, `event` (exact text), and `plot_fn`.
+
+### Step 7: Check format consistency
 
 The plotline structure should match the format:
 
@@ -146,6 +156,10 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
       "new_function": "crisis",
       "reason": "one sentence"
     }
+  ],
+  "arc_functions": [
+    {"episode": "S01E01", "event": "exact event text", "plot_fn": "setup"},
+    {"episode": "S01E01", "event": "exact event text", "plot_fn": "inciting_incident"}
   ],
   "notes": "brief comment on the quality of the original analysis (1–2 sentences)"
 }

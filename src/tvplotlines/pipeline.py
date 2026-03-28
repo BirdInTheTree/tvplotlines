@@ -11,7 +11,7 @@ from tvplotlines.models import CastMember, EpisodeBreakdown, Plotline, TVPlotlin
 from tvplotlines.pass0 import detect_context
 from tvplotlines.pass1 import extract_plotlines
 from tvplotlines.pass2 import assign_events, assign_events_batch, assign_events_parallel
-from tvplotlines.pass3 import review_plotlines
+from tvplotlines.pass3 import apply_arc_functions, review_plotlines
 from tvplotlines.postprocess import assign_orphan_events, compute_ranks, compute_span, validate_ranks
 from tvplotlines.verdicts import apply_verdicts
 
@@ -197,11 +197,14 @@ def get_plotlines(
 
     # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:
-        verdicts = review_plotlines(
+        pass3_result = review_plotlines(
             show, season, context, cast, plotlines, breakdowns,
             diagnostics=flags or None,
             config=config,
         )
+        verdicts = pass3_result["verdicts"]
+        arc_functions = pass3_result["arc_functions"]
+
         _fire(callback, "on_pass3_complete", verdicts)
         if verdicts:
             plotlines = apply_verdicts(
@@ -211,6 +214,9 @@ def get_plotlines(
             # Recompute span after verdicts (ranks are not recomputed —
             # Pass 3 changes go into reviewed_rank, computed_rank stays)
             compute_span(plotlines, breakdowns)
+
+        if arc_functions:
+            apply_arc_functions(arc_functions, breakdowns)
 
     result = TVPlotlinesResult(
         context=context,

@@ -66,6 +66,7 @@ class Event:
     function: str  # "setup" | "inciting_incident" | "escalation" | "turning_point" | "crisis" | "climax" | "resolution"
     characters: list[str]  # CastMember.id; guests use "guest:short_name"
     also_affects: list[str] | None = None  # Plotline.id list
+    plot_fn: str | None = None  # arc function — event's role in the season-long plotline arc
 
 
 @dataclass
