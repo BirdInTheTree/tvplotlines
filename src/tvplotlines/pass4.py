@@ -56,7 +56,10 @@ def assign_arc_functions(
                 af["plotline"] = name_to_id[pid]
         _parse_and_validate(data, plotline_ids, episodes)
 
-    data = call_llm(system_prompt, user_message, config, validator=_validate)
+    # ~50 tokens per arc_function entry; count total events
+    total_events = sum(len(ep.events) for ep in episodes)
+    max_tokens = max(6144, total_events * 50 + 500)
+    data = call_llm(system_prompt, user_message, config, validator=_validate, max_tokens=max_tokens)
     # Normalize again for apply (validator may have fixed during retry)
     for af in data.get("arc_functions", []):
         pid = af.get("plotline", "")
