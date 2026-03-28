@@ -67,12 +67,17 @@ def assign_arc_functions(
     if not user_messages:
         return 0
 
-    # Call each plotline individually (not parallel) to control max_tokens per call
+    # Call each plotline individually to control max_tokens per call
+    # Large plotlines (100+ events) need longer timeout
+    from dataclasses import replace as dc_replace
     total_count = 0
     for pid, msg in zip(plotline_order, user_messages):
         n_events = event_counts.get(pid, 0)
         max_tokens = max(4096, n_events * 60 + 500)
-        data = call_llm(system_prompt, msg, config, max_tokens=max_tokens)
+        call_config = config
+        if n_events > 100:
+            call_config = dc_replace(config, timeout=300.0)
+        data = call_llm(system_prompt, msg, call_config, max_tokens=max_tokens)
 
         # Normalize plotline references
         for af in data.get("arc_functions", []):
