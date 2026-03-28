@@ -157,25 +157,35 @@ def compute_ranks(
                 plotline.computed_rank = "B"
             fixed_ids.add(plotline.id)
 
-    # Phase 2: remaining plotlines sorted by event count
+    # Phase 2: remaining plotlines sorted by event count, filtered by span
+    n_episodes = len(episodes)
     remaining = [p for p in plotlines if p.id not in fixed_ids]
     remaining.sort(key=lambda p: (-event_counts.get(p.id, 0), p.id))
 
     logger.info(
         "Rank assignment order: %s",
-        [(p.id, event_counts.get(p.id, 0)) for p in remaining],
+        [(p.id, event_counts.get(p.id, 0), len(p.span)) for p in remaining],
     )
 
+    # Span requirements: A ≥ 75%, B ≥ 50%, C ≥ 25%
     for i, plotline in enumerate(remaining):
-        if i == 0 and not is_a_taken:
+        span_frac = len(plotline.span) / n_episodes if n_episodes else 0
+        if i == 0 and not is_a_taken and span_frac >= 0.75:
             plotline.computed_rank = "A"
             is_a_taken = True
-        elif i <= 1:
-            # Second plotline (or first when A is taken by case_of_the_week)
-            plotline.computed_rank = "B"
-        else:
+        elif i <= 1 and span_frac >= 0.50:
+            plotline.computed_rank = "B" if is_a_taken else "A"
+            if plotline.computed_rank == "A":
+                is_a_taken = True
+        elif span_frac >= 0.25:
             plotline.computed_rank = "C"
-        logger.info("  %s → %s (events=%d)", plotline.id, plotline.computed_rank, event_counts.get(plotline.id, 0))
+        else:
+            plotline.computed_rank = "C"  # low span but still serialized, not runner
+        logger.info(
+            "  %s → %s (events=%d, span=%d/%d=%.0f%%)",
+            plotline.id, plotline.computed_rank, event_counts.get(plotline.id, 0),
+            len(plotline.span), n_episodes, span_frac * 100,
+        )
 
 
 def validate_ranks(

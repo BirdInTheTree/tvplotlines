@@ -147,12 +147,17 @@ def _make_plotline_no_rank(id: str, ptype: str = "serialized") -> Plotline:
 
 class TestComputeRanks:
     def test_serial_assigns_a_b_c(self):
-        """Most events → A, second → B, rest → C."""
+        """Most events → A, second → B, rest → C. Span must meet thresholds."""
         ctx = SeriesContext(format="serial", story_engine="x", genre="drama")
         lines = [_make_plotline_no_rank("big"), _make_plotline_no_rank("mid"), _make_plotline_no_rank("small")]
+        # 4 episodes so span fractions are: big=4/4=100%, mid=3/4=75%, small=2/4=50%
         episodes = [
-            _make_episode("S01E01", ["big", "big", "big", "mid", "mid", "small"]),
+            _make_episode("S01E01", ["big", "big", "mid", "small"]),
+            _make_episode("S01E02", ["big", "big", "mid", "small"]),
+            _make_episode("S01E03", ["big", "mid"]),
+            _make_episode("S01E04", ["big"]),
         ]
+        compute_span(lines, episodes)
         compute_ranks(lines, episodes, ctx)
         assert lines[0].computed_rank == "A"
         assert lines[1].computed_rank == "B"
@@ -163,6 +168,7 @@ class TestComputeRanks:
         runner = _make_plotline_no_rank("bg", ptype="runner")
         main = _make_plotline_no_rank("main")
         episodes = [_make_episode("S01E01", ["main", "main"])]
+        compute_span([runner, main], episodes)
         compute_ranks([runner, main], episodes, ctx)
         assert runner.computed_rank is None
         assert main.computed_rank == "A"
@@ -173,6 +179,7 @@ class TestComputeRanks:
         arc = _make_plotline_no_rank("arc")
         # arc has more events, but cotw is fixed at A for procedural
         episodes = [_make_episode("S01E01", ["arc", "arc", "arc", "case"])]
+        compute_span([cotw, arc], episodes)
         compute_ranks([cotw, arc], episodes, ctx)
         assert cotw.computed_rank == "A"
         assert arc.computed_rank == "B"
@@ -182,6 +189,7 @@ class TestComputeRanks:
         cotw = _make_plotline_no_rank("case", ptype="case_of_the_week")
         arc = _make_plotline_no_rank("arc")
         episodes = [_make_episode("S01E01", ["arc", "case", "case"])]
+        compute_span([cotw, arc], episodes)
         compute_ranks([cotw, arc], episodes, ctx)
         assert cotw.computed_rank == "B"
         assert arc.computed_rank == "A"
@@ -203,6 +211,7 @@ class TestComputeRanks:
             ],
             theme="t",
         )
+        compute_span([main, side], [ep])
         compute_ranks([main, side], [ep], ctx)
         # main: 2 primary + 0 AA = 2. side: 1 primary + 2 AA = 3. side wins.
         assert side.computed_rank == "A"
