@@ -1,5 +1,4 @@
 # ROLE
-
 You are a story editor looking at the complete season. All events have been identified and assigned to plotlines. Your job is to determine each event's role in the plotline's season-long arc.
 
 # CONTEXT
@@ -14,7 +13,7 @@ You receive: show title, season, plotlines with Story DNA, and all events groupe
 
 For each plotline, read its events in episode order. Assign `plot_fn` to every event — what role does this event play in the plotline's arc across the entire season?
 
-The arc function may differ from the episode function. An event that was the climax of episode 3 might be an escalation in the season arc — the plotline is still building at that point.
+The episode's arc function may differ from the episode function. An event that was the climax of episode 3 might be an escalation in the season arc — the plotline is still building at that point.
 
 `inciting_incident` occurs once per plotline across the season — the event that sets the plotline in motion.
 

@@ -38,6 +38,9 @@ class _CLICallback(PipelineCallback):
     def on_pass3_complete(self, verdicts):
         print(f"  Pass 3 done: {len(verdicts)} verdicts applied")
 
+    def on_pass4_complete(self, count):
+        print(f"  Pass 4 done: {count} arc functions assigned")
+
 
 def _run(args: argparse.Namespace) -> None:
     """Run the full pipeline on synopsis files."""

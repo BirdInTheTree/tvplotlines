@@ -50,7 +50,7 @@ def review_plotlines(
         config: LLM settings.
 
     Returns:
-        Dict with "verdicts" (list of Verdict) and "arc_functions" (list of dicts).
+        List of Verdict objects to apply.
     """
     if config is None:
         config = LLMConfig()
@@ -121,9 +121,7 @@ def review_plotlines(
         _parse_verdicts(data, plotlines, episodes)
 
     data = call_llm(system_prompt, user_message, config, validator=_full_validate)
-    verdicts = _parse_verdicts(data, plotlines, episodes)
-    arc_functions = _parse_arc_functions(data, episodes)
-    return {"verdicts": verdicts, "arc_functions": arc_functions}
+    return _parse_verdicts(data, plotlines, episodes)
 
 
 def _parse_verdicts(
@@ -199,64 +197,6 @@ def _parse_verdicts(
         verdicts.append(Verdict(action=action, data=v))
 
     return verdicts
-
-
-def _parse_arc_functions(
-    data: dict,
-    episodes: list[EpisodeBreakdown],
-) -> list[dict]:
-    """Parse and validate arc_functions from LLM response.
-
-    Returns:
-        List of dicts with episode, event, plot_fn.
-    """
-    raw = data.get("arc_functions", [])
-
-    # Build lookup of valid event texts per episode
-    events_by_ep: dict[str, set[str]] = {}
-    for ep in episodes:
-        events_by_ep[ep.episode] = {e.event for e in ep.events}
-
-    result = []
-    for af in raw:
-        ep_id = af.get("episode")
-        event_text = af.get("event")
-        plot_fn = af.get("plot_fn")
-
-        if plot_fn not in _VALID_FUNCTIONS:
-            logger.warning("Skipping arc function with invalid value: %s", plot_fn)
-            continue
-        if ep_id not in events_by_ep:
-            logger.warning("Skipping arc function for unknown episode: %s", ep_id)
-            continue
-        if event_text not in events_by_ep.get(ep_id, set()):
-            logger.warning("Skipping arc function — event not found in %s: %s", ep_id, event_text[:60])
-            continue
-
-        result.append({"episode": ep_id, "event": event_text, "plot_fn": plot_fn})
-    return result
-
-
-def apply_arc_functions(
-    arc_functions: list[dict],
-    episodes: list[EpisodeBreakdown],
-) -> None:
-    """Apply arc functions to events in-place.
-
-    Args:
-        arc_functions: List of dicts with episode, event, plot_fn.
-        episodes: Episode breakdowns to mutate.
-    """
-    for af in arc_functions:
-        ep_id = af["episode"]
-        event_text = af["event"]
-        plot_fn = af["plot_fn"]
-        for ep in episodes:
-            if ep.episode == ep_id:
-                for event in ep.events:
-                    if event.event == event_text:
-                        event.plot_fn = plot_fn
-                        break
 
 
 def _require_keys(d: dict, keys: list[str]) -> None:

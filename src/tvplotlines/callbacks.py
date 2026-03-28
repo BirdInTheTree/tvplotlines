@@ -52,3 +52,6 @@ class PipelineCallback:
 
     def on_pass3_complete(self, verdicts: list[Verdict]) -> None:
         """Called after structural review (Pass 3)."""
+
+    def on_pass4_complete(self, count: int) -> None:
+        """Called after arc function assignment (Pass 4)."""

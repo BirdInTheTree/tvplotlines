@@ -164,6 +164,7 @@ async def _araw_call_with_retry(
     messages: list[dict],
     config: LLMConfig,
     cache_system: bool,
+    max_tokens: int = 6144,
 ) -> str:
     """Wrap _araw_call with exponential backoff for transient errors."""
     transient = _transient_exceptions()
@@ -171,7 +172,7 @@ async def _araw_call_with_retry(
 
     for attempt in range(_MAX_NETWORK_RETRIES + 1):
         try:
-            return await _araw_call(system_prompt, messages, config, cache_system)
+            return await _araw_call(system_prompt, messages, config, cache_system, max_tokens=max_tokens)
         except transient as exc:
             last_exc = exc
             if attempt < _MAX_NETWORK_RETRIES:
@@ -208,7 +209,7 @@ async def acall_llm(
             logger.warning("Retry %d/%d: %s", attempt, _MAX_RETRIES, last_error)
 
         try:
-            text = await _araw_call_with_retry(system_prompt, messages, config, cache_system)
+            text = await _araw_call_with_retry(system_prompt, messages, config, cache_system, max_tokens=max_tokens)
             data = _extract_json(text)
         except ValueError as e:
             last_error = str(e)
@@ -424,10 +425,11 @@ async def _araw_call(
     messages: list[dict],
     config: LLMConfig,
     cache_system: bool,
+    max_tokens: int = 6144,
 ) -> str:
     """Async raw LLM call, return response text."""
     if config.provider == "anthropic":
-        return await _acall_anthropic(system_prompt, messages, config, cache_system)
+        return await _acall_anthropic(system_prompt, messages, config, cache_system, max_tokens=max_tokens)
     elif config.is_openai_compatible:
         return await _acall_openai(system_prompt, messages, config)
     else:
@@ -439,6 +441,7 @@ async def _acall_anthropic(
     messages: list[dict],
     config: LLMConfig,
     cache_system: bool,
+    max_tokens: int = 6144,
 ) -> str:
     import anthropic
     import httpx
