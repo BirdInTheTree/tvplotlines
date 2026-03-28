@@ -43,6 +43,8 @@ htmlcov/
 # Internal — not part of the library
 tasks/
 CLAUDE.md
+house-s01/
+house_s01.json
 # Old experiments folder (not docs/experiments/)
 /experiments/
 program.md
