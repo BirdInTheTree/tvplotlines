@@ -930,6 +930,79 @@ def _fetch_fandom_map(
     return fandom_map
 
 
+def _search_episode_descriptions(
+    show: str,
+    season: int,
+    episodes: list[RawEpisode],
+    fandom_map: dict[int, str],
+    lang: str = "en",
+) -> dict[int, str]:
+    """Search DuckDuckGo for episode descriptions missing from Wikipedia + Fandom.
+
+    Only searches for episodes where both Wikipedia description is short (<200 chars)
+    and Fandom recap is missing. Returns episode_number → fetched_text mapping.
+    """
+    try:
+        from ddgs import DDGS
+    except ImportError:
+        logger.info("ddgs not installed — skipping web search fallback")
+        return {}
+
+    if httpx is None:
+        return {}
+
+    # Find episodes that need more data
+    needs_search = []
+    for ep in episodes:
+        has_fandom = bool(fandom_map.get(ep["number"]))
+        wiki_short = len(ep["description"]) < 200
+        if wiki_short and not has_fandom:
+            needs_search.append(ep)
+
+    if not needs_search:
+        return {}
+
+    logger.info("Searching web for %d episodes with sparse descriptions", len(needs_search))
+    headers = {"User-Agent": _USER_AGENT}
+    result_map: dict[int, str] = {}
+
+    for ep in needs_search:
+        query = f"{show} season {season} episode {ep['number']} plot recap"
+        if lang == "ru":
+            query = f"{show} сезон {season} серия {ep['number']} сюжет описание"
+
+        try:
+            search_results = DDGS().text(query, max_results=3)
+        except Exception as exc:
+            logger.warning("DuckDuckGo search failed for E%02d: %s", ep["number"], exc)
+            continue
+
+        # Try to fetch and extract text from first non-Wikipedia, non-Fandom result
+        for sr in search_results:
+            url = sr.get("href", "")
+            if "wikipedia.org" in url or "fandom.com" in url:
+                continue  # already have these sources
+            try:
+                resp = httpx.get(url, headers=headers, timeout=15.0, follow_redirects=True)
+                resp.raise_for_status()
+                from bs4 import BeautifulSoup
+                soup = BeautifulSoup(resp.text, "html.parser")
+                # Remove scripts, styles, nav
+                for tag in soup.find_all(["script", "style", "nav", "header", "footer"]):
+                    tag.decompose()
+                text = soup.get_text(separator=" ", strip=True)
+                # Take first 3000 chars — enough for LLM context
+                if len(text) > 500:
+                    result_map[ep["number"]] = text[:3000]
+                    logger.info("Web: found description for E%02d from %s", ep["number"], url)
+                    break
+            except Exception as exc:
+                logger.debug("Failed to fetch %s: %s", url, exc)
+                continue
+
+    return result_map
+
+
 def write_synopses(
     show: str,
     season: int,
@@ -978,6 +1051,14 @@ def write_synopses(
     fandom_map: dict[int, str] = {}
     if not from_files and not no_fandom:
         fandom_map = _fetch_fandom_map(show, season, fandom_wiki)
+
+    # Web search fallback for episodes with sparse descriptions
+    if not from_files:
+        web_map = _search_episode_descriptions(show, season, episodes, fandom_map, lang=lang)
+        # Merge web results into fandom_map (fandom takes priority)
+        for ep_num, text in web_map.items():
+            if ep_num not in fandom_map:
+                fandom_map[ep_num] = text
 
     if dry_run:
         fandom_count = len(fandom_map)
