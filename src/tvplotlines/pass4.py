@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import logging
 
-from tvplotlines.llm import LLMConfig, call_llm
+from tvplotlines.llm import LLMConfig, call_llm, call_llm_parallel
 from tvplotlines.models import (
     CastMember,
     EpisodeBreakdown,
@@ -36,36 +36,74 @@ def assign_arc_functions(
     *,
     config: LLMConfig | None = None,
 ) -> int:
-    """Assign arc functions (plot_fn) to all events. Returns count of assigned."""
+    """Assign arc functions (plot_fn) to all events. One call per plotline.
+
+    Returns count of assigned.
+    """
     if config is None:
         config = LLMConfig()
 
-    user_message = _build_user_message(show, season, plotlines, episodes)
     system_prompt = load_prompt("pass4", lang=config.lang)
-
     plotline_ids = {p.id for p in plotlines}
-    # Map name → id for resilience (LLM may return name instead of id)
     name_to_id = {p.name: p.id for p in plotlines}
-    name_to_id.update({p.id: p.id for p in plotlines})  # id maps to itself
+    name_to_id.update({p.id: p.id for p in plotlines})
 
-    def _validate(data: dict) -> None:
-        # Normalize plotline references before validation
+    # Build one user message per plotline
+    user_messages = []
+    plotline_order = []
+    for plotline in plotlines:
+        msg = _build_plotline_message(show, season, plotline, episodes)
+        if msg:  # skip plotlines with no events
+            user_messages.append(msg)
+            plotline_order.append(plotline.id)
+
+    if not user_messages:
+        return 0
+
+    results = call_llm_parallel(system_prompt, user_messages, config)
+
+    # Apply all results
+    total_count = 0
+    for pid, data in zip(plotline_order, results):
+        # Normalize plotline references
         for af in data.get("arc_functions", []):
-            pid = af.get("plotline", "")
-            if pid not in plotline_ids and pid in name_to_id:
-                af["plotline"] = name_to_id[pid]
-        _parse_and_validate(data, plotline_ids, episodes)
+            ref = af.get("plotline", "")
+            if ref not in plotline_ids and ref in name_to_id:
+                af["plotline"] = name_to_id[ref]
+            elif not af.get("plotline"):
+                af["plotline"] = pid  # default to current plotline
+        total_count += _apply_arc_functions(data, plotline_ids, episodes)
 
-    # ~50 tokens per arc_function entry; count total events
-    total_events = sum(len(ep.events) for ep in episodes)
-    max_tokens = max(6144, total_events * 50 + 500)
-    data = call_llm(system_prompt, user_message, config, validator=_validate, max_tokens=max_tokens)
-    # Normalize again for apply (validator may have fixed during retry)
-    for af in data.get("arc_functions", []):
-        pid = af.get("plotline", "")
-        if pid not in plotline_ids and pid in name_to_id:
-            af["plotline"] = name_to_id[pid]
-    return _apply_arc_functions(data, plotline_ids, episodes)
+    return total_count
+
+
+def _build_plotline_message(
+    show: str,
+    season: int,
+    plotline: Plotline,
+    episodes: list[EpisodeBreakdown],
+) -> str | None:
+    """Build user message for one plotline's events."""
+    events = []
+    for ep in episodes:
+        for event in ep.events:
+            if event.plotline_id == plotline.id:
+                events.append((ep.episode, event.function, event.event))
+
+    if not events:
+        return None
+
+    lines = [
+        f"Show: {show}, Season {season}",
+        "",
+        f"Plotline ID: {plotline.id} — {plotline.name} "
+        f"(hero={plotline.hero}, goal={plotline.goal})",
+        "Events:",
+    ]
+    for ep_id, function, event_text in events:
+        lines.append(f"  [{ep_id}] ({function}) {event_text}")
+
+    return "\n".join(lines)
 
 
 def _build_user_message(
