@@ -36,6 +36,7 @@ You receive: show title, season number, episode number, show format (procedural/
 - Institutional events: office politics, power plays, client negotiations, organizational decisions
 - Key dialogue—only if it changes the situation
 - New character introductions with minimal context
+- **Balance across plotlines.** In procedural and hybrid shows, there is a tendency to over-describe the case-of-the-week and under-describe serialized arcs. Make sure every plotline active in the episode gets proportional coverage — the case is important, but the character and institutional storylines are what carry the season
 
 ## What NOT to include
 
@@ -69,8 +70,10 @@ Return a JSON object with the following fields:
 The synopsis must be:
 
 - **Plain text** — no markdown, no bullet points, no subtitles, no headers
-- **300–500 words**, **8–15 beats**
+- **200–400 words**, **8–15 beats** each
 - Continuous prose organized into paragraphs by scene or location
 - Chronological order within the episode; mark flashbacks explicitly
 - Language: English
 - No editorial commentary or references to future episodes
+
+**Before finalizing:** re-read the synopsis and check — does it mention events from all active plotlines, or only the case? If you wrote mostly about the case-of-the-week, go back and add the serialized storylines.
