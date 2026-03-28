@@ -1,4 +1,4 @@
-"""CLI utility for generating episode synopses from Wikipedia data.
+"""CLI utility for generating episode synopses from Wikipedia and Fandom data.
 
 Not part of the public library API — not exported from __init__.py.
 """
@@ -29,6 +29,8 @@ except ImportError:
 _USER_AGENT = "tvplotlines/0.1.0 (https://github.com/BirdInTheTree/tvplotlines)"
 _MAX_RETRIES = 3
 _MIN_DESCRIPTION_LENGTH = 50
+# Fandom recap sections use varying header names across wikis
+_FANDOM_RECAP_SECTIONS = {"recap", "summary", "plot", "synopsis"}
 
 
 def fetch_season_page(
@@ -180,6 +182,244 @@ def _fetch_with_retry(
             time.sleep(2 ** attempt)
 
     return None
+
+
+# ---------------------------------------------------------------------------
+# Fandom wiki fetching
+# ---------------------------------------------------------------------------
+
+
+def _guess_wiki_name(show: str) -> str:
+    """Derive Fandom wiki subdomain from show name.
+
+    Lowercases and strips spaces/punctuation:
+    "House" → "house", "Breaking Bad" → "breakingbad",
+    "Game of Thrones" → "gameofthrones".
+    """
+    return re.sub(r"[^a-z0-9]", "", show.lower())
+
+
+def _fetch_fandom_season_page(
+    wiki_name: str,
+    show: str,
+    season: int,
+    headers: dict,
+) -> str | None:
+    """Fetch season page HTML from a Fandom wiki.
+
+    Tries several page name patterns since Fandom wikis vary in naming.
+    Returns HTML on success, None if no page found.
+    """
+    endpoint = f"https://{wiki_name}.fandom.com/api.php"
+    # Multi-franchise wikis disambiguate with "(Show Name)"
+    show_slug = show.replace(" ", "_")
+    candidates = [
+        f"Season_{season}",
+        f"Season_{season}_({show_slug})",
+        f"{show_slug}_Season_{season}",
+    ]
+
+    for page in candidates:
+        html = _fetch_with_retry(
+            endpoint,
+            {"action": "parse", "page": page, "prop": "text", "format": "json", "redirects": "true"},
+            headers,
+        )
+        if html is not None:
+            return html
+
+    return None
+
+
+def _parse_fandom_episode_links(html: str) -> list[tuple[int, str, str]]:
+    """Extract episode numbers, titles, and wiki page names from a Fandom season page.
+
+    Returns list of (number, title, page_name) tuples.
+    Handles two common layouts:
+    - Table rows with numbered episode entries (House-style)
+    - Ordered list / heading links (Breaking-Bad-style)
+    """
+    from bs4 import BeautifulSoup
+    import urllib.parse
+
+    soup = BeautifulSoup(html, "html.parser")
+    episodes: list[tuple[int, str, str]] = []
+
+    # Strategy 1: table rows with episode numbers like '1. "Pilot"'
+    tables = soup.find_all("table")
+    for table in tables:
+        for row in table.find_all("tr"):
+            cells = row.find_all("td")
+            for cell in cells:
+                text = cell.get_text(strip=True)
+                match = re.match(r'^(\d+)\.\s*["\u201c]?(.+?)["\u201d]?\s*$', text)
+                if not match:
+                    continue
+                number = int(match.group(1))
+                title = match.group(2).strip('" \u201c\u201d')
+                # Find the link in the same cell pointing to the episode page
+                link = cell.find("a", href=re.compile(r"^/wiki/"))
+                if link:
+                    page_name = urllib.parse.unquote(
+                        link["href"].split("/wiki/")[-1]
+                    )
+                    episodes.append((number, title, page_name))
+
+    if episodes:
+        return episodes
+
+    # Strategy 2: collect all internal /wiki/ links that look like episode pages.
+    # Filter out obvious non-episode links (actors, categories, seasons).
+    all_links = soup.find_all("a", href=re.compile(r"^/wiki/"))
+    for idx, link in enumerate(all_links, start=1):
+        href = link.get("href", "")
+        title = link.get_text(strip=True)
+        if not title or len(title) < 2:
+            continue
+        page_name = urllib.parse.unquote(href.split("/wiki/")[-1])
+        # Skip non-episode pages
+        if any(skip in page_name.lower() for skip in (
+            "season", "category:", "file:", "user:", "wiki",
+        )):
+            continue
+        episodes.append((idx, title, page_name))
+
+    return episodes
+
+
+def _fetch_fandom_recap(
+    wiki_name: str,
+    page_name: str,
+    headers: dict,
+) -> str:
+    """Fetch the recap/plot/summary section from a Fandom episode page.
+
+    Tries known section header names. Returns empty string if none found.
+    """
+    endpoint = f"https://{wiki_name}.fandom.com/api.php"
+
+    # First, get sections to find the recap index
+    try:
+        response = httpx.get(
+            endpoint,
+            params={
+                "action": "parse", "page": page_name,
+                "prop": "sections", "format": "json", "redirects": "true",
+            },
+            headers=headers,
+            timeout=30.0,
+        )
+        response.raise_for_status()
+        data = response.json()
+    except (httpx.HTTPError, KeyError):
+        return ""
+
+    if "error" in data:
+        return ""
+
+    sections = data.get("parse", {}).get("sections", [])
+    recap_index = None
+    for section in sections:
+        if section.get("line", "").lower().strip() in _FANDOM_RECAP_SECTIONS:
+            recap_index = section["index"]
+            break
+
+    if recap_index is None:
+        return ""
+
+    # Fetch just the recap section
+    try:
+        response = httpx.get(
+            endpoint,
+            params={
+                "action": "parse", "page": page_name,
+                "prop": "text", "section": recap_index,
+                "format": "json", "redirects": "true",
+            },
+            headers=headers,
+            timeout=30.0,
+        )
+        response.raise_for_status()
+        section_data = response.json()
+    except (httpx.HTTPError, KeyError):
+        return ""
+
+    if "error" in section_data:
+        return ""
+
+    from bs4 import BeautifulSoup
+
+    section_html = section_data.get("parse", {}).get("text", {}).get("*", "")
+    soup = BeautifulSoup(section_html, "html.parser")
+
+    # Remove the section heading (h1-h4) so only body text remains
+    for heading in soup.find_all(re.compile(r"^h[1-4]$")):
+        heading.decompose()
+    # Remove edit section links ([edit] buttons)
+    for edit_link in soup.find_all("span", class_="mw-editsection"):
+        edit_link.decompose()
+
+    return soup.get_text(separator=" ", strip=True)
+
+
+def fetch_fandom_episodes(
+    show: str,
+    season: int,
+    wiki_name: str | None = None,
+) -> list[RawEpisode]:
+    """Fetch episode recaps from a Fandom wiki.
+
+    Args:
+        show: Show name, e.g. "House" or "Breaking Bad".
+        season: Season number.
+        wiki_name: Fandom wiki subdomain. Guessed from show name if not provided.
+
+    Returns:
+        List of RawEpisode dicts with recap text as description.
+        Returns empty list if the wiki or season page is not found.
+    """
+    if httpx is None:
+        raise ImportError(
+            "httpx is required for fetching Fandom pages. "
+            "Install with: pip install tvplotlines[writer]"
+        )
+
+    resolved_wiki = wiki_name or _guess_wiki_name(show)
+    headers = {"User-Agent": _USER_AGENT}
+
+    html = _fetch_fandom_season_page(resolved_wiki, show, season, headers)
+    if html is None:
+        logger.info(
+            "Fandom season page not found for '%s' season %d (wiki: %s)",
+            show, season, resolved_wiki,
+        )
+        return []
+
+    episode_links = _parse_fandom_episode_links(html)
+    if not episode_links:
+        logger.info("No episode links found on Fandom season page")
+        return []
+
+    episodes: list[RawEpisode] = []
+    for number, title, page_name in episode_links:
+        recap = _fetch_fandom_recap(resolved_wiki, page_name, headers)
+        if not recap:
+            logger.debug(
+                "No recap found for '%s' on %s.fandom.com", page_name, resolved_wiki,
+            )
+            continue
+
+        episodes.append(RawEpisode(
+            number=number,
+            title=title,
+            description=recap,
+        ))
+
+    logger.info(
+        "Fandom: fetched %d/%d episode recaps from %s.fandom.com",
+        len(episodes), len(episode_links), resolved_wiki,
+    )
+    return episodes
 
 
 def parse_episode_table(html: str) -> list[RawEpisode]:
@@ -340,14 +580,27 @@ def _build_user_message(
     show: str,
     season: int,
     format_hint: str,
+    fandom_description: str = "",
 ) -> str:
-    """Build per-episode user message for the LLM."""
-    return (
+    """Build per-episode user message for the LLM.
+
+    When fandom_description is provided, both sources are included
+    so the LLM can synthesize a richer synopsis.
+    """
+    header = (
         f"Show: {show}\n"
         f"Season: {season}, Episode: {ep['number']}\n"
         f"{format_hint}\n\n"
-        f"Raw description:\n{ep['description']}"
     )
+
+    if fandom_description:
+        return (
+            f"{header}"
+            f"Source 1 (Wikipedia):\n{ep['description']}\n\n"
+            f"Source 2 (Fandom):\n{fandom_description}"
+        )
+
+    return f"{header}Raw description:\n{ep['description']}"
 
 
 def _episode_id(season: int, number: int) -> str:
@@ -375,6 +628,7 @@ def rewrite_synopses(
     mode: Mode = "single",
     use_glossary: bool = True,
     suggest_plotlines: bool = False,
+    fandom_map: dict[int, str] | None = None,
 ) -> list[str] | dict:
     """Rewrite raw episode descriptions into full synopses via LLM.
 
@@ -387,6 +641,7 @@ def rewrite_synopses(
         mode: Execution mode — parallel, batch, sequential, or single.
         use_glossary: Prepend glossary to system prompt.
         suggest_plotlines: If True, return dict with synopses and plotlines.
+        fandom_map: Optional mapping of episode number → Fandom recap text.
 
     Returns:
         list[str] when suggest_plotlines=False (backward compat).
@@ -398,22 +653,27 @@ def rewrite_synopses(
         if show_format
         else "Format: unknown (determine from context)"
     )
+    fandom = fandom_map or {}
 
     if mode == "single":
         synopses, plotlines = _rewrite_single(
             episodes, show, season, config, system_prompt, format_hint,
+            fandom_map=fandom,
         )
     elif mode == "sequential":
         synopses, plotlines = _rewrite_sequential(
             episodes, show, season, config, system_prompt, format_hint,
+            fandom_map=fandom,
         )
     elif mode == "batch":
         synopses, plotlines = _rewrite_batch(
             episodes, show, season, config, system_prompt, format_hint,
+            fandom_map=fandom,
         )
     else:
         synopses, plotlines = _rewrite_parallel(
             episodes, show, season, config, system_prompt, format_hint,
+            fandom_map=fandom,
         )
 
     if suggest_plotlines:
@@ -426,12 +686,15 @@ def rewrite_synopses(
 
 def _rewrite_parallel(
     episodes, show, season, config, system_prompt, format_hint,
+    fandom_map=None,
 ) -> tuple[list[str], list[list[dict]]]:
     """Each episode in a separate parallel LLM call."""
     from tvplotlines.llm import call_llm_parallel
 
+    fandom = fandom_map or {}
     user_messages = [
-        _build_user_message(ep, show, season, format_hint) for ep in episodes
+        _build_user_message(ep, show, season, format_hint, fandom.get(ep["number"], ""))
+        for ep in episodes
     ]
     results = call_llm_parallel(
         system_prompt, user_messages, config, cache_system=True,
@@ -441,12 +704,15 @@ def _rewrite_parallel(
 
 def _rewrite_batch(
     episodes, show, season, config, system_prompt, format_hint,
+    fandom_map=None,
 ) -> tuple[list[str], list[list[dict]]]:
     """Each episode in a separate call, sent as Anthropic batch."""
     from tvplotlines.llm import call_llm_batch
 
+    fandom = fandom_map or {}
     user_messages = [
-        _build_user_message(ep, show, season, format_hint) for ep in episodes
+        _build_user_message(ep, show, season, format_hint, fandom.get(ep["number"], ""))
+        for ep in episodes
     ]
     results = call_llm_batch(
         system_prompt, user_messages, config, cache_system=True,
@@ -456,15 +722,19 @@ def _rewrite_batch(
 
 def _rewrite_sequential(
     episodes, show, season, config, system_prompt, format_hint,
+    fandom_map=None,
 ) -> tuple[list[str], list[list[dict]]]:
     """Episodes one by one; each call includes all previous synopses as context."""
     from tvplotlines.llm import call_llm
 
+    fandom = fandom_map or {}
     synopses: list[str] = []
     all_plotlines: list[list[dict]] = []
 
     for ep in episodes:
-        base_msg = _build_user_message(ep, show, season, format_hint)
+        base_msg = _build_user_message(
+            ep, show, season, format_hint, fandom.get(ep["number"], ""),
+        )
 
         if synopses:
             # Build context from all previously generated synopses
@@ -493,29 +763,43 @@ _SINGLE_CHUNK_SIZE = 13  # max episodes per single-mode call
 
 def _rewrite_single(
     episodes, show, season, config, system_prompt, format_hint,
+    fandom_map=None,
 ) -> tuple[list[str], list[list[dict]]]:
     """All episodes in one or more LLM calls. Splits long seasons into chunks."""
+    fandom = fandom_map or {}
     if len(episodes) > _SINGLE_CHUNK_SIZE:
         return _rewrite_single_chunked(
             episodes, show, season, config, system_prompt, format_hint,
+            fandom_map=fandom,
         )
     return _rewrite_single_one_call(
         episodes, show, season, config, system_prompt, format_hint,
+        fandom_map=fandom,
     )
 
 
 def _rewrite_single_one_call(
     episodes, show, season, config, system_prompt, format_hint,
+    fandom_map=None,
 ) -> tuple[list[str], list[list[dict]]]:
     """All episodes in one LLM call."""
     from tvplotlines.llm import call_llm
 
+    fandom = fandom_map or {}
     episode_blocks = []
     for ep in episodes:
         eid = _episode_id(season, ep["number"])
-        episode_blocks.append(
-            f"[{eid}] {ep['title']}\n{ep['description']}"
-        )
+        fandom_text = fandom.get(ep["number"], "")
+        if fandom_text:
+            episode_blocks.append(
+                f"[{eid}] {ep['title']}\n"
+                f"Source 1 (Wikipedia):\n{ep['description']}\n"
+                f"Source 2 (Fandom):\n{fandom_text}"
+            )
+        else:
+            episode_blocks.append(
+                f"[{eid}] {ep['title']}\n{ep['description']}"
+            )
     all_descriptions = "\n\n".join(episode_blocks)
 
     msg = (
@@ -610,6 +894,33 @@ def _save_combined_file(
 # ---------------------------------------------------------------------------
 
 
+def _fetch_fandom_map(
+    show: str,
+    season: int,
+    wiki_name: str | None = None,
+) -> dict[int, str]:
+    """Try to fetch Fandom recaps and return episode_number → recap_text mapping.
+
+    Gracefully returns empty dict on any failure so it never crashes the pipeline.
+    """
+    try:
+        fandom_episodes = fetch_fandom_episodes(show, season, wiki_name)
+    except Exception:
+        logger.warning("Fandom fetch failed for '%s' season %d, using Wikipedia only", show, season)
+        return {}
+
+    if not fandom_episodes:
+        logger.info("No Fandom recaps found for '%s' season %d", show, season)
+        return {}
+
+    fandom_map = {ep["number"]: ep["description"] for ep in fandom_episodes}
+    logger.info(
+        "Fandom: %d recaps available for '%s' season %d",
+        len(fandom_map), show, season,
+    )
+    return fandom_map
+
+
 def write_synopses(
     show: str,
     season: int,
@@ -618,6 +929,8 @@ def write_synopses(
     from_files: list[str] | None = None,
     lang: str = "en",
     wiki_title: str | None = None,
+    fandom_wiki: str | None = None,
+    no_fandom: bool = False,
     show_format: str | None = None,
     dry_run: bool = False,
     provider: str = "anthropic",
@@ -635,6 +948,8 @@ def write_synopses(
         from_files: Optional list of raw description file paths (skip Wikipedia).
         lang: Wikipedia language code.
         wiki_title: Explicit Wikipedia page title.
+        fandom_wiki: Fandom wiki subdomain override (e.g. "house", "breakingbad").
+        no_fandom: Disable Fandom fetching entirely.
         show_format: Show format hint for LLM.
         dry_run: Fetch and parse only, don't call LLM.
         provider: LLM provider.
@@ -650,11 +965,26 @@ def write_synopses(
         html = fetch_season_page(show, season, lang=lang, wiki_title=wiki_title)
         episodes = parse_episode_table(html)
 
+    # Fetch Fandom recaps as supplementary source
+    fandom_map: dict[int, str] = {}
+    if not from_files and not no_fandom:
+        fandom_map = _fetch_fandom_map(show, season, fandom_wiki)
+
     if dry_run:
+        fandom_count = len(fandom_map)
         print(f"Found {len(episodes)} episodes:")
         for ep in episodes:
             desc_len = len(ep["description"])
-            print(f"  S{season:02d}E{ep['number']:02d} — {ep['title']} ({desc_len} chars)")
+            fandom_len = len(fandom_map.get(ep["number"], ""))
+            sources = "Wikipedia"
+            if fandom_len:
+                sources += f" + Fandom ({fandom_len} chars)"
+            print(
+                f"  S{season:02d}E{ep['number']:02d} — {ep['title']} "
+                f"({desc_len} chars) [{sources}]"
+            )
+        if fandom_count:
+            print(f"Fandom recaps available for {fandom_count}/{len(episodes)} episodes")
         return
 
     from tvplotlines.llm import LLMConfig, usage
@@ -667,6 +997,7 @@ def write_synopses(
         mode=mode,
         use_glossary=use_glossary,
         suggest_plotlines=True,
+        fandom_map=fandom_map,
     )
     synopses = result["synopses"]
     suggested_plotlines = result["suggested_plotlines"]

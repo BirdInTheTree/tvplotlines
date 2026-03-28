@@ -76,4 +76,10 @@ The synopsis must be:
 - Language: English
 - No editorial commentary or references to future episodes
 
-**Before finalizing:** re-read the synopsis. For procedural and hybrid formats: does it mention serialized storylines (character arcs, office politics, recurring conflicts), or only the episode's case? The case is one plotline — but every episode has at least two more. Go back and add them.
+# SELF-CHECK
+
+Before finalizing, re-read the synopsis:
+
+1. For procedural and hybrid formats: does it mention serialized storylines (character arcs, office politics, recurring conflicts), or only the episode's case? The case is one plotline — every episode has at least two more.
+2. If the raw description only covers the case, check the second source (if provided) for serialized content.
+3. Count the narrative threads — if fewer than 3, something is missing.

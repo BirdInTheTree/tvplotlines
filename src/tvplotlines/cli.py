@@ -266,6 +266,8 @@ def _write_synopses(args: argparse.Namespace) -> None:
         from_files=args.from_files,
         lang=args.lang,
         wiki_title=args.wiki_title,
+        fandom_wiki=args.fandom_wiki,
+        no_fandom=args.no_fandom,
         show_format=args.show_format,
         dry_run=args.dry_run,
         provider=args.provider,
@@ -338,6 +340,10 @@ def main() -> None:
     ws_parser.add_argument("--mode", default="single",
                            choices=["parallel", "batch", "sequential", "single"],
                            help="Execution mode (default: single)")
+    ws_parser.add_argument("--fandom-wiki", default=None,
+                           help="Fandom wiki subdomain (e.g. 'house', 'breakingbad')")
+    ws_parser.add_argument("--no-fandom", action="store_true",
+                           help="Disable Fandom wiki fetching (Wikipedia only)")
     ws_parser.add_argument("--no-glossary", action="store_true",
                            help="Skip glossary injection into system prompt")
 
