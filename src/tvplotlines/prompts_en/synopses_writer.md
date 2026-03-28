@@ -76,4 +76,4 @@ The synopsis must be:
 - Language: English
 - No editorial commentary or references to future episodes
 
-**Before finalizing:** re-read the synopsis and check — does it mention events from all active plotlines, or only the case? If you wrote mostly about the case-of-the-week, go back and add the serialized storylines.
+**Before finalizing:** re-read the synopsis. For procedural and hybrid formats: does it mention serialized storylines (character arcs, office politics, recurring conflicts), or only the episode's case? The case is one plotline — but every episode has at least two more. Go back and add them.

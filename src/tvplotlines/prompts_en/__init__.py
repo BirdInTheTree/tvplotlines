@@ -1,37 +1,47 @@
-"""English prompt templates for each pipeline pass.
+"""Prompt templates for each pipeline pass.
 
 Prompts are stored as .md files and loaded at runtime as system prompts.
+Supports English (default) and Russian prompt sets.
 """
 
 from importlib import resources
 
+_LANG_PACKAGES = {
+    "en": "tvplotlines.prompts_en",
+    "ru": "tvplotlines.prompts_ru",
+}
 
-_glossary_cache: str | None = None
+_glossary_cache: dict[str, str] = {}
 
 
-def _load_glossary() -> str:
-    """Load shared glossary (cached)."""
-    global _glossary_cache
-    if _glossary_cache is None:
-        _glossary_cache = resources.files(__package__).joinpath("glossary.md").read_text(encoding="utf-8")
-    return _glossary_cache
+def _load_glossary(lang: str) -> str:
+    """Load shared glossary for a language (cached)."""
+    if lang not in _glossary_cache:
+        package = _LANG_PACKAGES[lang]
+        _glossary_cache[lang] = (
+            resources.files(package).joinpath("glossary.md").read_text(encoding="utf-8")
+        )
+    return _glossary_cache[lang]
 
 
 def load_prompt(pass_name: str, lang: str = "en") -> str:
-    """Load a prompt template by pass name.
+    """Load a prompt template by pass name and language.
 
     If the prompt contains {GLOSSARY}, it is replaced with the shared
-    glossary from glossary.md.
+    glossary from the same language package.
 
     Args:
-        pass_name: "pass0", "pass1", "pass2", or "pass3".
-        lang: Language code. Only "en" is supported currently.
+        pass_name: "pass0", "pass1", "pass2", "pass3", "pass4", or "synopses_writer".
+        lang: Language code — "en" or "ru".
 
     Returns:
         Prompt text (markdown).
     """
+    if lang not in _LANG_PACKAGES:
+        raise ValueError(f"Unsupported language: {lang!r}. Expected one of {list(_LANG_PACKAGES)}")
+    package = _LANG_PACKAGES[lang]
     filename = f"{pass_name}.md"
-    text = resources.files(__package__).joinpath(filename).read_text(encoding="utf-8")
+    text = resources.files(package).joinpath(filename).read_text(encoding="utf-8")
     if "{GLOSSARY}" in text:
-        text = text.replace("{GLOSSARY}", _load_glossary())
+        text = text.replace("{GLOSSARY}", _load_glossary(lang))
     return text
