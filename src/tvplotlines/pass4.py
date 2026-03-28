@@ -48,30 +48,39 @@ def assign_arc_functions(
     name_to_id = {p.name: p.id for p in plotlines}
     name_to_id.update({p.id: p.id for p in plotlines})
 
+    # Count events per plotline to estimate max_tokens
+    event_counts: dict[str, int] = {}
+    for ep in episodes:
+        for event in ep.events:
+            if event.plotline_id:
+                event_counts[event.plotline_id] = event_counts.get(event.plotline_id, 0) + 1
+
     # Build one user message per plotline
     user_messages = []
     plotline_order = []
     for plotline in plotlines:
         msg = _build_plotline_message(show, season, plotline, episodes)
-        if msg:  # skip plotlines with no events
+        if msg:
             user_messages.append(msg)
             plotline_order.append(plotline.id)
 
     if not user_messages:
         return 0
 
-    results = call_llm_parallel(system_prompt, user_messages, config)
-
-    # Apply all results
+    # Call each plotline individually (not parallel) to control max_tokens per call
     total_count = 0
-    for pid, data in zip(plotline_order, results):
+    for pid, msg in zip(plotline_order, user_messages):
+        n_events = event_counts.get(pid, 0)
+        max_tokens = max(4096, n_events * 60 + 500)
+        data = call_llm(system_prompt, msg, config, max_tokens=max_tokens)
+
         # Normalize plotline references
         for af in data.get("arc_functions", []):
             ref = af.get("plotline", "")
             if ref not in plotline_ids and ref in name_to_id:
                 af["plotline"] = name_to_id[ref]
             elif not af.get("plotline"):
-                af["plotline"] = pid  # default to current plotline
+                af["plotline"] = pid
         total_count += _apply_arc_functions(data, plotline_ids, episodes)
 
     return total_count
