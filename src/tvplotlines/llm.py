@@ -196,6 +196,7 @@ async def acall_llm(
     *,
     cache_system: bool = False,
     validator: Callable[[dict], None] | None = None,
+    max_tokens: int = 6144,
 ) -> dict:
     """Async: call LLM and return parsed JSON, retrying on errors."""
     messages = [{"role": "user", "content": user_message}]
@@ -458,7 +459,7 @@ async def _acall_anthropic(
 
         response = await client.messages.create(
             model=config.resolved_model,
-            max_tokens=6144,
+            max_tokens=max_tokens,
             temperature=0,
             system=system_content,
             messages=messages,
@@ -547,11 +548,13 @@ def call_llm(
     *,
     cache_system: bool = False,
     validator: Callable[[dict], None] | None = None,
+    max_tokens: int = 6144,
 ) -> dict:
     """Sync wrapper: call LLM and return parsed JSON response."""
     return _run_async(acall_llm(
         system_prompt, user_message, config,
         cache_system=cache_system, validator=validator,
+        max_tokens=max_tokens,
     ))
 
 

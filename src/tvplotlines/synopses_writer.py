@@ -513,8 +513,11 @@ def _rewrite_single(
         f"Raw descriptions:\n{all_descriptions}"
     )
 
+    # ~500 tokens per episode synopsis + ~200 for plotlines + overhead
+    max_tokens = len(episodes) * 500 + 500
     result = call_llm(
         system_prompt, msg, config, cache_system=True,
+        max_tokens=max_tokens,
     )
 
     # Parse single-mode schema: synopses array + one plotline list
