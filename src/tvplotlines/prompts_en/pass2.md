@@ -41,6 +41,8 @@ When one event advances two plotlines, assign it to the primary one and list the
 
 Every sentence of the synopsis must produce at least one event. If you can't map a sentence to an event, you missed something.
 
+Every episode has at least 2-3 active plotlines. If all events ended up in one plotline — re-read the synopsis and look for events that belong to other plotlines, especially serialized ones that continue across episodes. In procedural and hybrid shows, don't assign everything to the case — character arcs and institutional dynamics have events too.
+
 If all plotlines in the episode have only escalation functions, or all have only crisis/resolution — you probably misassigned some functions. A well-written episode takes its main plotline through a full arc: setup → escalation → turning point → climax → resolution. Other plotlines may cover fewer stages, but the A-story typically has all of them.
 
 # OUTPUT
