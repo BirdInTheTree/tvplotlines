@@ -488,10 +488,26 @@ def _rewrite_sequential(
     return synopses, all_plotlines
 
 
+_SINGLE_CHUNK_SIZE = 13  # max episodes per single-mode call
+
+
 def _rewrite_single(
     episodes, show, season, config, system_prompt, format_hint,
 ) -> tuple[list[str], list[list[dict]]]:
-    """All episodes in one LLM call. Different output schema."""
+    """All episodes in one or more LLM calls. Splits long seasons into chunks."""
+    if len(episodes) > _SINGLE_CHUNK_SIZE:
+        return _rewrite_single_chunked(
+            episodes, show, season, config, system_prompt, format_hint,
+        )
+    return _rewrite_single_one_call(
+        episodes, show, season, config, system_prompt, format_hint,
+    )
+
+
+def _rewrite_single_one_call(
+    episodes, show, season, config, system_prompt, format_hint,
+) -> tuple[list[str], list[list[dict]]]:
+    """All episodes in one LLM call."""
     from tvplotlines.llm import call_llm
 
     episode_blocks = []
@@ -507,13 +523,13 @@ def _rewrite_single(
         f"Season: {season}\n"
         f"{format_hint}\n\n"
         f"Write synopses for ALL episodes below. "
+        f"Each synopsis must be 150-300 words. "
         f"Return a JSON object with:\n"
         f'- "synopses": array of objects, each with "episode" (e.g. "S01E01") and "synopsis"\n'
         f'- "suggested_plotlines": array of plotline objects for the whole season\n\n'
         f"Raw descriptions:\n{all_descriptions}"
     )
 
-    # ~500 tokens per episode synopsis + ~200 for plotlines + overhead
     max_tokens = len(episodes) * 500 + 500
     result = call_llm(
         system_prompt, msg, config, cache_system=True,

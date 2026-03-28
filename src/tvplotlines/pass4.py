@@ -44,11 +44,24 @@ def assign_arc_functions(
     system_prompt = load_prompt("pass4", lang=config.lang)
 
     plotline_ids = {p.id for p in plotlines}
+    # Map name → id for resilience (LLM may return name instead of id)
+    name_to_id = {p.name: p.id for p in plotlines}
+    name_to_id.update({p.id: p.id for p in plotlines})  # id maps to itself
 
     def _validate(data: dict) -> None:
+        # Normalize plotline references before validation
+        for af in data.get("arc_functions", []):
+            pid = af.get("plotline", "")
+            if pid not in plotline_ids and pid in name_to_id:
+                af["plotline"] = name_to_id[pid]
         _parse_and_validate(data, plotline_ids, episodes)
 
     data = call_llm(system_prompt, user_message, config, validator=_validate)
+    # Normalize again for apply (validator may have fixed during retry)
+    for af in data.get("arc_functions", []):
+        pid = af.get("plotline", "")
+        if pid not in plotline_ids and pid in name_to_id:
+            af["plotline"] = name_to_id[pid]
     return _apply_arc_functions(data, plotline_ids, episodes)
 
 
@@ -73,7 +86,7 @@ def _build_user_message(
     lines = [f"Show: {show}, Season {season}", ""]
     for plotline in plotlines:
         lines.append(
-            f"Plotline: {plotline.name} "
+            f"Plotline ID: {plotline.id} — {plotline.name} "
             f"(hero={plotline.hero}, goal={plotline.goal})"
         )
         lines.append("Events:")
