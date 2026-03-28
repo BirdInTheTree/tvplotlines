@@ -768,10 +768,19 @@ def _rewrite_single(
     """All episodes in one or more LLM calls. Splits long seasons into chunks."""
     fandom = fandom_map or {}
     if len(episodes) > _SINGLE_CHUNK_SIZE:
-        return _rewrite_single_chunked(
-            episodes, show, season, config, system_prompt, format_hint,
-            fandom_map=fandom,
-        )
+        # Split into chunks, call once per chunk, merge results
+        all_synopses: list[str] = []
+        all_plotlines: list[list[dict]] = []
+        for i in range(0, len(episodes), _SINGLE_CHUNK_SIZE):
+            chunk = episodes[i:i + _SINGLE_CHUNK_SIZE]
+            chunk_fandom = {ep["number"]: fandom.get(ep["number"], "") for ep in chunk}
+            s, p = _rewrite_single_one_call(
+                chunk, show, season, config, system_prompt, format_hint,
+                fandom_map=chunk_fandom,
+            )
+            all_synopses.extend(s)
+            all_plotlines.extend(p)
+        return all_synopses, all_plotlines
     return _rewrite_single_one_call(
         episodes, show, season, config, system_prompt, format_hint,
         fandom_map=fandom,
