@@ -203,9 +203,18 @@ def _run(args: argparse.Namespace) -> None:
     )
 
     # Save result
+    import os
     from datetime import datetime
     result_json = json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
-    output = args.output or Path(f"{show.lower().replace(' ', '-')}_s{season:02d}.json")
+    default_name = f"{show.lower().replace(' ', '-')}_s{season:02d}.json"
+    env_dir = os.environ.get("TVPLOTLINES_OUTPUT_DIR")
+    if args.output:
+        output = args.output
+    elif env_dir:
+        output = Path(env_dir) / default_name
+        output.parent.mkdir(parents=True, exist_ok=True)
+    else:
+        output = Path(default_name)
     output.write_text(result_json, encoding="utf-8")
     print(f"\nSaved to {output}")
 
@@ -257,7 +266,16 @@ def _write_synopses(args: argparse.Namespace) -> None:
     except ImportError:
         pass
 
-    output = args.output or args.show.lower().replace(" ", "-") + "/"
+    import os
+    env_dir = os.environ.get("TVPLOTLINES_SYNOPSES_DIR")
+    if args.output:
+        output = args.output
+    elif env_dir:
+        slug = args.show.lower().replace(" ", "-")
+        output = os.path.join(env_dir, slug) + "/"
+        os.makedirs(output, exist_ok=True)
+    else:
+        output = args.show.lower().replace(" ", "-") + "/"
 
     write_synopses(
         show=args.show,
