@@ -198,11 +198,13 @@ def get_plotlines(
 
     # Pass 3: structural review (with diagnostic flags as context)
     if not skip_review:
-        verdicts = review_plotlines(
+        pass3_result = review_plotlines(
             show, season, context, cast, plotlines, breakdowns,
             diagnostics=flags or None,
             config=config,
         )
+        verdicts = pass3_result["verdicts"]
+        llm_ranks = pass3_result.get("ranks", {})
 
         _fire(callback, "on_pass3_complete", verdicts)
         if verdicts:
@@ -213,6 +215,12 @@ def get_plotlines(
             # Recompute span after verdicts (ranks are not recomputed —
             # Pass 3 changes go into reviewed_rank, computed_rank stays)
             compute_span(plotlines, breakdowns)
+
+        # Compare LLM-assigned ranks with computed_rank
+        for plotline in plotlines:
+            llm_rank = llm_ranks.get(plotline.id)
+            if llm_rank and llm_rank != plotline.computed_rank:
+                plotline.reviewed_rank = llm_rank
 
         # Pass 4: assign arc functions to all events
         count = assign_arc_functions(

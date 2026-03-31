@@ -24,6 +24,7 @@ _VALID_FUNCTIONS = {
     "setup", "inciting_incident", "escalation", "turning_point",
     "crisis", "climax", "resolution",
 }
+_VALID_RANKS = {"A", "B", "C"}
 
 
 def review_plotlines(
@@ -36,7 +37,7 @@ def review_plotlines(
     *,
     diagnostics: list[dict] | None = None,
     config: LLMConfig | None = None,
-) -> list[Verdict]:
+) -> dict:
     """Run structural review on pipeline results.
 
     Args:
@@ -50,7 +51,7 @@ def review_plotlines(
         config: LLM settings.
 
     Returns:
-        List of Verdict objects to apply.
+        Dict with "verdicts" (list[Verdict]) and "ranks" (dict[str, str | None]).
     """
     if config is None:
         config = LLMConfig()
@@ -80,7 +81,7 @@ def review_plotlines(
                 "obstacle": p.obstacle,
                 "stakes": p.stakes,
                 "type": p.type,
-                "rank": p.rank,
+                "computed_rank": p.computed_rank,
                 "nature": p.nature,
                 "confidence": p.confidence,
                 "span": p.span,
@@ -117,11 +118,17 @@ def review_plotlines(
 
     system_prompt = load_prompt("pass3", lang=config.lang)
 
+    plotline_ids = {p.id for p in plotlines}
+
     def _full_validate(data: dict) -> None:
         _parse_verdicts(data, plotlines, episodes)
+        _parse_ranks(data, plotline_ids)
 
     data = call_llm(system_prompt, user_message, config, validator=_full_validate)
-    return _parse_verdicts(data, plotlines, episodes)
+    return {
+        "verdicts": _parse_verdicts(data, plotlines, episodes),
+        "ranks": _parse_ranks(data, plotline_ids),
+    }
 
 
 def _parse_verdicts(
@@ -197,6 +204,29 @@ def _parse_verdicts(
         verdicts.append(Verdict(action=action, data=v))
 
     return verdicts
+
+
+def _parse_ranks(
+    data: dict,
+    plotline_ids: set[str],
+) -> dict[str, str | None]:
+    """Parse and validate rank assignments from LLM response."""
+    raw_ranks = data.get("ranks", {})
+    if not isinstance(raw_ranks, dict):
+        raise ValueError(f"ranks must be a dict, got {type(raw_ranks).__name__}")
+
+    ranks: dict[str, str | None] = {}
+    for plotline_id, rank in raw_ranks.items():
+        if plotline_id not in plotline_ids:
+            raise ValueError(f"ranks references unknown plotline: {plotline_id!r}")
+        if rank is not None and rank not in _VALID_RANKS:
+            raise ValueError(
+                f"Invalid rank {rank!r} for plotline {plotline_id!r}, "
+                f"expected A/B/C/null"
+            )
+        ranks[plotline_id] = rank
+
+    return ranks
 
 
 def _require_keys(d: dict, keys: list[str]) -> None:

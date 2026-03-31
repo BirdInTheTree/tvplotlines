@@ -77,6 +77,12 @@ The plotline structure should match the format:
 
 If the structure doesn't match—either the format was determined incorrectly, or the plotlines need adjustment.
 
+### Step 7: Assign ranks
+
+Each plotline has a `computed_rank` assigned by code from event counts. Review it. For each plotline, assign your own rank (A, B, C, or null for runners) based on narrative importance — what the show is about, not how many events a plotline has.
+
+Return your ranks in the `ranks` field — a mapping of plotline ID to rank.
+
 # RULES
 
 1. **If everything is fine—empty `verdicts` array.** Don't invent problems.
@@ -147,6 +153,11 @@ Response—strictly JSON, no markdown wrapping, no comments outside JSON.
       "reason": "one sentence"
     }
   ],
+  "ranks": {
+    "empire": "A",
+    "family": "B",
+    "investigation": "C"
+  },
   "notes": "brief comment on the quality of the original analysis (1–2 sentences)"
 }
 ```
