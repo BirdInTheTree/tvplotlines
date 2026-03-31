@@ -3,32 +3,47 @@
 ## Unreleased
 
 ### Added
+- **Pass 4: arc functions** (`plot_fn`) — each event gets a season-arc role alongside its episode function. Pass 4 runs per-plotline, sees episode functions as context.
+- **Reviewed rank**: Pass 3 assigns its own ranks. When they differ from `computed_rank`, stored as `reviewed_rank` — user sees both.
+- **Fandom wiki** as second synopsis source — 15-20× more detailed than Wikipedia. Fetched automatically alongside Wikipedia.
+- **DuckDuckGo fallback** — searches web for episodes with sparse Wikipedia + Fandom descriptions. Works for any language.
+- **Suggested plotlines** from synopsis writer passed to Pass 0 and Pass 1 as context.
+- **Russian prompts** (`prompts_ru/`) — all passes + glossary translated.
 - **Rank refactor**: rank split into `computed_rank` (code, from event counts) and `reviewed_rank` (Pass 3, when it disagrees). LLM no longer assigns rank in Pass 1.
-- **Theme-led plotlines**: glossary, logline test, naming rules for institutional/systemic plotlines (e.g. "MI5 vs Slough House", "Lab Politics")
-- **Shared glossary**: all prompt definitions in one file (`glossary.md`), injected into all passes
+- **Theme-led plotlines**: glossary, logline test, naming rules for institutional/systemic plotlines (e.g. "MI5 vs Slough House", "Sterling Cooper: Business")
+- **Shared glossary**: all prompt definitions in one file (`glossary.md`), injected into all passes via `{GLOSSARY}`
 - **CLI**: `--stop-after pass1` saves intermediate JSON, `--resume-from` resumes from it
 - **CLI**: `--output-dir` saves timestamped copy of results
-- **Rank experiment**: `scripts/rank_experiment.py` + `docs/experiments/counting-events-for-ABC-rank.md`
-- **Rules and formulas reference**: `docs/formulas.md` — all computed values, thresholds, and rules in one place
+- **CLI**: `--no-glossary`, `--no-fandom`, `--fandom-wiki` flags for write-synopses
+- **Environment variables**: `TVPLOTLINES_OUTPUT_DIR`, `TVPLOTLINES_SYNOPSES_DIR` — default output locations
+- **Rules and formulas reference**: `docs/formulas.md`
 - Chain-of-thought nudge in all prompts before OUTPUT section
 
 ### Changed
-- **Ensemble is now a format** (`format: "ensemble"`), not a boolean flag (`is_ensemble`). Ensemble shows are always serial by nature.
-- **Pass 2 functions are episode-scoped**: function assignment clarified as role within the episode, not the season arc
-- **Pass 2 event assignment**: rules rewritten as prose instead of jargon shorthand
-- Wikipedia `write-synopses`: uses Search API instead of URL guessing — works for shows without dedicated season pages
-- Plotline quantity limits: ensemble max raised to 8
+- **5-pass pipeline**: Pass 4 (arc functions) added after Pass 3
+- **Synopses writer auto-mode**: parallel for procedural/hybrid (preserves B-stories), single for serial/ensemble (season context)
+- **Synopses writer**: Wikipedia + Fandom + DuckDuckGo, self-check for plotline balance
+- **Rank formula**: equal weight for primary and also_affects events. Span requirements: A ≥ 75%, B ≥ 50%, C ≥ 25%.
+- **Quantity limits** scale with season length: serial ≤8 eps max 5, 9+ max 7; ensemble ≤8 max 7, 9+ max 9
+- **Ensemble is now a format** (`format: "ensemble"`), not a boolean flag. Ensemble = always serial.
+- **Pass 2 functions are episode-scoped**: clarified as role within the episode, not the season arc
+- **Pass 2**: plotline distribution check — warns if all events in one plotline
+- Wikipedia `write-synopses`: Search API instead of URL guessing
+- `max_tokens` scales by episode count (synopses) and event count (Pass 4)
 
 ### Removed
-- **`limited` format** — not useful for analysis, hard to distinguish from serial
-- **Patches** (ADD_LINE, CHECK_LINE, SPLIT_LINE) — dead feature, events with `plotline_id: null` are sufficient signal
-- **RERANK patch** — rank is now computed by code after Pass 2
-- **PROMOTE/DEMOTE verdicts** — rank computed by code, Pass 3 no longer changes ranks
+- **`limited` format** — not useful for analysis
+- **Patches** (ADD_LINE, CHECK_LINE, SPLIT_LINE) — dead feature
+- **PROMOTE/DEMOTE verdicts** — replaced by reviewed_rank
 
 ### Fixed
-- Verdicts with invalid plotline IDs are now skipped instead of applied
-- DROP aborts if any events remain unredistributed — events are never set to null
-- CLI callback inherits PipelineCallback to prevent AttributeError on batch mode
+- Verdicts with invalid plotline IDs skipped instead of applied
+- DROP aborts if events remain unredistributed
+- CLI callback inherits PipelineCallback
+- Arc function parsing: warn on mismatched event text instead of crash
+- Pass 4 plotline ID normalization (name → id mapping)
+- Single mode chunking for seasons >13 episodes
+- Timeout scaling for large plotlines in Pass 4
 
 ## 0.1.0 — 2026-03-25
 
