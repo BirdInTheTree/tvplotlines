@@ -4,59 +4,55 @@
 [![License](https://img.shields.io/github/license/BirdInTheTree/tvplotlines?cacheSeconds=3600)](LICENSE)
 [![Python](https://img.shields.io/pypi/pyversions/tvplotlines?cacheSeconds=3600)](https://pypi.org/project/tvplotlines/)
 
-a Python library to extract plotlines from a season of TV synopses using LLMs.
+Turn episode synopses into a writers' room corkboard — story engine, plotlines with their *story DNA* and *arcs* (see definitions in [glossary](src/tvplotlines/prompts_en/glossary.md)) — in one function call.
+
+For TV researchers, screenwriters, and anyone building narrative analysis tools or a tv series.
 
 <p align="center">
   <a href="https://birdinthetree.github.io/plotter-app/">
-    <img src="docs/images/app-grid.png" alt="tvplotlines output — plotline×episode grid for Breaking Bad S01">
+    <img src="docs/images/app-screenshot-1.png" alt="tvplotlines output — plotline×episode grid for Breaking Bad S01">
   </a>
   <br>
-  <em>tvplotlines output for Breaking Bad S01 in <a href="https://birdinthetree.github.io/plotter-app/">tvplot app</a></em>
+  <strong><a href="https://birdinthetree.github.io/plotter-app/">Try the interactive demo →</a></strong>
 </p>
 
-In our benchmarks, a naive LLM prompt covers 5–12% of a season's source material. tvplotlines covers 78–91% — by separating what the model looks for (narrative theory in prompts) from how the result is organized (code).
+A naive LLM prompt covers 5–12% of a season's source material. tvplotlines covers **78–91%** — by separating *what* the model looks for (narrative theory) from *how* it calculates the results (code).
 
-One function call takes a season of episode synopses and returns structured data: plotlines with cast, Story DNA (hero, goal, obstacle, stakes), A/B/C ranking, and per-episode events.
+## Quick start
 
-## Input
-
-One `.txt` file per episode. Include the season and episode number in the filename as `S01E01`, `S01E02`, etc. — any prefix works. 
-
-Each file is a plain-text synopsis of one episode — a few paragraphs covering the main events. See `examples/synopses/breaking-bad/` for  reference.
-
-Put all files in one folder. The folder name becomes the show title (`breaking-bad` → "Breaking Bad"):
-```
-breaking-bad/
-├── S01E01.txt
-├── S01E02.txt
-├── ...
-└── S01E07.txt
-```
-
-Install, set your API key, and run:
 ```bash
 pip install tvplotlines
 export ANTHROPIC_API_KEY=sk-ant-…
-
-tvplotlines run breaking-bad/
 ```
 
-Use `--show` to set the title manually:
+Working on your own series? Point it at your synopses — one `.txt` file per episode (see [Input format](#input-format)):
 
 ```bash
-tvplotlines run got/ --show "Game of Thrones"
+tvplotlines run my-series/
 ```
 
-Don't have synopses? Generate them from Wikipedia:
+Want to analyze an existing show? The optional `writer` extension generates synopses from online sources:
 
 ```bash
 pip install 'tvplotlines[writer]'
 tvplotlines write-synopses "Mad Men" --season 1
+tvplotlines run mad-men/
 ```
 
-## Output
+Multiple seasons are supported — plotline continuity is tracked across seasons (see [Python API](#python-api)).
 
-The result is a single JSON file per season. Breaking Bad, Season 1 (truncated):
+Pre-computed results are in [`examples/results/`](examples/results/) — explore the output without spending API credits.
+
+## What you get
+
+One JSON file per season. Each contains:
+
+- **Cast** — characters with aliases
+- **Plotlines** — with A/B/C ranking, Story DNA (hero, goal, obstacle, stakes), and episode span
+- **Events** — per-episode, assigned to plotlines with narrative function (setup → inciting incident → escalation → crisis → climax → resolution)
+
+<details>
+<summary>Example: Breaking Bad S01 (truncated)</summary>
 
 ```json
 {
@@ -97,55 +93,48 @@ The result is a single JSON file per season. Breaking Bad, Season 1 (truncated):
 }
 ```
 
-The output is structured JSON — plug it into your own tools, scripts, or visualizations.
-
-## Key concepts
-
-- **Plotline** — a narrative thread running through one or more episodes (e.g. "Walt: Empire")
-- **Story DNA** — who drives the plotline (*hero*), what they want (*goal*), what's in the way (*obstacle*), and what's at risk (*stakes*)
-- **A/B/C ranking** — plotline weight: A (main), B (secondary), C (tertiary), runner (minor recurring thread)
-- **Format** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
-- **Story engine** — one sentence capturing the show's core dramatic mechanism
-
-More detail in the [prompts](src/tvplotlines/prompts_en/).
+</details>
 
 ## How it works
 
-Four passes, each a separate LLM call with a specialized prompt:
+### Plotline extraction (`tvplotlines run`)
 
-| Pass       | Role                | Input                       | Output                                   |
-| ---------- | ------------------- | --------------------------- | ---------------------------------------- |
-| **Pass 0** | Context detection   | Show title + first synopses | Format, story engine                     |
-| **Pass 1** | Plotline extraction | All synopses + context      | Cast + plotlines with Story DNA          |
-| **Pass 2** | Event assignment    | One synopsis + plotlines    | Events assigned to plotlines             |
-| **Pass 3** | Quality review      | Full result                 | Verdicts (merge, reassign, create, drop) |
+Five LLM passes, each with a specialized prompt:
 
-Pass 1 uses majority voting (3 calls). Pass 2 adds one call per episode. Total: 5 fixed calls + one per episode.
+| Pass | Role | Output | Calls |
+|------|------|--------|-------|
+| **0** | Context detection | Format (serial/procedural/ensemble), genre, story engine | 1 |
+| **1** | Plotline extraction | Cast + plotlines with Story DNA | 3 (majority vote) |
+| **2** | Event assignment | Events mapped to plotlines with narrative functions | 1 per episode |
+| **3** | Structural review | Verdicts: merge, reassign, create, drop, refunction | 1 |
+| **4** | Arc functions | Season-level arc function for each event (per plotline) | 1 per plotline |
 
-Pass 3 reviews the full picture that no earlier pass could see and corrects the result (merge redundant plotlines, reassign misplaced events, etc.).
+Pass 1 runs 3× in parallel and picks the most common plotline set. Pass 3 sees the full picture no earlier pass had and corrects structural problems. Pass 4 assigns arc-level functions — an event that was a climax in episode 3 might be an escalation in the season-long arc.
 
-Tested with Claude Sonnet (default). OpenAI and Ollama are supported but less tested.
+### Synopsis generation (`write-synopses`)
 
-## Quick start
+The `writer` extension collects raw episode data from online sources, then rewrites each episode into a full synopsis via LLM — ensuring every sentence is a beat (conflict or change), with explicit causality and character names.
 
-```bash
-pip install tvplotlines
-export ANTHROPIC_API_KEY=sk-ant-...  # or OPENAI_API_KEY for any OpenAI-compatible provider
+Tested with Claude Sonnet (default). OpenAI and Ollama supported for both pipelines. Ollama defaults to Qwen 2.5 14B — chosen to run on CPU without a GPU. Quality is noticeably lower than cloud models but works for experimentation.
+
+## Input format
+
+One `.txt` file per episode. Include `S01E01`, `S01E02`, etc. in the filename. Each file is a plain-text (.txt) synopsis — 150–500 words covering the main events.
+
+```
+breaking-bad/
+├── S01E01.txt
+├── S01E02.txt
+└── S01E07.txt
 ```
 
-The repo includes example synopses for Breaking Bad and Game of Thrones:
+The folder name becomes the show title. Override with `--show`:
 
 ```bash
-git clone https://github.com/BirdInTheTree/tvplotlines.git
-cd tvplotlines
-tvplotlines run examples/synopses/breaking-bad/
+tvplotlines run got/ --show "Game of Thrones"
 ```
 
-Pre-computed results are in [`examples/results/`](examples/results/) if you want to explore the output without spending API credits.
-
-### Python API
-
-Seasons can be chained — pass the previous result as `prior` so the model tracks plotline continuity:
+## Python API
 
 ```python
 from tvplotlines import get_plotlines
@@ -154,21 +143,27 @@ s01 = get_plotlines("Breaking Bad", season=1, episodes=season_1_synopses)
 s02 = get_plotlines("Breaking Bad", season=2, episodes=season_2_synopses, prior=s01)
 ```
 
+Pass `prior` to track plotline continuity across seasons.
+
 ## LLM providers
 
-Anthropic (default) and any OpenAI-compatible API:
-
 ```bash
-tvplotlines run breaking-bad/                            # Anthropic (default)
-tvplotlines run breaking-bad/ --provider openai          # OpenAI
-tvplotlines run breaking-bad/ --provider ollama          # Ollama (local, free)
+tvplotlines run breaking-bad/                    # Anthropic (default)
+tvplotlines run breaking-bad/ --provider openai  # OpenAI
+tvplotlines run breaking-bad/ --provider ollama  # Ollama (local, free)
 ```
 
-See [docs/api.md](docs/api.md) for full API reference, provider options, and pass modes.
+See [docs/api.md](docs/api.md) for full API reference.
+
+## Key concepts
+
+- **Plotline** — a narrative thread across episodes (e.g. "Walt: Empire")
+- **Story DNA** — hero, goal, obstacle, stakes
+- **A/B/C ranking** — plotline weight (A = main, B = secondary, C = tertiary, runner = minor thread)
+- **Format** — procedural (House), serial (Breaking Bad), hybrid (X-Files), ensemble (Game of Thrones)
+- **Story engine** — one sentence capturing the show's core dramatic mechanism
 
 ## Citation
-
-If you use tvplotlines in your research, please cite:
 
 ```bibtex
 @software{tvplotlines2026,
