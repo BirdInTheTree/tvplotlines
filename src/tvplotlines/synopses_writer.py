@@ -625,7 +625,7 @@ def rewrite_synopses(
     config: "LLMConfig",
     *,
     show_format: str | None = None,
-    mode: Mode = "single",
+    mode: Mode | None = None,
     use_glossary: bool = True,
     suggest_plotlines: bool = False,
     fandom_map: dict[int, str] | None = None,
@@ -654,6 +654,14 @@ def rewrite_synopses(
         else "Format: unknown (determine from context)"
     )
     fandom = fandom_map or {}
+
+    # Auto-select mode: parallel for procedural/hybrid (B-stories need full budget),
+    # single for serial/ensemble (season context matters more)
+    if mode is None:
+        if show_format in ("procedural", "hybrid"):
+            mode = "parallel"
+        else:
+            mode = "single"
 
     if mode == "single":
         synopses, plotlines = _rewrite_single(
@@ -1018,7 +1026,7 @@ def write_synopses(
     provider: str = "anthropic",
     model: str | None = None,
     base_url: str | None = None,
-    mode: Mode = "single",
+    mode: Mode | None = None,
     use_glossary: bool = True,
 ) -> None:
     """Generate episode synopses and save to files.

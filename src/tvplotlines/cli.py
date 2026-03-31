@@ -355,9 +355,9 @@ def main() -> None:
                            help="LLM provider (default: anthropic)")
     ws_parser.add_argument("--model", default=None, help="Specific model name")
     ws_parser.add_argument("--base-url", default=None, help="Custom API endpoint")
-    ws_parser.add_argument("--mode", default="single",
+    ws_parser.add_argument("--mode", default=None,
                            choices=["parallel", "batch", "sequential", "single"],
-                           help="Execution mode (default: single)")
+                           help="Execution mode (default: auto — parallel for procedural/hybrid, single for serial/ensemble)")
     ws_parser.add_argument("--fandom-wiki", default=None,
                            help="Fandom wiki subdomain (e.g. 'house', 'breakingbad')")
     ws_parser.add_argument("--no-fandom", action="store_true",
